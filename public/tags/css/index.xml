@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>css on Data Visualization for Educational Data Science</title>
+    <link>/tags/css/</link>
+    <description>Recent content in css on Data Visualization for Educational Data Science</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Dec 2018 12:47:56 -0600</lastBuildDate><atom:link href="/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Style a markdown table with Bootstrap classes in Hugo</title>
+      <link>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</link>
+      <pubDate>Wed, 12 Dec 2018 12:47:56 -0600</pubDate>
+      
+      <guid>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</guid>
+      <description>Inspired by this discussion, I wanted the ability to style a markdown table with Bootstrap table classes. In the past, I&amp;rsquo;ve accomplished this by defining the table in a data file, then building it with a shortcode.
+While this works fine, it&amp;rsquo;s better for a different use case. I wanted something that meets the following criteria:
+ The table is defined in markdown It lives in the content file, e.g. content/post/some-post.</description>
+    </item>
+    
+  </channel>
+</rss>

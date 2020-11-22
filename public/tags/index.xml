@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Data Visualization for Educational Data Science</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Data Visualization for Educational Data Science</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>katex</title>
+      <link>/tags/katex/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/katex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>/tags/math/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>typesetting</title>
+      <link>/tags/typesetting/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/typesetting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nasa</title>
+      <link>/tags/nasa/</link>
+      <pubDate>Thu, 27 Dec 2018 20:46:49 -0600</pubDate>
+      
+      <guid>/tags/nasa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>quotes</title>
+      <link>/tags/quotes/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>/tags/quotes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bootstrap</title>
+      <link>/tags/bootstrap/</link>
+      <pubDate>Wed, 12 Dec 2018 12:47:56 -0600</pubDate>
+      
+      <guid>/tags/bootstrap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>css</title>
+      <link>/tags/css/</link>
+      <pubDate>Wed, 12 Dec 2018 12:47:56 -0600</pubDate>
+      
+      <guid>/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fedora</title>
+      <link>/tags/fedora/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fedora/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>snap</title>
+      <link>/tags/snap/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/snap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>/tags/ubuntu/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>awk</title>
+      <link>/tags/awk/</link>
+      <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/awk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>command-line</title>
+      <link>/tags/command-line/</link>
+      <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/command-line/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>theme</title>
+      <link>/tags/theme/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/theme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fun</title>
+      <link>/tags/fun/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fun/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>/tags/git/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>/tags/go/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>templates</title>
+      <link>/tags/templates/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/templates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jekyll</title>
+      <link>/tags/jekyll/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/jekyll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>migration</title>
+      <link>/tags/migration/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/migration/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

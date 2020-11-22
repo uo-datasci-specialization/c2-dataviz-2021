@@ -1,0 +1,473 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <meta name="generator" content="Hugo 0.78.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Migrate to Hugo from Jekyll | Data Visualization for Educational Data Science</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #b8e1ff !important;
+  color: #212529 !important;
+}
+#nav a.nav-link:hover {
+  background-color: #e5f4ff;
+  color: #212529 !important;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+  padding-top: 1rem;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+
+.container > aside.tableOfContentContainer {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    align-self: start;
+}
+.container > aside > h3 {
+    font-size: 1rem;
+    padding-left: .5rem;
+    color: #1a202c;
+    font-weight: 700;
+    padding-bottom: .5rem;
+    padding-top: 1rem;
+}
+.container {
+  display: grid;
+  grid-template-columns: 100% 15em;
+  max-width: 700px;
+  width: 100%;
+   
+}
+
+#TableOfContents {
+    display: block;
+    padding-left: .5rem;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    color: #1a202c;
+}
+#TableOfContents li {
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+    list-style: none;
+}
+ 
+#TableOfContents li.active:before {
+    content: "→";
+    display: inline-block;
+    margin-left: -20px;
+    width: 20px;
+}
+
+#TableOfContents li ul li {
+    margin-left: 0.25rem;
+}
+#TableOfContents li.active > a {
+    color: magenta !important;
+    font-weight: 500;
+}
+#TableOfContents a {
+    text-decoration: none !important;
+    padding: .125rem 0 !important;
+    color: #a0aec0 !important;
+    -webkit-transition: all 50ms ease-in-out !important;
+    transition: all 50ms ease-in-out !important;
+}
+#TableOfContents a:hover, #TableOfContents a:focus, #TableOfContents a:active {
+    color: #666 !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+html, body {
+    scroll-padding-top: 100px;
+}
+</style>
+</head>
+
+
+  
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="home"></i> Home</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/schedule/"><i data-feather="calendar"></i> Schedule</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/assignments/"><i data-feather="edit"></i> Assignments</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/syllabus/"><i data-feather="book"></i> Syllabus</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="github"></i> Class repo</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      
+      <main id="main">
+        
+
+<h1>Migrate to Hugo from Jekyll</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2014-03-10">Mar 10, 2014</time>
+
+  <br>
+  <i data-feather="tag"></i>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/jekyll">jekyll</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/migration">migration</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/git">git</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/templates">templates</a>
+  
+
+<br><br>
+<h2 id="move-static-content-to-static">Move static content to <code>static</code></h2>
+<p>Jekyll has a rule that any directory not starting with <code>_</code> will be copied as-is to the <code>_site</code> output. Hugo keeps all static content under <code>static</code>. You should therefore move it all there.
+With Jekyll, something that looked like</p>
+<pre><code>▾ &lt;root&gt;/
+    ▾ images/
+        logo.png
+</code></pre>
+<p>should become</p>
+<pre><code>▾ &lt;root&gt;/
+    ▾ static/
+        ▾ images/
+            logo.png
+</code></pre>
+<p>Additionally, you&rsquo;ll want any files that should reside at the root (such as <code>CNAME</code>) to be moved to <code>static</code>.</p>
+<h2 id="create-your-hugo-configuration-file">Create your Hugo configuration file</h2>
+<p>Hugo can read your configuration as JSON, YAML or TOML. Hugo supports parameters custom configuration too. Refer to the <a href="/overview/configuration/">Hugo configuration documentation</a> for details.</p>
+<h2 id="set-your-configuration-publish-folder-to-_site">Set your configuration publish folder to <code>_site</code></h2>
+<p>The default is for Jekyll to publish to <code>_site</code> and for Hugo to publish to <code>public</code>. If, like me, you have <a href="http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html"><code>_site</code> mapped to a git submodule on the <code>gh-pages</code> branch</a>, you&rsquo;ll want to do one of two alternatives:</p>
+<ol>
+<li>
+<p>Change your submodule to point to map <code>gh-pages</code> to public instead of <code>_site</code> (recommended).</p>
+<pre><code> git submodule deinit _site
+ git rm _site
+ git submodule add -b gh-pages git@github.com:your-username/your-repo.git public
+</code></pre>
+</li>
+<li>
+<p>Or, change the Hugo configuration to use <code>_site</code> instead of <code>public</code>.</p>
+<pre><code> {
+     ..
+     &quot;publishdir&quot;: &quot;_site&quot;,
+     ..
+ }
+</code></pre>
+</li>
+</ol>
+<h2 id="convert-jekyll-templates-to-hugo-templates">Convert Jekyll templates to Hugo templates</h2>
+<p>That&rsquo;s the bulk of the work right here. The documentation is your friend. You should refer to <a href="http://jekyllrb.com/docs/templates/">Jekyll&rsquo;s template documentation</a> if you need to refresh your memory on how you built your blog and <a href="/layout/templates/">Hugo&rsquo;s template</a> to learn Hugo&rsquo;s way.</p>
+<p>As a single reference data point, converting my templates for <a href="http://heyitsalex.net/">heyitsalex.net</a> took me no more than a few hours.</p>
+<h2 id="convert-jekyll-plugins-to-hugo-shortcodes">Convert Jekyll plugins to Hugo shortcodes</h2>
+<p>Jekyll has <a href="http://jekyllrb.com/docs/plugins/">plugins</a>; Hugo has <a href="/doc/shortcodes/">shortcodes</a>. It&rsquo;s fairly trivial to do a port.</p>
+<h3 id="implementation">Implementation</h3>
+<p>As an example, I was using a custom <a href="https://github.com/alexandre-normand/alexandre-normand/blob/74bb12036a71334fdb7dba84e073382fc06908ec/_plugins/image_tag.rb"><code>image_tag</code></a> plugin to generate figures with caption when running Jekyll. As I read about shortcodes, I found Hugo had a nice built-in shortcode that does exactly the same thing.</p>
+<p>Jekyll&rsquo;s plugin:</p>
+<pre><code>module Jekyll
+  class ImageTag &lt; Liquid::Tag
+    @url = nil
+    @caption = nil
+    @class = nil
+    @link = nil
+    // Patterns
+    IMAGE_URL_WITH_CLASS_AND_CAPTION =
+    IMAGE_URL_WITH_CLASS_AND_CAPTION_AND_LINK = /(\w+)(\s+)((https?:\/\/|\/)(\S+))(\s+)&quot;(.*?)&quot;(\s+)-&gt;((https?:\/\/|\/)(\S+))(\s*)/i
+    IMAGE_URL_WITH_CAPTION = /((https?:\/\/|\/)(\S+))(\s+)&quot;(.*?)&quot;/i
+    IMAGE_URL_WITH_CLASS = /(\w+)(\s+)((https?:\/\/|\/)(\S+))/i
+    IMAGE_URL = /((https?:\/\/|\/)(\S+))/i
+    def initialize(tag_name, markup, tokens)
+      super
+      if markup =~ IMAGE_URL_WITH_CLASS_AND_CAPTION_AND_LINK
+        @class   = $1
+        @url     = $3
+        @caption = $7
+        @link = $9
+      elsif markup =~ IMAGE_URL_WITH_CLASS_AND_CAPTION
+        @class   = $1
+        @url     = $3
+        @caption = $7
+      elsif markup =~ IMAGE_URL_WITH_CAPTION
+        @url     = $1
+        @caption = $5
+      elsif markup =~ IMAGE_URL_WITH_CLASS
+        @class = $1
+        @url   = $3
+      elsif markup =~ IMAGE_URL
+        @url = $1
+      end
+    end
+    def render(context)
+      if @class
+        source = &quot;&lt;figure class='#{@class}'&gt;&quot;
+      else
+        source = &quot;&lt;figure&gt;&quot;
+      end
+      if @link
+        source += &quot;&lt;a href=\&quot;#{@link}\&quot;&gt;&quot;
+      end
+      source += &quot;&lt;img src=\&quot;#{@url}\&quot;&gt;&quot;
+      if @link
+        source += &quot;&lt;/a&gt;&quot;
+      end
+      source += &quot;&lt;figcaption&gt;#{@caption}&lt;/figcaption&gt;&quot; if @caption
+      source += &quot;&lt;/figure&gt;&quot;
+      source
+    end
+  end
+end
+Liquid::Template.register_tag('image', Jekyll::ImageTag)
+</code></pre>
+<p>is written as this Hugo shortcode:</p>
+<pre><code>&lt;!-- image --&gt;
+&lt;figure {{ with .Get &quot;class&quot; }}class=&quot;{{.}}&quot;{{ end }}&gt;
+    {{ with .Get &quot;link&quot;}}&lt;a href=&quot;{{.}}&quot;&gt;{{ end }}
+        &lt;img src=&quot;{{ .Get &quot;src&quot; }}&quot; {{ if or (.Get &quot;alt&quot;) (.Get &quot;caption&quot;) }}alt=&quot;{{ with .Get &quot;alt&quot;}}{{.}}{{else}}{{ .Get &quot;caption&quot; }}{{ end }}&quot;{{ end }} /&gt;
+    {{ if .Get &quot;link&quot;}}&lt;/a&gt;{{ end }}
+    {{ if or (or (.Get &quot;title&quot;) (.Get &quot;caption&quot;)) (.Get &quot;attr&quot;)}}
+    &lt;figcaption&gt;{{ if isset .Params &quot;title&quot; }}
+        {{ .Get &quot;title&quot; }}{{ end }}
+        {{ if or (.Get &quot;caption&quot;) (.Get &quot;attr&quot;)}}&lt;p&gt;
+        {{ .Get &quot;caption&quot; }}
+        {{ with .Get &quot;attrlink&quot;}}&lt;a href=&quot;{{.}}&quot;&gt; {{ end }}
+            {{ .Get &quot;attr&quot; }}
+        {{ if .Get &quot;attrlink&quot;}}&lt;/a&gt; {{ end }}
+        &lt;/p&gt; {{ end }}
+    &lt;/figcaption&gt;
+    {{ end }}
+&lt;/figure&gt;
+&lt;!-- image --&gt;
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>I simply changed:</p>
+<pre><code>{% image full http://farm5.staticflickr.com/4136/4829260124_57712e570a_o_d.jpg &quot;One of my favorite touristy-type photos. I secretly waited for the good light while we were &quot;having fun&quot; and took this. Only regret: a stupid pole in the top-left corner of the frame I had to clumsily get rid of at post-processing.&quot; -&gt;http://www.flickr.com/photos/alexnormand/4829260124/in/set-72157624547713078/ %}
+</code></pre>
+<p>to this (this example uses a slightly extended version named <code>fig</code>, different than the built-in <code>figure</code>):</p>
+<pre><code>{{% fig class=&quot;full&quot; src=&quot;http://farm5.staticflickr.com/4136/4829260124_57712e570a_o_d.jpg&quot; title=&quot;One of my favorite touristy-type photos. I secretly waited for the good light while we were having fun and took this. Only regret: a stupid pole in the top-left corner of the frame I had to clumsily get rid of at post-processing.&quot; link=&quot;http://www.flickr.com/photos/alexnormand/4829260124/in/set-72157624547713078/&quot; %}}
+</code></pre>
+<p>As a bonus, the shortcode named parameters are, arguably, more readable.</p>
+<h2 id="finishing-touches">Finishing touches</h2>
+<h3 id="fix-content">Fix content</h3>
+<p>Depending on the amount of customization that was done with each post with Jekyll, this step will require more or less effort. There are no hard and fast rules here except that <code>hugo server --watch</code> is your friend. Test your changes and fix errors as needed.</p>
+<h3 id="clean-up">Clean up</h3>
+<p>You&rsquo;ll want to remove the Jekyll configuration at this point. If you have anything else that isn&rsquo;t used, delete it.</p>
+<h2 id="a-practical-example-in-a-diff">A practical example in a diff</h2>
+<p><a href="http://heyitsalex.net/">Hey, it&rsquo;s Alex</a> was migrated in less than a <em>father-with-kids day</em> from Jekyll to Hugo. You can see all the changes (and screw-ups) by looking at this <a href="https://github.com/alexandre-normand/alexandre-normand/compare/869d69435bd2665c3fbf5b5c78d4c22759d7613a...b7f6605b1265e83b4b81495423294208cc74d610">diff</a>.</p>
+
+
+
+      </main>
+      
+      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
+      
+      <h3>Table of contents</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#move-static-content-to-static">Move static content to <code>static</code></a></li>
+    <li><a href="#create-your-hugo-configuration-file">Create your Hugo configuration file</a></li>
+    <li><a href="#set-your-configuration-publish-folder-to-_site">Set your configuration publish folder to <code>_site</code></a></li>
+    <li><a href="#convert-jekyll-templates-to-hugo-templates">Convert Jekyll templates to Hugo templates</a></li>
+    <li><a href="#convert-jekyll-plugins-to-hugo-shortcodes">Convert Jekyll plugins to Hugo shortcodes</a>
+      <ul>
+        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#usage">Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#finishing-touches">Finishing touches</a>
+      <ul>
+        <li><a href="#fix-content">Fix content</a></li>
+        <li><a href="#clean-up">Clean up</a></li>
+      </ul>
+    </li>
+    <li><a href="#a-practical-example-in-a-diff">A practical example in a diff</a></li>
+  </ul>
+</nav>
+      
+      </aside>
+
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    Made with <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/zwbetz-gh/vanilla-bootstrap-hugo-theme">Vanilla</a>
+  </div>
+</footer>
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+  integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq"
+  crossorigin="anonymous"
+/>
+
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+  integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+  crossorigin="anonymous"
+></script>
+
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+  integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+  crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"
+></script>
+
+
+    
+  
+
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/hugo/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/katex/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/katex-math-typesetting/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/math/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/typesetting/</loc>
+    <lastmod>2020-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/nasa/</loc>
+    <lastmod>2018-12-27T20:46:49-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/nasa-images/</loc>
+    <lastmod>2018-12-27T20:46:49-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/quotes/</loc>
+    <lastmod>2018-12-26T00:29:41-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/quotes-by-carl-jung/</loc>
+    <lastmod>2018-12-26T00:29:41-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/bootstrap/</loc>
+    <lastmod>2018-12-12T12:47:56-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/css/</loc>
+    <lastmod>2018-12-12T12:47:56-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</loc>
+    <lastmod>2018-12-12T12:47:56-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fedora/</loc>
+    <lastmod>2018-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/snap/</loc>
+    <lastmod>2018-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ubuntu/</loc>
+    <lastmod>2018-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/use-snap-to-install-the-hugo-edge-version-on-fedora-and-ubuntu/</loc>
+    <lastmod>2018-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/awk/</loc>
+    <lastmod>2018-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/command-line/</loc>
+    <lastmod>2018-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/script-to-add-a-page-level-variable-to-content-front-matter-in-hugo/</loc>
+    <lastmod>2018-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/creating-a-new-theme/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/theme/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/goisforlovers/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fun/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/hugoisforlovers/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/git/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/go/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/templates/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/migrate-from-jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/migration/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignments/</loc>
+  </url>
+  
+  <url>
+    <loc>/syllabus/</loc>
+  </url>
+  
+  <url>
+    <loc>/schedule/</loc>
+  </url>
+  
+</urlset>

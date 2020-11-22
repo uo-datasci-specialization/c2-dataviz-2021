@@ -1,8 +1,9 @@
 baseURL: https://example.com
+ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 languageCode: en-us
 title: Data Visualization for Educational Data Science
 theme: vanilla-bootstrap-hugo-theme
-googleAnalytics: UA-123456789-1
+# googleAnalytics: UA-123456789-1
 
 taxonomies:
   tag: tags

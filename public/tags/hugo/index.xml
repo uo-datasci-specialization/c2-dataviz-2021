@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on Data Visualization for Educational Data Science</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in hugo on Data Visualization for Educational Data Science</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Katex Math Typesetting</title>
+      <link>/katex-math-typesetting/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/katex-math-typesetting/</guid>
+      <description>Enable Katex in the config file by setting the katex param to true. This will import the necessary Katex CSS/JS.
+Note: Use the online reference of supported TeX functions.
+Some math:
+$$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $$$$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $$
+More math:
+$$\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$$$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$</description>
+    </item>
+    
+    <item>
+      <title>Style a markdown table with Bootstrap classes in Hugo</title>
+      <link>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</link>
+      <pubDate>Wed, 12 Dec 2018 12:47:56 -0600</pubDate>
+      
+      <guid>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</guid>
+      <description>Inspired by this discussion, I wanted the ability to style a markdown table with Bootstrap table classes. In the past, I&amp;rsquo;ve accomplished this by defining the table in a data file, then building it with a shortcode.
+While this works fine, it&amp;rsquo;s better for a different use case. I wanted something that meets the following criteria:
+ The table is defined in markdown It lives in the content file, e.g. content/post/some-post.</description>
+    </item>
+    
+    <item>
+      <title>Use Snap to install the Hugo edge version on Fedora and Ubuntu</title>
+      <link>/use-snap-to-install-the-hugo-edge-version-on-fedora-and-ubuntu/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/use-snap-to-install-the-hugo-edge-version-on-fedora-and-ubuntu/</guid>
+      <description>If you are using the Fedora or Ubuntu Linux distributions &amp;ndash; I&amp;rsquo;m currently on Fedora 28 &amp;ndash; and would like to help test the latest development version of Hugo, or if you just want to be on the bleeding-edge of things, this post is for you.
+Fedora-only steps To get started, install Snap on Fedora:
+sudo dnf install snapd Add the Snap directory to your PATH by adding this line to your ~/.</description>
+    </item>
+    
+    <item>
+      <title>Script to add a page-level variable to content front matter in hugo</title>
+      <link>/script-to-add-a-page-level-variable-to-content-front-matter-in-hugo/</link>
+      <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/script-to-add-a-page-level-variable-to-content-front-matter-in-hugo/</guid>
+      <description>This was originally a question posed on the hugo discussion forums.
+The user wanted to loop through all her content files and add a weight page-level variable to the front matter. The value of weight needed to be the first 2 characters of the content filename, since her content was named like 01_content.md, 02_content.md, etc.
+She then wanted to range through her pages by their weight, like so:
+{{ range .</description>
+    </item>
+    
+    <item>
+      <title>Creating a New Theme</title>
+      <link>/creating-a-new-theme/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/creating-a-new-theme/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+    </item>
+    
+    <item>
+      <title>(Hu)go Template Primer</title>
+      <link>/goisforlovers/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/goisforlovers/</guid>
+      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
+This document is a brief primer on using Go templates.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Hugo</title>
+      <link>/hugoisforlovers/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/hugoisforlovers/</guid>
+      <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
+Save it somewhere specific as we will be using it in the next step.
+More complete instructions are available at Install Hugo
+Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
+Follow the following steps:
+ Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+    </item>
+    
+    <item>
+      <title>Migrate to Hugo from Jekyll</title>
+      <link>/migrate-from-jekyll/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/migrate-from-jekyll/</guid>
+      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
+▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
+▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+    </item>
+    
+  </channel>
+</rss>

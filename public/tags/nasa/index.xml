@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nasa on Data Visualization for Educational Data Science</title>
+    <link>/tags/nasa/</link>
+    <description>Recent content in nasa on Data Visualization for Educational Data Science</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Dec 2018 20:46:49 -0600</lastBuildDate><atom:link href="/tags/nasa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NASA Images</title>
+      <link>/nasa-images/</link>
+      <pubDate>Thu, 27 Dec 2018 20:46:49 -0600</pubDate>
+      
+      <guid>/nasa-images/</guid>
+      <description>Images from the NASA Image and Video Library.
+ The Sun The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process. It is by far the most important source of energy for life on Earth. Credits.
+   The Moon The Moon is an astronomical body that orbits planet Earth and is Earth&amp;rsquo;s only permanent natural satellite.</description>
+    </item>
+    
+  </channel>
+</rss>
