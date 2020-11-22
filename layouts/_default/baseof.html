@@ -1,0 +1,26 @@
+<!doctype html>
+{{ $lang := .Site.Language.Lang | default "en" }}
+<html lang="{{ $lang }}" class="h-100">
+  {{ partial "head.html" . }}
+  <body class="d-flex flex-column h-100">
+    {{ partial "nav.html" . }}
+    <div class="container">
+      
+      <main id="main">
+        {{ block "main" . }}{{ end }}
+      </main>
+      
+      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
+      
+      <h3>Table of contents</h3>
+        {{ .TableOfContents }}
+      
+      </aside>
+
+    </div>
+    {{ partial "footer.html" . }}
+    {{ partial "script.html" . }}
+    {{ partial "katex.html" . }}
+    {{ partial "google-analytics-async.html" . }}
+  </body>
+</html>

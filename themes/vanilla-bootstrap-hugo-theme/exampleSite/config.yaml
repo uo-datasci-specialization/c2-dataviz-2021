@@ -1,0 +1,77 @@
+baseURL: https://example.com
+languageCode: en-us
+title: Vanilla
+theme: vanilla-bootstrap-hugo-theme
+googleAnalytics: UA-123456789-1
+
+taxonomies:
+  tag: tags
+
+permalinks:
+  post: /:filename/
+
+# See https://feathericons.com/
+# The value of pre is the icon name
+menu:
+  nav:
+  - name: Home
+    pre: home
+    url: /
+    weight: 1
+  - name: Blog
+    pre: edit
+    url: /post/
+    weight: 2
+  - name: Tags
+    pre: tag
+    url: /tags/
+    weight: 3
+  - name: About
+    pre: smile
+    url: /about/
+    weight: 4
+  - name: RSS
+    pre: rss
+    url: /index.xml
+    weight: 5
+
+params:
+  includeBootstrapJs: false
+  showActiveNav: true
+  containerMaxWidth: 700px
+  dateFormat: Jan 2, 2006
+  homeText: Welcome to the Vanilla theme demo. Have a look around. Maybe even eat some ice cream.
+  footerText: Made with [Hugo](https://gohugo.io/) & [Vanilla](https://github.com/zwbetz-gh/vanilla-bootstrap-hugo-theme)
+  hideFooter: false
+  katex: true
+
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer: true
+    parser:
+      attribute: true
+      autoHeadingID: true
+    renderer:
+      hardWraps: false
+      unsafe: true
+      xHTML: false
+  highlight:
+    codeFences: true
+    hl_Lines: ""
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: true
+    style: monokai
+    tabWidth: 4
+  tableOfContents:
+    endLevel: 6
+    startLevel: 2
