@@ -1,4 +1,4 @@
-baseURL: https://example.com
+baseURL: https://dataviz-2021.netlify.app
 ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 languageCode: en-us
 title: Data Visualization for Educational Data Science
@@ -33,7 +33,7 @@ menu:
     weight: 4
   - name: Class repo
     pre: github
-    url: /post/
+    url: https://github.com/uo-datasci-specialization/c2-dataviz-2021
     weight: 5
 
 params:

@@ -1,6 +1,6 @@
 ---
-draft: true
 title: Data Visualization
+toc: false
 ---
 
 
