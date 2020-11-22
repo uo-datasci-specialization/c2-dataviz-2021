@@ -1,6 +1,5 @@
 ---
 title: Data Visualization
-toc: false
 ---
 
 

@@ -1,5 +1,6 @@
 ---
 title: "Assignments"
+toc: true
 ---
 
 ## Labs

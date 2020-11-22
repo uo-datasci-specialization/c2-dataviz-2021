@@ -1,6 +1,5 @@
 ---
 title: "Schedule"
-toc: false
 ---
 
 <div class="sds-book">

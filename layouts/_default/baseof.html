@@ -10,12 +10,14 @@
         {{ block "main" . }}{{ end }}
       </main>
       
-      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
+      {{ if .Params.toc }}
+      <aside class="tableOfContentContainer" id="tableOfContentContainer">
       
       <h3>Table of contents</h3>
         {{ .TableOfContents }}
       
       </aside>
+      {{ end }}
 
     </div>
     {{ partial "footer.html" . }}
