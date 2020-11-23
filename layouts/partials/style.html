@@ -83,6 +83,9 @@
       overflow-y: scroll;
     }
 
+    .container > aside.tableOfContentContainer::-webkit-scrollbar {
+      display: none;
+    }
     .container > aside > h3 {
       font-size: 1rem;
       padding-left: 0.5rem;
@@ -100,20 +103,33 @@
     }
 
     #TableOfContents {
-      display: block;
-      padding-left: 0.5rem;
-      padding-bottom: 1rem;
-      font-size: 1rem;
-      color: #1a202c;
+      font-size: 0.9rem;
     }
+    #TableOfContents ul {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    #TableOfContents a {
+      text-decoration: none;
+      color: #62676a;
+      -webkit-transition: all 50ms ease-in-out !important;
+      transition: all 50ms ease-in-out !important;
+    }
+    #TableOfContents a:hover,
+    #TableOfContents a:focus,
+    #TableOfContents a:active {
+      color: #666 ;
+    }
+
     #TableOfContents li {
       padding-top: 0.1rem;
       padding-bottom: 0.1rem;
       list-style: none;
     }
-    /*#TableOfContents li.active {
-      padding-left: 0;
-  }*/
+    
     #TableOfContents li.active:before {
       content: '→';
       display: inline-block;
@@ -125,22 +141,10 @@
       margin-left: 0.25rem;
     }
     #TableOfContents li.active > a {
-      color: magenta !important;
+      color: #ff65ad !important;
       font-weight: 500;
     }
-    #TableOfContents a {
-      text-decoration: none !important;
-      padding: 0.125rem 0 !important;
-      color: #a0aec0 !important;
-      -webkit-transition: all 50ms ease-in-out !important;
-      transition: all 50ms ease-in-out !important;
-    }
-    #TableOfContents a:hover,
-    #TableOfContents a:focus,
-    #TableOfContents a:active {
-      color: #666 !important;
-    }
-
+    
     .toc-contents {
       height: 100%
       overflow: auto;
@@ -152,5 +156,15 @@
     html,
     body {
       scroll-padding-top: 100px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container > aside {
+        display: none;
+      }
+    }
+    
+    #footer .container {
+      display: block;
     }
 </style>
