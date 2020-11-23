@@ -1,19 +1,29 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
+  observeHeaders();
+};
 
-	const observer = new IntersectionObserver(entries => {
-		entries.forEach(entry => {
-			const id = entry.target.getAttribute('id');
-			if (entry.intersectionRatio > 0) {
-				document.querySelector(`#TableOfContents li a[href="#${id}"]`).parentElement.classList.add('active');
-			} else {
-				document.querySelector(`#TableOfContents li a[href="#${id}"]`).parentElement.classList.remove('active');
-			}
-		});
-	});
+function observeHeaders() {
+  const observer = createObserver();
+  const headers = document.querySelectorAll('h2[id]');
+  headers.forEach((header) => observer.observe(header));
+}
 
-	// Track all sections that have an `id` applied
-	document.querySelectorAll('section[id]').forEach((section) => {
-		observer.observe(section);
-	});
-	
-});
+function createObserver() {
+  return new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute('id');
+
+        if (entry.isIntersecting) {
+          const tableOfContents = document.getElementById('TableOfContents');
+          const anchors = [...tableOfContents.querySelectorAll('a')];
+          anchors.forEach((a) => a.parentElement.classList.remove('active'));
+
+          const link = tableOfContents.querySelector(`a[href="#${id}"]`);
+          link.parentElement.classList.add('active');
+        }
+      });
+    },
+    { rootMargin: '0px 0px -88% 0px', threshold: 0 }
+  );
+}
