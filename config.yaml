@@ -45,6 +45,7 @@ params:
   hideFooter: false
   katex: true
   custom_css: ["custom.css"]
+  custom_js: ["custom.js"]
 
 markup:
   defaultMarkdownHandler: goldmark

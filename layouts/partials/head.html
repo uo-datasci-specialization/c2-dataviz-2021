@@ -4,6 +4,9 @@
   {{ range .Site.Params.custom_css }}
   <link rel="stylesheet" href="{{ "/css/" | relURL }}{{ . }}">
   {{ end }}
+  {{ range .Site.Params.custom_js }}
+  <script src="{{ "/js/" | relURL }}{{ . }}"></script>
+  {{ end }}
   {{ hugo.Generator }}
   <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | absURL }}">
   {{ $title := print .Title " | " .Site.Title }}
@@ -15,4 +18,3 @@
 </head>
 
 
-  
