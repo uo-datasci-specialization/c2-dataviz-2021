@@ -11,14 +11,13 @@ function observeHeaders() {
 function createObserver() {
   return new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.getAttribute('id');
-
-        if (entry.isIntersecting) {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) {
           const tableOfContents = document.getElementById('TableOfContents');
           const anchors = [...tableOfContents.querySelectorAll('a')];
           anchors.forEach((a) => a.parentElement.classList.remove('active'));
 
+          const id = target.getAttribute('id');
           const link = tableOfContents.querySelector(`a[href="#${id}"]`);
           link.parentElement.classList.add('active');
         }
