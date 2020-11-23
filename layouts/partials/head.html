@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="{{ "/css/" | relURL }}{{ . }}">
   {{ end }}
   {{ range .Site.Params.custom_js }}
-  <script href="{{ "/js/" | relURL }}{{ . }}">
+  <script src="{{ "/js/" | relURL }}{{ . }}"></script>
   {{ end }}
   {{ hugo.Generator }}
   <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | absURL }}">
@@ -18,4 +18,3 @@
 </head>
 
 
-  
