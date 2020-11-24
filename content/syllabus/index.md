@@ -53,7 +53,7 @@ Your final grade will be composed of five components:
   + Presentation (20 points; 10%)
   + Product (60 points; 30%)
 
-### Labs (30 points; 15%)
+### Labs
 There are 5 labs during the course, scored at 6 points each, which must be
 submitted within one week of being assigned. Labs will include designated
 in-class time, but any work not completed during class must be completed
@@ -68,7 +68,7 @@ work is not fully complete. **If the assignment is not complete, and the student
 has not contacted the instructor for help, it is likely to result is a score of 
 zero**.
 
-### Homework (40 points; 20%)
+### Homework
 Homework assignments are essentially extended labs, with two exceptions: (1) No
 time will be designated during class to homework completion, and (2) homework
 will be scored on a correct/incorrect basis. Two homework will be assigned, each
@@ -93,7 +93,7 @@ It would be ideal if both model data visualizations and poor data visualizations
 were presented from a variety of sources. Your two visualizations **must** be
 aimed at separate audiences. 
 
-### Final Project (120 points; 60%)
+### Final Project
 The final project will include a portfolio of your data visualizations. At least
 **three** different data visualizations must be included, as well as the 
 history of how the visualization changed over time. Among these three 
@@ -104,7 +104,7 @@ modifications to your plot through systems outside of R (e.g., Adobe
 Illustrator, Inkscape). If you choose to make these modifications (not required)
 they are the one (and only) acceptable exception to full reproducibility. 
 
-#### Proposal (10 points; 5%; **Due February 5**)
+#### Proposal
 At the end of Week 5, you must include a proposal of your data visualization
 portfolio that includes the following:
 
@@ -116,12 +116,12 @@ portfolio that includes the following:
 * The intended message to be communicated for each plot. 
 
 
-#### Portfolio draft (15 points; 7.5%; **Due February 26**)
+#### Portfolio draft
 By the end of Week 8, you should have a fairly complete draft of the data 
 visualizations you will be sharing in your portfolio. These should be housed
 on GitHub and ready to receive feedback from your peers.
 
-#### Peer review (15 points; 7.5%; **Due March 4**)
+#### Peer review
 You will be assigned to three of your peers code for their data visualizations. 
 The purpose of this exercise is to learn from each other. Programming is an 
 immensely open-ended enterprise and there are lots of winding paths that all 
@@ -144,7 +144,7 @@ comments that could be perceived as negative, and outside the scope of the
 code, will result in an immediate score of zero. Be constructive in your 
 feedback. Be kind. We are all learning.
 
-#### Presentation (20 points; 10%)
+#### Presentation
 Week 10 will include each student sharing their portfolio with the class.
 
 I encourage you to present using HTML slides produced via R Markdown 
@@ -171,7 +171,7 @@ following:
 	+ At least 1 major challenge encountered along the way
 	+ At least 1 major victory
 
-#### Product (60 points; 30%)
+#### Product
 
 The final project must include
 
