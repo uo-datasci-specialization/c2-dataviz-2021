@@ -32,7 +32,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< slides "w1p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< assigned "syllabus/#final-project" "Final Project" >}}
+{{< assigned "syllabus/#final-project" "Final" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -95,7 +95,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< slides "" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< assigned "assignments/#labs" "Lab 1" >}}
+{{< assigned "lab-1" "Lab 1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 

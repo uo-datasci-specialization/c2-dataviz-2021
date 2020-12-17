@@ -51,8 +51,8 @@
   }
 
   /*Add new hover*/
-  a.happygit:hover,
-  a.happygit:focus,
+  /*a.happygit:hover,*/
+  /*a.happygit:focus,*/
   a.r4ds:hover,
   a.r4ds:focus,
   a.socviz:hover,
@@ -80,7 +80,8 @@
     border: dotted 1px #989EA4;
     border-radius: 10px;
     padding: 0.5rem;
-    width:70%;
+    width:60%;
+    line-height: 2.6;
   }
   .book-author {
     color: #62676a;
@@ -97,7 +98,7 @@
     border: solid 3px #B8E1FF !important;
     border-radius: 10px;
     display: inline-grid;
-    grid-template-columns: 11% 27% 8% 20% 10% 12% 12%;
+    grid-template-columns: 11% 27% 8% 15% 12% 15% 12%;
     align-items: center;
     gap: 2px;
     width:100%;
@@ -108,7 +109,7 @@
     border: solid 3px #c2c5c7 !important;
     border-radius: 10px;
     display: inline-grid;
-    grid-template-columns: 11% 27% 8% 20% 10% 12% 12%;
+    grid-template-columns: 11% 27% 8% 15% 12% 15% 12%;
     align-items: center;
     gap: 2px;
     width:100%;
@@ -118,7 +119,7 @@
   .weeks-header {
     display: inline-grid;
     width:100%;
-    grid-template-columns: 11% 27% 8% 20% 10% 12% 12%;
+    grid-template-columns: 11% 27% 8% 15% 12% 15% 12%;
     text-align: center;
     font-size: 1.2rem;
     border-bottom: 1px solid #989EA4;
@@ -169,34 +170,72 @@
   }
   .wrap {
     text-align: center;
+    line-height: 2.6;
   }
   .readings {
     text-align: left;
     padding-left: 25%;
   }
   .happygit {
-    color: #3b98ff !important;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    padding-right: .6rem;
+    padding-left: .6rem;
+    border-radius: 5px;
+    background-color: #e5f1ff;
   }
-  .happygit a:hover{
-    color: #ff65ad;
+  
+  a.happygit:hover {
+    background-color: #80bbff;
+    color: #fff !important;
   }
   .r4ds {
-    color: #C04B33 !important;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    padding-right: .6rem;
+    padding-left: .6rem;
+    border-radius: 5px;
+    background-color: #faedeb;
   }
-  .r4ds a:hover{
-    color: #ff65ad;
+  a.r4ds:hover{
+    background-color: #C04B33;
+    color: #fff !important;
   }
   .socviz {
-    color: #1B9FAF !important;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    padding-right: .6rem;
+    padding-left: .6rem;
+    border-radius: 5px;
+    background-color: #e9fafc
   }
-  .socviz a:hover{
-    color: #ff65ad;
+  a.socviz:hover{
+    background-color: #1B9FAF;
+    color: #fff !important;
   }
   .dataviz {
-    color: #4B56FF !important;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    padding-right: .6rem;
+    padding-left: .6rem;
+    border-radius: 5px;
+    background-color: #e5e7ff ;
   }
-  .dataviz a:hover{
-    color: #ff65ad;
+  a.dataviz:hover{
+    background-color: #4B56FF;
+    color: #fff !important;
+  }
+  .other {
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    padding-right: .6rem;
+    padding-left: .6rem;
+    border-radius: 5px;
+    background-color: #f1f2f4;
+  }
+  a.other:hover{
+    background-color: #343A40;
+    color: #fff !important;
   }
 
   
