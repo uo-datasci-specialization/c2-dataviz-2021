@@ -7,154 +7,314 @@
   
   <link rel="stylesheet" href="/css/custom.css">
   
-  <meta name="generator" content="Hugo 0.78.2" />
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  <script src="/js/custom.js"></script>
+  
+  <meta name="generator" content="Hugo 0.71.0" />
+  <link rel="stylesheet" href="https://dataviz-2021.netlify.app/css/bootstrap.min.css">
   
   
   <title>Assignments | Data Visualization for Educational Data Science</title>
   <style>
-.container {
-  max-width: 700px;
-}
-#nav a {
-  font-weight: bold;
-  color: inherit;
-}
-#nav a.nav-link-active {
-  background-color: #b8e1ff !important;
-  color: #212529 !important;
-}
-#nav a.nav-link:hover {
-  background-color: #e5f4ff;
-  color: #212529 !important;
-}
-#nav-border {
-  border-bottom: 1px solid #212529;
-}
-#main {
-  margin-top: 1em;
-  margin-bottom: 4em;
-}
-#home-jumbotron {
-  background-color: inherit;
-  padding-top: 1rem;
-}
-#footer .container {
-  padding: 1em 0;
-}
-#footer a {
-  color: inherit;
-  text-decoration: underline;
-}
-.font-125 {
-  font-size: 125%;
-}
-.tag-btn {
-  margin-bottom: 0.3em;
-}
-pre {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-}
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit; 
-  background-color: transparent;
-  border-radius: 0;
-}
-code {
-  padding: 2px 4px;
-  font-size: 90%;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-}
-img,
-iframe,
-embed,
-video,
-audio {
-  max-width: 100%;
-}
-.card-img,
-.card-img-top,
-.card-img-bottom {
-  width: initial;
-}
+  a {
+    color: #808aff;
+  }
 
-.container > aside.tableOfContentContainer {
+  a:hover {
+    color: #ff65ad;
+    text-decoration: none;
+  }
+  .wrap p span {
+    display: block;
+  }
+  .course-books {
+    margin-bottom: 1.5rem;
+    border: dotted 1px #989EA4;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width:70%;
+  }
+  .book-author {
+    color: #62676a;
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .book-title a {
+    color: #ff65ad !important;
+    text-decoration: underline;
+  }
+  .week-odd {
+    background: -webkit-linear-gradient(0deg, #B8E1FF 10%, #fff 10%);
+    border: solid 3px #B8E1FF !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;    
+  }
+  .week-even {
+    background: -webkit-linear-gradient(0deg, #c2c5c7 10%, #fff 10%);
+    border: solid 3px #c2c5c7 !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;   
+  }
+  
+  .weeks-header {
+    display: inline-grid;
+    width:100%;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #989EA4;
+    background-color: #fff;
+    margin: 0;
+    padding: 2px 0 0 12px;
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
-    align-self: start;
-}
-.container > aside > h3 {
-    font-size: 1rem;
-    padding-left: .5rem;
-    color: #1a202c;
-    font-weight: 700;
-    padding-bottom: .5rem;
-    padding-top: 1rem;
-}
-.container {
-  display: grid;
-  grid-template-columns: 100% 15em;
-  max-width: 700px;
-  width: 100%;
+    top: -1px;;
+  }
+  .schedule {
+    margin-top: 1.5rem;
+  }
+  h2#week-1 {
+    margin-top:-0.2rem;
+  }
+  h2[id^='week'] {
+    margin-top:1.3rem;
+    margin-bottom: -1rem;
+    color: #c2c5c7;
+    position: absolute;
+    z-index:99;
+  }
+  .week-theme-title {
+    font-weight: bold;
+    border-bottom: 0.5px solid gray;
+  }
+  .week-description {
+    font-size: 0.9rem;
+    color: #3d4042;
+  }
+  .class-date {
+    grid-row: 1 / 3;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .week-title {
+    color: #556672;
+    margin-right: 1rem;
+    border-bottom: solid 1px gray;
+    text-align: center;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+  .class-theme {
+    text-align: left;
+  }
+  .assigned, .due, .reading {
+    text-align: center;
+  }
+
+  .happygit {
+    color: #3b98ff !important;
+  }
+  .happygit a:hover{
+    color: #ff65ad;
+  }
+  .r4ds {
+    color: #C04B33 !important;
+  }
+  .r4ds a:hover{
+    color: #ff65ad;
+  }
+  .socviz {
+    color: #1B9FAF !important;
+  }
+  .socviz a:hover{
+    color: #ff65ad;
+  }
+  .dataviz {
+    color: #4B56FF !important;
+  }
+  .dataviz a:hover{
+    color: #ff65ad;
+  }
+
+  
+     
+    #nav a {
+      color: #212529 !important;
+      font-weight: bold;
+      color: inherit;
+    }
+    #nav a.nav-link-active {
+      background-color: #b8e1ff !important;
+      color: #212529 !important;
+    }
+    #nav a.nav-link:hover {
+      background-color: #e5f4ff;
+      color: #212529 !important;
+    }
+    #nav-border {
+      border-bottom: 1px solid #212529;
+    }
+    #main {
+      margin-top: 1em;
+      margin-bottom: 4em;
+    }
+    #home-jumbotron {
+      background-color: inherit;
+      padding-top: 1rem;
+    }
+    #footer .container {
+      padding: 1em 0;
+      display: block;
+    }
+    #footer a {
+      color: #565A5C !important;
+      text-decoration: underline;
+    }
+    .font-125 {
+      font-size: 125%;
+    }
+    .tag-btn {
+      margin-bottom: 0.3em;
+    }
+    pre {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 16px;
+    }
+    pre code {
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      background-color: transparent;
+      border-radius: 0;
+    }
+    code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: #c7254e;
+      background-color: #f9f2f4;
+      border-radius: 4px;
+    }
+    img,
+    iframe,
+    embed,
+    video,
+    audio {
+      max-width: 100%;
+    }
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+      width: initial;
+    }
+
+    .container > aside.tableOfContentContainer {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    .container > aside.tableOfContentContainer::-webkit-scrollbar {
+      display: none;
+    }
+    .container > aside > h3 {
+      font-size: 1rem;
+      padding-left: 0.5rem;
+      color: #1a202c;
+      font-weight: 700;
+      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 100% 15em;
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    #TableOfContents {
+      font-size: 0.9rem;
+    }
+    #TableOfContents ul {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    #TableOfContents a {
+      text-decoration: none;
+      color: #62676a !important;
+      -webkit-transition: all 50ms ease-in-out !important;
+      transition: all 50ms ease-in-out !important;
+    }
+    #TableOfContents a:hover,
+    #TableOfContents a:focus,
+    #TableOfContents a:active {
+      color: #666 ;
+    }
+
+    #TableOfContents li {
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      list-style: none;
+    }
+    
+    #TableOfContents li.active:before {
+      content: '→';
+      display: inline-block;
+      margin-left: -20px;
+      width: 20px;
+    }
+
+    #TableOfContents li ul li {
+      margin-left: -1rem;
+    }
+    #TableOfContents li.active > a {
+      color: #ff65ad !important;
+      font-weight: 500;
+    }
+    
+    .toc-contents {
+      height: 100%
+      overflow: auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    html,
+    body {
+      scroll-padding-top: 100px;
+    }
+
+    @media screen and (max-width: 800px) {
+      .container > aside {
+        display: none;
+      }
+    }
    
-}
-
-#TableOfContents {
-    display: block;
-    padding-left: .5rem;
-    padding-bottom: 1rem;
-    font-size: 1rem;
-    color: #1a202c;
-}
-#TableOfContents li {
-    padding-top: .1rem;
-    padding-bottom: .1rem;
-    list-style: none;
-}
- 
-#TableOfContents li.active:before {
-    content: "→";
-    display: inline-block;
-    margin-left: -20px;
-    width: 20px;
-}
-
-#TableOfContents li ul li {
-    margin-left: 0.25rem;
-}
-#TableOfContents li.active > a {
-    color: magenta !important;
-    font-weight: 500;
-}
-#TableOfContents a {
-    text-decoration: none !important;
-    padding: .125rem 0 !important;
-    color: #a0aec0 !important;
-    -webkit-transition: all 50ms ease-in-out !important;
-    transition: all 50ms ease-in-out !important;
-}
-#TableOfContents a:hover, #TableOfContents a:focus, #TableOfContents a:active {
-    color: #666 !important;
-}
-html {
-  scroll-behavior: smooth;
-}
-html, body {
-    scroll-padding-top: 100px;
-}
 </style>
+
 </head>
 
 
-  
+
   <body class="d-flex flex-column h-100">
     <div id="nav-border" class="container">
   <nav id="nav" class="nav justify-content-center">
@@ -226,6 +386,19 @@ html, body {
       
     
     
+    <a class="nav-link " href="/tags/"><i data-feather="tag"></i> Tags</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
     <a class="nav-link " href="https://github.com/uo-datasci-specialization/c2-dataviz-2021"><i data-feather="github"></i> Class repo</a>
   
   </nav>
@@ -247,42 +420,42 @@ html, body {
 <table class="table table-hover">
 <thead>
 <tr>
-<th style="text-align:left"><strong>Lab</strong></th>
-<th style="text-align:center"><strong>Topic</strong></th>
-<th style="text-align:center"><strong>Assigned</strong></th>
-<th style="text-align:center"><strong>Due</strong></th>
+<th align="left"><strong>Lab</strong></th>
+<th align="center"><strong>Topic</strong></th>
+<th align="center"><strong>Assigned</strong></th>
+<th align="center"><strong>Due</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">1</td>
-<td style="text-align:center">Collaborating with GitHub</td>
-<td style="text-align:center">1/8/20</td>
-<td style="text-align:center">1/13/20</td>
+<td align="left">1</td>
+<td align="center"><a href="/lab-1/">Collaborating with GitHub</a></td>
+<td align="center">1/8/20</td>
+<td align="center">1/13/20</td>
 </tr>
 <tr>
-<td style="text-align:left">2</td>
-<td style="text-align:center">Mapping data to aesthetics</td>
-<td style="text-align:center">1/15/20</td>
-<td style="text-align:center">1/20/20</td>
+<td align="left">2</td>
+<td align="center">Mapping data to aesthetics</td>
+<td align="center">1/15/20</td>
+<td align="center">1/20/20</td>
 </tr>
 <tr>
-<td style="text-align:left">3</td>
-<td style="text-align:center">Visual perception</td>
-<td style="text-align:center">1/29/20</td>
-<td style="text-align:center">2/5/20</td>
+<td align="left">3</td>
+<td align="center">Visual perception</td>
+<td align="center">1/29/20</td>
+<td align="center">2/5/20</td>
 </tr>
 <tr>
-<td style="text-align:left">4</td>
-<td style="text-align:center">Color</td>
-<td style="text-align:center">2/5/20</td>
-<td style="text-align:center">2/12/20</td>
+<td align="left">4</td>
+<td align="center">Color</td>
+<td align="center">2/5/20</td>
+<td align="center">2/12/20</td>
 </tr>
 <tr>
-<td style="text-align:left">5</td>
-<td style="text-align:center">Refining plots for communication</td>
-<td style="text-align:center">2/12/20</td>
-<td style="text-align:center">2/19/20</td>
+<td align="left">5</td>
+<td align="center">Refining plots for communication</td>
+<td align="center">2/12/20</td>
+<td align="center">2/19/20</td>
 </tr>
 </tbody>
 </table>
@@ -297,24 +470,24 @@ html, body {
 <table class="table table-hover">
 <thead>
 <tr>
-<th style="text-align:left"><strong>Homework</strong></th>
-<th style="text-align:center"><strong>Topic</strong></th>
-<th style="text-align:center"><strong>Assigned</strong></th>
-<th style="text-align:center"><strong>Due</strong></th>
+<th align="left"><strong>Homework</strong></th>
+<th align="center"><strong>Topic</strong></th>
+<th align="center"><strong>Assigned</strong></th>
+<th align="center"><strong>Due</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">1</td>
-<td style="text-align:center">Creating new visualizations through joins</td>
-<td style="text-align:center">1/22/20</td>
-<td style="text-align:center">2/5/20</td>
+<td align="left">1</td>
+<td align="center">Creating new visualizations through joins</td>
+<td align="center">1/22/20</td>
+<td align="center">2/5/20</td>
 </tr>
 <tr>
-<td style="text-align:left">2</td>
-<td style="text-align:center">Visualizing uncertainty and tables</td>
-<td style="text-align:center">2/17/20</td>
-<td style="text-align:center">3/2/20</td>
+<td align="left">2</td>
+<td align="center">Visualizing uncertainty and tables</td>
+<td align="center">2/17/20</td>
+<td align="center">3/2/20</td>
 </tr>
 </tbody>
 </table>
@@ -329,30 +502,30 @@ html, body {
 <table class="table table-hover">
 <thead>
 <tr>
-<th style="text-align:left"><strong>Component</strong></th>
-<th style="text-align:center"><strong>Due</strong></th>
+<th align="left"><strong>Component</strong></th>
+<th align="center"><strong>Due</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#proposal_(10_points;_5%25;_due_february_5)">Proposal</a></td>
-<td style="text-align:center">2/5/20</td>
+<td align="left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#proposal_(10_points;_5%25;_due_february_5)">Proposal</a></td>
+<td align="center">2/5/20</td>
 </tr>
 <tr>
-<td style="text-align:left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#portfolio_draft_(15_points;_75%25;_due_february_26)">Draft</a></td>
-<td style="text-align:center">2/26/20</td>
+<td align="left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#portfolio_draft_(15_points;_75%25;_due_february_26)">Draft</a></td>
+<td align="center">2/26/20</td>
 </tr>
 <tr>
-<td style="text-align:left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#peer_review_(15_points;_75%25;_due_march_4)">Peer review</a></td>
-<td style="text-align:center">3/4/20</td>
+<td align="left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#peer_review_(15_points;_75%25;_due_march_4)">Peer review</a></td>
+<td align="center">3/4/20</td>
 </tr>
 <tr>
-<td style="text-align:left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#presentation_(20_points;_10%25)">Presentation</a></td>
-<td style="text-align:center">3/9/20 or 3/11/20</td>
+<td align="left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#presentation_(20_points;_10%25)">Presentation</a></td>
+<td align="center">3/9/20 or 3/11/20</td>
 </tr>
 <tr>
-<td style="text-align:left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#product_(60_points;_30%25)">Product</a></td>
-<td style="text-align:center">3/18/20</td>
+<td align="left"><a href="https://uo-datasci-specialization.github.io/c2-dataviz-2020/site-syllabus.html#product_(60_points;_30%25)">Product</a></td>
+<td align="center">3/18/20</td>
 </tr>
 </tbody>
 </table>
@@ -362,7 +535,8 @@ html, body {
 
       </main>
       
-      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
+      
+      <aside class="tableOfContentContainer" id="tableOfContentContainer">
       
       <h3>Table of contents</h3>
         <nav id="TableOfContents">
@@ -374,6 +548,7 @@ html, body {
 </nav>
       
       </aside>
+      
 
     </div>
     
@@ -383,7 +558,7 @@ html, body {
   </div>
 </footer>
 
-    <script src="/js/feather.min.js"></script>
+    <script src="https://dataviz-2021.netlify.app/js/feather.min.js"></script>
 <script>
   feather.replace()
 </script>

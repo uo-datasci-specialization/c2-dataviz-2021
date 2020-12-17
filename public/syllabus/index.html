@@ -7,154 +7,314 @@
   
   <link rel="stylesheet" href="/css/custom.css">
   
-  <meta name="generator" content="Hugo 0.78.2" />
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  <script src="/js/custom.js"></script>
+  
+  <meta name="generator" content="Hugo 0.71.0" />
+  <link rel="stylesheet" href="https://dataviz-2021.netlify.app/css/bootstrap.min.css">
   
   
   <title>EDLD 652: Data visualization for EDS | Data Visualization for Educational Data Science</title>
   <style>
-.container {
-  max-width: 700px;
-}
-#nav a {
-  font-weight: bold;
-  color: inherit;
-}
-#nav a.nav-link-active {
-  background-color: #b8e1ff !important;
-  color: #212529 !important;
-}
-#nav a.nav-link:hover {
-  background-color: #e5f4ff;
-  color: #212529 !important;
-}
-#nav-border {
-  border-bottom: 1px solid #212529;
-}
-#main {
-  margin-top: 1em;
-  margin-bottom: 4em;
-}
-#home-jumbotron {
-  background-color: inherit;
-  padding-top: 1rem;
-}
-#footer .container {
-  padding: 1em 0;
-}
-#footer a {
-  color: inherit;
-  text-decoration: underline;
-}
-.font-125 {
-  font-size: 125%;
-}
-.tag-btn {
-  margin-bottom: 0.3em;
-}
-pre {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-}
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit; 
-  background-color: transparent;
-  border-radius: 0;
-}
-code {
-  padding: 2px 4px;
-  font-size: 90%;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-}
-img,
-iframe,
-embed,
-video,
-audio {
-  max-width: 100%;
-}
-.card-img,
-.card-img-top,
-.card-img-bottom {
-  width: initial;
-}
+  a {
+    color: #808aff;
+  }
 
-.container > aside.tableOfContentContainer {
+  a:hover {
+    color: #ff65ad;
+    text-decoration: none;
+  }
+  .wrap p span {
+    display: block;
+  }
+  .course-books {
+    margin-bottom: 1.5rem;
+    border: dotted 1px #989EA4;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width:70%;
+  }
+  .book-author {
+    color: #62676a;
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .book-title a {
+    color: #ff65ad !important;
+    text-decoration: underline;
+  }
+  .week-odd {
+    background: -webkit-linear-gradient(0deg, #B8E1FF 10%, #fff 10%);
+    border: solid 3px #B8E1FF !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;    
+  }
+  .week-even {
+    background: -webkit-linear-gradient(0deg, #c2c5c7 10%, #fff 10%);
+    border: solid 3px #c2c5c7 !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;   
+  }
+  
+  .weeks-header {
+    display: inline-grid;
+    width:100%;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #989EA4;
+    background-color: #fff;
+    margin: 0;
+    padding: 2px 0 0 12px;
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
-    align-self: start;
-}
-.container > aside > h3 {
-    font-size: 1rem;
-    padding-left: .5rem;
-    color: #1a202c;
-    font-weight: 700;
-    padding-bottom: .5rem;
-    padding-top: 1rem;
-}
-.container {
-  display: grid;
-  grid-template-columns: 100% 15em;
-  max-width: 700px;
-  width: 100%;
+    top: -1px;;
+  }
+  .schedule {
+    margin-top: 1.5rem;
+  }
+  h2#week-1 {
+    margin-top:-0.2rem;
+  }
+  h2[id^='week'] {
+    margin-top:1.3rem;
+    margin-bottom: -1rem;
+    color: #c2c5c7;
+    position: absolute;
+    z-index:99;
+  }
+  .week-theme-title {
+    font-weight: bold;
+    border-bottom: 0.5px solid gray;
+  }
+  .week-description {
+    font-size: 0.9rem;
+    color: #3d4042;
+  }
+  .class-date {
+    grid-row: 1 / 3;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .week-title {
+    color: #556672;
+    margin-right: 1rem;
+    border-bottom: solid 1px gray;
+    text-align: center;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+  .class-theme {
+    text-align: left;
+  }
+  .assigned, .due, .reading {
+    text-align: center;
+  }
+
+  .happygit {
+    color: #3b98ff !important;
+  }
+  .happygit a:hover{
+    color: #ff65ad;
+  }
+  .r4ds {
+    color: #C04B33 !important;
+  }
+  .r4ds a:hover{
+    color: #ff65ad;
+  }
+  .socviz {
+    color: #1B9FAF !important;
+  }
+  .socviz a:hover{
+    color: #ff65ad;
+  }
+  .dataviz {
+    color: #4B56FF !important;
+  }
+  .dataviz a:hover{
+    color: #ff65ad;
+  }
+
+  
+     
+    #nav a {
+      color: #212529 !important;
+      font-weight: bold;
+      color: inherit;
+    }
+    #nav a.nav-link-active {
+      background-color: #b8e1ff !important;
+      color: #212529 !important;
+    }
+    #nav a.nav-link:hover {
+      background-color: #e5f4ff;
+      color: #212529 !important;
+    }
+    #nav-border {
+      border-bottom: 1px solid #212529;
+    }
+    #main {
+      margin-top: 1em;
+      margin-bottom: 4em;
+    }
+    #home-jumbotron {
+      background-color: inherit;
+      padding-top: 1rem;
+    }
+    #footer .container {
+      padding: 1em 0;
+      display: block;
+    }
+    #footer a {
+      color: #565A5C !important;
+      text-decoration: underline;
+    }
+    .font-125 {
+      font-size: 125%;
+    }
+    .tag-btn {
+      margin-bottom: 0.3em;
+    }
+    pre {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 16px;
+    }
+    pre code {
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      background-color: transparent;
+      border-radius: 0;
+    }
+    code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: #c7254e;
+      background-color: #f9f2f4;
+      border-radius: 4px;
+    }
+    img,
+    iframe,
+    embed,
+    video,
+    audio {
+      max-width: 100%;
+    }
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+      width: initial;
+    }
+
+    .container > aside.tableOfContentContainer {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    .container > aside.tableOfContentContainer::-webkit-scrollbar {
+      display: none;
+    }
+    .container > aside > h3 {
+      font-size: 1rem;
+      padding-left: 0.5rem;
+      color: #1a202c;
+      font-weight: 700;
+      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 100% 15em;
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    #TableOfContents {
+      font-size: 0.9rem;
+    }
+    #TableOfContents ul {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    #TableOfContents a {
+      text-decoration: none;
+      color: #62676a !important;
+      -webkit-transition: all 50ms ease-in-out !important;
+      transition: all 50ms ease-in-out !important;
+    }
+    #TableOfContents a:hover,
+    #TableOfContents a:focus,
+    #TableOfContents a:active {
+      color: #666 ;
+    }
+
+    #TableOfContents li {
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      list-style: none;
+    }
+    
+    #TableOfContents li.active:before {
+      content: '→';
+      display: inline-block;
+      margin-left: -20px;
+      width: 20px;
+    }
+
+    #TableOfContents li ul li {
+      margin-left: -1rem;
+    }
+    #TableOfContents li.active > a {
+      color: #ff65ad !important;
+      font-weight: 500;
+    }
+    
+    .toc-contents {
+      height: 100%
+      overflow: auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    html,
+    body {
+      scroll-padding-top: 100px;
+    }
+
+    @media screen and (max-width: 800px) {
+      .container > aside {
+        display: none;
+      }
+    }
    
-}
-
-#TableOfContents {
-    display: block;
-    padding-left: .5rem;
-    padding-bottom: 1rem;
-    font-size: 1rem;
-    color: #1a202c;
-}
-#TableOfContents li {
-    padding-top: .1rem;
-    padding-bottom: .1rem;
-    list-style: none;
-}
- 
-#TableOfContents li.active:before {
-    content: "→";
-    display: inline-block;
-    margin-left: -20px;
-    width: 20px;
-}
-
-#TableOfContents li ul li {
-    margin-left: 0.25rem;
-}
-#TableOfContents li.active > a {
-    color: magenta !important;
-    font-weight: 500;
-}
-#TableOfContents a {
-    text-decoration: none !important;
-    padding: .125rem 0 !important;
-    color: #a0aec0 !important;
-    -webkit-transition: all 50ms ease-in-out !important;
-    transition: all 50ms ease-in-out !important;
-}
-#TableOfContents a:hover, #TableOfContents a:focus, #TableOfContents a:active {
-    color: #666 !important;
-}
-html {
-  scroll-behavior: smooth;
-}
-html, body {
-    scroll-padding-top: 100px;
-}
 </style>
+
 </head>
 
 
-  
+
   <body class="d-flex flex-column h-100">
     <div id="nav-border" class="container">
   <nav id="nav" class="nav justify-content-center">
@@ -224,6 +384,19 @@ html, body {
       
     
     
+    <a class="nav-link " href="/tags/"><i data-feather="tag"></i> Tags</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
     <a class="nav-link " href="https://github.com/uo-datasci-specialization/c2-dataviz-2021"><i data-feather="github"></i> Class repo</a>
   
   </nav>
@@ -253,7 +426,7 @@ html, body {
 </ul>
 <h2 id="course-overview">Course Overview</h2>
 <p>This is the second course in a sequence of courses that will eventually lead to an <em>educational data science</em> specialization. This course will be taught through <a href="https://cran.r-project.org">R</a>, a free and open-source statistical computing environment. This course will give students a foundation in the principles and practice of data visualization, particularly as applied to scientific and technical data. We will have weekly lectures, covering a wide variety of topics including human perception, color theory, principles of visual design, etc. We will also have weekly hands-on laboratory sessions in which students will have the opportunity to put the lecture material into practice. Often when creating effective data visualizations, it is necessary to combine and transform different data sources, and this will be a considerable focus of the course as well.</p>
-<h2 id="student-learning-objectives">Student Learning objectives</h2>
+<h3 id="student-learning-objectives">Student Learning objectives</h3>
 <p>By the end of this course, students should be able to:</p>
 <ul>
 <li>Transform data in a variety of ways to create effective data visualizations</li>
@@ -261,10 +434,10 @@ html, body {
 <li>Customize graphics in a variety of ways (e.g., color choices, text annotations, categorical axis ordering)</li>
 <li>Create an online data visualization portfolio</li>
 </ul>
-<h1 id="course-readings">Course Readings</h1>
+<h2 id="course-readings">Course Readings</h2>
 <p>All course readings are freely available online or will be provided by the
 instructor.</p>
-<h2 id="books-required">Books (required)</h2>
+<h3 id="books-required">Books (required)</h3>
 <ul>
 <li>Jenny Bryan, <a href="http://happygitwithr.com">Happy git with R</a>.</li>
 <li>Kieran Healy, <a href="http://socviz.co/">Data Visualization: A Practical Introduction.</a> Forthcoming. Princeton University Press.</li>
@@ -274,7 +447,7 @@ instructor.</p>
 <ul>
 <li>Hadley Wickham &amp; Garrett Grolemund, <a href="https://r4ds.had.co.nz">R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</a></li>
 </ul>
-<h1 id="assignments-and-grading">Assignments and Grading</h1>
+<h2 id="assignments-and-grading">Assignments and Grading</h2>
 <p>Your final grade will be composed of five components:</p>
 <ul>
 <li>5 labs at 6 points each (30 points; 15%)</li>
@@ -290,7 +463,7 @@ instructor.</p>
 </ul>
 </li>
 </ul>
-<h2 id="labs-30-points-15">Labs (30 points; 15%)</h2>
+<h3 id="labs">Labs</h3>
 <p>There are 5 labs during the course, scored at 6 points each, which must be
 submitted within one week of being assigned. Labs will include designated
 in-class time, but any work not completed during class must be completed
@@ -304,12 +477,12 @@ honest effort&rdquo;, and can result in full credit for an assignment even if th
 work is not fully complete. <strong>If the assignment is not complete, and the student
 has not contacted the instructor for help, it is likely to result is a score of
 zero</strong>.</p>
-<h2 id="homework-40-points-20">Homework (40 points; 20%)</h2>
+<h3 id="homework">Homework</h3>
 <p>Homework assignments are essentially extended labs, with two exceptions: (1) No
 time will be designated during class to homework completion, and (2) homework
 will be scored on a correct/incorrect basis. Two homework will be assigned, each
 worth up to 20 points.</p>
-<h2 id="data-visualizations-in-the-wild-presentation-10-points-5">Data visualizations &ldquo;in the wild&rdquo; presentation (10 points; 5%)</h2>
+<h3 id="data-visualizations-in-the-wild-presentation-10-points-5">Data visualizations &ldquo;in the wild&rdquo; presentation (10 points; 5%)</h3>
 <p>On the first day of the class you will be randomly assigned a date for a
 presentation.</p>
 <p>Presentations will start with the second meeting of class. The assignment requires:</p>
@@ -329,7 +502,7 @@ scientific community, popular culture, data users [teachers/educators, etc.])</l
 It would be ideal if both model data visualizations and poor data visualizations
 were presented from a variety of sources. Your two visualizations <strong>must</strong> be
 aimed at separate audiences.</p>
-<h2 id="final-project-120-points-60">Final Project (120 points; 60%)</h2>
+<h3 id="final-project">Final Project</h3>
 <p>The final project will include a portfolio of your data visualizations. At least
 <strong>three</strong> different data visualizations must be included, as well as the
 history of how the visualization changed over time. Among these three
@@ -339,7 +512,7 @@ reproducible. In occasional situations, it can be helpful to make final
 modifications to your plot through systems outside of R (e.g., Adobe
 Illustrator, Inkscape). If you choose to make these modifications (not required)
 they are the one (and only) acceptable exception to full reproducibility.</p>
-<h3 id="proposal-10-points-5-due-february-5">Proposal (10 points; 5%; <strong>Due February 5</strong>)</h3>
+<h4 id="proposal">Proposal</h4>
 <p>At the end of Week 5, you must include a proposal of your data visualization
 portfolio that includes the following:</p>
 <ul>
@@ -353,11 +526,11 @@ once, with each plot displayed for a different audience.</li>
 </li>
 <li>The intended message to be communicated for each plot.</li>
 </ul>
-<h3 id="portfolio-draft-15-points-75-due-february-26">Portfolio draft (15 points; 7.5%; <strong>Due February 26</strong>)</h3>
+<h4 id="portfolio-draft">Portfolio draft</h4>
 <p>By the end of Week 8, you should have a fairly complete draft of the data
 visualizations you will be sharing in your portfolio. These should be housed
 on GitHub and ready to receive feedback from your peers.</p>
-<h3 id="peer-review-15-points-75-due-march-4">Peer review (15 points; 7.5%; <strong>Due March 4</strong>)</h3>
+<h4 id="peer-review">Peer review</h4>
 <p>You will be assigned to three of your peers code for their data visualizations.
 The purpose of this exercise is to learn from each other. Programming is an
 immensely open-ended enterprise and there are lots of winding paths that all
@@ -377,7 +550,7 @@ denigrate. <strong>Under no circumstances will negative comments be tolerated</s
 comments that could be perceived as negative, and outside the scope of the
 code, will result in an immediate score of zero. Be constructive in your
 feedback. Be kind. We are all learning.</p>
-<h3 id="presentation-20-points-10">Presentation (20 points; 10%)</h3>
+<h4 id="presentation">Presentation</h4>
 <p>Week 10 will include each student sharing their portfolio with the class.</p>
 <p>I encourage you to present using HTML slides produced via R Markdown
 (specifically <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">xaringan</a>),
@@ -407,7 +580,7 @@ etc.</li>
 </ul>
 </li>
 </ul>
-<h3 id="product-60-points-30">Product (60 points; 30%)</h3>
+<h4 id="product">Product</h4>
 <p>The final project must include</p>
 <ul>
 <li>A web-deployed portfolio showcasing your <a href="https://twitter.com/search?q=%23DataViz&amp;src=tyah">#dataviz</a>
@@ -455,7 +628,7 @@ It will be graded on the following three criteria:</p>
 </ul>
 </li>
 </ul>
-<h2 id="extra-credit">Extra Credit</h2>
+<h3 id="extra-credit">Extra Credit</h3>
 <p>There is one opportunity for extra credit, which is s worth up to 10
 points, and is an in-depth self-study of a topic not explicitly covered
 in the class. Students opting into the extra credit option will provide a 10
@@ -473,136 +646,148 @@ appropriate. For example, you may choose to present on integrating R with SQL
 databases. If you are interested in giving a 10 minute talk on a topic of your
 choice, please contact the instructor as soon as possible to obtain approval on
 the topic and set a date for the presentation.</p>
-<h1 id="grading-components-200-points-possible">Grading Components (200 points possible)</h1>
-<table>
+<h2 id="grading-components-200-points-possible">Grading Components (200 points possible)</h2>
+
+
+
+
+
+<table class="table table-hover">
 <thead>
 <tr>
-<th style="text-align:center"><strong>Lower percent</strong></th>
-<th style="text-align:left"><strong>Lower point range</strong></th>
-<th style="text-align:center"><strong>Grade</strong></th>
-<th style="text-align:center"><strong>Upper point range</strong></th>
-<th style="text-align:right"><strong>Upper percent</strong></th>
+<th align="center"><strong>Lower percent</strong></th>
+<th align="left"><strong>Lower point range</strong></th>
+<th align="center"><strong>Grade</strong></th>
+<th align="center"><strong>Upper point range</strong></th>
+<th align="right"><strong>Upper percent</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">0.97</td>
-<td style="text-align:left">(194 pts)</td>
-<td style="text-align:center">A+</td>
-<td style="text-align:center"></td>
-<td style="text-align:right"></td>
+<td align="center">0.97</td>
+<td align="left">(194 pts)</td>
+<td align="center">A+</td>
+<td align="center"></td>
+<td align="right"></td>
 </tr>
 <tr>
-<td style="text-align:center">0.93</td>
-<td style="text-align:left">(186 pts)</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">(194 pts)</td>
-<td style="text-align:right">0.97</td>
+<td align="center">0.93</td>
+<td align="left">(186 pts)</td>
+<td align="center">A</td>
+<td align="center">(194 pts)</td>
+<td align="right">0.97</td>
 </tr>
 <tr>
-<td style="text-align:center">0.90</td>
-<td style="text-align:left">(180 pts)</td>
-<td style="text-align:center">A-</td>
-<td style="text-align:center">(186 pts)</td>
-<td style="text-align:right">0.93</td>
+<td align="center">0.90</td>
+<td align="left">(180 pts)</td>
+<td align="center">A-</td>
+<td align="center">(186 pts)</td>
+<td align="right">0.93</td>
 </tr>
 <tr>
-<td style="text-align:center">0.87</td>
-<td style="text-align:left">(174 pts)</td>
-<td style="text-align:center">B+</td>
-<td style="text-align:center">(180 pts)</td>
-<td style="text-align:right">0.90</td>
+<td align="center">0.87</td>
+<td align="left">(174 pts)</td>
+<td align="center">B+</td>
+<td align="center">(180 pts)</td>
+<td align="right">0.90</td>
 </tr>
 <tr>
-<td style="text-align:center">0.83</td>
-<td style="text-align:left">(166 pts)</td>
-<td style="text-align:center">B</td>
-<td style="text-align:center">(174 pts)</td>
-<td style="text-align:right">0.87</td>
+<td align="center">0.83</td>
+<td align="left">(166 pts)</td>
+<td align="center">B</td>
+<td align="center">(174 pts)</td>
+<td align="right">0.87</td>
 </tr>
 <tr>
-<td style="text-align:center">0.80</td>
-<td style="text-align:left">(160 pts)</td>
-<td style="text-align:center">B-</td>
-<td style="text-align:center">(166 pts)</td>
-<td style="text-align:right">0.83</td>
+<td align="center">0.80</td>
+<td align="left">(160 pts)</td>
+<td align="center">B-</td>
+<td align="center">(166 pts)</td>
+<td align="right">0.83</td>
 </tr>
 <tr>
-<td style="text-align:center">0.77</td>
-<td style="text-align:left">(154 pts)</td>
-<td style="text-align:center">C+</td>
-<td style="text-align:center">(160 pts)</td>
-<td style="text-align:right">0.80</td>
+<td align="center">0.77</td>
+<td align="left">(154 pts)</td>
+<td align="center">C+</td>
+<td align="center">(160 pts)</td>
+<td align="right">0.80</td>
 </tr>
 <tr>
-<td style="text-align:center">0.73</td>
-<td style="text-align:left">(146 pts)</td>
-<td style="text-align:center">C</td>
-<td style="text-align:center">(154 pts)</td>
-<td style="text-align:right">0.77</td>
+<td align="center">0.73</td>
+<td align="left">(146 pts)</td>
+<td align="center">C</td>
+<td align="center">(154 pts)</td>
+<td align="right">0.77</td>
 </tr>
 <tr>
-<td style="text-align:center">0.70</td>
-<td style="text-align:left">(140 pts)</td>
-<td style="text-align:center">C-</td>
-<td style="text-align:center">(146 pts)</td>
-<td style="text-align:right">0.73</td>
+<td align="center">0.70</td>
+<td align="left">(140 pts)</td>
+<td align="center">C-</td>
+<td align="center">(146 pts)</td>
+<td align="right">0.73</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:left"></td>
-<td style="text-align:center">F</td>
-<td style="text-align:center">(140 pts)</td>
-<td style="text-align:right">0.70</td>
+<td align="center"></td>
+<td align="left"></td>
+<td align="center">F</td>
+<td align="center">(140 pts)</td>
+<td align="right">0.70</td>
 </tr>
 </tbody>
 </table>
-<h1 id="student-engagement-inventory">Student Engagement Inventory</h1>
+
+<h2 id="student-engagement-inventory">Student Engagement Inventory</h2>
 <p>Graduate: 1 credit hour = 40 hours of student engagement (3 credit hours = 120 hours of student engagement)</p>
-<table>
+
+
+
+
+
+<table class="table table-hover">
 <thead>
 <tr>
-<th style="text-align:left"><strong>Educational activity</strong></th>
-<th style="text-align:center"><strong>Hours student engaged</strong></th>
-<th style="text-align:left"><strong>Explanatory comments (if any):</strong></th>
+<th align="left"><strong>Educational activity</strong></th>
+<th align="center"><strong>Hours student engaged</strong></th>
+<th align="left"><strong>Explanatory comments (if any):</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Course attendance</td>
-<td style="text-align:center">26.5</td>
-<td style="text-align:left">20 meetings, at 80 minutes per meeting</td>
+<td align="left">Course attendance</td>
+<td align="center">26.5</td>
+<td align="left">20 meetings, at 80 minutes per meeting</td>
 </tr>
 <tr>
-<td style="text-align:left">Assigned readings</td>
-<td style="text-align:center">26.5</td>
-<td style="text-align:left">Weekly readings are assigned, and are expected to take roughly as long to complete as the in-seat time per week.</td>
+<td align="left">Assigned readings</td>
+<td align="center">26.5</td>
+<td align="left">Weekly readings are assigned, and are expected to take roughly as long to complete as the in-seat time per week.</td>
 </tr>
 <tr>
-<td style="text-align:left">Projects</td>
-<td style="text-align:center">30</td>
-<td style="text-align:left">Final project, as described above</td>
+<td align="left">Projects</td>
+<td align="center">30</td>
+<td align="left">Final project, as described above</td>
 </tr>
 <tr>
-<td style="text-align:left">Homework</td>
-<td style="text-align:center">37</td>
-<td style="text-align:left">6 Labs, at approximately one hour per lab spent out of class (6 hours), plus 4 DataCamp modules at approximately 5 hours per module, plus two homework assignments at approximately 5 hours each</td>
+<td align="left">Homework</td>
+<td align="center">37</td>
+<td align="left">6 Labs, at approximately one hour per lab spent out of class (6 hours), plus 4 DataCamp modules at approximately 5 hours per module, plus two homework assignments at approximately 5 hours each</td>
 </tr>
 <tr>
-<td style="text-align:left">Total hours:</td>
-<td style="text-align:center">120</td>
-<td style="text-align:left"></td>
+<td align="left">Total hours:</td>
+<td align="center">120</td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
-<h1 id="attendance-and-absence-guidelines">Attendance and Absence Guidelines</h1>
+
+<h2 id="attendance-and-absence-guidelines">Attendance and Absence Guidelines</h2>
 <p>Attendance at all class and discussion groups is expected and required, as described above.</p>
 <p>Students must contact the instructor in case of illness or emergencies that preclude attending class sessions. Messages can be left on the instructor&rsquo;s voice mail or e-mail at any time of the day or night, prior to class. If no prior arrangements have been made before class time, the absence will be unexcused. Excused absences will involve make-up assignments, with make-up assignment procedures to be discussed in class on the first day.</p>
 <p>If you are unable to complete an assignment due to a personal and/or family emergency, you should contact your instructor or discussion leader as soon as possible. On a case-by-case basis, the instructor will determine whether the emergency qualifies as an excused absence.</p>
-<h1 id="expected-classroom-behavior">Expected Classroom Behavior</h1>
+<h2 id="expected-classroom-behavior">Expected Classroom Behavior</h2>
 <p>Students are expected to participate in classroom activities. If use of digital devices or engagement in other non-class activities during class for purposes not regarding classroom activities is critically necessary, the student should engage in these activities while on break, or check with the instructor to arrange for a 10-minute break for unusual circumstances, but only if critically necessary.</p>
-<h1 id="course-policies">Course Policies</h1>
-<h2 id="diversity-equity-and-inclusion">Diversity, Equity and Inclusion</h2>
+<h2 id="course-policies">Course Policies</h2>
+<h3 id="diversity-equity-and-inclusion">Diversity, Equity and Inclusion</h3>
 <p>It is the policy of the University of Oregon to support and value equity and diversity and to provide inclusive learning environments for all students.  To do so requires that we:</p>
 <ul>
 <li>respect the dignity and essential worth of all individuals.</li>
@@ -614,11 +799,11 @@ the topic and set a date for the presentation.</p>
 </ul>
 <p>In this course, class discussions, projects/activities and assignments will challenge students to think critically about and be sensitive to the influence, and intersections, of race, ethnicity, nationality, documentation status, language, religion, gender, socioeconomic background, physical and cognitive ability, sexual orientation, and other cultural identities and experiences. Students will be encouraged to develop or expand their respect and understanding of such differences.</p>
 <p>Maintaining an inclusive classroom environment where all students feel able to talk about their cultural identities and experiences, ideas, beliefs, and values will not only be my responsibility, but the responsibility of each class member as well. Behavior that disregards or diminishes another student will not be permitted for any reason. This means that no racist, ableist, transphobic, xenophobic, chauvinistic or otherwise derogatory comments will be allowed. It also means that students must pay attention and listen respectfully to each other’s comments.</p>
-<h2 id="indigenous-recognition-statement">Indigenous Recognition Statement</h2>
+<h3 id="indigenous-recognition-statement">Indigenous Recognition Statement</h3>
 <p>The University of Oregon is located on Kalapuya Ilihi, the traditional indigenous homeland of the Kalapuya people. Today, descendants are citizens of the Confederated Tribes of the Grand Ronde Community of Oregon and the Confederated Tribes of the Siletz Indians of Oregon, and they continue to make important contributions in their communities, at UO, and across the land we now refer to as Oregon.</p>
-<h2 id="using-pronouns-and-personal-preference">Using Pronouns and Personal Preference</h2>
+<h3 id="using-pronouns-and-personal-preference">Using Pronouns and Personal Preference</h3>
 <p>The College of Education is always working to include and engage everyone. One way we can do this is to share our pronouns, or the words we want to be called when people aren’t using our name. Like names, pronouns are an important part of how we identify ourselves. Because we recognize that assuming someone’s gender can be hurtful, especially to members of our community who are transgender, genderqueer, or non-binary. This practice can assist in promoting respectful communication. As a community, we are all learning together about the importance of pronouns and being better allies to the trans community on campus. If you would like to ensure clarity around pronouns, please feel free to share any pronouns you would prefer me to use when referring to you to help me be aware of how to address you respectfully. Please visit this university website for more information. <a href="https://studentlife.uoregon.edu/pronouns">https://studentlife.uoregon.edu/pronouns</a></p>
-<h2 id="children-in-class">Children in class</h2>
+<h3 id="children-in-class">Children in class</h3>
 <p>I applaud all of you who go to graduate school with children! I had both of my girls while a doctoral student, and I understand the difficulty in balancing academic, work, and family commitments. I want you to succeed. Here are my policies regarding children in class:</p>
 <ol>
 <li>All breastfeeding babies are welcome in class as often as necessary.</li>
@@ -627,82 +812,86 @@ the topic and set a date for the presentation.</p>
 <li>All students are expected to join with me in creating a welcoming environment that is respectful of your classmates who bring children to class.</li>
 </ol>
 <p>I understand that sleep deprivation and exhaustion are among the most difficult aspects of parenting young children. The struggle of balancing school, work, childcare, and graduate school is tiring, and I will do my best to accommodate any such issues while maintaining the same high expectations for all students enrolled in the class. <em><strong>Please do not hesitate to contact me with any questions or concerns.</strong></em></p>
-<h2 id="documented-disability">Documented Disability</h2>
+<h3 id="documented-disability">Documented Disability</h3>
 <p>Appropriate accommodations will be provided for students with documented disabilities. If you have a documented disability and require accommodation, arrange to meet with the course instructor within the first two weeks of the term. The documentation of your disability must come in writing from the Accessible Education Center in the Office of Academic Advising and Student Services.  Disabilities may include (but are not limited to) neurological impairment, orthopedic impairment, traumatic brain injury, visual impairment, chronic medical conditions, emotional/psychological disabilities, hearing impairment, and learning disabilities. For more information on Accessible Education Center, please see <a href="http://aec.uoregon.edu">http://aec.uoregon.edu</a></p>
-<h2 id="mandatory-reporting-of-child-abuse">Mandatory Reporting of Child Abuse</h2>
+<h3 id="mandatory-reporting-of-child-abuse">Mandatory Reporting of Child Abuse</h3>
 <p>UO employees, including faculty, staff, and GEs, are mandatory reporters of child abuse. This statement is to advise you that that your disclosure of information about child abuse to a UO employee may trigger the UO employee’s duty to report that information to the designated authorities. Please refer to the following links for detailed information about mandatory reporting:
 <a href="http://hr.uoregon.edu/policies-leaves/general-information/mandatory-reporting-child-abuse-and-neglect">http://hr.uoregon.edu/policies-leaves/general-information/mandatory-reporting-child-abuse-and-neglect</a></p>
-<h2 id="reporting-title-ix-experiences">Reporting Title IX Experiences</h2>
+<h3 id="reporting-title-ix-experiences">Reporting Title IX Experiences</h3>
 <p>Any student who has experienced sexual assault, relationship violence, sex or gender-based bullying, stalking, and/or sexual harassment may seek resources and help at safe.uoregon.edu. To get help by phone, a student can also call either the UO’s 24-hour hotline at 541-346-7244 [SAFE], or the non-confidential Title IX Coordinator at 541-346-8136. From the SAFE website, students may also connect to Callisto, a confidential, third-party reporting site that is not a part of the university.</p>
 <p>Students experiencing any other form of prohibited discrimination or harassment can find information at aaeo.uoregon.edu or contact the non-confidential AAEO office at 541-346-3123 or the Dean of Students Office at 541-346-3216 for help. As UO policy has different reporting requirements based on the nature of the reported harassment or discrimination, additional information about reporting requirements for discrimination or harassment unrelated to sexual assault, relationship violence, sex or gender based bullying, stalking, and/or sexual harassment is available at <a href="http://aaeo.uoregon.edu/content/discrimination-harassment">http://aaeo.uoregon.edu/content/discrimination-harassment</a></p>
 <p>Specific details about confidentiality of information and reporting obligations of employees can be found at <a href="https://titleix.uoregon.edu">https://titleix.uoregon.edu</a>.</p>
-<h2 id="academic-misconduct-policy">Academic Misconduct Policy</h2>
+<h3 id="academic-misconduct-policy">Academic Misconduct Policy</h3>
 <p>All students are subject to the regulations stipulated in the UO Student Conduct Code <a href="http://conduct.uoregon.edu">http://conduct.uoregon.edu</a>). This code represents a compilation of important regulations, policies, and procedures pertaining to student life. It is intended to inform students of their rights and responsibilities during their association with this institution, and to provide general guidance for enforcing those regulations and policies essential to the educational and research missions of the University.</p>
-<h2 id="conflict-resolution">Conflict Resolution</h2>
+<h3 id="conflict-resolution">Conflict Resolution</h3>
 <p>Several options, both informal and formal, are available to resolve conflicts for students who believe they have been subjected to or have witnessed bias, unfairness, or other improper treatment.</p>
 <p>It is important to exhaust the administrative remedies available to you including discussing the conflict with the specific individual, contacting the Department Head, or within the College of Education, you can contact the Associate Dean for Academic Affairs and Equity (Krista Chronister, 346-2415, <a href="mailto:kmg@uoregon.edu">kmg@uoregon.edu</a>). Outside the College, you can contact:</p>
 <ul>
 <li>UO Bias Response Team: 346-3216 <a href="http://bias.uoregon.edu/whatbrt.htm">http://bias.uoregon.edu/whatbrt.htm</a></li>
 <li>Affirmative Action and Equal Opportunity: 346-3123 <a href="http://aaeo.uoregon.edu/">http://aaeo.uoregon.edu/</a></li>
 </ul>
-<h2 id="grievance-policy">Grievance Policy</h2>
+<h3 id="grievance-policy">Grievance Policy</h3>
 <p>A student or group of students of the College of Education may appeal decisions or actions pertaining to admissions, programs, evaluation of performance and program retention and completion. Students who decide to file a grievance should follow the student grievance procedure, or alternative ways to file a grievance outlined in the Student Grievance Policy (<a href="https://education.uoregon.edu/academics/student-grievance">https://education.uoregon.edu/academics/student-grievance</a>) or enter search: student grievance.</p>
-<h2 id="in-case-of-inclement-weather">In Case of Inclement Weather</h2>
+<h3 id="in-case-of-inclement-weather">In Case of Inclement Weather</h3>
 <p>In the event the University operates on a curtailed schedule or closes, UO media relations will notify the Eugene-Springfield area radio and television stations as quickly as possible. In addition, a notice regarding the university’s schedule will be posted on the UO main home page (in the “News” section) at <a href="http://www.uoregon.edu">http://www.uoregon.edu</a>. Additional information is available at <a href="http://hr.uoregon.edu/policy/weather.html">http://hr.uoregon.edu/policy/weather.html</a>.</p>
 <p>If an individual class must be canceled due to inclement weather, illness, or other reason, a notice will be posted on Canvas or via email. During periods of inclement weather, please check Canvas and your email rather than contact department personnel. Due to unsafe travel conditions, departmental staff may be limited and unable to handle the volume of calls from you and others.</p>
-<h2 id="course-incomplete-policy">Course Incomplete Policy</h2>
+<h3 id="course-incomplete-policy">Course Incomplete Policy</h3>
 <p>Students are expected to be familiar with university policy regarding grades of “incomplete” and the time line for completion. For details on the policy and procedures regarding incompletes, Please see: <a href="https://education.uoregon.edu/academics/incompletes-courses">https://education.uoregon.edu/academics/incompletes-courses</a></p>
 
 
 
       </main>
       
-      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
+      
+      <aside class="tableOfContentContainer" id="tableOfContentContainer">
       
       <h3>Table of contents</h3>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#course-overview">Course Overview</a></li>
-    <li><a href="#student-learning-objectives">Student Learning objectives</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#books-required">Books (required)</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#labs-30-points-15">Labs (30 points; 15%)</a></li>
-    <li><a href="#homework-40-points-20">Homework (40 points; 20%)</a></li>
-    <li><a href="#data-visualizations-in-the-wild-presentation-10-points-5">Data visualizations &ldquo;in the wild&rdquo; presentation (10 points; 5%)</a></li>
-    <li><a href="#final-project-120-points-60">Final Project (120 points; 60%)</a>
+    <li><a href="#course-overview">Course Overview</a>
       <ul>
-        <li><a href="#proposal-10-points-5-due-february-5">Proposal (10 points; 5%; <strong>Due February 5</strong>)</a></li>
-        <li><a href="#portfolio-draft-15-points-75-due-february-26">Portfolio draft (15 points; 7.5%; <strong>Due February 26</strong>)</a></li>
-        <li><a href="#peer-review-15-points-75-due-march-4">Peer review (15 points; 7.5%; <strong>Due March 4</strong>)</a></li>
-        <li><a href="#presentation-20-points-10">Presentation (20 points; 10%)</a></li>
-        <li><a href="#product-60-points-30">Product (60 points; 30%)</a></li>
+        <li><a href="#student-learning-objectives">Student Learning objectives</a></li>
       </ul>
     </li>
-    <li><a href="#extra-credit">Extra Credit</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#diversity-equity-and-inclusion">Diversity, Equity and Inclusion</a></li>
-    <li><a href="#indigenous-recognition-statement">Indigenous Recognition Statement</a></li>
-    <li><a href="#using-pronouns-and-personal-preference">Using Pronouns and Personal Preference</a></li>
-    <li><a href="#children-in-class">Children in class</a></li>
-    <li><a href="#documented-disability">Documented Disability</a></li>
-    <li><a href="#mandatory-reporting-of-child-abuse">Mandatory Reporting of Child Abuse</a></li>
-    <li><a href="#reporting-title-ix-experiences">Reporting Title IX Experiences</a></li>
-    <li><a href="#academic-misconduct-policy">Academic Misconduct Policy</a></li>
-    <li><a href="#conflict-resolution">Conflict Resolution</a></li>
-    <li><a href="#grievance-policy">Grievance Policy</a></li>
-    <li><a href="#in-case-of-inclement-weather">In Case of Inclement Weather</a></li>
-    <li><a href="#course-incomplete-policy">Course Incomplete Policy</a></li>
+    <li><a href="#course-readings">Course Readings</a>
+      <ul>
+        <li><a href="#books-required">Books (required)</a></li>
+      </ul>
+    </li>
+    <li><a href="#assignments-and-grading">Assignments and Grading</a>
+      <ul>
+        <li><a href="#labs">Labs</a></li>
+        <li><a href="#homework">Homework</a></li>
+        <li><a href="#data-visualizations-in-the-wild-presentation-10-points-5">Data visualizations &ldquo;in the wild&rdquo; presentation (10 points; 5%)</a></li>
+        <li><a href="#final-project">Final Project</a></li>
+        <li><a href="#extra-credit">Extra Credit</a></li>
+      </ul>
+    </li>
+    <li><a href="#grading-components-200-points-possible">Grading Components (200 points possible)</a></li>
+    <li><a href="#student-engagement-inventory">Student Engagement Inventory</a></li>
+    <li><a href="#attendance-and-absence-guidelines">Attendance and Absence Guidelines</a></li>
+    <li><a href="#expected-classroom-behavior">Expected Classroom Behavior</a></li>
+    <li><a href="#course-policies">Course Policies</a>
+      <ul>
+        <li><a href="#diversity-equity-and-inclusion">Diversity, Equity and Inclusion</a></li>
+        <li><a href="#indigenous-recognition-statement">Indigenous Recognition Statement</a></li>
+        <li><a href="#using-pronouns-and-personal-preference">Using Pronouns and Personal Preference</a></li>
+        <li><a href="#children-in-class">Children in class</a></li>
+        <li><a href="#documented-disability">Documented Disability</a></li>
+        <li><a href="#mandatory-reporting-of-child-abuse">Mandatory Reporting of Child Abuse</a></li>
+        <li><a href="#reporting-title-ix-experiences">Reporting Title IX Experiences</a></li>
+        <li><a href="#academic-misconduct-policy">Academic Misconduct Policy</a></li>
+        <li><a href="#conflict-resolution">Conflict Resolution</a></li>
+        <li><a href="#grievance-policy">Grievance Policy</a></li>
+        <li><a href="#in-case-of-inclement-weather">In Case of Inclement Weather</a></li>
+        <li><a href="#course-incomplete-policy">Course Incomplete Policy</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
       
       </aside>
+      
 
     </div>
     
@@ -712,7 +901,7 @@ the topic and set a date for the presentation.</p>
   </div>
 </footer>
 
-    <script src="/js/feather.min.js"></script>
+    <script src="https://dataviz-2021.netlify.app/js/feather.min.js"></script>
 <script>
   feather.replace()
 </script>

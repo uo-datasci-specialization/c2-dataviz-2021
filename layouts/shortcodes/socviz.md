@@ -1,1 +1,0 @@
-<a href="https://socviz.co/{{ index .Params 0 }}" style="color: #BD4A4D !important;"> <i data-feather="book"></i></a>

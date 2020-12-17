@@ -31,15 +31,19 @@ menu:
     pre: book
     url: /syllabus/
     weight: 4
+  - name: Tags
+    pre: tag
+    url: /tags/
+    weight: 5
   - name: Class repo
     pre: github
     url: https://github.com/uo-datasci-specialization/c2-dataviz-2021
-    weight: 5
+    weight: 6
 
 params:
   includeBootstrapJs: false
   showActiveNav: true
-  containerMaxWidth: 700px
+  # containerMaxWidth: 800px # This is overidden by my css; couldn't get it to work, but it is 800px
   dateFormat: Jan 2, 2006
   footerText: Made with [Hugo](https://gohugo.io/) & [Vanilla](https://github.com/zwbetz-gh/vanilla-bootstrap-hugo-theme)
   hideFooter: false
@@ -73,7 +77,7 @@ markup:
     lineNumbersInTable: true
     noClasses: true
     style: monokai
-    tabWidth: 4
+    tabWidth: 2
   tableOfContents:
-    endLevel: 6
+    endLevel: 3
     startLevel: 2

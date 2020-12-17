@@ -1,0 +1,124 @@
+---
+title: Schedule
+toc: true
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(blogdown)
+```
+
+
+<div class="sds-book">
+
+[Social Data Science with R](https://www.sds.pub)
+* Daniel Anderson
+* Brendan Cullen
+* Ouafaa Hmaddi
+
+</div>
+
+In addition to the course books linked below, I am currently working on course notes for all of the classes. This may eventually turn into a published book, but for now I'm just thinking of it as course notes. Please feel free to use these as a supplemental resource (in addition to the slides and lectures). Also, please let me know if you'd like to contribute! In particular, if you see typos or areas that are unclear, that feedback would be really helpful. You can fork the repo and submit a PR and be a contributor to the book!
+
+## Course Books
+Each of the below links to the full book. Icons in the schedule link to specific chapters.
+
+`r shortcode_html("course-books")`
+
+```{r results = "asis", message = FALSE}
+library(dplyr)
+content <- readxl::read_xlsx(
+  here::here("website-data", "course-schedule.xlsx")
+)
+content$date <- gsub("^2021-", "", as.character(content$date))
+content <- content %>% 
+  mutate(
+    across(starts_with("assigned") | 
+             starts_with("due") | 
+             starts_with("slides") |
+             starts_with("lecture"),
+           ~ifelse(is.na(.x), "", .x))
+    ) 
+by_week <- split(content, content$week)
+
+indent <- function(x) {
+  paste0("  ", x)
+}
+
+wrap <- function(...) {
+  op <- shortcode_open("wrap", .type = "html")
+  close <- shortcode_close("wrap", .type = "html")
+  paste(op, ..., close, sep = "\n")
+}
+
+split_entries <- function(x) {
+  trimws(strsplit(x, ";")[[1]])
+}
+
+week <- function(row, odd = TRUE) {
+  week_color <- paste0("week-", ifelse(odd, "odd", "even")) 
+
+  op <- shortcode_open(week_color, row$date, .type = "html")
+    des <- shortcode_html("description", row$theme, row$description)
+    
+    slides <- wrap(shortcode_html("slides", row$slides))
+    
+    assigned_link <- split_entries(row$assigned_link)
+    assigned_title <- split_entries(row$assigned_title)
+    assigned <- purrr::pmap(list(assigned_link,assigned_title), ~{
+        shortcode_html("assigned", ..1, ..2)
+      })
+    assigned <- wrap(paste(assigned, collapse = "\n"))
+    
+    due_link <- split_entries(row$due_link)
+    due_title <- split_entries(row$due_title)
+    due <- purrr::pmap(list(due_link,due_title), ~{
+        shortcode_html("due", ..1, ..2)
+      })
+    due <- wrap(paste(due, collapse = "\n"))
+    
+    books <- split_entries(row$book)
+    book_links <- split_entries(row$book_link)
+    book_chapters <- split_entries(row$book_chapters)
+    read <- purrr::pmap(list(books, book_links, book_chapters), ~{
+      shortcode_html("readings", ..1, ..2, ..3)
+    })
+    read <- wrap(paste(read, collapse = "\n"))
+    lecture <- wrap(shortcode_html("lecture", row$lecture_link))
+    
+  close <- shortcode_close(week_color, .type = "html") 
+  paste(op, 
+        indent(des), 
+        indent(slides), 
+        indent(assigned), 
+        indent(due),
+        indent(read),
+        indent(lecture),
+        close,
+        sep = "\n")
+}
+
+week_content <- function(week_classes) {
+  op <- shortcode_open("schedule", .type = "html")
+    week_odd <- week(week_classes[1, ])
+    if(nrow(week_classes) == 2) {
+      week_even <- week(week_classes[2, ], FALSE)
+      close <- shortcode_close("schedule", .type = "html")
+      paste(op, week_odd, week_even, close, sep = "\n\n")  
+    } else {
+      close <- shortcode_close("schedule", .type = "html")
+      paste(op, week_odd, close, sep = "\n\n") 
+    }
+}
+
+print_weeks <- function(week_data) {
+  cat("\n", 
+      paste("## Week", unique(week_data$week)),
+      "\n",
+      week_content(week_data)
+      )
+}
+
+purrr::walk(by_week, print_weeks)
+```
+

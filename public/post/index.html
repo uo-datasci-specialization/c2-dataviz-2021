@@ -7,154 +7,314 @@
   
   <link rel="stylesheet" href="/css/custom.css">
   
-  <meta name="generator" content="Hugo 0.78.2" />
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  <script src="/js/custom.js"></script>
+  
+  <meta name="generator" content="Hugo 0.71.0" />
+  <link rel="stylesheet" href="https://dataviz-2021.netlify.app/css/bootstrap.min.css">
   
   
   <title>Blog | Data Visualization for Educational Data Science</title>
   <style>
-.container {
-  max-width: 700px;
-}
-#nav a {
-  font-weight: bold;
-  color: inherit;
-}
-#nav a.nav-link-active {
-  background-color: #b8e1ff !important;
-  color: #212529 !important;
-}
-#nav a.nav-link:hover {
-  background-color: #e5f4ff;
-  color: #212529 !important;
-}
-#nav-border {
-  border-bottom: 1px solid #212529;
-}
-#main {
-  margin-top: 1em;
-  margin-bottom: 4em;
-}
-#home-jumbotron {
-  background-color: inherit;
-  padding-top: 1rem;
-}
-#footer .container {
-  padding: 1em 0;
-}
-#footer a {
-  color: inherit;
-  text-decoration: underline;
-}
-.font-125 {
-  font-size: 125%;
-}
-.tag-btn {
-  margin-bottom: 0.3em;
-}
-pre {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-}
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit; 
-  background-color: transparent;
-  border-radius: 0;
-}
-code {
-  padding: 2px 4px;
-  font-size: 90%;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-}
-img,
-iframe,
-embed,
-video,
-audio {
-  max-width: 100%;
-}
-.card-img,
-.card-img-top,
-.card-img-bottom {
-  width: initial;
-}
+  a {
+    color: #808aff;
+  }
 
-.container > aside.tableOfContentContainer {
+  a:hover {
+    color: #ff65ad;
+    text-decoration: none;
+  }
+  .wrap p span {
+    display: block;
+  }
+  .course-books {
+    margin-bottom: 1.5rem;
+    border: dotted 1px #989EA4;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width:70%;
+  }
+  .book-author {
+    color: #62676a;
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .book-title a {
+    color: #ff65ad !important;
+    text-decoration: underline;
+  }
+  .week-odd {
+    background: -webkit-linear-gradient(0deg, #B8E1FF 10%, #fff 10%);
+    border: solid 3px #B8E1FF !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;    
+  }
+  .week-even {
+    background: -webkit-linear-gradient(0deg, #c2c5c7 10%, #fff 10%);
+    border: solid 3px #c2c5c7 !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;   
+  }
+  
+  .weeks-header {
+    display: inline-grid;
+    width:100%;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #989EA4;
+    background-color: #fff;
+    margin: 0;
+    padding: 2px 0 0 12px;
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
-    align-self: start;
-}
-.container > aside > h3 {
-    font-size: 1rem;
-    padding-left: .5rem;
-    color: #1a202c;
-    font-weight: 700;
-    padding-bottom: .5rem;
-    padding-top: 1rem;
-}
-.container {
-  display: grid;
-  grid-template-columns: 100% 15em;
-  max-width: 700px;
-  width: 100%;
+    top: -1px;;
+  }
+  .schedule {
+    margin-top: 1.5rem;
+  }
+  h2#week-1 {
+    margin-top:-0.2rem;
+  }
+  h2[id^='week'] {
+    margin-top:1.3rem;
+    margin-bottom: -1rem;
+    color: #c2c5c7;
+    position: absolute;
+    z-index:99;
+  }
+  .week-theme-title {
+    font-weight: bold;
+    border-bottom: 0.5px solid gray;
+  }
+  .week-description {
+    font-size: 0.9rem;
+    color: #3d4042;
+  }
+  .class-date {
+    grid-row: 1 / 3;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .week-title {
+    color: #556672;
+    margin-right: 1rem;
+    border-bottom: solid 1px gray;
+    text-align: center;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+  .class-theme {
+    text-align: left;
+  }
+  .assigned, .due, .reading {
+    text-align: center;
+  }
+
+  .happygit {
+    color: #3b98ff !important;
+  }
+  .happygit a:hover{
+    color: #ff65ad;
+  }
+  .r4ds {
+    color: #C04B33 !important;
+  }
+  .r4ds a:hover{
+    color: #ff65ad;
+  }
+  .socviz {
+    color: #1B9FAF !important;
+  }
+  .socviz a:hover{
+    color: #ff65ad;
+  }
+  .dataviz {
+    color: #4B56FF !important;
+  }
+  .dataviz a:hover{
+    color: #ff65ad;
+  }
+
+  
+     
+    #nav a {
+      color: #212529 !important;
+      font-weight: bold;
+      color: inherit;
+    }
+    #nav a.nav-link-active {
+      background-color: #b8e1ff !important;
+      color: #212529 !important;
+    }
+    #nav a.nav-link:hover {
+      background-color: #e5f4ff;
+      color: #212529 !important;
+    }
+    #nav-border {
+      border-bottom: 1px solid #212529;
+    }
+    #main {
+      margin-top: 1em;
+      margin-bottom: 4em;
+    }
+    #home-jumbotron {
+      background-color: inherit;
+      padding-top: 1rem;
+    }
+    #footer .container {
+      padding: 1em 0;
+      display: block;
+    }
+    #footer a {
+      color: #565A5C !important;
+      text-decoration: underline;
+    }
+    .font-125 {
+      font-size: 125%;
+    }
+    .tag-btn {
+      margin-bottom: 0.3em;
+    }
+    pre {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 16px;
+    }
+    pre code {
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      background-color: transparent;
+      border-radius: 0;
+    }
+    code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: #c7254e;
+      background-color: #f9f2f4;
+      border-radius: 4px;
+    }
+    img,
+    iframe,
+    embed,
+    video,
+    audio {
+      max-width: 100%;
+    }
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+      width: initial;
+    }
+
+    .container > aside.tableOfContentContainer {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    .container > aside.tableOfContentContainer::-webkit-scrollbar {
+      display: none;
+    }
+    .container > aside > h3 {
+      font-size: 1rem;
+      padding-left: 0.5rem;
+      color: #1a202c;
+      font-weight: 700;
+      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 100% 15em;
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    #TableOfContents {
+      font-size: 0.9rem;
+    }
+    #TableOfContents ul {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    #TableOfContents a {
+      text-decoration: none;
+      color: #62676a !important;
+      -webkit-transition: all 50ms ease-in-out !important;
+      transition: all 50ms ease-in-out !important;
+    }
+    #TableOfContents a:hover,
+    #TableOfContents a:focus,
+    #TableOfContents a:active {
+      color: #666 ;
+    }
+
+    #TableOfContents li {
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      list-style: none;
+    }
+    
+    #TableOfContents li.active:before {
+      content: '→';
+      display: inline-block;
+      margin-left: -20px;
+      width: 20px;
+    }
+
+    #TableOfContents li ul li {
+      margin-left: -1rem;
+    }
+    #TableOfContents li.active > a {
+      color: #ff65ad !important;
+      font-weight: 500;
+    }
+    
+    .toc-contents {
+      height: 100%
+      overflow: auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    html,
+    body {
+      scroll-padding-top: 100px;
+    }
+
+    @media screen and (max-width: 800px) {
+      .container > aside {
+        display: none;
+      }
+    }
    
-}
-
-#TableOfContents {
-    display: block;
-    padding-left: .5rem;
-    padding-bottom: 1rem;
-    font-size: 1rem;
-    color: #1a202c;
-}
-#TableOfContents li {
-    padding-top: .1rem;
-    padding-bottom: .1rem;
-    list-style: none;
-}
- 
-#TableOfContents li.active:before {
-    content: "→";
-    display: inline-block;
-    margin-left: -20px;
-    width: 20px;
-}
-
-#TableOfContents li ul li {
-    margin-left: 0.25rem;
-}
-#TableOfContents li.active > a {
-    color: magenta !important;
-    font-weight: 500;
-}
-#TableOfContents a {
-    text-decoration: none !important;
-    padding: .125rem 0 !important;
-    color: #a0aec0 !important;
-    -webkit-transition: all 50ms ease-in-out !important;
-    transition: all 50ms ease-in-out !important;
-}
-#TableOfContents a:hover, #TableOfContents a:focus, #TableOfContents a:active {
-    color: #666 !important;
-}
-html {
-  scroll-behavior: smooth;
-}
-html, body {
-    scroll-padding-top: 100px;
-}
 </style>
+
 </head>
 
 
-  
+
   <body class="d-flex flex-column h-100">
     <div id="nav-border" class="container">
   <nav id="nav" class="nav justify-content-center">
@@ -224,6 +384,19 @@ html, body {
       
     
     
+    <a class="nav-link " href="/tags/"><i data-feather="tag"></i> Tags</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
     <a class="nav-link " href="https://github.com/uo-datasci-specialization/c2-dataviz-2021"><i data-feather="github"></i> Class repo</a>
   
   </nav>
@@ -237,236 +410,11 @@ html, body {
 <h1>Blog</h1>
 
 
-<p>
-  <a class="font-125" href="/katex-math-typesetting/">Katex Math Typesetting</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2020-02-28">Feb 28, 2020</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/katex">katex</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/math">math</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/typesetting">typesetting</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/nasa-images/">NASA Images</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2018-12-27">Dec 27, 2018</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/nasa">nasa</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/quotes-by-carl-jung/">Quotes by Carl Jung</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2018-12-26">Dec 26, 2018</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/quotes">quotes</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/style-a-markdown-table-with-bootstrap-classes-in-hugo/">Style a markdown table with Bootstrap classes in Hugo</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2018-12-12">Dec 12, 2018</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/css">css</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/bootstrap">bootstrap</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/use-snap-to-install-the-hugo-edge-version-on-fedora-and-ubuntu/">Use Snap to install the Hugo edge version on Fedora and Ubuntu</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2018-10-26">Oct 26, 2018</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/snap">snap</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/fedora">fedora</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/ubuntu">ubuntu</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/script-to-add-a-page-level-variable-to-content-front-matter-in-hugo/">Script to add a page-level variable to content front matter in hugo</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2018-10-10">Oct 10, 2018</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/command-line">command-line</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/awk">awk</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/creating-a-new-theme/">Creating a New Theme</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2014-09-28">Sep 28, 2014</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/theme">theme</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/command-line">command-line</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/hugoisforlovers/">Getting Started with Hugo</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2014-04-02">Apr 2, 2014</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/git">git</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/fun">fun</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/goisforlovers/">(Hu)go Template Primer</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2014-04-02">Apr 2, 2014</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/go">go</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/templates">templates</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-
-</p>
-
-<p>
-  <a class="font-125" href="/migrate-from-jekyll/">Migrate to Hugo from Jekyll</a>
-  <br>
-  
-
-<i data-feather="calendar"></i> <time datetime="2014-03-10">Mar 10, 2014</time>
-
-  <br>
-  <i data-feather="tag"></i>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/hugo">hugo</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/jekyll">jekyll</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/migration">migration</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/git">git</a>
-  
-  
-  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/templates">templates</a>
-  
-
-</p>
-
 
 
       </main>
       
-      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
       
-      <h3>Table of contents</h3>
-        <nav id="TableOfContents"></nav>
-      
-      </aside>
 
     </div>
     
@@ -476,7 +424,7 @@ html, body {
   </div>
 </footer>
 
-    <script src="/js/feather.min.js"></script>
+    <script src="https://dataviz-2021.netlify.app/js/feather.min.js"></script>
 <script>
   feather.replace()
 </script>

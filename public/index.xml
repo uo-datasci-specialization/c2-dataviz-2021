@@ -2,150 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Visualization on Data Visualization for Educational Data Science</title>
-    <link>/</link>
+    <link>https://dataviz-2021.netlify.app/</link>
     <description>Recent content in Data Visualization on Data Visualization for Educational Data Science</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Katex Math Typesetting</title>
-      <link>/katex-math-typesetting/</link>
-      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/katex-math-typesetting/</guid>
-      <description>Enable Katex in the config file by setting the katex param to true. This will import the necessary Katex CSS/JS.
-Note: Use the online reference of supported TeX functions.
-Some math:
-$$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $$$$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $$
-More math:
-$$\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$$$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$</description>
-    </item>
     
-    <item>
-      <title>NASA Images</title>
-      <link>/nasa-images/</link>
-      <pubDate>Thu, 27 Dec 2018 20:46:49 -0600</pubDate>
-      
-      <guid>/nasa-images/</guid>
-      <description>Images from the NASA Image and Video Library.
- The Sun The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process. It is by far the most important source of energy for life on Earth. Credits.
-   The Moon The Moon is an astronomical body that orbits planet Earth and is Earth&amp;rsquo;s only permanent natural satellite.</description>
-    </item>
+	<atom:link href="https://dataviz-2021.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     
-    <item>
-      <title>Quotes by Carl Jung</title>
-      <link>/quotes-by-carl-jung/</link>
-      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
-      
-      <guid>/quotes-by-carl-jung/</guid>
-      <description>Even a happy life cannot be without a measure of darkness, and the word happy would lose its meaning if it were not balanced by sadness. It is far better to take things as they come along with patience and equanimity. Carl Jung  The least of things with a meaning is worth more in life than the greatest of things without it. Carl Jung  Who looks outside, dreams; who looks inside, awakes.</description>
-    </item>
-    
-    <item>
-      <title>Style a markdown table with Bootstrap classes in Hugo</title>
-      <link>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</link>
-      <pubDate>Wed, 12 Dec 2018 12:47:56 -0600</pubDate>
-      
-      <guid>/style-a-markdown-table-with-bootstrap-classes-in-hugo/</guid>
-      <description>Inspired by this discussion, I wanted the ability to style a markdown table with Bootstrap table classes. In the past, I&amp;rsquo;ve accomplished this by defining the table in a data file, then building it with a shortcode.
-While this works fine, it&amp;rsquo;s better for a different use case. I wanted something that meets the following criteria:
- The table is defined in markdown It lives in the content file, e.g. content/post/some-post.</description>
-    </item>
-    
-    <item>
-      <title>Use Snap to install the Hugo edge version on Fedora and Ubuntu</title>
-      <link>/use-snap-to-install-the-hugo-edge-version-on-fedora-and-ubuntu/</link>
-      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/use-snap-to-install-the-hugo-edge-version-on-fedora-and-ubuntu/</guid>
-      <description>If you are using the Fedora or Ubuntu Linux distributions &amp;ndash; I&amp;rsquo;m currently on Fedora 28 &amp;ndash; and would like to help test the latest development version of Hugo, or if you just want to be on the bleeding-edge of things, this post is for you.
-Fedora-only steps To get started, install Snap on Fedora:
-sudo dnf install snapd Add the Snap directory to your PATH by adding this line to your ~/.</description>
-    </item>
-    
-    <item>
-      <title>Script to add a page-level variable to content front matter in hugo</title>
-      <link>/script-to-add-a-page-level-variable-to-content-front-matter-in-hugo/</link>
-      <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/script-to-add-a-page-level-variable-to-content-front-matter-in-hugo/</guid>
-      <description>This was originally a question posed on the hugo discussion forums.
-The user wanted to loop through all her content files and add a weight page-level variable to the front matter. The value of weight needed to be the first 2 characters of the content filename, since her content was named like 01_content.md, 02_content.md, etc.
-She then wanted to range through her pages by their weight, like so:
-{{ range .</description>
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>/goisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/goisforlovers/</guid>
-      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
-This document is a brief primer on using Go templates.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/hugoisforlovers/</guid>
-      <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at Install Hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
-    </item>
-    
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
-    </item>
     
     <item>
       <title>Assignments</title>
-      <link>/assignments/</link>
+      <link>https://dataviz-2021.netlify.app/assignments/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/assignments/</guid>
+      <guid>https://dataviz-2021.netlify.app/assignments/</guid>
       <description>Labs   Lab Topic Assigned Due     1 Collaborating with GitHub 1/8/20 1/13/20   2 Mapping data to aesthetics 1/15/20 1/20/20   3 Visual perception 1/29/20 2/5/20   4 Color 2/5/20 2/12/20   5 Refining plots for communication 2/12/20 2/19/20     Homework   Homework Topic Assigned Due     1 Creating new visualizations through joins 1/22/20 2/5/20   2 Visualizing uncertainty and tables 2/17/20 3/2/20     Final Project   Component Due     Proposal 2/5/20   Draft 2/26/20   Peer review 3/4/20   Presentation 3/9/20 or 3/11/20   Product 3/18/20    </description>
     </item>
     
     <item>
       <title>EDLD 652: Data visualization for EDS</title>
-      <link>/syllabus/</link>
+      <link>https://dataviz-2021.netlify.app/syllabus/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/syllabus/</guid>
+      <guid>https://dataviz-2021.netlify.app/syllabus/</guid>
       <description>Below are the meeting times for our class
  Term: Winter 2020 Time: M/W, 10-11:20 Classroom: Lokey 115 Instructor: Daniel Anderson, PhD  email: (preferred contact method) daniela@uoregon.edu phone: 541-346-3317 office: 175 Lokey office hours: By appointment pronouns: he/him/his    Course Overview This is the second course in a sequence of courses that will eventually lead to an educational data science specialization. This course will be taught through R, a free and open-source statistical computing environment.</description>
     </item>
     
     <item>
       <title>Schedule</title>
-      <link>/schedule/</link>
+      <link>https://dataviz-2021.netlify.app/schedule/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/schedule/</guid>
-      <description>Social Data Science with R  Daniel Anderson Brendan Cullen Ouafaa Hmaddi   In addition to the readings linked below, I am currently working on course notes for all of the classes. This may eventually turn into a published book, but for now I&amp;rsquo;m just thinking of it as course notes. Please feel free to use these course notes as a supplemental resource (in addition to the slides and lectures).</description>
+      <guid>https://dataviz-2021.netlify.app/schedule/</guid>
+      <description>Social Data Science with R
+ Daniel Anderson Brendan Cullen Ouafaa Hmaddi   In addition to the course books linked below, I am currently working on course notes for all of the classes. This may eventually turn into a published book, but for now I&amp;rsquo;m just thinking of it as course notes. Please feel free to use these as a supplemental resource (in addition to the slides and lectures). Also, please let me know if you&amp;rsquo;d like to contribute!</description>
     </item>
     
   </channel>

@@ -7,154 +7,314 @@
   
   <link rel="stylesheet" href="/css/custom.css">
   
-  <meta name="generator" content="Hugo 0.78.2" />
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  <script src="/js/custom.js"></script>
+  
+  <meta name="generator" content="Hugo 0.71.0" />
+  <link rel="stylesheet" href="https://dataviz-2021.netlify.app/css/bootstrap.min.css">
   
   
   <title>Schedule | Data Visualization for Educational Data Science</title>
   <style>
-.container {
-  max-width: 700px;
-}
-#nav a {
-  font-weight: bold;
-  color: inherit;
-}
-#nav a.nav-link-active {
-  background-color: #b8e1ff !important;
-  color: #212529 !important;
-}
-#nav a.nav-link:hover {
-  background-color: #e5f4ff;
-  color: #212529 !important;
-}
-#nav-border {
-  border-bottom: 1px solid #212529;
-}
-#main {
-  margin-top: 1em;
-  margin-bottom: 4em;
-}
-#home-jumbotron {
-  background-color: inherit;
-  padding-top: 1rem;
-}
-#footer .container {
-  padding: 1em 0;
-}
-#footer a {
-  color: inherit;
-  text-decoration: underline;
-}
-.font-125 {
-  font-size: 125%;
-}
-.tag-btn {
-  margin-bottom: 0.3em;
-}
-pre {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-}
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit; 
-  background-color: transparent;
-  border-radius: 0;
-}
-code {
-  padding: 2px 4px;
-  font-size: 90%;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-}
-img,
-iframe,
-embed,
-video,
-audio {
-  max-width: 100%;
-}
-.card-img,
-.card-img-top,
-.card-img-bottom {
-  width: initial;
-}
+  a {
+    color: #808aff;
+  }
 
-.container > aside.tableOfContentContainer {
+  a:hover {
+    color: #ff65ad;
+    text-decoration: none;
+  }
+  .wrap p span {
+    display: block;
+  }
+  .course-books {
+    margin-bottom: 1.5rem;
+    border: dotted 1px #989EA4;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width:70%;
+  }
+  .book-author {
+    color: #62676a;
+    padding-left: 0.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .book-title a {
+    color: #ff65ad !important;
+    text-decoration: underline;
+  }
+  .week-odd {
+    background: -webkit-linear-gradient(0deg, #B8E1FF 10%, #fff 10%);
+    border: solid 3px #B8E1FF !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;    
+  }
+  .week-even {
+    background: -webkit-linear-gradient(0deg, #c2c5c7 10%, #fff 10%);
+    border: solid 3px #c2c5c7 !important;
+    border-radius: 10px;
+    display: inline-grid;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    align-items: center;
+    gap: 2px;
+    width:100%;
+    margin-bottom: 0.5em;   
+  }
+  
+  .weeks-header {
+    display: inline-grid;
+    width:100%;
+    grid-template-columns: 11% 31% 8% 20% 10% 10% 10%;
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #989EA4;
+    background-color: #fff;
+    margin: 0;
+    padding: 2px 0 0 12px;
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
-    align-self: start;
-}
-.container > aside > h3 {
-    font-size: 1rem;
-    padding-left: .5rem;
-    color: #1a202c;
-    font-weight: 700;
-    padding-bottom: .5rem;
-    padding-top: 1rem;
-}
-.container {
-  display: grid;
-  grid-template-columns: 100% 15em;
-  max-width: 700px;
-  width: 100%;
+    top: -1px;;
+  }
+  .schedule {
+    margin-top: 1.5rem;
+  }
+  h2#week-1 {
+    margin-top:-0.2rem;
+  }
+  h2[id^='week'] {
+    margin-top:1.3rem;
+    margin-bottom: -1rem;
+    color: #c2c5c7;
+    position: absolute;
+    z-index:99;
+  }
+  .week-theme-title {
+    font-weight: bold;
+    border-bottom: 0.5px solid gray;
+  }
+  .week-description {
+    font-size: 0.9rem;
+    color: #3d4042;
+  }
+  .class-date {
+    grid-row: 1 / 3;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .week-title {
+    color: #556672;
+    margin-right: 1rem;
+    border-bottom: solid 1px gray;
+    text-align: center;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+  .class-theme {
+    text-align: left;
+  }
+  .assigned, .due, .reading {
+    text-align: center;
+  }
+
+  .happygit {
+    color: #3b98ff !important;
+  }
+  .happygit a:hover{
+    color: #ff65ad;
+  }
+  .r4ds {
+    color: #C04B33 !important;
+  }
+  .r4ds a:hover{
+    color: #ff65ad;
+  }
+  .socviz {
+    color: #1B9FAF !important;
+  }
+  .socviz a:hover{
+    color: #ff65ad;
+  }
+  .dataviz {
+    color: #4B56FF !important;
+  }
+  .dataviz a:hover{
+    color: #ff65ad;
+  }
+
+  
+     
+    #nav a {
+      color: #212529 !important;
+      font-weight: bold;
+      color: inherit;
+    }
+    #nav a.nav-link-active {
+      background-color: #b8e1ff !important;
+      color: #212529 !important;
+    }
+    #nav a.nav-link:hover {
+      background-color: #e5f4ff;
+      color: #212529 !important;
+    }
+    #nav-border {
+      border-bottom: 1px solid #212529;
+    }
+    #main {
+      margin-top: 1em;
+      margin-bottom: 4em;
+    }
+    #home-jumbotron {
+      background-color: inherit;
+      padding-top: 1rem;
+    }
+    #footer .container {
+      padding: 1em 0;
+      display: block;
+    }
+    #footer a {
+      color: #565A5C !important;
+      text-decoration: underline;
+    }
+    .font-125 {
+      font-size: 125%;
+    }
+    .tag-btn {
+      margin-bottom: 0.3em;
+    }
+    pre {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 16px;
+    }
+    pre code {
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      background-color: transparent;
+      border-radius: 0;
+    }
+    code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: #c7254e;
+      background-color: #f9f2f4;
+      border-radius: 4px;
+    }
+    img,
+    iframe,
+    embed,
+    video,
+    audio {
+      max-width: 100%;
+    }
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+      width: initial;
+    }
+
+    .container > aside.tableOfContentContainer {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    .container > aside.tableOfContentContainer::-webkit-scrollbar {
+      display: none;
+    }
+    .container > aside > h3 {
+      font-size: 1rem;
+      padding-left: 0.5rem;
+      color: #1a202c;
+      font-weight: 700;
+      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 100% 15em;
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    #TableOfContents {
+      font-size: 0.9rem;
+    }
+    #TableOfContents ul {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    #TableOfContents a {
+      text-decoration: none;
+      color: #62676a !important;
+      -webkit-transition: all 50ms ease-in-out !important;
+      transition: all 50ms ease-in-out !important;
+    }
+    #TableOfContents a:hover,
+    #TableOfContents a:focus,
+    #TableOfContents a:active {
+      color: #666 ;
+    }
+
+    #TableOfContents li {
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      list-style: none;
+    }
+    
+    #TableOfContents li.active:before {
+      content: '→';
+      display: inline-block;
+      margin-left: -20px;
+      width: 20px;
+    }
+
+    #TableOfContents li ul li {
+      margin-left: -1rem;
+    }
+    #TableOfContents li.active > a {
+      color: #ff65ad !important;
+      font-weight: 500;
+    }
+    
+    .toc-contents {
+      height: 100%
+      overflow: auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    html,
+    body {
+      scroll-padding-top: 100px;
+    }
+
+    @media screen and (max-width: 800px) {
+      .container > aside {
+        display: none;
+      }
+    }
    
-}
-
-#TableOfContents {
-    display: block;
-    padding-left: .5rem;
-    padding-bottom: 1rem;
-    font-size: 1rem;
-    color: #1a202c;
-}
-#TableOfContents li {
-    padding-top: .1rem;
-    padding-bottom: .1rem;
-    list-style: none;
-}
- 
-#TableOfContents li.active:before {
-    content: "→";
-    display: inline-block;
-    margin-left: -20px;
-    width: 20px;
-}
-
-#TableOfContents li ul li {
-    margin-left: 0.25rem;
-}
-#TableOfContents li.active > a {
-    color: magenta !important;
-    font-weight: 500;
-}
-#TableOfContents a {
-    text-decoration: none !important;
-    padding: .125rem 0 !important;
-    color: #a0aec0 !important;
-    -webkit-transition: all 50ms ease-in-out !important;
-    transition: all 50ms ease-in-out !important;
-}
-#TableOfContents a:hover, #TableOfContents a:focus, #TableOfContents a:active {
-    color: #666 !important;
-}
-html {
-  scroll-behavior: smooth;
-}
-html, body {
-    scroll-padding-top: 100px;
-}
 </style>
+
 </head>
 
 
-  
+
   <body class="d-flex flex-column h-100">
     <div id="nav-border" class="container">
   <nav id="nav" class="nav justify-content-center">
@@ -226,6 +386,19 @@ html, body {
       
     
     
+    <a class="nav-link " href="/tags/"><i data-feather="tag"></i> Tags</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
     <a class="nav-link " href="https://github.com/uo-datasci-specialization/c2-dataviz-2021"><i data-feather="github"></i> Class repo</a>
   
   </nav>
@@ -239,230 +412,1576 @@ html, body {
 <h1>Schedule</h1>
 
 <div class="sds-book">
-<a href="https://www.sds.pub">Social Data Science with R</a>
+<p><a href="https://www.sds.pub">Social Data Science with R</a></p>
 <ul>
 <li>Daniel Anderson</li>
 <li>Brendan Cullen</li>
 <li>Ouafaa Hmaddi</li>
 </ul>
 </div>
-<p>In addition to the readings linked below, I am currently working on course notes for all of the classes. This may eventually turn into a published book, but for now I&rsquo;m just thinking of it as course notes. Please feel free to use these course notes as a supplemental resource (in addition to the slides and lectures). Also, please let me know if you&rsquo;d like to contribute!</p>
-<p>The table below provides links to the slides for each week, as well as any assignments assigned and the readings for that week.</p>
-<h3 id="table-key">Table key</h3>
-<p>Icons below link to the full book. Icons in the table link to the specific chapters for that week.</p>
-<ul>
-<li><a href="http://happygitwithr.com/" style="color: #887055 !important;"> <i data-feather="book"></i></a> Bryan: Happy Git with R</li>
-<li><a href="https://r4ds.had.co.nz/" style="color: #F6EDB3 !important;"> <i data-feather="book"></i></a> Wickham: R for Data Science</li>
-<li><a href="https://socviz.co/makeplot.html" style="color: #BD4A4D !important;"> <i data-feather="book"></i></a> Healy: Data Visualization: A Practical Introduction</li>
-<li><a href="https://clauswilke.com/dataviz/" style="color: #63C5BF !important;"> <i data-feather="book"></i></a> Wilke: Fundamentals of Data Visualization</li>
-</ul>
+<p>In addition to the course books linked below, I am currently working on course notes for all of the classes. This may eventually turn into a published book, but for now I&rsquo;m just thinking of it as course notes. Please feel free to use these as a supplemental resource (in addition to the slides and lectures). Also, please let me know if you&rsquo;d like to contribute! In particular, if you see typos or areas that are unclear, that feedback would be really helpful. You can fork the repo and submit a PR and be a contributor to the book!</p>
+<h2 id="course-books">Course Books</h2>
+<p>Each of the below links to the full book. Icons in the schedule link to specific chapters.</p>
+<!--html_preserve--><div class = "course-books">
+
+	<a class = "happygit" href= "https://happygitwithr.com/"> <i data-feather="book"></i>
+		<span class = "book-title"> Happy git with R</span>
+	</a>
+		<span class = "book-author"> Jenny Bryan</span> 
+		<br/>
+
+	<a class = "r4ds" href="https://r4ds.had.co.nz/"> <i data-feather="book"></i>
+		<span class = "book-title"> R for Data Science</span>
+	</a>
+		<span class = "book-author"> Hadley Wickham & Garrett Grolemund</span>
+		<br/>
+
+	<a class = "socviz" href="https://socviz.co/"> <i data-feather="book"></i>
+		<span class = "book-title"> Data Visualization: A Practical Introduction</span>
+		</a>
+		<span class = "book-author"> Kieran Healy</span>
+		<br/>
+
+	<a class = "dataviz" href="https://clauswilke.com/dataviz/"> <i data-feather="book"></i>
+		<span class = "book-title"> Fundamentals of Data Visualization</span>
+		</a>
+		<span class = "book-author"> Claus O. Wilke</span>
+
+</div><!--/html_preserve-->
+<h2 id="week-1">Week 1</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-04
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Introduction </div>
+  <div class = "week-description"> Weekly schedule and topics. Introductions. A little bit of git and GitHub. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+	<a href= "../slides/w1p1.html" ><i data-feather="monitor"></i></a>
+
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+  <a href= "../syllabus/#final-project" ><i data-feather="file-plus"></i> Final Project</a>
+
+  
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
 
 
 
 
 
-<table class="table table-hover">
-<thead>
-<tr>
-<th style="text-align:center"><strong>Week</strong></th>
-<th style="text-align:center"><strong>Date</strong></th>
-<th style="text-align:left"><strong>Theme</strong></th>
-<th style="text-align:left"><strong>Assignment Assigned</strong></th>
-<th style="text-align:left"><strong>Assignment Due</strong></th>
-<th style="text-align:left"><strong>Reading</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1a</td>
-<td style="text-align:center">1/6/20</td>
-<td style="text-align:left"><a href="slides/w1p1.html">Intro to the course</a></td>
-<td style="text-align:left"><i data-feather="tag"> Final Project</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left"><a href="http://happygitwithr.com/" style="color:red !important;"> <i data-feather="book"></i></a> Bryan</td>
-</tr>
-<tr>
-<td style="text-align:center">1b</td>
-<td style="text-align:center">1/8/20</td>
-<td style="text-align:left"><a href="lab1.html">Lab 1: GitHub group project</a></td>
-<td style="text-align:left">Lab 1</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left"><a href="http://happygitwithr.com/rstudio-git-github.html"><i data-feather="book">Bryan 13</a>, <a href="http://happygitwithr.com/new-github-first.html"><i data-feather="book">Bryan 16</a> (14-15 optional)</td>
-</tr>
-<tr>
-<td style="text-align:center">2a</td>
-<td style="text-align:center">1/13/20</td>
-<td style="text-align:left"><a href="slides/w2p1.html">Introduction to visualizations</a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Lab 1</td>
-<td style="text-align:left"><a href="https://socviz.co/groupfacettx.html#groupfacettx">Healy 4 (Show the right numbers)</a>, <a href="https://r4ds.had.co.nz/graphics-for-communication.html">R4DS 28 (Graphics for communication)</a>, <a href="https://serialmentor.com/dataviz/directory-of-visualizations.html">Wilke 5 (Directory of visualizations)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">2b</td>
-<td style="text-align:center">1/15/20</td>
-<td style="text-align:left"><a href="lab2.html">Lab 2: Mapping data to aesthetics </a></td>
-<td style="text-align:left">Lab 2</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">If needed: <a href="https://socviz.co/gettingstarted.html#gettingstarted">Healy 2 (Get started)</a>, <a href="https://socviz.co/makeplot.html#makeplot">Healy 3 (Make a plot)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">3a</td>
-<td style="text-align:center">1/20/20</td>
-<td style="text-align:left"><strong>MLK Day, No Class</strong></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">Lab 2</td>
-<td style="text-align:left"><a href="https://r4ds.had.co.nz/relational-data.html">R4DS 13 (Relational data)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">3b</td>
-<td style="text-align:center">1/22/20</td>
-<td style="text-align:left"><a href="slides/w3p2.html">Joins</a></td>
-<td style="text-align:left"><a href="hw1.html">Homework 1</a></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center">4a</td>
-<td style="text-align:center">1/27/20</td>
-<td style="text-align:left"><a href="slides/w4p1.html">Visual perception</a></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left"><a href="https://socviz.co/lookatdata.html#lookatdata">Healy 1 (Look at data)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">4b</td>
-<td style="text-align:center">1/29/20</td>
-<td style="text-align:left">Lab 3: Visual perception</td>
-<td style="text-align:left"><a href="lab3.html">Lab 3</a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="https://serialmentor.com/dataviz/aesthetic-mapping.html">Wilke 2 (Visualizing data: Mapping data onto aesthetics)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">5a</td>
-<td style="text-align:center">2/3/20</td>
-<td style="text-align:left"><a href="slides/w5p1.html">Color</a></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="https://serialmentor.com/dataviz/color-basics.html">Wilke 4 (Color scales)</a>, <a href="https://serialmentor.com/dataviz/color-pitfalls.html">Wilke 16 (Common pitfalls of color use)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">5b</td>
-<td style="text-align:center">2/5/20</td>
-<td style="text-align:left"><a href="lab4.html">Lab 4: Color</a></td>
-<td style="text-align:left">Lab 4</td>
-<td style="text-align:left">Homework 1; Final Project Proposal; Lab 3</td>
-<td style="text-align:left"><a href="https://serialmentor.com/dataviz/visualizing-amounts.html">Wilke 6 (Visualizing amounts)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">6a</td>
-<td style="text-align:center">2/10/20</td>
-<td style="text-align:left"><a href="slides/w6p1.html">Communication</a></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left"><a href="https://serialmentor.com/dataviz/image-file-formats.html">Wilke 24 (Image file formats for exporting)</a>, <a href="https://serialmentor.com/dataviz/telling-a-story.html">Wilke 26 (Telling a story)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">6b</td>
-<td style="text-align:center">2/12/20</td>
-<td style="text-align:left"><a href="lab5.html">Lab 5: Choices and cycles</a></td>
-<td style="text-align:left">Lab 5</td>
-<td style="text-align:left">Lab 4</td>
-<td style="text-align:left"><a href="https://socviz.co/refineplots.html#refineplots">Healy 8 (Refine your plots)</a>, <a href="https://serialmentor.com/dataviz/redundant-coding.html">Wilke 17 (Redundant coding)</a>, <a href="https://serialmentor.com/dataviz/balance-data-ink.html">Wilke 20 (Balance data-to-ink ratio)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">7a</td>
-<td style="text-align:center">2/17/20</td>
-<td style="text-align:left"><a href="slides/w7p1.html">Visualizing uncertainty</a></td>
-<td style="text-align:left">Homework 2</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="https://youtu.be/E1kSnWvqCw0">Kay Tapestry keynote</a>, <a href="https://serialmentor.com/dataviz/visualizing-uncertainty.html">Wilke 16 (Visualizing Uncertainty)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">7b</td>
-<td style="text-align:center">2/19/20</td>
-<td style="text-align:left"><a href="slides/w7p2.html">Tables &amp; fonts</a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Lab 5</td>
-<td style="text-align:left"><a href="https://socviz.co/workgeoms.html#workgeoms">Healy 5 (Tables, labels, and notes)</a>, <a href="https://gt.rstudio.com/articles/intro-creating-gt-tables.html">gt tables</a></td>
-</tr>
-<tr>
-<td style="text-align:center">8a</td>
-<td style="text-align:center">2/24/20</td>
-<td style="text-align:left"><a href="slides/w8p1.html">Websites in R Markdown</a></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="https://rstudio.github.io/radix/">radix</a>, <strong>Optional</strong>: <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html">RMD Sites</a>, <a href="https://bookdown.org/yihui/blogdown/">blogdown</a></td>
-</tr>
-<tr>
-<td style="text-align:center">8b</td>
-<td style="text-align:center">2/26/20</td>
-<td style="text-align:left"><a href="slides/w8p2.html">Dashboards</a></td>
-<td style="text-align:left">Peer Review</td>
-<td style="text-align:left">Portfolio Draft</td>
-<td style="text-align:left"><a href="https://bookdown.org/yihui/rmarkdown/dashboards.html">RMD Dashboards</a></td>
-</tr>
-<tr>
-<td style="text-align:center">9a</td>
-<td style="text-align:center">3/2/20</td>
-<td style="text-align:left"><a href="slides/w9p1.html">Intro to geographic data</a></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">Homework 2</td>
-<td style="text-align:left"><a href="https://socviz.co/maps.html#maps">Healy 7 (Draw maps)</a>, <a href="https://serialmentor.com/dataviz/geospatial-data.html">Wilke 15 (Geospatial data)</a></td>
-</tr>
-<tr>
-<td style="text-align:center">9b</td>
-<td style="text-align:center">3/4/20</td>
-<td style="text-align:left">Work day - Asha to present on SQL and {dbplyr}</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">Peer Review</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center">10a</td>
-<td style="text-align:center">3/9/20</td>
-<td style="text-align:left">Presentations</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Presentation</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center">10b</td>
-<td style="text-align:center">3/11/20</td>
-<td style="text-align:left">Presentations</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">Presentation</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center">11</td>
-<td style="text-align:center">3/18/20</td>
-<td style="text-align:left">Final Projects</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Final Project</td>
-<td style="text-align:left">-</td>
-</tr>
-</tbody>
-</table>
+	
 
+		<span><a class = "happygit" href= "https://happygitwithr.com/install-intro.html"> <i data-feather="book"></i> 4-8 </a></span>
+	
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-06
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Upping your git skills </div>
+  <div class = "week-description"> We&#39;ll focus the whole day on git, solidifying the skills you built in the first class while also introducing new topics: branching, stashing, pull requests, and managing projects with multiple team members while avoiding merge conflicts. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+  <a href= "../assignments/#labs" ><i data-feather="file-plus"></i> Lab 1</a>
+
+  
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "happygit" href= "https://happygitwithr.com/git-branches.html"> <i data-feather="book"></i> 22 </a></span>
+	
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-2">Week 2</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-11
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Introduction to visualizations </div>
+  <div class = "week-description"> Visualizing distributions (mostly histograms and density plots) </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "socviz" href="https://socviz.co/groupfacettx.html#groupfacettx"> <i data-feather="book"></i> 4 </a></span>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		<span><a class = "r4ds" href="https://r4ds.had.co.nz/graphics-for-communication.html"> <i data-feather="book"></i> 28 </a></span>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		<span><a class = "dataviz" href="https://clauswilke.com/dataviz/directory-of-visualizations.html"> <i data-feather="book"></i> 5 </a></span>
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-13
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Lab 2: Mapping data to aesthetics </div>
+  <div class = "week-description"> We will apply the skills  learned in the previous lecture by trying out different bins and bandwidths for histograms and density plots. We&#39;ll also replicate a plot (with ggplot) showing different amounts by group. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+  <a href= "../assignments/#labs" ><i data-feather="file-plus"></i> Lab 2</a>
+
+  
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="due">
+	
+	
+
+	
+  
+  <a href= "../assignments/#labs" ><i data-feather="file-text"></i> Lab 1</a>
+	
+	
+
+</div>
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "socviz" href="https://socviz.co/gettingstarted.html#gettingstarted"> <i data-feather="book"></i> 2 </a></span>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		<span><a class = "socviz" href="https://socviz.co/makeplot.html#makeplot"> <i data-feather="book"></i> 3 </a></span>
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-3">Week 3</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-18
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Martin Luther King Jr. Day </div>
+  <div class = "week-description"> No class. Black Lives Matter. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-20
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Joins </div>
+  <div class = "week-description"> Many of the best visualizations require joining data from diverse sources. In this lecture we&#39;ll discuss keys for joining data, different types of mutating and filtering joins, and common errors in joining data </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+  <a href= "../assignments/#homework" ><i data-feather="file-plus"></i> Homework 1</a>
+
+  
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="due">
+	
+	
+
+	
+  
+  <a href= "../assignments/#labs" ><i data-feather="file-text"></i> Lab 2</a>
+	
+	
+
+</div>
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-4">Week 4</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-25
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Visual Perception </div>
+  <div class = "week-description"> Aesthetic mappings and visual encodings of data. The data-ink ratio and the pitfall of rigid rules. Some general rule of thumb recommendations. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "socviz" href="https://socviz.co/lookatdata.html#lookatdata"> <i data-feather="book"></i> 1 </a></span>
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  01-27
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Lab 3 </div>
+  <div class = "week-description"> We will use ggplot2 to replicate plots produced by &lt;a href=&#39;https://fivethirtyeight.com&#39;&gt; fivethirtyeight &lt;/a&gt;. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+  <a href= "../assignments/#labs" ><i data-feather="file-plus"></i> Lab 3</a>
+
+  
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "dataviz" href="https://clauswilke.com/dataviz/aesthetic-mapping.html"> <i data-feather="book"></i> 2 </a></span>
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-5">Week 5</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-01
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Color </div>
+  <div class = "week-description"> Three primary means by which color can aid interpretation. Color blindness considerations and color palettes that work well. Common pitfalls with the use of color. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "dataviz" href="https://clauswilke.com/dataviz/color-basics.html"> <i data-feather="book"></i> 4 </a></span>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		<span><a class = "dataviz" href="https://clauswilke.com/dataviz/color-pitfalls.html"> <i data-feather="book"></i> 19 </a></span>
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-03
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Lab 4 </div>
+  <div class = "week-description"> We will use color for each of its primary uses in data visualization and explore and evaluate different palettes by different types of color blindness. </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+
+  <a href= "../assignments/#labs" ><i data-feather="file-plus"></i> Lab 4</a>
+
+  
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+<div class="due">
+	
+	
+
+	
+  
+  <a href= "../assignments/#homework" ><i data-feather="file-text"></i> Homework 1</a>
+	
+	
+
+</div>
+<div class="due">
+	
+	
+
+	
+  
+  <a href= "../syllabus/#final-project" ><i data-feather="file-text"></i> Proposal</a>
+	
+	
+
+</div>
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+		<span><a class = "dataviz" href="https://clauswilke.com/dataviz/visualizing-amounts.html"> <i data-feather="book"></i> 3 </a></span>
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-6">Week 6</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-08
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Communication </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-10
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Lab 5 </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-7">Week 7</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-15
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Visulizing uncrtainty </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-17
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Tables and fonts </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-8">Week 8</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-22
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Websites </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  02-24
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Dashboards: Guest Lecturer Akhila Nekkanti </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-9">Week 9</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  03-01
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Intro to Geographic data </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  03-03
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Work Day </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-10">Week 10</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  03-08
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Presentations </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+<div class="week-even">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  03-10
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Presentations </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
+<h2 id="week-11">Week 11</h2>
+<div class="schedule">
+	
+	<div class="weeks-header">
+		<div></div>
+		<div>Topics </div>
+		<div>Slides </div>
+		<div>Assigned </div>
+		<div>Due </div>
+		<div>Reading</div>
+		<div>Lecture</div>
+	</div>
+
+
+	
+
+<div class="week-odd">
+	<div class="class-date"> 
+  	<i data-feather="calendar"></i><br/>
+  	  NA
+	</div>
+	
+	
+  <div class="class-theme"> 
+  <div class = "week-theme-title"> Finals Week </div>
+  <div class = "week-description"> NA </div>
+</div>
+  <div class="wrap">
+	<p>
+<div class="reading">
+	
+
+	
+	
+		-
+	
+	
+</div>
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+  <div class="wrap">
+	<p>
+
+</p>
+</div>
+    <div class="wrap">
+	<p>
+
+
+
+
+
+	
+
+
+
+
+
+
+</p>
+</div>
+
+
+</div>
+
+
+
+</div>
 
 
 
       </main>
       
-      <aside class="hidden lg:block tableOfContentContainer" id="tableOfContentContainer">
       
-      <h3>Table of contents</h3>
-        <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#table-key">Table key</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-      
-      </aside>
 
     </div>
     
@@ -472,7 +1991,7 @@ html, body {
   </div>
 </footer>
 
-    <script src="/js/feather.min.js"></script>
+    <script src="https://dataviz-2021.netlify.app/js/feather.min.js"></script>
 <script>
   feather.replace()
 </script>

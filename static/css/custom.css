@@ -1,9 +1,3 @@
-
-a:hover {
-	color: #ff65ad !important;
-	text-decoration: none !important;
-}
-
 #subtitle {
 	color: #62676a;
 	font-size: 1.25rem;
@@ -12,7 +6,6 @@ a:hover {
 	margin-bottom: 2rem;
 	padding-top: 0px;
 }
-
 
 div#home-jumbotron.jumbotron {
 	text-align: left !important;

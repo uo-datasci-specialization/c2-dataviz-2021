@@ -1,0 +1,9 @@
+{{ $arg1 := (.Get 0) }}
+
+{{ if eq  $arg1 "" }}
+
+{{ else }}
+
+<span><a class = "video" href= "{{ .Get 0 }}"> <i data-feather="video"></i></a></span>
+	
+{{ end }}
