@@ -4,11 +4,10 @@
     <title>Welcome!</title>
     <meta charset="utf-8" />
     <meta name="author" content="Daniel Anderson" />
-    <link href="w1p1_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="w1p1_files/remark-css-0.0.1/uo.css" rel="stylesheet" />
-    <link href="w1p1_files/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
-    <link href="w1p1_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="new.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -22,6 +21,30 @@ class: center, middle, inverse, title-slide
 ---
 
 
+
+
+layout: true
+
+  &lt;script&gt;
+    feather.replace()
+  &lt;/script&gt;
+  
+  &lt;div class="slides-footer"&gt;
+  &lt;span&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w1p1.html"&gt;
+    &lt;i class = "footer-icon" data-feather="link"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021"&gt;
+    &lt;i class = "footer-icon" data-feather="github"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;/span&gt;
+  &lt;/div&gt;
+  
+
+---
 # Agenda 
 
 * Getting on the same page
@@ -29,15 +52,14 @@ class: center, middle, inverse, title-slide
 * A little bit of git/GitHub
 
 ---
+
 # whoami
 
 .pull-left[
 * Research Assistant Professor: Behavioral Research and Teaching
 * Dad (two daughters: 8 and 6)
 * Pronouns: he/him/his
-* Primary areas of interest
-  + 💗💗R💗💗, computational research, and open science 
-  + Achievement gaps, systemic inequities, and variance between educational institutions
+* Primary areas of interest: 💗💗R💗💗, computational research, achievement gaps, systemic inequities, and variance between educational institutions
 ]
 
 .pull-right[
@@ -47,7 +69,7 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
-class: center middle inverse
+class: center middle inverse-blue
 
 # whoisyou?
 
@@ -59,6 +81,7 @@ class: center middle inverse
 ]
 
 ---
+
 # A few class policies
 
 --
@@ -77,28 +100,24 @@ class: center middle inverse
 Truly the most important part of this class. Important not just in terms of decency, but also in your learning, and most importantly, for equity. 
 
 ---
-# A more specific policy
-### Kiddos in class
+# A bit more specific
+
+Normally I would have information here about welcoming kids into class.
+
+Because we're virtual, that part is both easier and harder.
+
 
 --
 
-1. All breastfeeding babies are welcome in class as often as necessary.
+If you need to not attend class, or a portion of class, for any reason, that is fine.
 
 --
 
-2. Non-nursing babies and older children are welcome whenever alternate arrangements cannot be made. As a parent of two young children, I understand that babysitters fall through, partners have conflicting schedules, children get sick, and other issues arise that leave parents with few other options.
-
---
-
-3. In cases where children come to class, I invite parents/caregivers to sit close to the door so as to more easily excuse yourself to attend to your child's needs. Non-parents in the class: please reserve seats near the door for your parenting classmates.
-
---
-
-4. All students are expected to join with me in creating a welcoming environment that is respectful of your classmates who bring children to class.
-
+Ideally you would let me know ahead of time. But we're in the middle of a pandemic and life is cray. Please .b[try] to contact me beforehand. If this isn't possible, please check in with me after.
 
 ---
-# Last thing
+
+# Last intro thing
 
 * I'm here for you
 
@@ -107,55 +126,85 @@ Truly the most important part of this class. Important not just in terms of dece
 * This course, like all in the sequence, can be difficult. Don't suffer in silence. Don't do this alone.
 
 ---
-background-image: url(https://akm-img-a-in.tosshub.com/indiatoday/images/story/201802/Syllabus-featured.jpeg?rpmIvNBBqGMDT7lPG.Qe4AzWs6OfDh9K)
-class: inverse bottom
+class: inverse-green middle
 background-size:cover
 
 # Syllabus
 
 ---
+
 # Course Website(s)
 
-* [website](https://uo-datasci-specialization.github.io/c2-dataviz-2020/)
-* [repo](https://github.com/uo-datasci-specialization/c2-dataviz-2020)
+.pull-left[
+## [website](https://dataviz-2021.netlify.app)
+]
 
-&lt;iframe src="https://uo-datasci-specialization.github.io/c2-dataviz-2020/" width="100%" height="400px"&gt;&lt;/iframe&gt;
+.pull-right[
+.right[
+## [repo](https://github.com/uo-datasci-specialization/c2-dataviz-2021)
+  ]
+]
+
+&lt;br/&gt;
+
+&lt;iframe src="https://dataviz-2021.netlify.app" width="100%" height="400px"&gt;&lt;/iframe&gt;
 
 ---
-# A note on these slides
-* All produced with R through R Markdown
+# Materials
+* Nearly everything will be distributed through the repo and through the website.
 
-* I'll try to always run `knitr::purl` on the slides before class so you have the code from the slides (occassionally won't be terrifically useful). These will be posted to Canvas.
+* Please clone the repo now, if you haven't already. Pull each week for the most recent changes.
 
-* I'll also always try to get a PDF of the slides up and posted to canvas.
+* We'll use Canvas for grading, and that is essentially it.
 
 ---
-# I assume you:
-1. Understand the R package ecosystem (how to find, install, load, and learn about them)
+# R Markdown notes
+* These slides were produced with [**{xaringan}**](https://github.com/yihui/xaringan), an R Markdown variant. I encourage you to try it out and use it for your final project presentation.
+
+* The website was also produced with R Markdown (sort of)
+  + It's a [**{blogdown}**](https://github.com/rstudio/blogdown) website with some custom CSS and Hugo shortcodes
+  
+* This course is not just about data viz, but also mediums for communication. This includes websites and [data dashboards](https://jenthompson.me/examples/insight_progress.html) among other possibilities.
+
+
+---
+class: inverse-red middle
+
+# My assumptions about you
+
+---
+# I assume you
+
+* Understand the R package ecosystem (how to find, install, load, and learn about them)
 
 
 --
-1. Can read "flat" (i.e., rectangular) datasets into R 
+* Can read "flat" (i.e., rectangular) datasets into R 
 
   + I don't care what you use, but you should be using RStudio Projects &amp; the [{here}](https://github.com/r-lib/here) package
 
     - See [Jenny Bryan's blog post](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) for why.
 
---
-1. Can perform basic data wrangling and transformations in R, using the
-tidyverse
+
+
+---
+* Can perform basic data wrangling and transformations in R, using the
+tidyverse  
+
   + Leverage appropriate functions for introductory data science tasks (pipeline)
   + "clean up" the dataset using scripts and reproducible workflows
 
 --
-1. Use version control with R via git and GitHub 
+
+* Use version control with R via git and GitHub  
+
 
 --
-1. Use R Markdown to create reproducible dynamic reports
+* Use R Markdown to create reproducible dynamic reports
 
 
 ---
-# Learning objects for this class
+# Learning objectives
 
 * Transform data in a variety of ways to create effective data visualizations
 
@@ -177,6 +226,7 @@ tidyverse
 
 
 ---
+
 # Examples
 Below are some links to final projects from students who took this class last year.
 
@@ -209,10 +259,11 @@ Provide you a frame for what you should be working to learn for that specific we
 
 
 ---
+
 # Required Textbooks (free)
 
 .pull-left[
-Healy (http://socviz.co)
+## [Healy](http://socviz.co)
 
 &lt;div&gt;
 &lt;img src = http://socviz.co/assets/dv-cover-pupress.jpg height = 400&gt;
@@ -221,40 +272,78 @@ Healy (http://socviz.co)
 ]
 
 .pull-right[
-Wilke (https://serialmentor.com/dataviz/)
+.right[
+## [Wilke](https://serialmentor.com/dataviz/)
+]
 
 &lt;div&gt;
 &lt;img src =
-http://t1.gstatic.com/images?q=tbn:ANd9GcSKmL1jCuh8rAxHEvGdd80_6GENytaUjiP7YEWGsiRFF_yta-18 height = 400&gt; &lt;/div&gt;
+https://clauswilke.com/dataviz/cover.png height = 400&gt; &lt;/div&gt;
 
 
 ]
 
 
 ---
+
 # Other books (also free)
 
-.pull-left[
-Bryan (http://happygitwithr.com)
+&lt;style type="text/css"&gt;
+.pl {
+  float: left;
+  width: 40%;
+}
+.pr {
+  float: right;
+  width: 60%;
+}
+&lt;/style&gt;
+
+.pl[
+## [Bryan](http://happygitwithr.com)
 
 &lt;iframe src="http://happygitwithr.com" width="100%" height="400px"&gt;&lt;/iframe&gt;
 ]
 
-.pull-right[
-Wickham &amp; Grolemund (https://r4ds.had.co.nz)
-&lt;div&gt;
-&lt;img src =https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png height = 400&gt; &lt;/div&gt;
+.pr[
+.right[
+## [Wickham - Grolemund](https://r4ds.had.co.nz)
+]
 
+.center[
+&lt;div&gt;
+&lt;img src =https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png height = 400&gt; 
+&lt;/div&gt;
+  ]
 ]
 
 ---
+
+# One other resource
+
+.pull-left[
+&lt;br/&gt;
+I'm going to try as best I can to keep up with writing ["course notes"](https://www.sds.pub) chapters throughout the term. 
+
+This is being co-written with former students who went through this sequence!
+]
+
+.pull-right[
+
+&lt;br/&gt;
+
+&lt;iframe src="https://www.sds.pub" width="100%" height="400px"&gt;&lt;/iframe&gt;
+]
+
+---
+class: inverse-red middle
 # Extra credit opportunity
-* 10 points: Deep dive into a topic not covered by the course
+**10 points**: Deep dive into a topic not covered by the course
 
 
---
-### Some options
-.gray[We'll talk about this more in a minute]
+---
+# Some options
+
 * Geographic data (we'll have an intro, but there's a ton here and we won't really do it justice)
 * Network data
 * Text data
@@ -265,7 +354,7 @@ Wickham &amp; Grolemund (https://r4ds.had.co.nz)
 * Animated plots
 
 ---
-class: inverse center middle
+class: inverse-blue  middle
 # Some examples
 
 ---
@@ -319,54 +408,47 @@ background-size:contain
 [James Curley](https://github.com/jalapic/nba)
 
 ---
-# Lab Schedule
+# Labs
 
-5 points each (30 points total; 15%)
+See the [assignments](https://dataviz-2021.netlify.app/assignments/) page of the website.
 
-1. GitHub collabo (**Assigned: 1/8/19**; **Due: 1/13/19**)
+10 points each (30 points total; 15%)
 
-1. Mapping data to aesthetics (**Assigned: 1/15/19**; **Due: 1/20/19**)
+1. Distributions &amp; GitHub collabo 
 
-    **Homework 1**
+1. Visual perception  &amp; plot reproducing
 
-1. Visual perception (**Assigned: 1/29/19**; **Due: 2/3/19**)
-
-1. Color (**Assigned: 2/5/19**; **Due: 2/10/19**)
-
-    **Homework 2**
-
-1. Tables/Uncertainty (**Assigned: 2/19/19**; **Due: 2/24/19**)
-
+1. Color
 
 
 ---
 # Homework
-10 points each (20 points; 10%)
+20 points each (40 points; 20%)
 
-* Basically the same as the labs, but scored correct/incorrect, and no in-class
-  time devoted to them.
+* Basically the same as the labs, but scored correct/incorrect, and no in-class time devoted to them.
 
-* Okay to work on collaboratively - I actively encourage you to do so as long as
-  you're using a shared repo
+* Okay to work on collaboratively - I actively encourage you to do so as long as you're using a shared repo
 
 
 --
-First will be focused on joins and basically relational data (with visualizations built in)
 
-Second will ask you to reproduce some data visualizations "in the wild" with publicly available data.
+* **Homework 1**: Creating new visuals while utilizing different types of joins 
+
+* **Homework 2**: Visualizing uncertainty, tables, and plot refinement
 
 
 ---
 # Quick note on reproducibility
+
 A [great blog post](https://simplystatistics.org/2019/08/28/you-can-replicate-almost-any-plot-with-ggplot2/) by [Rafael Irizarry](https://twitter.com/rafalab) shows how almost any plot you see in popular media can be reproduced in R with ggplot.
 
-
 --
+
 ### For example
 
 
 ---
-# Wall Street Journal Version
+# WSJ Version
 
 ![](img/measles_wsj.png) 
 
@@ -377,7 +459,7 @@ A [great blog post](https://simplystatistics.org/2019/08/28/you-can-replicate-al
 
 
 ---
-## Data visualization "in the wild" presentations
+# Data viz "in the wild" presentations
 Everyone will present for ~5 minutes - order randomly assigned (coming up next)
 
 * Find two data viz examples intended for two different audiences
@@ -388,13 +470,10 @@ Everyone will present for ~5 minutes - order randomly assigned (coming up next)
   - At least 1 area of strength
   - At least 1 area for (potential) improvement
 
----
-# Presentation order
-.pull-left[
-We're starting a bit later than the syllabus outlines because enrollment is lower than in the past.
 
-.gray[I'll email this out too]
-]
+---
+
+# Presentation order
 
 .pull-right[
 
@@ -460,21 +539,27 @@ We're starting a bit later than the syllabus outlines because enrollment is lowe
 ]
 
 ---
+class: inverse-red middle
 # Final Project 
 120 points total (60%)
 
-6 parts:
-* Proposal (10 points): Due 2/5/19
-* Draft (15 points): Due 2/26/19
-* Peer review (15 points): Assigned, 2/26/19; Due 3/4/19
-* Presentation (20 points): 3/9/19 and 3/11/19 (Week 10)
-* Product (60 points): Due 11:59:59 PM, 3/18/19
+---
+# Six parts
+* Proposal (10 points): Due 1/27/21
+
+* Draft (15 points): Due 2/24/21
+
+* Peer review (15 points): Assigned, 2/24/21; Due 3/3/21
+
+* Presentation (20 points): 3/8/21 and 3/10/21 (Week 10)
+
+* Product (60 points): Due 11:59:59 PM, 3/17/21
 
 
 ---
 # Product
 
-Four components: 
+### Four components: 
 
 * A web-deployed portfolio showcasing your [#dataviz](https://twitter.com/search?q=%23DataViz&amp;src=tyah)
   skills.
@@ -485,74 +570,92 @@ Four components:
     [bookdown](https://bookdown.org/yihui/bookdown/)
   + Scientific poster with [pagedown](https://github.com/rstudio/pagedown)
   + [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/)
+
+---
+
 * At least three finalized data displays, with each accompanied by a strong 
   narrative/story, as well as the history of how the visualization changed over 
   time.
+  
 * Housed on GitHub
   + Fully reproducible
-* Deployed through [GitHub pages](https://pages.github.com) (or netlify or similar if you're feeling brave)
+
+* Deployed through [GitHub pages](https://pages.github.com) (or netlify or similar)
 
 
 ---
 # Proposal
 
-Four components:
+### Four components:
+
 * Description of the data source (**must** be publicly available)
-* Preliminary ideas (even hand sketches) of different visualizations
-* Identification of the intended audience for each visualization 
-  + Note, you might consider displaying the same data/relations more than 
-    once, with each plot displayed for a different audience.
-* The intended message to be communicated for each plot. 
+
+* Preliminary ideas of different viz
+
+* Identification of the intended audience for each viz 
+
+* The intended message to be communicated for each viz 
 
 ---
 # Draft
+
 * Expected to still be a work in progress
   + Data visualizations should be largely complete
+
 * Deployment not expected
-* Provided to your peers so they can learn from you as much as you can learn 
-  from their feedback
+
+* Provided to your peers so they can learn from you as much as you can learn from their feedback
 
 ---
 # Peer Review
 * We are all professionals here. It is imperative we act like it. 
+
 * Understand the purpose of the exercise.  
+
 * Zero tolerance policy for inappropriate comments
+
 * Should be vigorously encouraging 
 
-
 --
+
 ### Utilizing GitHub
-* You'll be assigned three proposals to review (5 points each)
-* Fork their repo
-* Embed comments, suggest changes to their code
-* Submit a PR
-  + Summarize your overall review in the PR
+You'll be assigned three proposals to review (5 points each)
+
+* Fork their repo, embed comments &amp; suggest changes to their code, submit a PR
 
 ---
 # Presentation 
 Order randomly assigned. Basically a chance to share what you created!
 
 * Discuss what is trying to be communicated
+
 * Share the final products
+
 * Discuss the progression along the way and why specific changes were made
 
 
 ---
+class: inverse-blue middle
 # Grading
-200 points total
-* 5 labs at 6 points each (30 points; 15%) 
+
+---
+# Points
+### 200 points total
+* 3 labs at 10 points each (30 points; 15%) 
 * 2 homework assignments at 20 points each (40 points; 20%) 
 * five-minute data visualization "in the wild" presentation (10 points; 5%) 
 * Final Project (120 points; 60%)
   + Proposal (10 points; 5%)
   + Draft (15 points; 7.5%)
-  + Peer review (15 points; 7.5%)
-  + Presentation (20 points; 10%)
+  + Peer review (25 points; 12.5%)
+  + Presentation (10 points; 10%)
   + Product (60 points; 30%)
 
 
 ---
+
 # Grading
+
 
 |  **Lower percent** |**Lower point range**  | **Grade** | **Upper point range**  | **Upper percent**|
 |  :------: | :------   | :-:| :-------: | ----:|
@@ -572,41 +675,39 @@ class: inverse
 background-image:url(https://d194ip2226q57d.cloudfront.net/original_images/10_Tips_for_Workplace_Communication)
 background-size:contain
 
----
-# Missing classes
-# 😬
-I will be out .bolder[all] of week 4! 
-* We will have a guest lecturer, Dr. [Patrick Kennedy](https://twitter.com/pkqstr) from the [Center on Teaching and Learning](https://ctl.uoregon.edu).
-
 
 ---
-class: inverse center middle
+class: inverse-green center bottom
 background-image:url(https://cdn-images-1.medium.com/max/1600/1*aFHTAkhTkyWD93-UGRttPw.png)
 background-size:contain
 
+## Full lecture on Wednesday
+
+**My goal:** To make you the most prepared cohort with GitHub to date!
+
 ---
 # Demo
+* The [gitkraken](https://www.gitkraken.com) GUI
 * Creating a GitHub repo
 * Sharing access (or creating an organization)
 * Cloning the repo
 * stage, commit, push
 * pull
+* branching
 * forking and issues
-* The [gitkraken](https://www.gitkraken.com) GUI
 
 
 ---
-class:inverse middle center
+class:inverse-orange middle center
 
 # Next time
 
-### Collaborating with GitHub lab
+### Collaborating with GitHub
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "atelier-dune-light",
 "highlightLines": true,
 "countIncrementalSlides": false
 });

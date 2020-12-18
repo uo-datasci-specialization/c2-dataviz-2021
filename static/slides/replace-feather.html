@@ -1,0 +1,3 @@
+<script>
+  feather.replace()
+</script>

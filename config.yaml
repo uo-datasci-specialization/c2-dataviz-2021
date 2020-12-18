@@ -48,7 +48,6 @@ params:
   footerText: Made with [Hugo](https://gohugo.io/) & [Vanilla](https://github.com/zwbetz-gh/vanilla-bootstrap-hugo-theme)
   hideFooter: false
   katex: true
-  custom_css: ["custom.css"]
   custom_js: ["custom.js"]
 
 markup:

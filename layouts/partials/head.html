@@ -1,9 +1,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  {{ range .Site.Params.custom_css }}
-  <link rel="stylesheet" href="{{ "/css/" | relURL }}{{ . }}">
-  {{ end }}
   {{ range .Site.Params.custom_js }}
   <script src="{{ "/js/" | relURL }}{{ . }}"></script>
   {{ end }}
