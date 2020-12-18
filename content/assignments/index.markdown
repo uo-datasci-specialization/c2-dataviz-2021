@@ -38,7 +38,7 @@ There are two homework assignments in the class, each worth 20 points. These ass
 
 ## Final Project
 
-The final project includes multiple components, [as outlined in the syllabus](../syllabus/#final-project). The due dates for each component are as follows:
+The final project includes multiple components, culminating in a data visualization portfolio. The portfolio must include at least three data visualizations, communicate the history of each visualization, and be deployed to the web. The due dates for each component are as follows:
 
 {{< bootstrap-table "table table-hover" >}}
 
