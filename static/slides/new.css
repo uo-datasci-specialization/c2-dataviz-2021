@@ -8,20 +8,18 @@ h1, h2, h3, h4, h5, h6 {
   font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-weight: 100;
   color: #21252A;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 h1 {
 	border-bottom: 1px solid #21252A;
 	margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-/*h3 {
-	margin-top: .15rem;
-  margin-bottom: 0.75rem;
-}*/
+h2, h3 {
+	margin-top: 0.2rem;
+	margin-bottom: 0.5rem;
+}
 
 table {
 	font-size: 1.1rem;
@@ -159,13 +157,3 @@ a.footer-icon-link:hover {
 	font-size: 1rem;
 	font-weight: 300;
 }
-
-
-
-/*div.slides-footer span {
-    height: 100%;
-    color: #F7F8FA;
-    position: absolute;
-    left: 15px;
-    bottom: 2px;
-}*/

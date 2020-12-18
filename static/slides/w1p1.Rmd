@@ -25,9 +25,16 @@ source(here::here("static", "slides", "slide-setup.R"))
 ---
 # Agenda 
 
+.pull-left[
+
 * Getting on the same page
 * Syllabus
 * A little bit of git/GitHub
+]
+
+.pull-right[
+![](../edld652-logo.png)
+]
 
 ---
 
@@ -123,7 +130,6 @@ background-size:cover
   ]
 ]
 
-<br/>
 
 ```{r echo = FALSE}
 knitr::include_url("https://dataviz-2021.netlify.app")
@@ -268,60 +274,34 @@ https://clauswilke.com/dataviz/cover.png height = 400> </div>
 
 # Other books (also free)
 
-```{css echo = FALSE}
-.pl {
-  float: left;
-  width: 40%;
-}
-.pr {
-  float: right;
-  width: 60%;
-}
-```
-
-.pl[
+.pull-left[
+![](https://happygitwithr.com/img/watch-me-diff-watch-me-rebase-smaller.png)
 ## [Bryan](http://happygitwithr.com)
-
-```{r echo = FALSE}
-knitr::include_url("http://happygitwithr.com")
-
-```
 ]
 
-.pr[
+.pull-right[
 .right[
-## [Wickham - Grolemund](https://r4ds.had.co.nz)
-]
-
-.center[
 <div>
 <img src =https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png height = 400> 
 </div>
   ]
 ]
 
----
-
-# One other resource
-
-.pull-left[
-<br/>
-I'm going to try as best I can to keep up with writing ["course notes"](https://www.sds.pub) chapters throughout the term. 
-
-This is being co-written with former students who went through this sequence!
+.right[
+### [Wickham & Grolemund](https://r4ds.had.co.nz)
 ]
+---
+class: inverse-red middle
 
-.pull-right[
-
-<br/>
-
+## Another resource
+See the current draft [here](https://www.sds.pub)
 ```{r echo = FALSE}
 knitr::include_url("https://www.sds.pub")
 ```
-]
+
 
 ---
-class: inverse-red middle
+class: inverse-orange middle
 # Extra credit opportunity
 **10 points**: Deep dive into a topic not covered by the course
 
@@ -347,7 +327,7 @@ background-image:url(https://timogrossenbacher.ch/wp-content/uploads/2016/12/tm-
 background-size:contain
 
 <br/>
-<br/>
+
 
 [Timo Grossenbacher](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)
 
@@ -460,26 +440,41 @@ Everyone will present for ~5 minutes - order randomly assigned (coming up next)
 
 # Presentation order
 
-.pull-right[
+I will email this out as well. 
 
-```{r pres-wildorder, echo = FALSE, results = "asis"}
-peeps <- c("Mike", "Stephanie", "Katherine", "Akhila", "Thuy", "Sophie",
-           "Brock", "Bryce", "Jim", "Joanna", "Asha", "Claire")
+```{r pres-wildorder, echo = FALSE, results = "asis", message = FALSE}
+library(tidyverse)
 
-dates <- lubridate::mdy(c("1/22/20", "1/27/20", "1/29/20",
-                          "2/3/20", "2/5/20", "2/10/20", "2/12/20", "2/17/20", 
-                          "2/19/20", "2/24/20", "2/26/20", "3/2/20"))
+peeps <- c("Janette", "Anisha", "Ann-Marie", "Hyeonjin", "Sarah", "Sarah", 
+           "David", "Raleigh", "Anwesha", "Wanjia", "Maggie", "Murat", 
+           "Rachael", "Xiaoyu", "Chris", "Kavya", "Tess", "Meghan", 
+           "Vinita", "Makayla", "Shijing")
+
+dates <- lubridate::mdy(c("1/11/21", "1/13/21", "1/20/21", "1/25/21", "1/27/21",
+                         "2/1/21", "2/3/21", "2/8/21", "2/10/21", "2/15/21", 
+                         "2/17/21", "2/22/21", "2/24/21", "3/1/21", "3/3/21", 
+                         "1/11/21", "1/13/21", "1/20/21", "1/25/21", "1/27/21", 
+                         "2/1/21"))
 
 #length(peeps)/ length(dates)
 
 set.seed(23)
-knitr::kable(
-  data.frame(Date = dates, 
-             Presenter = sample(peeps)),
-  "html"
-)
+assigned <- tibble(Date = sample(dates), Presenter = sample(peeps)) %>% 
+  arrange(Date)
 ```
 
+.pull-left[
+```{r echo = FALSE, message=FALSE}
+library(kableExtra)
+
+kbl(assigned[1:11, ]) 
+```
+]
+
+.pull-right[
+```{r echo = FALSE}
+kbl(assigned[12:nrow(assigned), ])
+```
 ]
 
 ---
