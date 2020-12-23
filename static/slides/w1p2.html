@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>git and GitHub!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Daniel Anderson" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="new.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# git and GitHub!
+## Hopefully cutting through the fogginess
+### Daniel Anderson
+### Week 1, Class 2
+
+---
+
+
+
+
+layout: true
+
+  &lt;script&gt;
+    feather.replace()
+  &lt;/script&gt;
+  
+  &lt;div class="slides-footer"&gt;
+  &lt;span&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w1p2.html"&gt;
+    &lt;i class = "footer-icon" data-feather="link"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021"&gt;
+    &lt;i class = "footer-icon" data-feather="github"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;/span&gt;
+  &lt;/div&gt;
+  
+
+---
+# Agenda 
+
+* *git* vs GitHub vs GitKraken
+
+* Two ways to create a repo
+
+* Adding collaborators
+
+* Branching
+
+* Pull requests
+
+* Forking
+
+* Stashing
+
+* General recommendations
+
+---
+# Setup
+
+I'm assuming you're all setup. If not, please do the following
+
+* [Downlaod and install](https://git-scm.com/downloads) *git*
+
+* [Register](https://github.com) for a GitHub account
+
+* [Download and install](https://www.gitkraken.com/download) GitKraken
+
+
+---
+# *git* vs GitHub
+
+*git* and GitHub are somewhat analogous to R and RStudio 
+
+* R is the "engine", RStudio is the IDE
+* *git* is the "engine", GitHub is the web-based hosting service
+
+
+--
+It's somewhat easy to conflate these things, but it's important to keep them separate... Why?
+
+
+---
+class: inverse-blue middle
+background-image: url(https://images.opencollective.com/gitkraken/93b360d/background.png)
+background-size: cover
+
+# GitKraken
+A visual interface for interacting with *git*
+
+---
+# Why GitKraken
+
+You could argue it would be better to focus on the command line interface. 
+
+--
+## My experience
+
+--
+Most people have an easier time grasping the *concepts* of *git* (like branching) when there's a visual interface
+
+
+--
+GitKraken allows you to do 95%+ of the work you need to do without moving to the CLI
+
+---
+# Why GitKraken
+
+If you decide to go with CLI eventually, that's totally fine. You'll probably need to for some operations. But as Jenny Bryan notes
+
+&gt; No one is giving out Git Nerd merit badges
+
+
+--
+
+So use the tools that make you most effective
+
+
+---
+class: inverse-orange middle
+
+# Big picture
+
+### Why do we use *git*?
+
+---
+# We use *git* to:
+
+* Contain version control and track changes to documents over time
+
+
+--
+* Increase transparency and reproducibilty in process
+
+
+--
+* Collaborate with others efficiently and effectively
+
+--
+* Share our work with others
+
+---
+class: inverse-red middle
+
+# Warning
+This will be painful at times - you've probably already had painful experiences. I believe the payoff is worth the effort.
+
+The vocabulary is probably half the battle
+
+---
+class: inverse-blue center bottom
+background-image:url(https://cdn-images-1.medium.com/max/1600/1*aFHTAkhTkyWD93-UGRttPw.png)
+
+## Creating repositories: Starting with an empty project
+
+---
+# GitHub first
+
+If you are starting a new project and you're going to use version control, I suggest going GitHub first
+
+--
+* Create a new empty repo on Github
+
+* Clone the repo locally
+
+* Start your project (i.e., [RStudio Projects](https://rstudio.com/resources/webinars/managing-part-1-projects-in-rstudio/))
+
+* Commit your initial changes
+
+* Push the changes to the remote
+
+---
+class: inverse-green middle center
+
+# [demo]
+
+
+---
+class: inverse-blue center bottom
+background-image:url(https://cdn-images-1.medium.com/max/1600/1*aFHTAkhTkyWD93-UGRttPw.png)
+
+## Creating repositories: Starting with an existing project
+
+---
+# Project first
+
+If you already have an existing project, you need to:
+
+* Initialize the repo locally
+
+* Create an empty repo on GitHub
+
+* Connect your local repo to the remote
+
+---
+class: inverse-green middle center
+
+# [demo]
+
+
+---
+# Vocabulary pop quiz
+
+### What do the following mean?
+
+* Stage
+
+* Commit
+
+* Push
+
+* Pull
+
+* Clone
+
+* Branch
+
+* Fork
+
+---
+# Merge conflicts
+
+* Merge conflicts only occur if you try to edit *the same line* of an out-of-date file
+
+* Let's create and resolve one with the README file.
+
+---
+# Branching
+
+Super powerful approach to collaborating with *git*. Essentially create a copy of the repo at a given point.
+
+* Create and *checkout* a new branch.
+
+* Make changes and commits *on the branch*, which frees you up to play and experiment without fear of "breaking" the main branch
+
+* Push the branch to the remote
+
+* When you're ready, submit a *pull request* to merge the branch with the main branch
+
+* Note - any changes on the branch *will not be visible* if you don't have that branch checked out
+
+---
+class: inverse-green middle center
+
+# [demo]
+
+
+---
+# Pull requests
+Submit a PR for a branch when you're ready
+
+Consider tagging others to review the changes before they are merged in
+
+Link the PR to any relevant [Issues](https://guides.github.com/features/issues/).
+
+Consider adding labels (e.g., bug fix, enhancement)
+
+---
+class: inverse-green middle center
+
+# [demo]
+
+---
+# Forking
+
+Similar process to branching, with a few major differences:
+
+* You don't have to be (and shouldn't be) a direct collaborator
+
+* You copy the entire repo *to your account*
+
+  + You can then make whatever changes you want and push the changes to your fork
+  
+* If you want your changes implemented, you *must* submit a pull request (you can't contribute to the repo directly unless you're a collaborator) and *compare across forks*
+
+
+---
+# Stashing
+
+### Last topic for the day
+
+When working across multiple branches, you might find yourself occassionally making edits on the wrong branch
+
+You can't commit those changes, but you don't want to lose them either
+
+Stashing allows you to basically create a temporary branch, store the changes there, then "pop" them on the correct branch
+
+---
+class: inverse-green center bottom
+background-image: url(img/wrong-branch.png)
+background-size: contain
+
+---
+class: inverse-green center bottom
+background-image: url(img/stash.png)
+background-size: contain
+
+---
+class: inverse-green center bottom
+background-image: url(img/pop.png)
+background-size: contain
+
+---
+# General advice
+
+* Create a repo
+
+* Add collaborators
+
+* Always pull before starting new work
+
+* Always commit all changes before finishing your work
+  + If you don't do this, you might end up with automatic stashing
+
+* File Issues to track work that should be completed
+	- Include assignments for individuals
+	- Tag issues to help with organization
+
+---
+# General advice
+* Use branches to create new changes
+  + A good rule of thumb - one branch for each issue
+  
+* Submit pull requests when the work on a given branch is complete, and link it to the corresponding issue
+	- Tag collaborators to review the pull request
+	- Use GitHub's review resources to comment on individual lines of code, as needed
+	- Use the PR to have conversations about the changes and any revisions needed
+
+---
+# General advice
+
+* Merge pull requests and delete the remote branch
+	- Move back to your local, checkout the main branch, pull the merged changes, delete the local branch
+	
+---
+class: inverse-green middle center
+
+# Next time
+## Introduction to visualizations
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -48,7 +48,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "01-06" >}}
   {{< description "Upping your git skills" "We'll focus the whole day on git, solidifying the skills you built in the first class while also introducing new topics: branching, stashing, pull requests, and managing projects with multiple team members while avoiding merge conflicts." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w1p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
