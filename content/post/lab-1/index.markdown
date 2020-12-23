@@ -1,7 +1,7 @@
 ---
 title: Lab 1
 author: Daniel Anderson
-date: '2020-11-30'
+date: '2020-01-20'
 slug: lab-1
 categories:
   - Assignment
@@ -23,45 +23,41 @@ The basics of the lab are to:
 * Create a shared repo
 * Create an R Markdown document
 * Work on a few different data visualizations together
-  + Different people make different commits
+  + File issues for the different pieces of the lab
+  + Create branches for those issues
+  + Different people work on different branches - merge them in when you're ready
 * Submit a link to the repo through Canvas when you've completed the lab
 * I check the commit history, and give each person credit
 
-### Data
-We'll work with Week 1 of the [#tidytuesday](https://twitter.com/search?q=%23tidytuesday&src=tyah) 
-data for 2019, specifically the 
-[#rstats](https://twitter.com/search?q=%23rstats&src=typd)
-dataset, containing nearly 500,000 tweets over a little more than a decade using
-that hashtag. 
+To receive full credit **you must** create and merge branches. The contributions across team members should also appear roughly equal.
 
-## Commits
+## Data
+We'll work with Week 1 of the [#tidytuesday](https://twitter.com/search?q=%23tidytuesday&src=tyah)  data for 2019, specifically the [#rstats](https://twitter.com/search?q=%23rstats&src=typd) dataset, containing nearly 500,000 tweets over a little more than a decade using that hashtag. 
 
-Glance through the commits below. Each person should be responsible for **at least**
-one commit. Commit 1 must be completed first. However, please work on Commits 2
-4 simultaneously (one person working on each commit). Commits 3 and 5
-cannot be completed until after Commits 2 and 4, respectively.
+## Project
 
-**Note:** You may end up with a merge conflict. That's okay, we're here to 
-practice. I like [gitkraken](https://www.gitkraken.com) for managing merge
-conflicts (see [here](https://blog.axosoft.com/merge-conflict-tool/)) but you 
-can use whatever works best for you.
+Glance through the plots below. This is an open-ended lab. You need to work with your group to figure out how to best approach this. By the end, however, you should have:
 
-### Commit 1
+* A shared GitHub repo
 
-* Create a shared GitHub repo
-* Create an RStudio project
-* The data are available [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-01-01). Download the data.
-* Create a folder in your local repo called "data" and place the corresponding data there.
-* Initialize a new R Markdown document
-* Write the code to read the data into R
-* Commit and push all new files/modification to the repo
+* Initial versions of each of the two plots
+
+* Final versions of each of the two plots
+
+* At least two branches, each of which have been merged in
+
+
+Each person should be responsible for **at least** one commit. 
 
 
 
-### Commit 2
-First `pull` Commit 1, then reproduce the following figure. 
 
-Some guidance:
+### Plot 1 rough draft
+Create the following plot:
+
+<img src="{{< relref "post/lab-1/index.markdown" >}}index_files/figure-html/fig1-raw-1.png" width="960" />
+
+#### Some guidance
 
 * You'll want to count the number of times a screen name appears and select
   only the top 25.
@@ -71,17 +67,17 @@ Some guidance:
   + Consider `forcats::fct_reorder`
 * `coord_flip` will be your friend here
 
-<img src="{{< relref "post/lab-1/index.markdown" >}}index_files/figure-html/fig1-raw-1.png" width="960" />
-
-### Commit 3
-* Style the plot so it (mostly) matches the below.
+### Finalized Plot 1
+Style the plot so it (mostly) matches the below. It does not need to be exact, but it should be close.
   
 <img src="{{< relref "post/lab-1/index.markdown" >}}index_files/figure-html/fig1-styled-1.png" width="960" />
 
-### Commit 4
+### Plot 2 rough draft
 Create the following figure. 
 
-Some guidance:
+<img src="{{< relref "post/lab-1/index.markdown" >}}index_files/figure-html/fig2-raw-1.png" width="960" />
+
+#### Some guidance
 
 * First create a `month` variable that rounds the `created_at` column to 
   the nearest month. You might consider `lubridate::round_date`.
@@ -90,18 +86,12 @@ Some guidance:
   through `ggplot`
 * Count the number of rows (tweets) in the dataset for each month
 
-<img src="{{< relref "post/lab-1/index.markdown" >}}index_files/figure-html/fig2-raw-1.png" width="960" />
-
-### Commit 5
-* Modify the plot so it (mostly) matches the below. (Note it does not have to be perfect)
+### Finalized Plot 2
+Style the plot so it (mostly) matches the below. It does not need to be exact, but it should be close.
 
 <img src="{{< relref "post/lab-1/index.markdown" >}}index_files/figure-html/fig2-styled-1.png" width="960" />
 
 ## Finishing up
-It is expected that this lab will take you more time that the 80 minutes we have
-in class. Class time should be used to clarify any points of confusion
-and if you run into issues after class, please get in touch with me so we can
-arrange a time to meet and I can help you.
+It is expected that this lab will take you more time that the 80 minutes we have in class. Class time should be used to clarify any points of confusion and if you run into issues after class, please get in touch with me so we can arrange a time to meet and I can help you.
 
-Once you have finished, please go to Canvas and submit a link to your shared
-repo. Credit will be awarded based on the commit history.
+Once you have finished, please go to Canvas and submit a link to your shared repo. Credit will be awarded based on the commit history.
