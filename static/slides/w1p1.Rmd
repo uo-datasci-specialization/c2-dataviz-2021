@@ -445,18 +445,20 @@ Everyone will present for ~5 minutes - order randomly assigned (coming up next)
 
 ```{r pres-wildorder, echo = FALSE, results = "asis", message = FALSE}
 library(tidyverse)
-
+library(lubridate)
 peeps <- c("Janette", "Anisha", "Ann-Marie", "Hyeonjin", "Kay", "Sarah Dim", "Sarah Don", 
            "David", "Raleigh", "Anwesha", "Wanjia", "Maggie", "Murat", 
            "Rachael", "Chris", "Kavya", "Tess", "Zach", "Meg", 
            "Vinita", "Makayla", "Shijing", "Joe")
 
-dates <- lubridate::mdy(c("1/11/21", "1/11/21", "1/13/21", "1/13/21", "1/20/21", 
-                         "1/25/21", "1/27/21",
-                         "2/1/21", "2/3/21", "2/8/21", "2/10/21", "2/15/21", 
-                         "2/17/21", "2/22/21", "2/24/21", "3/1/21", "3/3/21", 
-                         "1/11/21", "1/13/21", "1/20/21", "1/25/21", "1/27/21", 
-                         "2/1/21"))
+dates <- mdy(
+  c("1/11/21", "1/11/21", "1/13/21", "1/13/21",
+    "1/20/21", "1/20/21", "1/25/21", "1/25/21",
+    "1/27/21", "1/27/21", "2/1/21", "2/1/21",
+    "2/3/21", "2/3/21", "2/10/21", "2/10/21",
+    "2/15/21", "2/15/21", "2/17/21", "2/22/21", 
+    "2/24/21", "3/1/21", "3/3/21")
+  )
 
 #length(peeps)/ length(dates)
 
