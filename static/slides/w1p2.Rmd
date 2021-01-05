@@ -8,6 +8,8 @@ output:
     css: ["default", "new.css"]
     lib_dir: libs
     nature:
+      navigation:
+        scroll: false
       # highlightStyle: atelier-dune-light
       highlightLines: true
       countIncrementalSlides: false
