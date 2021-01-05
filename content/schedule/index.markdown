@@ -41,7 +41,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "other" "https://www.sds.pub/collaborating-with-git-and-github.html" "8" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "https://viralviralvideos.com/wp-content/uploads/2013/11/2014-GIFS.gif" >}}
+{{< lecture "https://youtu.be/CeobEaNT0Mo" >}}
 {{< /wrap >}}
 {{< /week-odd >}}
 
