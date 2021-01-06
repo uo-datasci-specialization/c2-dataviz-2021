@@ -48,7 +48,7 @@ source(here::here("static", "slides", "slide-setup.R"))
 
 I'm assuming you're all setup. If not, please do the following
 
-* [Downlaod and install](https://git-scm.com/downloads) *git*
+* [Download and install](https://git-scm.com/downloads) *git*
 
 * [Register](https://github.com) for a GitHub account
 
