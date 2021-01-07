@@ -29,10 +29,10 @@ There are two homework assignments in the class, each worth 20 points. These ass
 
 {{< bootstrap-table "table table-hover" >}}
 
-| Homework|Date Assigned    |Date Due         |Topic                                      |
-|--------:|:----------------|:----------------|:------------------------------------------|
-|        1|Wed, January 20  |Wed, February 03 |Producing new visualizations through joins |
-|        2|Wed, February 10 |Wed, February 24 |Uncertainty, tables, and plot refinement   |
+| Homework|Date Assigned    |Date Due         |Topic                                                       |
+|--------:|:----------------|:----------------|:-----------------------------------------------------------|
+|        1|Wed, January 20  |Wed, February 03 |[Producing new visualizations through joins](../homework-1) |
+|        2|Wed, February 10 |Wed, February 24 |Uncertainty, tables, and plot refinement                    |
 
 {{< /bootstrap-table >}}
 
