@@ -1,0 +1,1480 @@
+geom_point(shape = 15, #
+             fill = "#FEE11A", #
+             alpha = 0.5,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 3, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +
+geom_point(shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 3, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +
+geom_point(shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 8) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 3, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +
+geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 3, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +
+geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.2,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 3, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +
+geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.2,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo
+dimnames = list(c("x", "y"), c("min", "max")))
+c("min", "max")))
+matrix(c(-123.0750, -123.0758,#
+               44.0440, 44.04409),#
+            byrow = TRUE,#
+            dimnames = list(c("x", "y"), #
+                            c("min", "max")))
+uo <- matrix(c(-123.0750, -123.0758,#
+               44.0440, 44.04409),#
+            byrow = TRUE)
+uo
+ncol = 2))
+uo <- matrix(c(-123.0750, -123.0758,#
+               44.0440, 44.04409),#
+            byrow = TRUE, #
+            ncol = 2))
+ncol = 2)
+uo <- matrix(c(-123.0750, -123.0758,#
+               44.0440, 44.04409),#
+            byrow = TRUE, #
+            ncol = 2)
+uo
+roads2 <- uo %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+rownames(uo) <- c("x", "y"))
+rownames(uo) <- c("x", "y")
+uo
+colnames(uo) <- c("min", "max")
+uo
+roads2 <- uo %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+uo <- matrix(c(-123.07570, -123.07579,#
+               44.0438, 44.0441),#
+            byrow = TRUE, #
+            ncol = 2)
+rownames(uo) <- c("x", "y")
+colnames(uo) <- c("min", "max")
+roads2 <- uo %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+roads2 <- uo %>% #
+  opq() %>% #
+  add_osm_feature("highway")
+roads2 %>%#
+  osmdata_sf()
+uo <- uo_bb
+uo_bb
+44.0438, 44.0441)
+uo[] <- c(-123.07570, 44.0438, -123.07579, 44.0441)
+uo
+uo[] <- c(-123.075, 44.04, -123.076, 44.05)
+roads2 <- uo %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+opq(c(-123.075, 44.04, -123.076, 44.05))
+roads2 <- opq(c(-123.075, 44.04, -123.076, 44.05)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.2,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+qmile <- 1/(69*4)
+qmile
+0.25/360
+roads2 <- opq(c(-123.07574 - qmile, #
+                44.04404 - qmile, #
+                -123.07574 + qmile, #
+                44.04404 + qmile)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.8) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.2,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+qmile <- 0.2/360
+roads2 <- opq(c(-123.07574 - qmile, #
+                44.04404 - qmile, #
+                -123.07574 + qmile, #
+                44.04404 + qmile)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 8,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long), uo_loc, #
+            label = "University of Oregon",#
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_loc <- data.frame(label = c("University of Oregon", #
+                               "Autzen Stadium"),#
+                     lat = c(44.04404, 44.058459), #
+                     long = c(-123.07574, -123.068468))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 5,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_loc <- data.frame(label = c("University of Oregon", #
+                               "Autzen Stadium",#
+                               "Spencer Butte",#
+                               "Mount Pisgah"),#
+                     lat = c(44.04404, 44.058459, 43.9894, 44.0058), #
+                     long = c(-123.07574, -123.068468, 123.0973, 122.9644))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,] + c(0, 0.05), #
+           ylim = uo_bb[2,] + c(0.05, -0.05),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,] + c(0.05, 0.1), #
+           ylim = uo_bb[2,] + c(-0.05, -0.05),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+roads <- opq(c(-123.07574 - 1/360,
+44.04404 - 1/360,
+-123.07574 + 1/360,
+44.04404 + 1/360) %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+uo_bb <- opq(c(-123.07574 - 5/360, #
+                44.04404 - 5/360, #
+                -123.07574 + 5/360, #
+                44.04404 + 5/360))
+roads <-  uo_bb %>% #
+ # opq() %>%
+add_osm_feature("highway") %>% #
+  osmdata_sf()
+water <- uo_bb %>% #
+  #opq() %>%
+add_osm_feature("water") %>% #
+  osmdata_sf()
+qmile <- 0.2/360
+roads2 <- opq(c(-123.07574 - qmile, #
+                44.04404 - qmile, #
+                -123.07574 + qmile, #
+                44.04404 + qmile)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+uo_loc <- data.frame(label = c("University of Oregon", #
+                               "Autzen Stadium",#
+                               "Spencer Butte",#
+                               "Mount Pisgah"),#
+                     lat = c(44.04404, 44.058459, 43.9894, 44.0058), #
+                     long = c(-123.07574, -123.068468, 123.0973, 122.9644))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1,], #
+           ylim = uo_bb[2,],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_bb[1,]
+uo_bb
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  # coord_sf(xlim = uo_bb[1,], #
+  #          ylim = uo_bb[2,],#
+  #          expand = FALSE) +
+map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)
+roads
+roads$bbox
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = c(44.0301511111111, 44.0579288888889), #
+           ylim = c(-123.089628888889, -123.061851111111),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(ylim = c(44.0301511111111, 44.0579288888889), #
+           xlim = c(-123.089628888889, -123.061851111111),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_bb <- opq(c(-123.07574 - 3/360, #
+                44.04404 - 1/360, #
+                -123.07574 + 3/360, #
+                44.04404 + 7/360))
+roads <-  uo_bb %>% #
+ # opq() %>%
+add_osm_feature("highway") %>% #
+  osmdata_sf()
+water <- uo_bb %>% #
+  #opq() %>%
+add_osm_feature("water") %>% #
+  osmdata_sf()
+roads$bb
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  geom_point(aes(y = lat, x = long), uo_loc,#
+             shape = 15, #
+             color = "#FEE11A", #
+             alpha = 0.5,#
+             size = 2,#
+             stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(ylim = c(44.0412622222222, 44.0634844444444), #
+           xlim = c(-123.084073333333, -123.067406666667),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_bb <- opq(c(-123.07574 - 5/360, #
+                44.04404 - 2/360, #
+                -123.07574 + 5/360, #
+                44.04404 + 7/360))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+# ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+  #            size = 1, #
+  #            color = "#036936",#
+  #            segment.color = "#FEE11A",#
+  #            nudge_x = 0.01,#
+  #            nudge_y = -0.005,#
+  #            min.segment.length = 0) +
+coord_sf(ylim = c(44.0412622222222, 44.0634844444444), #
+           xlim = c(-123.084073333333, -123.067406666667),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+roads$bb
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +#
+  # ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+  #            size = 1, #
+  #            color = "#036936",#
+  #            segment.color = "#FEE11A",#
+  #            nudge_x = 0.01,#
+  #            nudge_y = -0.005,#
+  #            min.segment.length = 0) +#
+  coord_sf(ylim = c(44.0412622222222, 44.0634844444444), #
+           xlim = c(-123.084073333333, -123.067406666667),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),#
+                     lat = c(44.04404, 44.058459),#, 43.9894, 44.0058),
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(ylim = c(44.04, 44.0634844444444), #
+           xlim = c(-123.085, -123.066),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"),#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),
+lat = c(44.04404, 44.058459),#, 43.9894, 44.0058),
+long = c(-123.07574, -123.068468)))#, 123.0973, 122.9644))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +#
+  ggrepel::geom_label_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(ylim = c(44.0, 44.07), #
+           xlim = c(-123.1, -123.00),#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_bb %>%#
+  osmdata_sf()
+library(tidyverse)#
+library(osmdata)#
+library(colorspace)#
+library(extrafont)#
+library(grid)#
+library(gridExtra)#
+#
+map_dark <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = darken('#036936', .95),#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#FEE11A",#
+                                    family = "Roboto Thin")#
+        )#
+}#
+#
+uo_bb <- getbb("Eugene")#
+#
+# uo_bb <- opq(c(-123.07574 - 5/360, #
+#                 44.04404 - 2/360, #
+#                 -123.07574 + 5/360, #
+#                 44.04404 + 7/360))#
+#
+roads <-  uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()#
+#
+water <- uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("water") %>% #
+  osmdata_sf()#
+#
+qmile <- 0.22/360#
+#
+roads2 <- opq(c(-123.07574 - qmile, #
+                44.04404 - qmile, #
+                -123.07574 + qmile, #
+                44.04404 + qmile)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"),#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),
+lat = c(44.04404, 44.058459),#, 43.9894, 44.0058),
+long = c(-123.07574, -123.068468)))#, 123.0973, 122.9644))
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"),#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),
+lat = c(44.04404, 44.058459),#, 43.9894, 44.0058),
+long = c(-123.07574, -123.068468))#, 123.0973, 122.9644))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(ylim = uo_bb[1, ], #
+           xlim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+uo_bb[1, ]
+uo_bb[2, ]
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             nudge_x = 0.01,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+?ggrepel::geom_text_repel
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             segment.size = 0.1,#
+             nudge_x = 0.001,#
+             nudge_y = -0.005,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggsave(here::here("eugene-uo.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+qmile <- 0.24/360
+roads2 <- opq(c(-123.07574 - qmile, #
+                44.04404 - qmile, #
+                -123.07574 + qmile, #
+                44.04404 + qmile)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggsave(here::here("eugene-uo.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+qmile <- 0.24/360
+qmile <- 0.25/360
+roads2 <- opq(c(-123.07574 - qmile, #
+                44.04404 - qmile, #
+                -123.07574 + qmile, #
+                44.04404 + qmile)) %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"),#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),
+lat = c(44.04404, 44.058459),#, 43.9894, 44.0058),
+long = c(-123.07574, -123.068468))#, 123.0973, 122.9644))
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+  geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  # geom_point(aes(y = lat, x = long), uo_loc,#
+  #            shape = 15, #
+  #            color = "#FEE11A", #
+  #            alpha = 0.5,#
+  #            size = 2,#
+  #            stroke = 0) +
+ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggsave(here::here("eugene-uo.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+map_light <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = "#ffffff",#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#FEE11A",#
+                                    family = "Roboto Thin")#
+        )#
+}
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#84D2DF", color = darken("#84D2DF")) +#
+  geom_sf(data = water$osm_polygons, fill = "#84D2DF", color = darken("#84D2DF")) +#
+  geom_sf(data = water$osm_lines, color = darken("#84D2DF")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+map_light <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = "#ffffff",#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#036936",#
+                                    family = "Roboto Thin")#
+        )#
+}
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#84D2DF", color = darken("#84D2DF")) +#
+  geom_sf(data = water$osm_polygons, fill = "#84D2DF", color = darken("#84D2DF")) +#
+  geom_sf(data = water$osm_lines, color = darken("#84D2DF")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "##07506F", color = darken("##07506F")) +#
+  geom_sf(data = water$osm_polygons, fill = "##07506F", color = darken("##07506F")) +#
+  geom_sf(data = water$osm_lines, color = darken("##07506F")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#07506F", color = darken("#07506F")) +#
+  geom_sf(data = water$osm_polygons, fill = "#07506F", color = darken("#07506F")) +#
+  geom_sf(data = water$osm_lines, color = darken("#07506F")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#157CAE", color = darken("#157CAE")) +#
+  geom_sf(data = water$osm_polygons, fill = "#157CAE", color = darken("#157CAE")) +#
+  geom_sf(data = water$osm_lines, color = darken("#157CAE")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#00AEEF", color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_polygons, fill = "#00AEEF", color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_lines, color = darken("#00AEEF")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = lighten("#00AEEF"), color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_polygons, fill = lighten("#00AEEF"), color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_lines, color = darken("#00AEEF")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = lighten("#00AEEF", .5), color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_polygons, fill = lighten("#00AEEF", .5), color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_lines, color = darken("#00AEEF")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggsave(here::here("eugene-uo2.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +
+ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+ggsave(here::here("eugene-uo2.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+ggsave(here::here("eugene-uo.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = lighten("#00AEEF", .5), color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_polygons, fill = lighten("#00AEEF", .5), color = darken("#00AEEF")) +#
+  geom_sf(data = water$osm_lines, color = darken("#00AEEF")) +#
+  geom_sf(data = roads$osm_lines, color = "#9A9C9F", size = 0.2)  +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#036936",#
+             segment.color = "#036936",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_light() +#
+  labs(caption = "Eugene, OR")
+ggsave(here::here("eugene-uo-light.png"),#
+       device = "png",#
+       dpi = 600, #
+       width = 8, #
+       height = 12)
+d <- rio::import(here::here("data", "rstats_tweets.rds"),#
+                 setclass = "tbl_df")
+library(tidyverse)
+flights
+library(nycflights13)
+flights
+flights %>%#
+  filter(arr_delay > 120)
+library(tidyverse)#
+library(osmdata)#
+library(colorspace)#
+library(extrafont)#
+library(grid)#
+library(gridExtra)#
+#
+map_dark <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = darken('#036936', .95),#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#FEE11A",#
+                                    family = "Roboto Thin")#
+        )#
+}#
+#
+map_light <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = "#ffffff",#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#036936",#
+                                    family = "Roboto Thin")#
+        )#
+}#
+#
+uo_bb <- getbb("Eugene")#
+#
+# uo_bb <- opq(c(-123.07574 - 5/360, #
+#                 44.04404 - 2/360, #
+#                 -123.07574 + 5/360, #
+#                 44.04404 + 7/360))#
+#
+roads <-  uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()#
+#
+water <- uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("water") %>% #
+  osmdata_sf()#
+#
+# qmile <- 0.25/360#
+#
+# roads2 <- opq(c(-123.07574 - qmile, #
+#                 44.04404 - qmile, #
+#                 -123.07574 + qmile, #
+#                 44.04404 + qmile)) %>% #
+#   add_osm_feature("highway") %>% #
+#   osmdata_sf()#
+#
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"),#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),#
+                     lat = c(44.04404, 44.058459),#, 43.9894, 44.0058), #
+                     long = c(-123.07574, -123.068468))#, 123.0973, 122.9644))
+p <- ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  #+
+build_data <- ggplot_build(p)$data
+head(build_data)
+build_data <- layer_data(p)
+build_data
+build_data <- layer_data(p, i = 4)
+build_data
+build_data$geometry[[1]]
+?osmdata
+roads <- uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sp()
+roads
+roads$osm_polygons
+str(roads$osm_polygons)
+as_tibble(roads$osm_polygons@data)
+roads
+roads$osm_lines
+names(roads$osm_lines)
+getSlots(roads$osm_lines)
+slotNames(roads$osm_lines)
+roads$osm_lines@lines
+roads$osm_lines@lines[[1]]
+roads$osm_lines@lines[1]
+reduce(roads$osm_lines@lines[1:2], bind_rows, .id = "road")
+roads$osm_lines@lines[1:2]
+str(roads$osm_lines@lines[[1]])
+str(roads$osm_lines@lines[[1]]@Lines)
+str(roads$osm_lines@lines[[1]]@Lines@coords)
+roads$osm_lines@lines[[1]]@Lines
+roads$osm_lines@lines[[1]]@Lines[[1]]
+roads$osm_lines@lines[[1]]@Lines[[1]]@coords
+pull_latlon <- function(osm_sp) {#
+  osm$osm_lines@lines[[1]]@Lines[[1]]@coords#
+}
+pull_latlon(roads)
+pull_latlon <- function(osm_sp) {#
+  osm_sp$osm_lines@lines[[1]]@Lines[[1]]@coords#
+}
+pull_latlon(roads)
+roads$osm_lines@lines
+pull_latlon <- function(lines) {#
+  lines@Lines[[1]]@coords#
+}
+pull_latlon(roads)
+roads$osm_lines@lines@Lines
+tmp <- roads$osm_lines@lines
+str(tmp)
+map(tmp, ~.x@Lines[[1]]@coords)
+pull_road_latlon <- function(osm_sp) {#
+  lines <- osm_sp$osm_lines@lines#
+  map_df(lines, ~.x@Lines[[1]]@coords, .id = "road")#
+}
+pull_road_latlon(roads)
+pull_road_latlon <- function(osm_sp) {#
+  lines <- osm_sp$osm_lines@lines#
+  #map_df(lines, ~.x@Lines[[1]]@coords, .id = "road")#
+  lines#
+}
+tmp <- pull_road_latlon(roads)
+map_df(tmp, ~.x@Lines[[1]]@coords, .id = "road")
+map(tmp, ~.x@Lines[[1]]@coords)
+map_df(tmp, ~.x@Lines[[1]]@coords)
+map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  reduce(bind_rows, .id = "road")
+str(map(tmp, ~.x@Lines[[1]]@coords))
+map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map(as.data.frame) %>%#
+  reduce(bind_rows, .id = "road")
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map(as.data.frame) %>%#
+  reduce(bind_rows, .id = "road")
+head(tmp2)
+tmp <- pull_road_latlon(roads)
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map(as.data.frame) %>%#
+  reduce(bind_rows, .id = "road")
+head(tmp2)
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map(as.data.frame) %>%#
+  reduce(rbind, .id = "road")
+head(tmp2)
+tmp2 %>%#
+  mutate(road = rownames(.))
+tmp2 %>%#
+  mutate(road = rownames(.)) %>%#
+  head()
+tmp2 %>%#
+  mutate(road = factor(rownames(.))) %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_line()
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map(as_tibble) %>%#
+  reduce(bind_rows, .id = "road")
+tmp2
+count(tmp2, road)
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map(as_tibble) %>%#
+  reduce(bind_rows)
+tmp2
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map_df(as_tibble, .id = "road")
+tmp2
+tmp2 %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_line()
+tmp2 %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_line(color = "#036936", size = 0.2)
+roads$osm_polygons
+osm_sp$osm_polygons
+roads$osm_polygons
+str(roads$osm_polygons)
+str(roads$osm_polygons@Polygons)
+str(roads$osm_polygons@polygons)
+pull_road_latlon <- function(osm_sp) {#
+  lines <- osm_sp$osm_polygons@polygons#
+  #map_df(lines, ~.x@Lines[[1]]@coords, .id = "road")#
+  lines#
+}
+tmp <- pull_road_latlon(roads)
+tmp2 <- map(tmp, ~.x@Polygons[[1]]@coords) %>%#
+  map_df(as_tibble, .id = "road")
+tmp2
+tmp2 %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_polygon(color = "#036936", size = 0.2)
+tmp2 %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_lines(color = "#036936", size = 0.2)
+tmp2 %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_line(color = "#036936", size = 0.2)
+pull_road_latlon <- function(osm_sp) {#
+  lines <- osm_sp$osm_lines@lines#
+  #map_df(lines, ~.x@Lines[[1]]@coords, .id = "road")#
+  lines#
+}
+tmp <- pull_road_latlon(roads)
+tmp2 <- map(tmp, ~.x@Lines[[1]]@coords) %>%#
+  map_df(as_tibble, .id = "road")
+tmp2 %>%#
+  ggplot(aes(lon, lat, group = road)) +#
+    geom_line(color = "#036936", size = 0.2)
+library(tidyverse)#
+library(osmdata)#
+library(colorspace)#
+library(extrafont)#
+library(grid)#
+library(gridExtra)#
+#
+map_dark <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = darken('#036936', .95),#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#FEE11A",#
+                                    family = "Roboto Thin")#
+        )#
+}#
+#
+map_light <- function() {#
+  theme_void() +#
+  theme(plot.margin = margin(b = 0.3, 0, 0, 0, "cm"),#
+        plot.background = element_rect(fill = "#ffffff",#
+                                       color = '#036936',#
+                                       size = 4),#
+        plot.caption = element_text(hjust = 0.5,#
+                                    vjust = 0.1,#
+                                    size = 22,#
+                                    color = "#036936",#
+                                    family = "Roboto Thin")#
+        )#
+}#
+#
+uo_bb <- getbb("Eugene")#
+#
+# uo_bb <- opq(c(-123.07574 - 5/360, #
+#                 44.04404 - 2/360, #
+#                 -123.07574 + 5/360, #
+#                 44.04404 + 7/360))#
+#
+roads <-  uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("highway") %>% #
+  osmdata_sf()#
+#
+water <- uo_bb %>% #
+  opq() %>% #
+  add_osm_feature("water") %>% #
+  osmdata_sf()#
+#
+# qmile <- 0.25/360#
+#
+# roads2 <- opq(c(-123.07574 - qmile, #
+#                 44.04404 - qmile, #
+#                 -123.07574 + qmile, #
+#                 44.04404 + qmile)) %>% #
+#   add_osm_feature("highway") %>% #
+#   osmdata_sf()#
+#
+uo_loc <- data.frame(label = c("Campus", #
+                               "Autzen Stadium"),#,#
+                              # "Spencer Butte",#
+                               #"Mount Pisgah"),#
+                     lat = c(44.04404, 44.058459),#, 43.9894, 44.0058), #
+                     long = c(-123.07574, -123.068468))#, 123.0973, 122.9644))#
+#
+roads$osm_lines %>% #
+  as_tibble()#
+#
+ggplot() +#
+  geom_sf(data = water$osm_multipolygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_polygons, fill = "#488986", color = darken("#488986")) +#
+  geom_sf(data = water$osm_lines, color = darken("#488986")) +#
+  geom_sf(data = roads$osm_lines, color = "#036936", size = 0.2)  +#
+ # geom_sf(data = roads2$osm_lines, color = "#FEE11A", size = 0.4, alpha = 0.4) +#
+  ggrepel::geom_text_repel(aes(y = lat, x = long, label = label), uo_loc, #
+             size = 1, #
+             color = "#FEE11A",#
+             segment.color = "#FEE11A",#
+             segment.size = 0.05,#
+             nudge_x = 0.001,#
+             nudge_y = -0.001,#
+             min.segment.length = 0) +#
+  coord_sf(xlim = uo_bb[1, ], #
+           ylim = uo_bb[2, ],#
+           expand = FALSE) +#
+  map_dark() +#
+  labs(caption = "Eugene, OR")
+setwd("/Users/daniel/Teaching/data_sci_specialization/2019-20/c2-dataviz-2020/wilke-purl")
+source(here::here("wilke-purl", "_common.R"))
+dviz_font_family
+dviz_font_family_condensed

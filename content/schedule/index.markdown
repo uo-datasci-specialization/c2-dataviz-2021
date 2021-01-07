@@ -60,7 +60,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "happygit" "git-branches.html" "22" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/X7Cl3lwxXi4" >}}
 {{< /wrap >}}
 {{< /week-even >}}
 
@@ -71,7 +71,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "01-11" >}}
   {{< description "Intro to visualizations" "We will spend most of the day looking at different types of visualizations, with a specific focus on continuous variables. We will explore how different choices with these visualizations can change your inferences." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w2p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
