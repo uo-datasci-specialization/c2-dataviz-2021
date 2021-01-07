@@ -1,4 +1,6 @@
 /*fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap');
+
 body {
 	font-family: "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
 	color: #21252A;
@@ -9,6 +11,47 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
   color: #21252A;
 }
+
+/**/
+
+/*Code style*/
+.remark-inline-code {
+	font-family: 'Source Code Pro', monospace;
+	color: #22ABF6;
+}
+
+.remark-code-line-highlighted {
+	background: #22ABF6;
+	color: #fff;
+}
+
+.hljs-default .hljs {
+	font-family: 'Source Code Pro', monospace;
+	color: #434c56;
+	background: #ebf8fe;
+}
+
+.hljs-comment {
+  color: #9C9B9D !important;
+}
+
+.hljs-string {
+	color: #18B6A2 !important;
+}
+
+.remark-code-line-highlighted .hljs-number{
+	color: #a5f3e9 !important;
+}
+
+.hljs-number {
+	color: #DB5F05 !important;
+}
+
+.remark-code-line-highlighted .hljs-number{
+	color: #fdc49b !important;
+}
+
+/**/
 
 h1 {
 	border-bottom: 1px solid #21252A;
@@ -42,6 +85,10 @@ a:focus {
 	background-color: #fff;
 	font-size: 1.6rem;
 	font-weight: 100;
+}
+
+.realbig {
+	font-size: 5rem;
 }
 
 .inverse-blue {
