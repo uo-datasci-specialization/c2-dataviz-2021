@@ -1,7 +1,9 @@
 ---
 title: Lab 1
 author: Daniel Anderson
-date: '2020-01-20'
+date: '2021-01-04'
+assigned: '2020-01-13'
+due: '2020-01-20'
 slug: lab-1
 categories:
   - Assignment
@@ -32,7 +34,7 @@ The basics of the lab are to:
 To receive full credit **you must** create and merge branches. The contributions across team members should also appear roughly equal.
 
 ## Data
-We'll work with Week 1 of the [#tidytuesday](https://twitter.com/search?q=%23tidytuesday&src=tyah)  data for 2019, specifically the [#rstats](https://twitter.com/search?q=%23rstats&src=typd) dataset, containing nearly 500,000 tweets over a little more than a decade using that hashtag. 
+We'll work with Week 1 of the [#tidytuesday](https://twitter.com/search?q=%23tidytuesday&src=tyah)  data for 2019, specifically the [#rstats](https://twitter.com/search?q=%23rstats&src=typd) dataset, containing nearly 500,000 tweets over a little more than a decade using that hashtag. The data is in the `data` folder of the course repo.
 
 ## Project
 
