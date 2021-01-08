@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Colors!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Daniel Anderson" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Colors!
+### Daniel Anderson
+### Week 5, Class 1
+
+---
+
+
+# Agenda 
+* Color basics
+  + 3 basic ways color is used
+* Color blindness
+* Some common problems with color use
+* Quick discussion of palettes
+
+
+
+--
+### Learning Objectives
+* Understand different types of color palettes
+  + ...and when you should use one versus another
+* Understand and be able to effectively evaluate concerns related to color
+blindness
+* Be able to fluently change colors/fills within ggplot
+
+---
+# Before we get too deep
+### Some very practical advice
+* Keep straight when color is mapped to a variable through `aes` and when it's
+modifying an element overall
+
+  + Former requires `scale_color_*` or `scale_fill_*` while the latter does not
+
+
+--
+* Keep straight colors and fills (see former bullet)
+
+
+--
+* Use advice of others to your advantage (e.g., http://colorbrewer2.org/)
+
+
+---
+class: inverse bottom center
+background-image:url(http://socviz.co/assets/ch-01-luminance-contrast-color.png)
+background-size:contain
+
+# Why color choice matters
+
+---
+class: inverse bottom center
+background-image:url(http://socviz.co/assets/ch-01-luminance-contrast-bw.png)
+background-size:contain
+
+# Why color choice matters
+
+
+---
+# Another quick example
+
+.middle[
+  .center[
+# [rayshader](https://resources.rstudio.com/rstudio-conf-2019/3d-mapping-plotting-and-printing-with-rayshader)
+  ]
+]
+
+---
+# Three fundamental uses of color
+
+--
+1. Distinguish groups from each other
+
+--
+1. Represent data values
+
+--
+1. Highlight
+
+
+---
+class:inverse middle
+
+# Color as a tool to distinguish
+
+---
+# Discrete items
+* Often no intrinsic order
+
+
+--
+### Qualitative color scale
+* Finite number of colors
+	+ Chosen to maximize distinctness, while also be equivalent
+	+ Equivalent
+		- No  color should stand out
+		- No impression of order
+
+---
+background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/qualitative-scales-1.png)
+background-size:contain
+
+# Some examples
+
+.footnote[See more about the Okabe Ito palette origins here: http://jfly.iam.u-tokyo.ac.jp/color/]
+
+---
+# How do we use them?
+Imagine we have data like this
+
+
+```r
+popgrowth_df
+```
+
+```
+## # A tibble: 51 x 7
+##   region    division         state        pop2000  pop2010    popgrowth     area
+##   &lt;fct&gt;     &lt;chr&gt;            &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Midwest   East North Cent… Michigan     9938444  9883640 -0.005514344 56538.92
+## 2 Northeast New England      Rhode Isla…  1048319  1052567  0.004052202  1033.82
+## 3 South     West South Cent… Louisiana    4468976  4533372  0.01440956  43203.93
+## 4 Midwest   East North Cent… Ohio        11353140 11536504  0.01615095  40860.73
+## 5 Northeast Middle Atlantic  New York    18976457 19378102  0.02116544  47126.43
+## 6 South     South Atlantic   West Virgi…  1808344  1852994  0.02469110  24038.21
+## # … with 45 more rows
+```
+
+---
+# We might build a plot like this
+
+
+.pull-left[
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(alpha = 0.7) + 
+  coord_flip() 
+```
+]
+
+.pull-right[
+![](w5p1_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+---
+# Alternatively, fill by region
+
+.pull-left[
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.7) + 
+  coord_flip() 
+```
+]
+
+.pull-right[
+![](w5p1_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+# Problem with default palette 
+
+![](w5p1_files/figure-html/colorblind1-1.png)&lt;!-- --&gt;
+
+---
+# Alternative: viridis
+
+.pull-left[
+
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.7) + 
+* scale_fill_viridis_d() +
+  coord_flip() 
+```
+]
+
+.pull-right[
+![](w5p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+---
+# Revised version
+
+![](w5p1_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+# The Okabe Ito palette
+
+.pull-left[
+
+* From [Color Universal Design](http://jfly.iam.u-tokyo.ac.jp/color/)
+
+
+```r
+*library(colorblindr)
+
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.7) + 
+* scale_fill_OkabeIto() +
+  coord_flip() 
+```
+]
+
+.pull-right[
+![](w5p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+---
+# Okabe Ito for colorblindness
+
+![](w5p1_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+## How am I checking for colorblindness?
+* Also part of the `colorblindr` package ([here](https://github.com/clauswilke/colorblindr))
+  + depends on the dev versions of `colorspace` and `cowplot`, which are useful packages in their own right
+
+
+```r
+devtools::install_github("wilkelab/cowplot")
+install.packages("colorspace", repos = "http://R-Forge.R-project.org")
+
+devtools::install_github("clauswilke/colorblindr")
+```
+
+---
+
+```r
+p &lt;- ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.7) + 
+  scale_fill_OkabeIto() + 
+  coord_flip()  +
+* theme_void() # not necessary but I like it
+
+*colorblindr::cvd_grid(p)
+```
+
+![](w5p1_files/figure-html/okabe-ito2-1.png)&lt;!-- --&gt;
+
+---
+class: inverse middle center
+
+# Colors to represent continuous values
+
+---
+background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/sequential-scales-1.png)
+background-size:contain
+
+# Sequential scale examples
+
+---
+# Sequential scale representation
+* Which values are larger/smaller
+
+
+--
+* How distant two values are from each other
+
+--
+	+ Scale must be perceptually uniform across its entire range
+
+--
+	+ Similar to an interval scale, but for color
+
+
+--
+* Often based on a single .bolder[hue]
+
+--
+* Multi-hue sequential scales tend to follow gradients in the natural world
+
+
+---
+# Common use of sequential palettes
+### Heatmaps
+
+
+
+
+```r
+iris %&gt;%
+	gather(var, value, -Species) %&gt;%
+ggplot(aes(Species, fct_reorder(var, value))) +
+	geom_tile(aes(fill = value))
+```
+
+![](w5p1_files/figure-html/heatmap1-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+iris %&gt;%
+	gather(var, value, -Species) %&gt;%
+ggplot(aes(Species, fct_reorder(var, value))) +
+	geom_tile(aes(fill = value)) +
+*scale_fill_distiller(palette = "Blues")
+```
+
+![](w5p1_files/figure-html/heatmap2-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+iris %&gt;%
+	gather(var, value, -Species) %&gt;%
+ggplot(aes(Species, fct_reorder(var, value))) +
+	geom_tile(aes(fill = value)) +
+*scale_fill_viridis_c()
+```
+
+![](w5p1_files/figure-html/heatmap3-1.png)&lt;!-- --&gt;
+
+---
+
+
+```r
+iris %&gt;%
+	gather(var, value, -Species) %&gt;%
+ggplot(aes(Species, fct_reorder(var, value))) +
+	geom_tile(aes(fill = value)) +
+*scale_fill_viridis_c(option = "magma")
+```
+
+![](w5p1_files/figure-html/heatmap4-1.png)&lt;!-- --&gt;
+`option = c("viridis", "magma", "inferno", "plasma")`
+
+
+---
+# Another common use
+### Choropleths
+
+![](w5p1_files/figure-html/lane1-1.png)&lt;!-- --&gt;
+
+---
+# Heat palette 
+
+![](w5p1_files/figure-html/lane2-1.png)&lt;!-- --&gt;
+
+---
+# Options
+* `scale_fill_continuous_sequential("Heat")` 
+* `scale_color_continuous_sequential("Heat")` 
+* `scale_fill_discrete_sequential("Heat")`
+* `scale_color_discrete_sequential("Heat")`
+
+---
+# viridis palette
+
+![](w5p1_files/figure-html/lane3-1.png)&lt;!-- --&gt;
+
+---
+background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/diverging-scales-1.png)
+background-size:contain
+
+# Diverging palettes
+
+
+---
+# Earth palette
+
+![](w5p1_files/figure-html/or1-1.png)&lt;!-- --&gt;
+
+---
+![](w5p1_files/figure-html/ca1-1.png)&lt;!-- --&gt;
+
+
+
+---
+class: inverse center middle
+# Color as a tool to highlight
+
+---
+# MPG data
+Basic scatterplot of weight to highway mpg
+
+
+```r
+ggplot(mpg, aes(displ, hwy)) +
+	geom_point()
+```
+
+![](w5p1_files/figure-html/basic-scatter-1.png)&lt;!-- --&gt;
+
+---
+# Highlight compact cars
+
+
+```r
+ggplot(mpg, aes(displ, hwy)) +
+	geom_point(color = "gray80") +
+	geom_point(data = filter(mpg, class == "compact"),
+	           color = "#C55644")
+```
+
+![](w5p1_files/figure-html/compact-cars-scatter-1.png)&lt;!-- --&gt;
+
+
+---
+# Highlight manual cars
+
+
+```r
+ggplot(mpg, aes(displ, hwy)) +
+	geom_point(color = "gray80") +
+	geom_point(data = filter(mpg, str_detect(trans, "manual")),
+	           color = "#C55644")
+```
+
+![](w5p1_files/figure-html/compact-cars-scatter-h1-1.png)&lt;!-- --&gt;
+
+---
+# Back to our states plot
+### Highlight Oregon and Washington
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.3) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+* scale_fill_OkabeIto() +
+  coord_flip() 
+```
+
+---
+![](w5p1_files/figure-html/basic-highlight-or-eval-1.png)&lt;!-- --&gt;
+
+---
+# Color labels
+
+```r
+states &lt;- unique(popgrowth_df$state)
+
+label_color &lt;- ifelse(states == "Oregon" | states == "Washington", 
+                "#C55644",
+                "gray30")
+label_color
+```
+
+```
+##  [1] "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30" 
+##  [8] "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30" 
+## [15] "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30" 
+## [22] "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30" 
+## [29] "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "#C55644" "gray30" 
+## [36] "gray30"  "gray30"  "gray30"  "#C55644" "gray30"  "gray30"  "gray30" 
+## [43] "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30"  "gray30" 
+## [50] "gray30"  "gray30"
+```
+
+```r
+label_face &lt;- ifelse(states == "Oregon" | states == "Washington", 
+                "bold",
+                "plain")
+
+label_face
+```
+
+```
+##  [1] "plain" "plain" "plain" "plain" "plain" "plain" "plain" "plain" "plain"
+## [10] "plain" "plain" "plain" "plain" "plain" "plain" "plain" "plain" "plain"
+## [19] "plain" "plain" "plain" "plain" "plain" "plain" "plain" "plain" "plain"
+## [28] "plain" "plain" "plain" "plain" "plain" "plain" "bold"  "plain" "plain"
+## [37] "plain" "plain" "bold"  "plain" "plain" "plain" "plain" "plain" "plain"
+## [46] "plain" "plain" "plain" "plain" "plain" "plain"
+```
+
+---
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.3) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() + 
+  coord_flip() +
+* theme(axis.text.y = element_text(color = label_color,
+*                                  face = label_face))
+```
+
+---
+![](w5p1_files/figure-html/orwa-highlight-eval-1.png)&lt;!-- --&gt;
+
+
+---
+# Even better
+
+
+```r
+accent_OkabeIto &lt;- palette_OkabeIto[c(1, 2, 7, 4, 5, 3, 6)]
+accent_OkabeIto[1:4] &lt;- desaturate(lighten(accent_OkabeIto[1:4], .4), .8)
+accent_OkabeIto[5:7] &lt;- darken(accent_OkabeIto[5:7], .3)
+gg_color_swatches(7) +
+	scale_fill_manual(values = accent_OkabeIto)
+```
+
+![](w5p1_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region)) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+* scale_fill_manual(values = accent_OkabeIto) +
+  coord_flip() +
+  theme(axis.text.y = element_text(color = label_color, 
+                                   face = label_face)) 
+```
+
+
+---
+![](w5p1_files/figure-html/orwa-highlight-eval2-1.png)&lt;!-- --&gt;
+
+
+
+---
+# Last example
+
+
+```r
+data(sleepstudy, package = "lme4")
+head(sleepstudy)
+```
+
+```
+##   Reaction Days Subject
+## 1      250    0     308
+## 2      259    1     308
+## 3      251    2     308
+## 4      321    3     308
+## 5      357    4     308
+## 6      415    5     308
+```
+
+---
+# Plot by subject
+
+```r
+ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
+	geom_line() 
+```
+
+![](w5p1_files/figure-html/plot1-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+*library(gghighlight)
+ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
+	geom_line() +
+	gghighlight(max(Reaction) &gt; 400)
+```
+
+![](w5p1_files/figure-html/gghighlight1-1.png)&lt;!-- --&gt;
+
+---
+
+
+```r
+*library(gghighlight)
+ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
+	geom_line() +
+*gghighlight(max(Reaction) &gt; 400) +
+	scale_color_OkabeIto()
+```
+
+![](w5p1_files/figure-html/gghighlight2-1.png)&lt;!-- --&gt;
+
+---
+
+
+```r
+*library(gghighlight)
+ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
+	geom_line() +
+*facet_wrap(~Subject) +
+*gghighlight(max(Reaction) &gt; 400) +
+	scale_color_OkabeIto()
+```
+
+![](w5p1_files/figure-html/gghighlight3-1.png)&lt;!-- --&gt;
+
+---
+class: inverse center middle
+# A few other things to consider
+
+---
+# Double encodings
+
+![](w5p1_files/figure-html/iris-scatter1-1.png)&lt;!-- --&gt;
+
+--
+This plot is less than ideal. Why?
+
+
+---
+# Color blindness
+
+![](w5p1_files/figure-html/color-blind-iris_scatter-1.png)&lt;!-- --&gt;
+
+---
+# Better version
+
+![](w5p1_files/figure-html/iris-scatter-1.png)&lt;!-- --&gt;
+
+---
+# Color blindness check
+
+![](w5p1_files/figure-html/color-blind-iris_scatter2-1.png)&lt;!-- --&gt;
+
+---
+class:inverse center middle
+# Common problems with color
+
+---
+# Too many colors
+
+More than 5-ish categories generally becomes too difficult to track
+
+
+```r
+ggplot(popgrowth_df, aes(pop2000, popgrowth, color = state)) +
+	geom_point()
+```
+
+![](w5p1_files/figure-html/too-many-colors-1.png)&lt;!-- --&gt;
+
+
+---
+# Use labels
+
+More than 5-ish categories generally becomes too difficult to track
+
+
+```r
+*library(ggrepel)
+
+ggplot(popgrowth_df, aes(pop2000, popgrowth)) +
+	geom_point(color = "gray70") +
+*geom_text_repel(aes(label = state))
+```
+
+![](w5p1_files/figure-html/states-labeled-1.png)&lt;!-- --&gt;
+
+---
+# Better
+
+Get a subset
+
+
+```r
+to_label &lt;- c("Alaska", "Arizona", "California", "Florida", "Wisconsin", 
+              "Louisiana", "Nevada", "Michigan", "Montana", "New Mexico", 
+              "Pennsylvania", "New York", "Oregon", "Rhode Island",
+              "Tennessee", "Texas", "Utah", "Vermont")
+subset_states &lt;- popgrowth_df %&gt;%
+	filter(state %in% to_label)
+```
+
+---
+
+
+```r
+*library(ggrepel)
+
+ggplot(popgrowth_df, aes(pop2000, popgrowth)) +
+	geom_point(color = "gray70") +
+*geom_text_repel(aes(label = state),
+*                data = subset_states,
+*                min.segment.length = 0)
+```
+
+![](w5p1_files/figure-html/repeled-labels-1.png)&lt;!-- --&gt;
+
+(still lots more cleaning up we could do here...)
+
+
+
+---
+# Rainbow palette
+
+
+```r
+rainbow(3)
+```
+
+```
+## [1] "#FF0000FF" "#00FF00FF" "#0000FFFF"
+```
+
+```r
+rainbow(7)
+```
+
+```
+## [1] "#FF0000FF" "#FFDB00FF" "#49FF00FF" "#00FF92FF" "#0092FFFF" "#4900FFFF"
+## [7] "#FF00DBFF"
+```
+
+---
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = state)) +
+  scale_fill_manual(values = rainbow(51)) + 
+  coord_flip() +
+  guides(fill = "none") 
+```
+
+![](w5p1_files/figure-html/rainbow-pop-1.png)&lt;!-- --&gt;
+
+---
+# Last few note on palettes
+* Do some research, find what you like .bold[and] what tends to work well
+
+* Check for colorblindness
+
+* Look into http://colorbrewer2.org/ 
+
+  + `scale_color_brewer()` and `scale_fill_brewer()` ship with ggplot2
+
+---
+e.g., 
+
+
+```r
+ggplot(popgrowth_df, 
+       aes(x = state, 
+           y = 100*popgrowth)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.7) +
+* scale_fill_brewer(palette = "Set2") +
+  coord_flip() +
+  guides(fill = "none") 
+```
+
+---
+
+![](w5p1_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+# Paleteer package
+
+[![](https://github.com/EmilHvitfeldt/paletteer/raw/master/man/figures/logo.png)](https://github.com/EmilHvitfeldt/paletteer)
+
+---
+class: inverse center middle
+# Next time
+Lab 4: Colors
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "atelier-dune-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

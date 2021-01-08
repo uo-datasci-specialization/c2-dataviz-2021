@@ -135,7 +135,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "01-20" >}}
   {{< description "Joins" "Many of the best visualizations require joining data from diverse sources. In this lecture we'll discuss keys for joining data, different types of mutating and filtering joins, and common errors in joining data" >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w3p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< assigned "assignments/#homework" "HW 1" >}}
@@ -158,7 +158,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "01-25" >}}
   {{< description "Visual Perception" "Aesthetic mappings and visual encodings of data. The data-ink ratio and the pitfall of rigid rules. Some general rule of thumb recommendations." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w4p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -200,7 +200,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "02-01" >}}
   {{< description "Color" "Three primary means by which color can aid interpretation. Color blindness considerations and color palettes that work well. Common pitfalls with the use of color." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w5p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -244,7 +244,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "02-08" >}}
   {{< description "Communication" "Refining your plots for communication. We'll discuss annotating plots, aspect ratios, scales, and a bit on theming." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w6p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -266,7 +266,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "02-10" >}}
   {{< description "Uncertainty" "Common methods for visualizing uncertainty (and their implementation w/{ggplot2}). Framing uncertainty as relative frequencies. Non-standard methods for visualizing standard errors, boostrapping, and a brief foray into hypothetical outcomes plots" >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w6p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< assigned "assignments/#homework" "HW 2" >}}
@@ -290,7 +290,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "02-15" >}}
   {{< description "Dashboards: Guest Lecturer Akhila Nekkanti" "Building (static) data dashboards with the [{flexdashboard}](https://rmarkdown.rstudio.com/flexdashboard/) package. We'll discuss layouts, including multi-page layouts, storyboards, icons, and publishing through GitHub." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w7p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -309,7 +309,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "02-17" >}}
   {{< description "Websites" "This lecture will focus on the [{distill}](https://rstudio.github.io/distill/) package, which helps you createrelatively simple yet customizable blogs, optimized for scientific communication. In addition to setting up the site and creating posts, we'll focus specifically on different layouts for displaying visual information (e.g., plots, tables)" >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w7p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -352,7 +352,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "02-24" >}}
   {{< description "Tables and fonts" "We will focus primarily on two packages for creating tables: [{gt}](https://gt.rstudio.com) for static tables, and [{reactable}](https://glin.github.io/reactable/index.html) for interactive tables. We'll also discuss changing fonts, both within websites/applications, as well as with {ggplot2}." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w8p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -377,7 +377,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "03-01" >}}
   {{< description "Intro to Geographic data" "Understanding the difference between vector and raster data, producing basic maps, getting data for producing different types of maps, and understandin the basics of the R geospatial ecosystem (which is consistently and rapidly evolving)." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w9p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 

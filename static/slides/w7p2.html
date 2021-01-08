@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Websites with R Markdown and Distill</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Daniel Anderson" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Websites with R Markdown and Distill
+### Daniel Anderson
+### Week 8, Class 1
+
+---
+
+
+
+
+# Agenda 
+* Introduce Distill
+* Deployment
+
+
+--
+### Learning objectives
+* Get at least a basic site deployed
+
+
+--
+
+.b[ By the end of the day! You will have a site! ]
+
+
+---
+class: inverse center middle
+
+# Distill
+https://rstudio.github.io/distill/
+
+---
+# Disclaimer and assumptions
+* This is a very basic (and probably fast) intro
+  + Distill can do a lot that we won't get to
+
+* I assume most of you have never created or deployed a website before
+  + If you have, some of this might be slow but you can help others
+
+* This "lecture" will be highly interactive
+
+---
+# Please follow along
+
+
+```r
+remotes::install_github("rstudio/distill")
+```
+
+* Go to GitHub and create a repo to store your website (which 
+you'll also use for deployment)
+
+* Make sure you don't start it with a README or LICENSE or anything else. It should be totally empty.
+
+
+---
+# Back to RStudio
+.r[Don't clone your repo yet!]
+
+--
+
+### Create new project
+&lt;img src = "img/create-blog.png" height = "350px"&gt;
+
+---
+# The steps
+* Create a new RStudio Project 
+
+* Select distill blog
+  - Make sure to Select "Configure for GitHub Pages"
+
+&lt;img src = "img/distill-gh-pages.png" height = "350px"&gt;
+
+---
+* Use gitkraken (or command line if you're comfortable with that) to initiate a
+repo locally and link it with your remote
+
+* Commit/push
+
+* Change GH settings for deployment
+
+[demo]
+
+---
+# Author a new article
+* `distill::create_post()`
+
+* Create another one!
+
+--
+### Listings
+Make sure your index file as
+
+```
+---
+listing: posts
+---
+```
+
+* Note that galleries are also possible
+
+---
+# Build your website
+![](img/website-build.png)
+
+
+---
+class: inverse center middle
+# That's basically it!
+
+--
+## A few additional features
+
+---
+# Categories
+
+* You make up the category names. Tag posts with those categories, and they will be linkable
+
+```
+---
+categories:
+  - dataviz
+  - class
+---
+```
+
+![](img/categories.png)
+
+---
+# Navigation
+
+All controlled with `_site.yml`
+
+* Let's add a github log that links to our repo
+
+
+--
+```
+---
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - icon: fa fa-github
+      href: https://github.com/datalorax/class-site-example
+---
+```
+
+
+---
+# Create drop-down menus
+
+```
+---
+navbar:
+  left:
+    - text: "Labs"
+      menu:
+        - text: "Getting Started with R"
+          href: "lab1.html"
+        - text: "Visualizing Distributions"
+          href: "lab2.html"
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - icon: fa fa-github
+      href: https://github.com/datalorax/class-site-example
+---
+```
+
+---
+# Base URL
+Once your site is deployed (or you know the link it will be deployed to), change the `base_url` in the `_site.yml`
+
+* Gives some nice sharing features (twitter cards)
+
+* Allows you to use [citations](https://rstudio.github.io/distill/citations.html)
+
+---
+# Drafts
+If you want to work on a post for a while without it being included in your website, use `draft = TRUE`
+
+`distill::create_post("My new post", draft = TRUE)`
+
+
+```
+---
+title: "My work on Lab 3"
+description: |
+  This lab was hard!
+draft: true
+---
+```
+
+---
+# Figures
+
+Change figure options with chunk options
+
+* `layout = "l-body"` (default)
+* `layout = "l-body-outset"`
+* `layout = "l-page"`
+* `layout = "l-screen"`
+  + `layout = "l-screen-inset"`
+  + `layout = "l-screen-inset shaded"`
+
+### Let's go try!
+
+---
+# Additional figure options
+
+* Rather than using `![]()`, you can use `knitr::include_graphics()` to have the same options.
+
+* Use `fig.cap` in chunk options to give nice figure captions.
+
+* Note these options should work for tables as well
+
+---
+# Side notes
+
+```
+&lt;aside&gt;
+This is some text that will appear in the margin - similar to Tufte's style. It is often used to provide extra detail.
+&lt;/aside&gt;
+```
+
+--
+
+You can also use this to show small plots
+
+```
+&lt;aside&gt;
+
+ggplot(mtcars, aes(mpg)) +
+  geom_histogram() +
+  labs(title = "Distribution of Miles Per Gallon")
+
+&lt;/aside&gt;
+```
+
+---
+# Customizing the theme
+
+* Create a `style.css` file (or whatevs)
+
+* Modify `_site.yml` to 
+
+```
+output:
+  distill::distill_article:
+    css: style.css
+```
+
+---
+* Start with default CSS, and modify small elements
+
+```
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64; 
+  font-size: 15px;
+  font-weight: 300;
+}
+```
+
+becomes
+
+```
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #FF5FDD; 
+  font-size: 15px;
+  font-weight: 300;
+}
+```
+
+---
+# This can be fun!
+Just be careful not to go too far
+
+&lt;iframe src="https://slides.yihui.name/2018-blogdown-rstudio-conf-Yihui-Xie.html#33" width="100%" height="400px"&gt;&lt;/iframe&gt;
+
+---
+# Equations
+
+Use latex notation and it should "just work"
+
+`$$` `\mu = \frac{1}{n}\sum_{i=0}^n{x_i}` `$$`
+
+becomes
+
+.Large[
+`$$\mu = \frac{1}{n}\sum_{i=0}^n{x_i}$$`
+]
+
+---
+# Other features
+* Table of Contents
+* Appendices
+* Citations
+  + Both how to cite your article and bibliographies
+
+---
+background-image:url("https://images.pexels.com/photos/346796/pexels-photo-346796.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260")
+background-size:cover
+class: center
+# Go forth and share your work!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "atelier-dune-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

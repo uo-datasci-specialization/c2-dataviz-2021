@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Visual Perception!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Daniel Anderson" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visual Perception!
+### Daniel Anderson
+### Week 4, Class 1
+
+---
+
+
+# Agenda 
+
+* Aesthetic mappings and visual encodings of data
+* data/ink ratio
+* Some do's and don't's (which are all rules 👍)
+
+
+
+
+
+
+--
+### Learning Objectives
+* Understand how decisions you make may help or hinder comprehension
+
+---
+class: inverse center middle
+# Disclaimer
+### I'm not a psychologist
+I don't really know/care why we percieve things certain ways.
+
+I mainly care that we do, and that your visualizations should account for them.
+
+---
+# Visual Cues
+.footnote[Taken from *Modern Data Science with R*, p. 15]
+
+* **Position:** *Numeric*. Where in relation to other things?
+
+* **Length:** *Numeric*. How big (in one dimension)?
+
+* **Angle:** *Numeric*. How wide? Parallel to something else?
+
+* **Direction:** *Numeric*. At what slope? In a time series, going up or down?
+
+* **Shape:** *Categorical*. Belonging to which group?
+
+* **Area:** *Numeric*. How big (in two dimensions)?
+
+* **Volumne:** *Numeric*. How big (in three dimensions)?
+
+* **Shade:** *Numeric or Categorical*. To what extent? How Severely?
+
+* **Color:** *Numeric or Categorical*. To what extent? How Severely?
+
+---
+class: middle center
+# Different ways of encoding data
+
+![](w4p1_files/figure-html/data-encoding-1.png)&lt;!-- --&gt;
+
+---
+# Other elements to consider
+* Text
+  
+  + How is the text displayed (e.g., font, face, location)? 
+  
+  + What is the purpose of the text?
+
+--
+
+* Transparency
+  
+  + Are there overlapping pieces? 
+  
+  + Can transparency help?
+
+--
+* Type of data
+  + Continuous/categorical
+  + Which can be mapped to each aesthetic?
+    - e.g., shape and line type can only be mapped to categorical data, whereas
+    color and size can be mapped to either.
+
+---
+# Talk with a neighbor
+How would you encode each column of data?
+
+| Month | Day | Location     | Station ID  | Temperature |
+|:-----:|:---:|:-------------|-------------| ------------|
+|  Jan  |  1  | Chicago      | USW00014819 | 25.6        |
+|  Jan  |  1  | San Diego    | USW00093107 | 55.2        |
+|  Jan  |  1  | Houston      | USW00012918 | 53.9        |
+|  Jan  |  1  | Death Valley | USC00042319 | 51.0        |
+|  Jan  |  2  | Chicago      | USW00014819 | 25.5        |
+|  Jan  |  2  | San Diego    | USW00093107 | 55.3        |
+|  Jan  |  2  | Houston      | USW00012918 | 53.8        |
+|  Jan  |  2  | Death Valley | USC00042319 | 51.2        |
+|  Jan  |  3  | Chicago      | USW00014819 | 25.3        |
+
+---
+# Scales
+&gt; A scale defines a unique mapping between data and aesthetics. Importantly, a scale must be one-to-one, such that for each specific data value there is exactly one aesthetics value and vice versa. If a scale isn't one-to-one, then the data visualization becomes ambiguous.
+
+--
+
+* Which data values correspond to specific aesthetic values?
+
+---
+class: middle center
+# Basic Scales
+
+![](w4p1_files/figure-html/scales-wilke-1.png)&lt;!-- --&gt;
+
+---
+class: middle center
+# Putting it to practice
+
+![](w4p1_files/figure-html/temp-change-1.png)&lt;!-- --&gt;
+
+---
+class: middle center
+# Alternative representation
+
+![](w4p1_files/figure-html/temp-change2-1.png)&lt;!-- --&gt;
+
+---
+# Comparison
+
+* Both represent three scales
+
+  + Two position scales (x/y axis)
+  + One color scale (categorical for the first, continuous for the second)
+
+* More scales are possible
+
+---
+
+class: center middle
+![](w4p1_files/figure-html/five-scales-1.png)&lt;!-- --&gt;
+
+---
+background-image:url(http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-multichannel-1.png)
+background-size:contain
+
+Additional scales can become lost without high structure in the data
+
+
+---
+class: inverse center middle
+# Data ink ratio
+
+---
+# What is it?
+
+--
+&gt; ## Above all else,  show the data
+
+&lt;br&gt;
+\-Edward Tufte
+
+
+--
+* Data-Ink Ratio = Ink devoted to the data / total ink used to produce the
+figure
+
+
+--
+* Common goal: Maximize the data-ink ratio
+
+---
+# Example
+
+![](img/six-boxplots.png)
+
+--
+
+* First thought -might be  Cool!
+
+---
+background-image:url(https://theamericanreligion.files.wordpress.com/2012/10/lee-corso-sucks.jpeg?w=660)
+background-size:cover
+
+---
+# Minimize cognitive load
+* Empirically, Tufte's plot was .bolder[the most difficult] for viewers to
+interpret.
+
+
+--
+* Visual cues (labels, gridlines) reduce the data-ink ratio, but can also 
+reduce cognitive load.
+
+---
+# Another example
+### Which do you prefer?
+
+.pull-left[
+![](w4p1_files/figure-html/h3_bad-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](w4p1_files/figure-html/h3_good-1.png)&lt;!-- --&gt;
+]
+
+
+---
+# Advice from Wilke
+
+&gt; Whenever possible, visualize your data with solid, colored shapes rather than with lines that outline those shapes. Solid shapes are more easily perceived, are less likely to create visual artifacts or optical illusions, and do more immediately convey amounts than do outlines.
+
+---
+# Another example
+
+.pull-left[
+![](w4p1_files/figure-html/iris_lines-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](w4p1_files/figure-html/iris_colored_lines-1.png)&lt;!-- --&gt;
+]
+
+---
+class: center middle
+
+![](w4p1_files/figure-html/iris_filled-1.png)&lt;!-- --&gt;
+
+---
+class: inverse bottom middle
+background-image:url(img/monstrous-costs.png)
+background-size: contain
+
+### What about plots like these?
+
+---
+# The takeaway?
+* It can often be helpful to remove "chart junk"
+  + Remove background
+  + Unnecessary frills
+  + Certainly don't use 3D when it's not clearly warranted 
+
+
+--
+### But...
+
+* Infographics can often be more memorable
+
+
+---
+# Quick/easy compromise
+In some cases, it may be easy and more memorable to use glyphs instead of points or squares
+
+--
+
+* Install packages
+
+
+```r
+install.packages("extrafont")
+devtools::install_github("wch/extrafontdb")
+devtools::install_github("wch/Rttf2pt1")
+devtools::install_github("hrbrmstr/waffle")
+```
+
+--
+
+* Create data
+
+
+```r
+parts &lt;- c(`Un-breached\nUS Population` = (318 - 11 - 79), 
+           `Premera` = 11, 
+           `Anthem` = 79)
+```
+
+---
+# Basic plot
+
+
+```r
+library(waffle)
+waffle(parts, 
+       rows = 8, 
+       colors = c("#969696", "#1879bf", "#009bda"))
+```
+
+![](w4p1_files/figure-html/waffle1-1.png)&lt;!-- --&gt;
+
+---
+# Glyph plot
+
+* Download and install `fontawesome-webfont.ttf` on your machine locally (see [here](https://fontawesome.com/v4.7.0/))
+
+* Import new fonts (including glyphs, via font awesome)
+
+
+```r
+library(extrafont)
+font_import()
+loadfonts()
+```
+
+
+```r
+waffle(parts/10, 
+       rows = 3, 
+       colors = c("#969696", "#1879bf", "#009bda"),
+*      use_glyph = "medkit")
+```
+
+---
+![](w4p1_files/figure-html/waffle3-1.png)&lt;!-- --&gt;
+
+---
+class: inverse center middle
+background-image: url(https://pbs.twimg.com/media/DxiychAVYAAJ4CY.jpg)
+background-size: 100% 100%
+
+---
+# You can create them!
+* Create plots
+* Use illustrator or similar to put them together
+* Add some annotations
+* Consider using glyphs for greater memory
+
+
+--
+### Alternatively
+Consider [pagedown](https://github.com/rstudio/pagedown)!
+
+---
+class: center middle
+# More visual properties
+![](http://socviz.co/assets/ch-01-perception-adelson-checkershow.jpg)
+
+
+---
+background-image:url(http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-dual-search-1.png)
+background-size:contain
+
+# What "pops"?
+### Where's the blue circle in each plot?
+
+---
+background-image:url(http://socviz.co/assets/ch-01-cleveland-task-types.png)
+background-size:contain
+
+# What are we good at perceiving?
+
+---
+background-image:url(http://socviz.co/assets/ch-01-heer-bostock-results.png)
+background-size:contain
+
+
+---
+background-image:url(http://socviz.co/assets/ch-01-channels-for-cont-data-vertical.png)
+background-size:contain
+
+# Ordered 
+# data 
+# mappings: 
+# Ranked
+
+
+
+---
+class: bottom
+background-image:url(http://socviz.co/assets/ch-01-channels-for-cat-data-vertical.png)
+background-size:contain
+
+### Unordered data mappings: Ranked
+
+---
+class: inverse center middle
+# Some things to avoid
+
+---
+# Line drawings
+### As discussed earlier
+
+.pull-left[
+![](w4p1_files/figure-html/iris_lines2-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](w4p1_files/figure-html/iris_filled2-1.png)&lt;!-- --&gt;
+]
+
+---
+# Much worse
+### Unnecessary 3D
+
+.pull-left[
+![](img/3d-pie-10-v2.png)
+]
+
+.pull-right[
+![](img/3d-pie-20-v2.png)
+]
+
+---
+# Much worse
+### Unnecessary 3D
+
+.pull-left[
+![](img/3d-pie-40-v2.png)
+]
+
+.pull-right[
+![](img/3d-pie-80-v2.png)
+]
+
+
+---
+# Horrid example
+### Used relatively regularly
+![](img/3d_bar.png)
+
+
+---
+# Pie charts
+### Especially w/lots of categories
+
+![](https://serialmentor.com/dataviz/visualizing_proportions_files/figure-html/marketshare-pies-1.png)
+
+---
+# Alternative representation
+
+![](https://serialmentor.com/dataviz/visualizing_proportions_files/figure-html/marketshare-side-by-side-1.png)
+
+
+---
+# A case for pie charts
+* `\(n\)` categories low,
+* differences are relatively large
+* familiar for some audiences 
+
+![](w4p1_files/figure-html/pie-1.png)&lt;!-- --&gt;
+
+---
+# The anatomy of a pie chart
+Pie charts are just stacked bar charts with a radial coordinate system
+
+![](w4p1_files/figure-html/stacked_bars_nopie-1.png)&lt;!-- --&gt;
+
+---
+# My preference
+
+![](w4p1_files/figure-html/horiz_stacked-1.png)&lt;!-- --&gt;
+
+---
+# Or one of these
+
+![](w4p1_files/figure-html/dodged_bars-1.png)&lt;!-- --&gt;![](w4p1_files/figure-html/dodged_bars-2.png)&lt;!-- --&gt;
+
+---
+# Dual axes
+* One exception - if second axis is a direct transformation of the first
+  + e.g., Miles/Kilometers, Fahrenheit/Celsius 
+
+![](img/dual_axes.png)
+
+---
+# More examples
+
+&lt;iframe src="http://www.tylervigen.com/spurious-correlations" width="100%" height="400px"&gt;&lt;/iframe&gt;
+
+---
+# Truncated axes
+![](img/truncated_axes.png)
+
+---
+class: middle
+![](img/truncated_axes2.png)
+
+
+---
+# Not always a bad thing
+&gt; It is tempting to lay down inflexible rules about what to do in terms of producing your graphs, and to dismiss people who don’t follow them as producing junk charts or lying with statistics. But being honest with your data is a bigger problem than can be solved by rules of thumb about making graphs. In this case there is a moderate level of agreement that bar charts should generally include a zero baseline (or equivalent) given that bars encode their variables as lengths. But it would be a mistake to think that a dot plot was by the same token deliberately misleading, just because it kept itself to the range of the data instead.
+
+---
+class: middle
+.pull-left[
+![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-bar-simple-1.png)
+]
+
+.pull-right[
+![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-bar-simple-2.png)
+]
+
+---
+class: middle
+.pull-left[
+![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-law-enrollments-1.png)
+]
+
+.pull-right[
+![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-law-enrollments-2.png)
+]
+
+---
+# Scaling issues
+![](img/area_size.png)
+
+---
+class: middle center
+# Poor binning choices
+![](img/poor_binning.png)
+
+---
+class: inverse
+# Conclusions
+
+* Essentially never
+
+  + Use dual axes (produce separate plots instead)
+
+  + Use 3D unnecessarily
+
+* Be wary of
+
+  + Truncated axes
+
+  + Pie charts (usually (always?) use bars instead)
+
+* Do
+
+  + Minimize cognitive load
+
+  + Be as clear as possible
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "atelier-dune-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

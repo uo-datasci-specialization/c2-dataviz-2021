@@ -717,12 +717,13 @@ ggplot(lt, aes(State, Tuition)) +
 
 ---
 
+
 ```{r grouped_points3-eval, echo = FALSE, fig.height = 11}
 ggplot(lt, aes(State, Tuition)) +
   geom_line(aes(group = State), color = "gray40") +
-  geom_point(aes(color = Year)) +
+  geom_point(aes(color = Year), size = 5) +
   coord_flip() +
-  theme(axis.text.y = element_text(size = 11))
+  theme(axis.text.y = element_text(size = 11.5))
 ```
 
 ---
