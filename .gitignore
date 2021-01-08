@@ -1,7 +1,9 @@
 .Rproj.user
 .DS_Store
 public/
+
 website-data/~$course-schedule.xlsx
+
 nopublish/
 data/kaggle-data/
 
