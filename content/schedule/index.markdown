@@ -85,7 +85,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "dataviz" "directory-of-visualizations.html" "5" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/qjpG75BByh4" >}}
 {{< /wrap >}}
 {{< /week-odd >}}
 
