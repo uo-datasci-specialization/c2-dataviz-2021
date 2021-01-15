@@ -4,11 +4,10 @@
     <title>Joins</title>
     <meta charset="utf-8" />
     <meta name="author" content="Daniel Anderson" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="new.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -23,6 +22,30 @@ class: center, middle, inverse, title-slide
 
 
 
+layout: true
+
+  &lt;script&gt;
+    feather.replace()
+  &lt;/script&gt;
+  
+  &lt;div class="slides-footer"&gt;
+  &lt;span&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w3p2.html"&gt;
+    &lt;i class = "footer-icon" data-feather="link"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021"&gt;
+    &lt;i class = "footer-icon" data-feather="github"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;/span&gt;
+  &lt;/div&gt;
+  
+
+
+
+---
 # Learning Objectives
 
 * Understand and be able to identify keys
@@ -37,7 +60,7 @@ class: center, middle, inverse, title-slide
 
 ---
 # Before we get started
-* Today we'll talk about both mutating and filtering joins
+* Today we'll talk about both **mutating** and **filtering** joins
 
 * Mutating joins are more common, but filtering joins can be really powerful
 
@@ -72,9 +95,9 @@ g3
 ## # A tibble: 3 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     1     3   208
-## 2     2     3   195
-## 3     3     3   194
+## 1     1     3   204
+## 2     2     3   210
+## 3     3     3   205
 ```
 ]
 
@@ -89,9 +112,9 @@ g4
 ## # A tibble: 3 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     9     4   196
-## 2    10     4   193
-## 3    11     4   205
+## 1     9     4   200
+## 2    10     4   203
+## 3    11     4   195
 ```
 ]
 
@@ -111,12 +134,12 @@ bind_rows(g3, g4)
 ## # A tibble: 6 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     1     3   208
-## 2     2     3   195
-## 3     3     3   194
-## 4     9     4   196
-## 5    10     4   193
-## 6    11     4   205
+## 1     1     3   204
+## 2     2     3   210
+## 3     3     3   205
+## 4     9     4   200
+## 5    10     4   203
+## 6    11     4   195
 ```
 
 ---
@@ -133,12 +156,12 @@ bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset")
 ## # A tibble: 6 x 3
 ##   dataset   sid score
 ##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
-## 1 1           1   208
-## 2 1           2   195
-## 3 1           3   194
-## 4 2           9   196
-## 5 2          10   193
-## 6 2          11   205
+## 1 1           1   204
+## 2 1           2   210
+## 3 1           3   205
+## 4 2           9   200
+## 5 2          10   203
+## 6 2          11   195
 ```
 
 ---
@@ -153,12 +176,12 @@ bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset") %&gt;%
 ## # A tibble: 6 x 4
 ##   dataset   sid score grade
 ##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-## 1 1           1   208     3
-## 2 1           2   195     3
-## 3 1           3   194     3
-## 4 2           9   196     4
-## 5 2          10   193     4
-## 6 2          11   205     4
+## 1 1           1   204     3
+## 2 1           2   210     3
+## 3 1           3   205     3
+## 4 2           9   200     4
+## 5 2          10   203     4
+## 6 2          11   195     4
 ```
 
 ---
@@ -173,17 +196,17 @@ bind_rows(g3 = g3[ ,-2], g4 = g4[ ,-2], .id = "grade")
 ## # A tibble: 6 x 3
 ##   grade   sid score
 ##   &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-## 1 g3        1   208
-## 2 g3        2   195
-## 3 g3        3   194
-## 4 g4        9   196
-## 5 g4       10   193
-## 6 g4       11   205
+## 1 g3        1   204
+## 2 g3        2   210
+## 3 g3        3   205
+## 4 g4        9   200
+## 5 g4       10   203
+## 6 g4       11   195
 ```
 
 ---
 ## What if columns don't match exactly?
-* Pad with `NA`
+Pad with `NA`
 
 
 ```r
@@ -194,12 +217,12 @@ bind_rows(g3, g4[ ,-2], .id = "dataset")
 ## # A tibble: 6 x 4
 ##   dataset   sid grade score
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 1           1     3   208
-## 2 1           2     3   195
-## 3 1           3     3   194
-## 4 2           9    NA   196
-## 5 2          10    NA   193
-## 6 2          11    NA   205
+## 1 1           1     3   204
+## 2 1           2     3   210
+## 3 1           3     3   205
+## 4 2           9    NA   200
+## 5 2          10    NA   203
+## 6 2          11    NA   195
 ```
 
 ---
@@ -227,8 +250,8 @@ list.files("tmp")
 ---
 # Read in files
 
-* Use `purrr::map_df` with the file names
-* Note `fs::dir_ls` is equivalent to `list.files`, but plays nicer with
+Use `purrr::map_df` with the file names
+Note `fs::dir_ls` is equivalent to `list.files`, but plays nicer with
   `purrr::map_df`
 
 
@@ -254,7 +277,7 @@ unlink("tmp", recursive = TRUE)
 ```
 
 ---
-class: inverse center middle
+class: inverse-blue center middle
 # Joins
 (not to be confused with row binding)
 
@@ -288,32 +311,33 @@ worth mentioning:
 ```r
 library(rio)
 library(here)
-ecls &lt;- import(here("data", "ecls-k_samp.sav"), setclass = "tbl_df") %&gt;% 
+ecls &lt;- import(here("data", "ecls-k_samp.sav"), 
+               setclass = "tbl_df") %&gt;% 
     characterize()
 ecls
 ```
 
 ```
 ## # A tibble: 984 x 33
-##    child_id teacher_id school_id k_type school_type sex   ethnic famtype numsibs
-##    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
-##  1 0842021C 0842T02    0842      full-… public      male  BLACK… BIOLOG…       1
-##  2 0905002C 0905T01    0905      full-… private     male  ASIAN  BIOLOG…       1
-##  3 0150012C 0150T01    0150      full-… private     fema… BLACK… BIOLOG…       4
-##  4 0556009C 0556T01    0556      full-… private     fema… HISPA… BIOLOG…       0
-##  5 0089013C 0089T04    0089      full-… public      male  WHITE… BIOLOG…       4
-##  6 1217001C 1217T13    1217      half-… public      fema… NATIV… BIOLOG…       0
-##  7 1092008C 1092T01    1092      half-… public      fema… HISPA… BIOLOG…       2
-##  8 0083007C 0083T16    0083      full-… public      male  WHITE… BIOLOG…       1
-##  9 1091005C 1091T02    1091      half-… private     male  WHITE… BIOLOG…       0
-## 10 2006006C 2006T01    2006      full-… private     male  WHITE… BIOLOG…       1
-## # … with 974 more rows, and 24 more variables: SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;,
-## #   age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;,
-## #   T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;,
-## #   IRTgkgain &lt;dbl&gt;, T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;,
-## #   T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;,
-## #   ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;,
-## #   elapse &lt;dbl&gt;
+##    child_id teacher_id school_id k_type   school_type sex   
+##    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; 
+##  1 0842021C 0842T02    0842      full-day public      male  
+##  2 0905002C 0905T01    0905      full-day private     male  
+##  3 0150012C 0150T01    0150      full-day private     female
+##  4 0556009C 0556T01    0556      full-day private     female
+##  5 0089013C 0089T04    0089      full-day public      male  
+##  6 1217001C 1217T13    1217      half-day public      female
+##  7 1092008C 1092T01    1092      half-day public      female
+##  8 0083007C 0083T16    0083      full-day public      male  
+##  9 1091005C 1091T02    1091      half-day private     male  
+## 10 2006006C 2006T01    2006      full-day private     male  
+## # … with 974 more rows, and 27 more variables: ethnic &lt;chr&gt;, famtype &lt;chr&gt;,
+## #   numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;,
+## #   T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;,
+## #   T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;,
+## #   T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;,
+## #   T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;,
+## #   ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
 ```
 
 ---
@@ -361,26 +385,30 @@ ecls %&gt;%
 
 
 ```r
-income_ineq &lt;- import(here("data", "incomeInequality_tidy.csv"), 
-                      setclass = "tbl_df")
-income_ineq 
+income_ineq &lt;- read_csv(here("data", "incomeInequality_tidy.csv"))
+print(income_ineq, n = 15)
 ```
 
 ```
 ## # A tibble: 726 x 6
-##     Year Number.thousands realGDPperCap PopulationK percentile    income
-##    &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;       &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-##  1  1947            37237      14117.32      144126       20    14243   
-##  2  1947            37237      14117.32      144126       40    22984   
-##  3  1947            37237      14117.32      144126       60    31166   
-##  4  1947            37237      14117.32      144126       80    44223   
-##  5  1947            37237      14117.32      144126       50    26764.14
-##  6  1947            37237      14117.32      144126       90    41477   
-##  7  1947            37237      14117.32      144126       95    54172   
-##  8  1947            37237      14117.32      144126       99   134415   
-##  9  1947            37237      14117.32      144126       99.5 203001   
-## 10  1947            37237      14117.32      144126       99.9 479022   
-## # … with 716 more rows
+##     Year Number.thousands realGDPperCap PopulationK percentile     income
+##    &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+##  1  1947            37237      14117.32      144126      20      14243   
+##  2  1947            37237      14117.32      144126      40      22984   
+##  3  1947            37237      14117.32      144126      60      31166   
+##  4  1947            37237      14117.32      144126      80      44223   
+##  5  1947            37237      14117.32      144126      50      26764.14
+##  6  1947            37237      14117.32      144126      90      41477   
+##  7  1947            37237      14117.32      144126      95      54172   
+##  8  1947            37237      14117.32      144126      99     134415   
+##  9  1947            37237      14117.32      144126      99.5   203001   
+## 10  1947            37237      14117.32      144126      99.9   479022   
+## 11  1947            37237      14117.32      144126      99.99 1584506   
+## 12  1948            38624      14451.94      146631      20      13779   
+## 13  1948            38624      14451.94      146631      40      22655   
+## 14  1948            38624      14451.94      146631      60      30248   
+## 15  1948            38624      14451.94      146631      80      42196   
+## # … with 711 more rows
 ```
 
 ---
@@ -394,12 +422,12 @@ income_ineq %&gt;%
 
 ```
 ## # A tibble: 0 x 3
-## # … with 3 variables: Year &lt;int&gt;, percentile &lt;dbl&gt;, n &lt;int&gt;
+## # … with 3 variables: Year &lt;dbl&gt;, percentile &lt;dbl&gt;, n &lt;int&gt;
 ```
 
 ---
 # Sometimes there is no key
-* These tables have an *implicit* id - the row numbers. For example:
+These tables have an *implicit* id - the row numbers. For example:
 
 
 ```r
@@ -409,26 +437,22 @@ library(nycflights13)
 
 
 ```r
-flights
+head(flights)
 ```
 
 ```
-## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013     1     1      517            515         2      830            819
-##  2  2013     1     1      533            529         4      850            830
-##  3  2013     1     1      542            540         2      923            850
-##  4  2013     1     1      544            545        -1     1004           1022
-##  5  2013     1     1      554            600        -6      812            837
-##  6  2013     1     1      554            558        -4      740            728
-##  7  2013     1     1      555            600        -5      913            854
-##  8  2013     1     1      557            600        -3      709            723
-##  9  2013     1     1      557            600        -3      838            846
-## 10  2013     1     1      558            600        -2      753            745
-## # … with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
+## # A tibble: 6 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+## 1  2013     1     1      517            515         2      830            819
+## 2  2013     1     1      533            529         4      850            830
+## 3  2013     1     1      542            540         2      923            850
+## 4  2013     1     1      544            545        -1     1004           1022
+## 5  2013     1     1      554            600        -6      812            837
+## 6  2013     1     1      554            558        -4      740            728
+## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
 ```
 
 ---
@@ -488,7 +512,7 @@ flights %&gt;%
 ```
 
 ---
-class: inverse center middle
+class: inverse-red middle
 # Mutating joins
 
 ---
@@ -497,7 +521,7 @@ class: inverse center middle
 
 --
 
-* A mutating join works similarly, in that we're adding to variables to the existing dataset through a join.
+* A mutating join works similarly, in that we're adding new variables to the existing dataset through a join.
 
 --
 
@@ -529,9 +553,11 @@ Say you have a dataset like this
 set.seed(1)
 disab_codes &lt;- c("00", "10", "20", "40", "43", "50", "60", 
                  "70", "74", "80", "82", "90", "96", "98")
-dis_tbl &lt;- tibble(sid = 1:200, 
-                   dis_code = sample(disab_codes, 200, replace = TRUE), 
-                   score = as.integer(rnorm(200, 200, 10)))
+dis_tbl &lt;- tibble(
+  sid = 1:200,
+  dis_code = sample(disab_codes, 200, replace = TRUE),
+  score = as.integer(rnorm(200, 200, 10))
+  )
 head(dis_tbl)
 ```
 
@@ -556,7 +582,7 @@ head(dis_tbl)
 | Code | Disability|
 |:----:|:----------|
 | 00	 |'Not Applicable' |
-| 10	 |'Mental Retardation' |
+| 10	 |'Intellectual Disability' |
 | 20	 |'Hearing Impairment'|
 | 40	 |'Visual Impairment'|
 | 43	 |'Deaf-Blindness'|
@@ -585,11 +611,13 @@ head(dis_tbl)
 
 ```r
 dis_tbl %&gt;% 
-  mutate(disability = 
-           case_when(dis_code == "10" ~ "Mental Retardation",
-                     dis_code == "20" ~ 'Hearing Impairment',
-                     ..., 
-                     TRUE ~ "Not Applicable")
+  mutate(disability = case_when(
+    dis_code == "10" ~ "Intellectual Disability",
+    dis_code == "20" ~ 'Hearing Impairment',
+    ...,
+    TRUE ~ "Not Applicable"
+    )
+  )
 ```
 
 ---
@@ -597,18 +625,21 @@ dis_tbl %&gt;%
 
 
 ```r
-dis_code_tbl &lt;- tibble(dis_code = c("00", "10", "20", "40", "43", "50", "60", 
-                                    "70", "74", "80", "82", "90", "96", "98"),
-                       disability = c('Not Applicable', 'Mental Retardation', 
-                                      'Hearing Impairment', 'Visual Impairment',
-                                      'Deaf-Blindness', 'Communication Disorder',
-                                      'Emotional Disturbance', 'Orthopedic Impairment',
-                                      'Traumatic Brain Injury', 
-                                      'Other Health Impairments', 
-                                      'Autism Spectrum Disorder', 
-                                      'Specific Learning Disability', 
-                                      'Developmental Delay 0-2yr', 
-                                      'Developmental Delay 3-4yr'))
+dis_code_tbl &lt;- tibble(
+  dis_code = c(
+    "00", "10", "20", "40", "43", "50", "60",
+    "70", "74", "80", "82", "90", "96", "98"
+    ),
+  disability = c(
+    'Not Applicable', 'Intellectual Disability',
+    'Hearing Impairment', 'Visual Impairment',
+    'Deaf-Blindness', 'Communication Disorder',
+    'Emotional Disturbance', 'Orthopedic Impairment',
+    'Traumatic Brain Injury', 'Other Health Impairments', 
+    'Autism Spectrum Disorder', 'Specific Learning Disability', 
+    'Developmental Delay 0-2yr', 'Developmental Delay 3-4yr'
+    )
+  )
 ```
 
 ---
@@ -622,7 +653,7 @@ dis_code_tbl
 ##    dis_code disability                  
 ##    &lt;chr&gt;    &lt;chr&gt;                       
 ##  1 00       Not Applicable              
-##  2 10       Mental Retardation          
+##  2 10       Intellectual Disability     
 ##  3 20       Hearing Impairment          
 ##  4 40       Visual Impairment           
 ##  5 43       Deaf-Blindness              
@@ -657,18 +688,21 @@ left_join(dis_tbl, dis_code_tbl)
 ##  2     2 40         200 Visual Impairment        
 ##  3     3 60         200 Emotional Disturbance    
 ##  4     4 00         183 Not Applicable           
-##  5     5 10         210 Mental Retardation       
+##  5     5 10         210 Intellectual Disability  
 ##  6     6 96         188 Developmental Delay 0-2yr
 ##  7     7 60         203 Emotional Disturbance    
 ##  8     8 82         204 Autism Spectrum Disorder 
 ##  9     9 98         201 Developmental Delay 3-4yr
-## 10    10 10         198 Mental Retardation       
+## 10    10 10         198 Intellectual Disability  
 ## # … with 190 more rows
 ```
 
 ---
-## What if the keys don't match perfectly?
-Consider the following hypothetical datasets to be merged
+class: inverse-orange middle
+# Imperfect key match?
+
+---
+# Consider the following
 
 
 ```r
@@ -709,7 +743,7 @@ sped
 ]
 
 ---
-## What will happen with a left join?
+# `left_join()`?
 
 --
 
@@ -727,8 +761,8 @@ left_join(gender, sped)
 ## 3     3     0    NA
 ```
 
----
-# What about a right join?
+--
+# `right_join()`?
 
 --
 
@@ -747,7 +781,7 @@ right_join(gender, sped)
 ```
 
 ---
-# Inner join?
+# `inner_join()`?
 
 --
 
@@ -764,8 +798,8 @@ inner_join(gender, sped)
 ## 2     2     1     1
 ```
 
----
-# Full join?
+--
+# `full_join()`?
 
 --
 
@@ -788,16 +822,17 @@ full_join(gender, sped)
 background-image:url(img/joins.png)
 background-size:contain
 
+.footnote[From [r4ds](https://r4ds.had.co.nz)]
 
 ---
-class: inverse center middle
+class: inverse-red middle
 # Animations
 All of the following animations were created by Garrick Aden-Buie and can
 be found [here](https://github.com/gadenbuie/tidyexplain)
 
 
 ---
-# Animated `left_join`
+# Animated `left_join()`
 
 ![](https://github.com/gadenbuie/tidyexplain/raw/master/images/left-join.gif)
 
@@ -837,80 +872,82 @@ be found [here](https://github.com/gadenbuie/tidyexplain)
 ---
 # Example
 
+A dataset with school IDs
 
-.pull-left[
 
 ```r
 stu &lt;- tibble(
-        sid = rep(1:3, each = 3),
-        season = rep(c("f", "w", "s"), 3),
-        score = c(10, 12, 15, 
-                         8,  9, 11, 
-                        12, 15, 17)
-        )
+  sid = 1:9,
+  scid = c(1, 1, 1, 1, 2, 2, 3, 3, 3),
+  score = c(10, 12, 15, 8,  9, 11, 12, 15, 17)
+  )
 stu
 ```
 
 ```
 ## # A tibble: 9 x 3
-##     sid season score
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     1 f         10
-## 2     1 w         12
-## 3     1 s         15
-## 4     2 f          8
-## 5     2 w          9
-## 6     2 s         11
-## 7     3 f         12
-## 8     3 w         15
-## 9     3 s         17
+##     sid  scid score
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1    10
+## 2     2     1    12
+## 3     3     1    15
+## 4     4     1     8
+## 5     5     2     9
+## 6     6     2    11
+## 7     7     3    12
+## 8     8     3    15
+## 9     9     3    17
 ```
-]
-
-.pull-right[
-
-```r
-means &lt;- stu %&gt;% 
-    group_by(sid) %&gt;% 
-    summarize(mean_score = mean(score))
-means
-```
-
-```
-## # A tibble: 3 x 2
-##     sid mean_score
-##   &lt;int&gt;      &lt;dbl&gt;
-## 1     1  12.33333 
-## 2     2   9.333333
-## 3     3  14.66667
-```
-]
 
 ---
+A school-level dataset
+
 
 ```r
-left_join(stu, means)
+schl &lt;- tibble(
+  scid = 1:3,
+  stu_tch_ratio = c(22.05, 31.14, 24.87),
+  per_pupil_spending = c(15741.08, 11732.24, 13027.88)
+)
+schl
 ```
 
 ```
-## # A tibble: 9 x 4
-##     sid season score mean_score
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-## 1     1 f         10  12.33333 
-## 2     1 w         12  12.33333 
-## 3     1 s         15  12.33333 
-## 4     2 f          8   9.333333
-## 5     2 w          9   9.333333
-## 6     2 s         11   9.333333
-## 7     3 f         12  14.66667 
-## 8     3 w         15  14.66667 
-## 9     3 s         17  14.66667
+## # A tibble: 3 x 3
+##    scid stu_tch_ratio per_pupil_spending
+##   &lt;int&gt;         &lt;dbl&gt;              &lt;dbl&gt;
+## 1     1         22.05           15741.08
+## 2     2         31.14           11732.24
+## 3     3         24.87           13027.88
+```
+
+
+---
+# One to many
+
+```r
+left_join(stu, schl)
+```
+
+```
+## # A tibble: 9 x 5
+##     sid  scid score stu_tch_ratio per_pupil_spending
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;              &lt;dbl&gt;
+## 1     1     1    10         22.05           15741.08
+## 2     2     1    12         22.05           15741.08
+## 3     3     1    15         22.05           15741.08
+## 4     4     1     8         22.05           15741.08
+## 5     5     2     9         31.14           11732.24
+## 6     6     2    11         31.14           11732.24
+## 7     7     3    12         24.87           13027.88
+## 8     8     3    15         24.87           13027.88
+## 9     9     3    17         24.87           13027.88
 ```
 
 ---
 ## What if key is not unique to either table?
-* Generally this is an error
-* Result is probably not going to be what you want (cartesian product).
+Generally this is an error
+Result is probably not going to be what you want (cartesian product).
 
 &lt;div align = "center"&gt;
 &lt;img src = img/cartesian_product.png width = 1000&gt;
@@ -921,142 +958,215 @@ left_join(stu, means)
 
 
 ```r
-dems &lt;- tibble(sid = rep(1:3, each = 3),
-               sped = c(rep("no", 6), rep("yes", 3)))
-dems
+seasonal_means &lt;- tibble(
+  scid = rep(1:3, each = 3),
+  season = rep(c("fall", "winter", "spring"), 3),
+  mean = rnorm(3*3)
+)
+                        
+seasonal_means
 ```
 
 ```
-## # A tibble: 9 x 2
-##     sid sped 
-##   &lt;int&gt; &lt;chr&gt;
-## 1     1 no   
-## 2     1 no   
-## 3     1 no   
-## 4     2 no   
-## 5     2 no   
-## 6     2 no   
-## 7     3 yes  
-## 8     3 yes  
-## 9     3 yes
+## # A tibble: 9 x 3
+##    scid season       mean
+##   &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1     1 fall    0.3447951
+## 2     1 winter  1.539648 
+## 3     1 spring -0.3295142
+## 4     2 fall    0.9483894
+## 5     2 winter -0.4792556
+## 6     2 spring -1.514887 
+## 7     3 fall    0.4345367
+## 8     3 winter -0.5195367
+## 9     3 spring -0.8345590
 ```
 
 ---
 
 ```r
-left_join(stu, dems)
+left_join(stu, seasonal_means) 
 ```
 
 ```
-## # A tibble: 27 x 4
-##      sid season score sped 
-##    &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;
-##  1     1 f         10 no   
-##  2     1 f         10 no   
-##  3     1 f         10 no   
-##  4     1 w         12 no   
-##  5     1 w         12 no   
-##  6     1 w         12 no   
-##  7     1 s         15 no   
-##  8     1 s         15 no   
-##  9     1 s         15 no   
-## 10     2 f          8 no   
+## # A tibble: 27 x 5
+##      sid  scid score season       mean
+##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+##  1     1     1    10 fall    0.3447951
+##  2     1     1    10 winter  1.539648 
+##  3     1     1    10 spring -0.3295142
+##  4     2     1    12 fall    0.3447951
+##  5     2     1    12 winter  1.539648 
+##  6     2     1    12 spring -0.3295142
+##  7     3     1    15 fall    0.3447951
+##  8     3     1    15 winter  1.539648 
+##  9     3     1    15 spring -0.3295142
+## 10     4     1     8 fall    0.3447951
 ## # … with 17 more rows
 ```
 
 ---
 # How do we fix this?
-In this case it's pretty simple: select for distinct cases in the demo file. 
 
 --
+![](https://media.giphy.com/media/jPAdK8Nfzzwt2/giphy.gif)
 
-In others it's not so straight forward. But the important thing to remember is
-that you need to work toward making sure at least one of the keys is unique.
+In some cases, the solution is obvious. In others, it's not. But **you must have at least one unique key** to join the datasets.
 
+---
+# In this case
+Move the dataset to wide before joining
+
+--
+### Move to wide
 
 ```r
-dems &lt;- dems %&gt;% 
-    distinct(sid, .keep_all = TRUE)
-dems
+seasonal_means_wide &lt;- seasonal_means %&gt;% 
+  pivot_wider(names_from = "season",
+              values_from = "mean")
+
+seasonal_means_wide
 ```
 
 ```
-## # A tibble: 3 x 2
-##     sid sped 
-##   &lt;int&gt; &lt;chr&gt;
-## 1     1 no   
-## 2     2 no   
-## 3     3 yes
+## # A tibble: 3 x 4
+##    scid      fall     winter     spring
+##   &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+## 1     1 0.3447951  1.539648  -0.3295142
+## 2     2 0.9483894 -0.4792556 -1.514887 
+## 3     3 0.4345367 -0.5195367 -0.8345590
 ```
 
 ---
+# Join
 
+One to many join
 
 ```r
-left_join(stu, dems)
+left_join(stu, seasonal_means_wide)
 ```
 
 ```
-## # A tibble: 9 x 4
-##     sid season score sped 
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1     1 f         10 no   
-## 2     1 w         12 no   
-## 3     1 s         15 no   
-## 4     2 f          8 no   
-## 5     2 w          9 no   
-## 6     2 s         11 no   
-## 7     3 f         12 yes  
-## 8     3 w         15 yes  
-## 9     3 s         17 yes
+## # A tibble: 9 x 6
+##     sid  scid score      fall     winter     spring
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+## 1     1     1    10 0.3447951  1.539648  -0.3295142
+## 2     2     1    12 0.3447951  1.539648  -0.3295142
+## 3     3     1    15 0.3447951  1.539648  -0.3295142
+## 4     4     1     8 0.3447951  1.539648  -0.3295142
+## 5     5     2     9 0.9483894 -0.4792556 -1.514887 
+## 6     6     2    11 0.9483894 -0.4792556 -1.514887 
+## 7     7     3    12 0.4345367 -0.5195367 -0.8345590
+## 8     8     3    15 0.4345367 -0.5195367 -0.8345590
+## 9     9     3    17 0.4345367 -0.5195367 -0.8345590
 ```
+
+---
+# Move longer again?
+
+If we did, we'd be exactly where we were with the first join.
+
+You  could make the argument it *might* make sense here
+
+I'd still argue for *this* approach, not the cartesian product approach
+
+More systematic, more predictable, and ultimately less error prone
 
 ---
 # Another example
 * Often you want to add summary info to your dataset.
 * You can do this easily with by piping arguments
 
+--
+### ECLS-K reminder
 
-```r
-ecls &lt;- ecls %&gt;% 
-    group_by(school_id) %&gt;% 
-    summarize(sch_pre_math = mean(T1MSCALE)) %&gt;% 
-    left_join(ecls)
-```
-
----
 
 ```r
 ecls
 ```
 
 ```
-## # A tibble: 984 x 34
-##    school_id sch_pre_math child_id teacher_id k_type school_type sex   ethnic
-##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; 
-##  1 0001          20.45800 0001010C 0001T01    full-… public      male  WHITE…
-##  2 0002          14.977   0002010C 0002T01    half-… public      fema… WHITE…
-##  3 0009          18.82    0009026C 0009T01    half-… public      male  WHITE…
-##  4 0009          18.82    0009014C 0009T02    half-… public      male  WHITE…
-##  5 0009          18.82    0009005C 0009T01    half-… public      male  WHITE…
-##  6 0013          42.321   0013003C 0013T01    full-… private     fema… WHITE…
-##  7 0016          17.55100 0016004C 0016T01    half-… public      male  WHITE…
-##  8 0016          17.55100 0016009C 0016T01    half-… public      fema… WHITE…
-##  9 0022          17.8465  0022005C 0022T01    half-… public      male  WHITE…
-## 10 0022          17.8465  0022014C 0022T03    half-… public      fema… WHITE…
-## # … with 974 more rows, and 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;,
-## #   SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;,
-## #   T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;,
-## #   IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;, T1ARSLIT &lt;dbl&gt;,
-## #   T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;,
-## #   T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;,
-## #   testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
+## # A tibble: 984 x 33
+##    child_id teacher_id school_id k_type   school_type sex   
+##    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; 
+##  1 0842021C 0842T02    0842      full-day public      male  
+##  2 0905002C 0905T01    0905      full-day private     male  
+##  3 0150012C 0150T01    0150      full-day private     female
+##  4 0556009C 0556T01    0556      full-day private     female
+##  5 0089013C 0089T04    0089      full-day public      male  
+##  6 1217001C 1217T13    1217      half-day public      female
+##  7 1092008C 1092T01    1092      half-day public      female
+##  8 0083007C 0083T16    0083      full-day public      male  
+##  9 1091005C 1091T02    1091      half-day private     male  
+## 10 2006006C 2006T01    2006      full-day private     male  
+## # … with 974 more rows, and 27 more variables: ethnic &lt;chr&gt;, famtype &lt;chr&gt;,
+## #   numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;,
+## #   T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;,
+## #   T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;,
+## #   T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;,
+## #   T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;,
+## #   ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
 ```
 
 ---
-# Default behavior &amp; changing it
+# Compute group means
 
-* By default, the `*_join` functions will use all columns with common names as keys. 
+
+```r
+ecls %&gt;% 
+  group_by(school_id) %&gt;% 
+  summarize(sch_pre_math = mean(T1MSCALE)) 
+```
+
+```
+## # A tibble: 515 x 2
+##    school_id sch_pre_math
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 0001          20.45800
+##  2 0002          14.977  
+##  3 0009          18.82   
+##  4 0013          42.321  
+##  5 0016          17.55100
+##  6 0022          17.8465 
+##  7 0023          15.5050 
+##  8 0025          19.446  
+##  9 0026          16.866  
+## 10 0028          14.354  
+## # … with 505 more rows
+```
+
+---
+# Join right within pipeline
+
+
+```r
+ecls %&gt;% 
+  group_by(school_id) %&gt;% 
+  summarize(sch_pre_math = mean(T1MSCALE)) %&gt;% 
+  left_join(ecls) %&gt;% 
+  select(school_id:k_type) # Just for space
+```
+
+```
+## # A tibble: 984 x 5
+##    school_id sch_pre_math child_id teacher_id k_type  
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   
+##  1 0001          20.45800 0001010C 0001T01    full-day
+##  2 0002          14.977   0002010C 0002T01    half-day
+##  3 0009          18.82    0009026C 0009T01    half-day
+##  4 0009          18.82    0009014C 0009T02    half-day
+##  5 0009          18.82    0009005C 0009T01    half-day
+##  6 0013          42.321   0013003C 0013T01    full-day
+##  7 0016          17.55100 0016004C 0016T01    half-day
+##  8 0016          17.55100 0016009C 0016T01    half-day
+##  9 0022          17.8465  0022005C 0022T01    half-day
+## 10 0022          17.8465  0022014C 0022T03    half-day
+## # … with 974 more rows
+```
+
+---
+# Default join behavior 
+By default, the `*_join` functions will use all columns with common names as keys. 
 
 
 
@@ -1097,6 +1207,10 @@ left_join(flights2, weather)
 ```
 
 ```
+## Joining, by = c("year", "month", "day", "hour", "origin")
+```
+
+```
 ## # A tibble: 336,776 x 18
 ##     year month   day  hour origin dest  tailnum carrier  temp  dewp    humid
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -1116,9 +1230,9 @@ left_join(flights2, weather)
 ```
 
 ---
-## Use only some vars?
+# Use only some vars?
 
-* If we were joining *flights2* and *planes*, we would not want to use the year variable in the join, because it means different things in each dataset.
+If we were joining *flights2* and *planes*, we would not want to use the `year` variable in the join, because **it means different things in each dataset**.
 
 
 ```r
@@ -1127,14 +1241,15 @@ head(planes)
 
 ```
 ## # A tibble: 6 x 9
-##   tailnum  year type           manufacturer   model  engines seats speed engine 
-##   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  
-## 1 N10156   2004 Fixed wing mu… EMBRAER        EMB-1…       2    55    NA Turbo-…
-## 2 N102UW   1998 Fixed wing mu… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-## 3 N103US   1999 Fixed wing mu… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-## 4 N104UW   1999 Fixed wing mu… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-## 5 N10575   2002 Fixed wing mu… EMBRAER        EMB-1…       2    55    NA Turbo-…
-## 6 N105UW   1999 Fixed wing mu… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
+##   tailnum  year type                    manufacturer     model     engines seats
+##   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;       &lt;int&gt; &lt;int&gt;
+## 1 N10156   2004 Fixed wing multi engine EMBRAER          EMB-145XR       2    55
+## 2 N102UW   1998 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
+## 3 N103US   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
+## 4 N104UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
+## 5 N10575   2002 Fixed wing multi engine EMBRAER          EMB-145LR       2    55
+## 6 N105UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
+## # … with 2 more variables: speed &lt;int&gt;, engine &lt;chr&gt;
 ```
 
 ---
@@ -1148,28 +1263,41 @@ left_join(flights2, planes, by = "tailnum")
 
 ```
 ## # A tibble: 336,776 x 16
-##    year.x month   day  hour origin dest  tailnum carrier year.y type 
-##     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;
-##  1   2013     1     1     5 EWR    IAH   N14228  UA        1999 Fixe…
-##  2   2013     1     1     5 LGA    IAH   N24211  UA        1998 Fixe…
-##  3   2013     1     1     5 JFK    MIA   N619AA  AA        1990 Fixe…
-##  4   2013     1     1     5 JFK    BQN   N804JB  B6        2012 Fixe…
-##  5   2013     1     1     6 LGA    ATL   N668DN  DL        1991 Fixe…
-##  6   2013     1     1     5 EWR    ORD   N39463  UA        2012 Fixe…
-##  7   2013     1     1     6 EWR    FLL   N516JB  B6        2000 Fixe…
-##  8   2013     1     1     6 LGA    IAD   N829AS  EV        1998 Fixe…
-##  9   2013     1     1     6 JFK    MCO   N593JB  B6        2004 Fixe…
-## 10   2013     1     1     6 LGA    ORD   N3ALAA  AA          NA &lt;NA&gt; 
-## # … with 336,766 more rows, and 6 more variables: manufacturer &lt;chr&gt;,
-## #   model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;chr&gt;
+##    year.x month   day  hour origin dest  tailnum carrier year.y
+##     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt;
+##  1   2013     1     1     5 EWR    IAH   N14228  UA        1999
+##  2   2013     1     1     5 LGA    IAH   N24211  UA        1998
+##  3   2013     1     1     5 JFK    MIA   N619AA  AA        1990
+##  4   2013     1     1     5 JFK    BQN   N804JB  B6        2012
+##  5   2013     1     1     6 LGA    ATL   N668DN  DL        1991
+##  6   2013     1     1     5 EWR    ORD   N39463  UA        2012
+##  7   2013     1     1     6 EWR    FLL   N516JB  B6        2000
+##  8   2013     1     1     6 LGA    IAD   N829AS  EV        1998
+##  9   2013     1     1     6 JFK    MCO   N593JB  B6        2004
+## 10   2013     1     1     6 LGA    ORD   N3ALAA  AA          NA
+## # … with 336,766 more rows, and 7 more variables: type &lt;chr&gt;,
+## #   manufacturer &lt;chr&gt;, model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;,
+## #   engine &lt;chr&gt;
 ```
 
 ---
 # Mismatched names?
 * What if you had data to merge like this?
 
-.pull-left[
 
+```r
+names(schl)[1] &lt;- "school_id"
+schl
+```
+
+```
+## # A tibble: 3 x 3
+##   school_id stu_tch_ratio per_pupil_spending
+##       &lt;int&gt;         &lt;dbl&gt;              &lt;dbl&gt;
+## 1         1         22.05           15741.08
+## 2         2         31.14           11732.24
+## 3         3         24.87           13027.88
+```
 
 ```r
 stu
@@ -1177,39 +1305,19 @@ stu
 
 ```
 ## # A tibble: 9 x 3
-##     sid season score
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     1 f         10
-## 2     1 w         12
-## 3     1 s         15
-## 4     2 f          8
-## 5     2 w          9
-## 6     2 s         11
-## 7     3 f         12
-## 8     3 w         15
-## 9     3 s         17
+##     sid  scid score
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1    10
+## 2     2     1    12
+## 3     3     1    15
+## 4     4     1     8
+## 5     5     2     9
+## 6     6     2    11
+## 7     7     3    12
+## 8     8     3    15
+## 9     9     3    17
 ```
 
-]
-
-.pull-right[
-
-
-```r
-names(dems)[1] &lt;- "stu_id"
-dems
-```
-
-```
-## # A tibble: 3 x 2
-##   stu_id sped 
-##    &lt;int&gt; &lt;chr&gt;
-## 1      1 no   
-## 2      2 no   
-## 3      3 yes
-```
-
-]
 
 
 ---
@@ -1217,26 +1325,26 @@ dems
 
 
 ```r
-left_join(stu, dems, by = c("sid" = "stu_id"))
+left_join(stu, schl, by = c("scid" = "school_id"))
 ```
 
 ```
-## # A tibble: 9 x 4
-##     sid season score sped 
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;
-## 1     1 f         10 no   
-## 2     1 w         12 no   
-## 3     1 s         15 no   
-## 4     2 f          8 no   
-## 5     2 w          9 no   
-## 6     2 s         11 no   
-## 7     3 f         12 yes  
-## 8     3 w         15 yes  
-## 9     3 s         17 yes
+## # A tibble: 9 x 5
+##     sid  scid score stu_tch_ratio per_pupil_spending
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;              &lt;dbl&gt;
+## 1     1     1    10         22.05           15741.08
+## 2     2     1    12         22.05           15741.08
+## 3     3     1    15         22.05           15741.08
+## 4     4     1     8         22.05           15741.08
+## 5     5     2     9         31.14           11732.24
+## 6     6     2    11         31.14           11732.24
+## 7     7     3    12         24.87           13027.88
+## 8     8     3    15         24.87           13027.88
+## 9     9     3    17         24.87           13027.88
 ```
 
 ---
-class: inverse center middle
+class: inverse-blue center middle
 # filtering joins
 
 ---
@@ -1251,26 +1359,28 @@ class: inverse center middle
 
 ```r
 av_pre_mth &lt;- ecls %&gt;% 
+    mutate(cut_high = mean(T1MSCALE) + 3*sd(T1MSCALE)) %&gt;% 
     group_by(teacher_id, k_type) %&gt;% 
-    summarize(av_pre_mth = mean(T1MSCALE)) 
+    summarize(av_pre_mth = mean(T1MSCALE),
+              cut_high = unique(cut_high)) 
 av_pre_mth
 ```
 
 ```
-## # A tibble: 707 x 3
+## # A tibble: 707 x 4
 ## # Groups:   teacher_id [707]
-##    teacher_id k_type   av_pre_mth
-##    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
-##  1 0001T01    full-day   20.45800
-##  2 0002T01    half-day   14.977  
-##  3 0009T01    half-day   17.6475 
-##  4 0009T02    half-day   21.165  
-##  5 0013T01    full-day   42.321  
-##  6 0016T01    half-day   17.55100
-##  7 0022T01    half-day   20.368  
-##  8 0022T03    half-day   15.325  
-##  9 0023T01    half-day   10.988  
-## 10 0023T04    half-day   20.02200
+##    teacher_id k_type   av_pre_mth cut_high
+##    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+##  1 0001T01    full-day   20.45800 42.62333
+##  2 0002T01    half-day   14.977   42.62333
+##  3 0009T01    half-day   17.6475  42.62333
+##  4 0009T02    half-day   21.165   42.62333
+##  5 0013T01    full-day   42.321   42.62333
+##  6 0016T01    half-day   17.55100 42.62333
+##  7 0022T01    half-day   20.368   42.62333
+##  8 0022T03    half-day   15.325   42.62333
+##  9 0023T01    half-day   10.988   42.62333
+## 10 0023T04    half-day   20.02200 42.62333
 ## # … with 697 more rows
 ```
 
@@ -1281,47 +1391,35 @@ Next, filter for means 3 standard deviations above the mean.
 ```r
 extr_high &lt;- av_pre_mth %&gt;% 
     ungroup() %&gt;% 
-    filter(av_pre_mth &gt; (mean(av_pre_mth) + 3*sd(av_pre_mth)))
+    filter(av_pre_mth &gt; cut_high)
 extr_high
 ```
 
 ```
-## # A tibble: 8 x 3
-##   teacher_id k_type   av_pre_mth
-##   &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
-## 1 0013T01    full-day   42.321  
-## 2 0078T04    half-day   45.75   
-## 3 0162T02    half-day   42.318  
-## 4 0360T01    full-day   41.42200
-## 5 0384T03    full-day   41.29   
-## 6 0663T01    full-day   42.8455 
-## 7 0944T03    half-day   45.371  
-## 8 1045T02    full-day   40.734
+## # A tibble: 3 x 4
+##   teacher_id k_type   av_pre_mth cut_high
+##   &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1 0078T04    half-day    45.75   42.62333
+## 2 0663T01    full-day    42.8455 42.62333
+## 3 0944T03    half-day    45.371  42.62333
 ```
 
 ---
-Finally, use `semi_join` to filter.
+Finally, use `semi_join` to show the full data for these cases
 
 
 ```r
-extr_high_ecls &lt;- semi_join(ecls, extr_high)
-extr_high_ecls
+semi_join(ecls, extr_high)
 ```
 
 ```
-## # A tibble: 10 x 34
-##    school_id sch_pre_math child_id teacher_id k_type school_type sex   ethnic
-##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; 
-##  1 0013          42.321   0013003C 0013T01    full-… private     fema… WHITE…
-##  2 0078          25.64    0078020C 0078T04    half-… public      fema… WHITE…
-##  3 0162          30.52425 0162009C 0162T02    half-… public      fema… WHITE…
-##  4 0360          41.42200 0360014C 0360T01    full-… public      fema… WHITE…
-##  5 0384          30.4     0384014C 0384T03    full-… public      fema… ASIAN 
-##  6 0663          42.8455  0663006C 0663T01    full-… private     male  WHITE…
-##  7 0663          42.8455  0663012C 0663T01    full-… private     fema… WHITE…
-##  8 0944          45.371   0944017C 0944T03    half-… private     fema… WHITE…
-##  9 1045          35.45325 1045015C 1045T02    full-… private     male  WHITE…
-## 10 1045          35.45325 1045020C 1045T02    full-… private     fema… WHITE…
+## # A tibble: 4 x 33
+##   child_id teacher_id school_id k_type   school_type sex    ethnic             
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;              
+## 1 0944017C 0944T03    0944      half-day private     female WHITE, NON-HISPANIC
+## 2 0663006C 0663T01    0663      full-day private     male   WHITE, NON-HISPANIC
+## 3 0663012C 0663T01    0663      full-day private     female WHITE, NON-HISPANIC
+## 4 0078020C 0078T04    0078      half-day public      female WHITE, NON-HISPANIC
 ## # … with 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;,
 ## #   SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;,
 ## #   T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;,
@@ -1338,31 +1436,20 @@ extr_high_ecls
 
 
 ```r
-extr_low_ecls &lt;- anti_join(ecls, extr_high)
-extr_low_ecls
+nrow(ecls)
 ```
 
 ```
-## # A tibble: 974 x 34
-##    school_id sch_pre_math child_id teacher_id k_type school_type sex   ethnic
-##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; 
-##  1 0001          20.45800 0001010C 0001T01    full-… public      male  WHITE…
-##  2 0002          14.977   0002010C 0002T01    half-… public      fema… WHITE…
-##  3 0009          18.82    0009026C 0009T01    half-… public      male  WHITE…
-##  4 0009          18.82    0009014C 0009T02    half-… public      male  WHITE…
-##  5 0009          18.82    0009005C 0009T01    half-… public      male  WHITE…
-##  6 0016          17.55100 0016004C 0016T01    half-… public      male  WHITE…
-##  7 0016          17.55100 0016009C 0016T01    half-… public      fema… WHITE…
-##  8 0022          17.8465  0022005C 0022T01    half-… public      male  WHITE…
-##  9 0022          17.8465  0022014C 0022T03    half-… public      fema… WHITE…
-## 10 0023          15.5050  0023017C 0023T04    half-… public      male  WHITE…
-## # … with 964 more rows, and 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;,
-## #   SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;,
-## #   T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;,
-## #   IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;, T1ARSLIT &lt;dbl&gt;,
-## #   T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;,
-## #   T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;,
-## #   testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
+## [1] 984
+```
+
+```r
+extr_low_ecls &lt;- anti_join(ecls, extr_high)
+nrow(extr_low_ecls)
+```
+
+```
+## [1] 980
 ```
 
 ---
@@ -1380,15 +1467,19 @@ extr_low_ecls
 want.
 
 ---
-# One more quick example
-### Stop words
+class: inverse-red middle
+# Stop words
+### One more quick example
+This one is probs more realistic
+
+---
+# Jane Austen Books
 
 
 ```r
 # install.packages(c("tidytext", "janeaustenr"))
 library(tidytext)
 library(janeaustenr)
-
 austen_books()
 ```
 
@@ -1463,11 +1554,30 @@ austen_books() %&gt;%
 ```
 
 ---
+# Plot top 15 words
+
+
+```r
+austen_books() %&gt;%
+  unnest_tokens(word, text) %&gt;% 
+  count(word, sort = TRUE) %&gt;% 
+  mutate(word = fct_reorder(word, n)) %&gt;% 
+  slice(1:15) %&gt;% 
+  ggplot(aes(word, n)) +
+  geom_col() +
+  coord_flip()
+```
+
+---
+
+![](w3p2_files/figure-html/count-words-plot1-eval-1.png)&lt;!-- --&gt;
+
+---
 # Stop words
 
 
 ```r
-stop_words
+stop_words 
 ```
 
 ```
@@ -1494,7 +1604,7 @@ stop_words
 ```r
 austen_books() %&gt;%
   unnest_tokens(word, text) %&gt;% 
-  anti_join(stop_words) %&gt;% 
+* anti_join(stop_words) %&gt;%
   count(word, sort = TRUE)
 ```
 
@@ -1516,7 +1626,16 @@ austen_books() %&gt;%
 ```
 
 ---
-class: inverse middle
+
+![](w3p2_files/figure-html/count-words-plot2-1.png)&lt;!-- --&gt;
+
+
+---
+# By book
+
+![](w3p2_files/figure-html/count-words-plot3-1.png)&lt;!-- --&gt;
+---
+class: inverse-green middle
 
 # Wrapping up
 * Homework 1 assigned today
@@ -1527,7 +1646,9 @@ class: inverse middle
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "atelier-dune-light",
+"navigation": {
+"scroll": false
+},
 "highlightLines": true,
 "countIncrementalSlides": false
 });
@@ -1570,6 +1691,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1587,17 +1734,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

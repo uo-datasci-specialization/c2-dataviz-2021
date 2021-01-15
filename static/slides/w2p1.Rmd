@@ -20,7 +20,7 @@ output:
 source(here::here("static", "slides", "slide-setup.R"))
 ```
 
-`r setup("w1p2")`
+`r setup("w2p1")`
 
 
 ```{r, setup, include = FALSE}

@@ -1,0 +1,882 @@
+---
+title: "Joins"
+author: "Daniel Anderson "
+date: "Week 3, Class 2"
+output:
+  xaringan::moon_reader:
+    css: ["default", "new.css"]
+    lib_dir: libs
+    nature:
+      navigation:
+        scroll: false
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+    includes:
+      in_header: "load-feather.html"
+---
+
+```{r include = FALSE, results = "asis"}
+source(here::here("static", "slides", "slide-setup.R"))
+```
+
+`r setup("w3p2")`
+
+```{r, setup, include = FALSE}
+library(nycflights13)
+library(tidyverse)
+knitr::opts_chunk$set(fig.width = 13, 
+                      message = FALSE, 
+                      warning = FALSE,
+                      echo = TRUE)
+theme_set(theme_minimal(35))
+update_geom_defaults('path', list(size = 3))
+update_geom_defaults('point', list(size = 9))
+```
+
+---
+# Learning Objectives
+
+* Understand and be able to identify keys
+
+* Understand different types of joins
+  + left, right, inner, full
+  + one-to-one, one-to-many
+
+* Understand common ways joins fail
+
+* Understand the difference between mutating and filtering joins
+
+---
+# Before we get started
+* Today we'll talk about both **mutating** and **filtering** joins
+
+* Mutating joins are more common, but filtering joins can be really powerful
+
+* Mutating joins add columns to a dataset
+
+
+--
+### What if I want to add rows?
+* Not technically a join (no key involved, which we'll talk about momentarily)
+
+
+---
+# Quick example, binding rows
+```{r g34-datsets}
+g3 <- tibble(sid = 1:3, 
+             grade = rep(3, 3), 
+             score = as.integer(rnorm(3, 200,10)))
+
+g4 <- tibble(sid = 9:11, 
+             grade = rep(4, 3), 
+             score = as.integer(rnorm(3, 200,10)))
+```
+
+.pull-left[
+```{r g3-print}
+g3
+```
+]
+
+
+.pull-left[
+```{r g4-print}
+g4
+```
+]
+
+---
+# `bind_rows`
+* In examples like the previous datasets, we just want to "staple" the rows
+together. 
+
+* We can do so with `bind_rows`.
+
+```{r bind_rows1}
+bind_rows(g3, g4)
+```
+
+---
+# Optional `.id` argument
+* What if we knew the grade, but didn't have a variable in each dataset already?
+* Use `.id` to add an index for each dataset
+
+```{r bind_rows2}
+bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset")
+```
+
+---
+
+```{r bind_rows_id_mutate}
+bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset") %>%
+  mutate(grade = ifelse(dataset == 1, 3, 4))
+```
+
+---
+# Even better usage
+
+```{r bind_rows3}
+bind_rows(g3 = g3[ ,-2], g4 = g4[ ,-2], .id = "grade")
+```
+
+---
+## What if columns don't match exactly?
+Pad with `NA`
+
+```{r bind_rows4}
+bind_rows(g3, g4[ ,-2], .id = "dataset")
+```
+
+---
+# Last note - read in a bunch of files
+* We'll talk about this a lot more in the next course
+* `purrr::map_df` uses `bind_rows` in the background
+
+--
+```{r write_files}
+dir.create("tmp")
+
+mtcars %>%
+  split(.$cyl) %>%
+  walk2(c("tmp/cyl4.csv", "tmp/cyl6.csv", "tmp/cyl8.csv"),
+        write_csv)
+
+list.files("tmp")
+```
+
+---
+# Read in files
+
+Use `purrr::map_df` with the file names
+Note `fs::dir_ls` is equivalent to `list.files`, but plays nicer with
+  `purrr::map_df`
+
+```{r read_files}
+new_mtcars <- map_df(fs::dir_ls("tmp"), rio::import, setclass = "tbl_df",
+                     .id = "file")
+new_mtcars %>%
+  select(file, mpg, cyl) %>%
+  slice(1:3)
+unlink("tmp", recursive = TRUE)
+```
+
+---
+class: inverse-blue center middle
+# Joins
+(not to be confused with row binding)
+
+---
+# Keys
+* Uniquely identify rows in a dataset
+
+
+--
+
+* Variable(s) in common between two datasets to be joined
+
+
+--
+
+  + A key can be more than one variable
+
+
+--
+### Types of keys
+* Small distinction that you probably won't have to worry about much, but is
+worth mentioning:
+  + **Primary keys:** Uniquely identify observations in their dataset
+  + **Foreign keys:** Uniquely identify observations in other datasets. 
+
+
+---
+# What's the primary key here? 
+
+```{r load_ecls-k}
+library(rio)
+library(here)
+ecls <- import(here("data", "ecls-k_samp.sav"), 
+               setclass = "tbl_df") %>% 
+    characterize()
+ecls
+```
+
+---
+# Double-checking
+
+```{r double_check_ecls}
+ecls %>% 
+    count(child_id) 
+```
+
+---
+
+```{r }
+ecls %>% 
+    count(child_id) %>%
+    filter(n > 1)
+```
+
+---
+# What about here?
+
+```{r primary_key_income_ineq}
+income_ineq <- read_csv(here("data", "incomeInequality_tidy.csv"))
+print(income_ineq, n = 15)
+```
+
+---
+
+```{r double_check_income_ineq}
+income_ineq %>% 
+    count(Year, percentile) %>% 
+    filter(n > 1)
+```
+
+---
+# Sometimes there is no key
+These tables have an *implicit* id - the row numbers. For example:
+
+```{r eval = FALSE}
+install.packages("nycflights13")
+library(nycflights13)
+```
+
+```{r flights}
+head(flights)
+```
+
+---
+
+```{r no_key}
+flights %>% 
+  count(year, month, day, flight, tailnum) %>% 
+  filter(n > 1)
+```
+
+---
+# Create a key
+* If there is no key, it's often helpful to add one. These are called *surrogate* keys.
+
+```{r add_key}
+flights <- flights %>% 
+  rowid_to_column()
+
+flights %>% 
+  select(1:3, ncol(flights))
+```
+
+---
+class: inverse-red middle
+# Mutating joins
+
+---
+# Mutating joins
+* In *tidyverse*, we use `mutate()` to create new variables within a dataset.
+
+--
+
+* A mutating join works similarly, in that we're adding new variables to the existing dataset through a join.
+
+--
+
+* Two tables of data joined by a common key
+
+---
+# Four types of joins
+
+* `left_join`: Keep all the data in the left dataset, drop any non-matching cases from the right dataset.
+
+* `right_join`: Keep all the data in the right dataset, drop any non-matching cases from the left dataset.
+
+* `inner_join`: Keep only data that matches in both datasets
+
+* `full_join`: Keep all the data in both datasets. This is also sometimes referred to as an *outer* join.
+
+
+--
+If the keys match exactly in the two tables (datasets), all of these will 
+result in the .bolder[exact] same result.
+
+---
+# Using joins to recode
+
+Say you have a dataset like this
+
+```{r eth-code-tbl}
+set.seed(1)
+disab_codes <- c("00", "10", "20", "40", "43", "50", "60", 
+                 "70", "74", "80", "82", "90", "96", "98")
+dis_tbl <- tibble(
+  sid = 1:200,
+  dis_code = sample(disab_codes, 200, replace = TRUE),
+  score = as.integer(rnorm(200, 200, 10))
+  )
+head(dis_tbl)
+```
+
+---
+# Codes
+
+<br/>
+
+.pull-left[
+| Code | Disability|
+|:----:|:----------|
+| 00	 |'Not Applicable' |
+| 10	 |'Intellectual Disability' |
+| 20	 |'Hearing Impairment'|
+| 40	 |'Visual Impairment'|
+| 43	 |'Deaf-Blindness'|
+| 50	 |'Communication Disorder'|
+| 60	 |'Emotional Disturbance'|
+| 70	 |'Orthopedic Impairment'|
+| 74	 |'Traumatic Brain Injury'|
+
+]
+
+.pull-right[
+
+| Code | Disability|
+|:----:|:----------|
+| 80	 |'Other Health Impairments'|
+| 82	 |'Autism Spectrum Disorder'|
+| 90	 |'Specific Learning Disability'|
+| 96	 |'Developmental Delay 0-2yr'|
+| 98	 |'Developmental Delay 3-4yr'|
+
+]
+
+---
+# One method
+
+```{r dis-recode-case_when, eval = FALSE}
+dis_tbl %>% 
+  mutate(disability = case_when(
+    dis_code == "10" ~ "Intellectual Disability",
+    dis_code == "20" ~ 'Hearing Impairment',
+    ...,
+    TRUE ~ "Not Applicable"
+    )
+  )
+```
+
+---
+# Joining method
+
+```{r cod-tbl}
+dis_code_tbl <- tibble(
+  dis_code = c(
+    "00", "10", "20", "40", "43", "50", "60",
+    "70", "74", "80", "82", "90", "96", "98"
+    ),
+  disability = c(
+    'Not Applicable', 'Intellectual Disability',
+    'Hearing Impairment', 'Visual Impairment',
+    'Deaf-Blindness', 'Communication Disorder',
+    'Emotional Disturbance', 'Orthopedic Impairment',
+    'Traumatic Brain Injury', 'Other Health Impairments', 
+    'Autism Spectrum Disorder', 'Specific Learning Disability', 
+    'Developmental Delay 0-2yr', 'Developmental Delay 3-4yr'
+    )
+  )
+```
+
+---
+```{r print-dis_code_tbl}
+dis_code_tbl
+```
+
+
+---
+# Join the tables
+```{r join-disab, message = TRUE}
+left_join(dis_tbl, dis_code_tbl)
+```
+
+---
+class: inverse-orange middle
+# Imperfect key match?
+
+---
+# Consider the following
+
+```{r join_data}
+gender <- tibble(key = 1:3, male = rbinom(3, 1, .5))
+sped <- tibble(key = c(1, 2, 4), sped = rbinom(3, 1, .5))
+```
+
+.pull-left[
+```{r gender}
+gender
+```
+]
+
+.pull-right[
+```{r sped}
+sped
+```
+]
+
+---
+# `left_join()`?
+
+--
+
+```{r left_join}
+left_join(gender, sped)
+```
+
+--
+# `right_join()`?
+
+--
+
+```{r right_join}
+right_join(gender, sped)
+```
+
+---
+# `inner_join()`?
+
+--
+
+```{r inner_join}
+inner_join(gender, sped)
+```
+
+--
+# `full_join()`?
+
+--
+
+```{r outer_join}
+full_join(gender, sped)
+```
+
+---
+background-image:url(img/joins.png)
+background-size:contain
+
+.footnote[From [r4ds](https://r4ds.had.co.nz)]
+
+---
+class: inverse-red middle
+# Animations
+All of the following animations were created by Garrick Aden-Buie and can
+be found [here](https://github.com/gadenbuie/tidyexplain)
+
+
+---
+# Animated `left_join()`
+
+![](https://github.com/gadenbuie/tidyexplain/raw/master/images/left-join.gif)
+
+---
+# Animated `right_join`
+
+![](https://github.com/gadenbuie/tidyexplain/raw/master/images/right-join.gif)
+
+---
+# Animated `inner_join`
+
+![](https://github.com/gadenbuie/tidyexplain/raw/master/images/inner-join.gif)
+
+---
+# Animated `full_join`
+
+![](https://github.com/gadenbuie/tidyexplain/raw/master/images/full-join.gif)
+
+
+---
+# What if the key is not unique?
+
+* Not a problem, as long as they are unique in .bolder[one] of the tables.
+  + In this case, it's called a one-to-many join
+
+<br/>
+
+<div align = "center">
+<img src = img/one_to_many.png width = 1000>
+</div>
+
+---
+# Animated one-to-many join
+
+![](https://github.com/gadenbuie/tidyexplain/raw/master/images/left-join-extra.gif)
+
+---
+# Example
+
+A dataset with school IDs
+
+```{r stu_lev}
+stu <- tibble(
+  sid = 1:9,
+  scid = c(1, 1, 1, 1, 2, 2, 3, 3, 3),
+  score = c(10, 12, 15, 8,  9, 11, 12, 15, 17)
+  )
+stu
+```
+
+---
+A school-level dataset
+
+```{r }
+schl <- tibble(
+  scid = 1:3,
+  stu_tch_ratio = c(22.05, 31.14, 24.87),
+  per_pupil_spending = c(15741.08, 11732.24, 13027.88)
+)
+schl
+```
+
+
+---
+# One to many
+```{r one_to_many_merge}
+left_join(stu, schl)
+```
+
+---
+## What if key is not unique to either table?
+Generally this is an error
+Result is probably not going to be what you want (cartesian product).
+
+<div align = "center">
+<img src = img/cartesian_product.png width = 1000>
+</div>
+
+---
+# Example
+
+```{r demos}
+seasonal_means <- tibble(
+  scid = rep(1:3, each = 3),
+  season = rep(c("fall", "winter", "spring"), 3),
+  mean = rnorm(3*3)
+)
+                        
+seasonal_means
+```
+
+---
+```{r dup_merge}
+left_join(stu, seasonal_means) 
+```
+
+---
+# How do we fix this?
+
+--
+![](https://media.giphy.com/media/jPAdK8Nfzzwt2/giphy.gif)
+
+In some cases, the solution is obvious. In others, it's not. But **you must have at least one unique key** to join the datasets.
+
+---
+# In this case
+Move the dataset to wide before joining
+
+--
+### Move to wide
+```{r }
+seasonal_means_wide <- seasonal_means %>% 
+  pivot_wider(names_from = "season",
+              values_from = "mean")
+
+seasonal_means_wide
+```
+
+---
+# Join
+
+One to many join
+```{r }
+left_join(stu, seasonal_means_wide)
+```
+
+---
+# Move longer again?
+
+If we did, we'd be exactly where we were with the first join.
+
+You  could make the argument it *might* make sense here
+
+I'd still argue for *this* approach, not the cartesian product approach
+
+More systematic, more predictable, and ultimately less error prone
+
+---
+# Another example
+* Often you want to add summary info to your dataset.
+* You can do this easily with by piping arguments
+
+--
+### ECLS-K reminder
+
+```{r }
+ecls
+```
+
+---
+# Compute group means
+
+```{r }
+ecls %>% 
+  group_by(school_id) %>% 
+  summarize(sch_pre_math = mean(T1MSCALE)) 
+```
+
+---
+# Join right within pipeline
+
+```{r print_ecls}
+ecls %>% 
+  group_by(school_id) %>% 
+  summarize(sch_pre_math = mean(T1MSCALE)) %>% 
+  left_join(ecls) %>% 
+  select(school_id:k_type) # Just for space
+```
+
+---
+# Default join behavior 
+By default, the `*_join` functions will use all columns with common names as keys. 
+
+
+```{r flights2}
+flights2 <- flights %>% 
+  select(year:day, hour, origin, dest, tailnum, carrier)
+flights2[1:2, ]
+```
+
+```{r weather}
+weather[1:2, ]
+```
+
+---
+
+```{r join_flights_weather, message = TRUE}
+left_join(flights2, weather)
+```
+
+---
+# Use only some vars?
+
+If we were joining *flights2* and *planes*, we would not want to use the `year` variable in the join, because **it means different things in each dataset**.
+
+```{r planes}
+head(planes)
+```
+
+---
+# How? 
+Specify the variables with `by`
+
+```{r join_flights2_planes}
+left_join(flights2, planes, by = "tailnum")
+```
+
+---
+# Mismatched names?
+* What if you had data to merge like this?
+
+```{r stu_table}
+names(schl)[1] <- "school_id"
+schl
+stu
+```
+
+
+
+---
+# Join w/mismatched names
+
+```{r join_name_mismatch}
+left_join(stu, schl, by = c("scid" = "school_id"))
+```
+
+---
+class: inverse-blue center middle
+# filtering joins
+
+---
+# Filtering joins
+* `semi_join()` works just like `left_join` or `inner_join` but you don't actually add the variables.
+
+* Let's filter classrooms with extremely high math pretest average scores.
+
+---
+# First, calculate averages
+
+```{r semi_join_extreme_high}
+av_pre_mth <- ecls %>% 
+    mutate(cut_high = mean(T1MSCALE) + 3*sd(T1MSCALE)) %>% 
+    group_by(teacher_id, k_type) %>% 
+    summarize(av_pre_mth = mean(T1MSCALE),
+              cut_high = unique(cut_high)) 
+av_pre_mth
+```
+
+---
+Next, filter for means 3 standard deviations above the mean.
+
+```{r filter_high}
+extr_high <- av_pre_mth %>% 
+    ungroup() %>% 
+    filter(av_pre_mth > cut_high)
+extr_high
+```
+
+---
+Finally, use `semi_join` to show the full data for these cases
+
+```{r extr_high_ecls1}
+semi_join(ecls, extr_high)
+```
+
+---
+# Filtering joins
+`anti_join()` does the opposite of `semi_join`, keeping any rows that do 
+**not** match.
+
+```{r anti_join_extreme_high}
+nrow(ecls)
+extr_low_ecls <- anti_join(ecls, extr_high)
+nrow(extr_low_ecls)
+```
+
+---
+# Why is this so beneficial?
+* Sometimes the boolean logic for `filter` can be overly complicated. 
+
+
+--
+* Instead, create a data frame that has only the groups you want, and 
+`semi_join` it with your original data
+
+
+--
+* Alternatively, create a data frame that has all .bolder[but] the values you
+want.
+
+---
+class: inverse-red middle
+# Stop words
+### One more quick example
+This one is probs more realistic
+
+---
+# Jane Austen Books
+
+```{r }
+# install.packages(c("tidytext", "janeaustenr"))
+library(tidytext)
+library(janeaustenr)
+austen_books()
+```
+
+---
+# Get words
+
+```{r get-words}
+austen_books() %>%
+  unnest_tokens(word, text)
+```
+
+---
+# Count words
+
+```{r count-words}
+austen_books() %>%
+  unnest_tokens(word, text) %>% 
+  count(word, sort = TRUE)
+```
+
+---
+# Plot top 15 words
+
+```{r count-words-plot1-echo, eval = FALSE}
+austen_books() %>%
+  unnest_tokens(word, text) %>% 
+  count(word, sort = TRUE) %>% 
+  mutate(word = fct_reorder(word, n)) %>% 
+  slice(1:15) %>% 
+  ggplot(aes(word, n)) +
+  geom_col() +
+  coord_flip()
+```
+
+---
+
+```{r count-words-plot1-eval, echo = FALSE, fig.height = 11}
+austen_books() %>%
+  unnest_tokens(word, text) %>% 
+  count(word, sort = TRUE) %>% 
+  mutate(word = fct_reorder(word, n)) %>% 
+  slice(1:15) %>% 
+  ggplot(aes(word, n)) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(expand = c(0, 0))
+```
+
+---
+# Stop words
+
+```{r stop-words}
+stop_words 
+```
+
+---
+# Remove stop words
+
+```{r remove-stop-words}
+austen_books() %>%
+  unnest_tokens(word, text) %>% 
+  anti_join(stop_words) %>% #<<
+  count(word, sort = TRUE)
+```
+
+---
+
+```{r count-words-plot2, echo = FALSE, fig.height = 11}
+austen_books() %>%
+  unnest_tokens(word, text) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort = TRUE) %>% 
+  mutate(word = fct_reorder(word, n)) %>% 
+  slice(1:15) %>% 
+  ggplot(aes(word, n)) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(expand = c(0, 0))
+```
+
+
+---
+# By book
+
+```{r count-words-plot3, echo = FALSE, fig.height = 9}
+austen_books() %>%
+  unnest_tokens(word, text) %>% 
+  anti_join(stop_words) %>% 
+  count(book, word, sort = TRUE) %>% 
+  group_by(book) %>% 
+  slice(1:15) %>% 
+  ggplot(aes(y = reorder_within(word, n, book),
+             x = n)) +
+  geom_col(aes(fill = book)) +
+  scale_y_reordered() +
+  scale_x_continuous(expand = c(0, 0)) +
+  guides(fill = "none") +
+  facet_wrap(~book, scales = "free_y") +
+  theme_minimal(20) +
+  labs(y = "")
+```
+---
+class: inverse-green middle
+
+# Wrapping up
+* Homework 1 assigned today
+  + Be careful about keys. Likely to be rather tricky.
+* Next time: Visual perception
