@@ -9,6 +9,10 @@ setup <- function(slides) {
   <div class="slides-footer">
   <span>
   
+  <a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/', slides, '.pdf">
+    <i class = "footer-icon" data-feather="download"></i>
+  </a>
+  
   <a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/', slides, '.html">
     <i class = "footer-icon" data-feather="link"></i>
   </a>
