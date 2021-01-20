@@ -31,7 +31,7 @@ layout: true
   &lt;div class="slides-footer"&gt;
   &lt;span&gt;
   
-  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w3p2.pdf"&gt;
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021/raw/main/static/slides/w3p2.pdf"&gt;
     &lt;i class = "footer-icon" data-feather="download"&gt;&lt;/i&gt;
   &lt;/a&gt;
   
@@ -99,9 +99,9 @@ g3
 ## # A tibble: 3 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     1     3   183
-## 2     2     3   197
-## 3     3     3   185
+## 1     1     3   186
+## 2     2     3   199
+## 3     3     3   220
 ```
 ]
 
@@ -116,9 +116,9 @@ g4
 ## # A tibble: 3 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     9     4   195
-## 2    10     4   208
-## 3    11     4   198
+## 1     9     4   187
+## 2    10     4   202
+## 3    11     4   185
 ```
 ]
 
@@ -138,12 +138,12 @@ bind_rows(g3, g4)
 ## # A tibble: 6 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     1     3   183
-## 2     2     3   197
-## 3     3     3   185
-## 4     9     4   195
-## 5    10     4   208
-## 6    11     4   198
+## 1     1     3   186
+## 2     2     3   199
+## 3     3     3   220
+## 4     9     4   187
+## 5    10     4   202
+## 6    11     4   185
 ```
 
 ---
@@ -160,12 +160,12 @@ bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset")
 ## # A tibble: 6 x 3
 ##   dataset   sid score
 ##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
-## 1 1           1   183
-## 2 1           2   197
-## 3 1           3   185
-## 4 2           9   195
-## 5 2          10   208
-## 6 2          11   198
+## 1 1           1   186
+## 2 1           2   199
+## 3 1           3   220
+## 4 2           9   187
+## 5 2          10   202
+## 6 2          11   185
 ```
 
 ---
@@ -180,12 +180,12 @@ bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset") %&gt;%
 ## # A tibble: 6 x 4
 ##   dataset   sid score grade
 ##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-## 1 1           1   183     3
-## 2 1           2   197     3
-## 3 1           3   185     3
-## 4 2           9   195     4
-## 5 2          10   208     4
-## 6 2          11   198     4
+## 1 1           1   186     3
+## 2 1           2   199     3
+## 3 1           3   220     3
+## 4 2           9   187     4
+## 5 2          10   202     4
+## 6 2          11   185     4
 ```
 
 ---
@@ -200,12 +200,12 @@ bind_rows(g3 = g3[ ,-2], g4 = g4[ ,-2], .id = "grade")
 ## # A tibble: 6 x 3
 ##   grade   sid score
 ##   &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-## 1 g3        1   183
-## 2 g3        2   197
-## 3 g3        3   185
-## 4 g4        9   195
-## 5 g4       10   208
-## 6 g4       11   198
+## 1 g3        1   186
+## 2 g3        2   199
+## 3 g3        3   220
+## 4 g4        9   187
+## 5 g4       10   202
+## 6 g4       11   185
 ```
 
 ---
@@ -221,12 +221,12 @@ bind_rows(g3, g4[ ,-2], .id = "dataset")
 ## # A tibble: 6 x 4
 ##   dataset   sid grade score
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 1           1     3   183
-## 2 1           2     3   197
-## 3 1           3     3   185
-## 4 2           9    NA   195
-## 5 2          10    NA   208
-## 6 2          11    NA   198
+## 1 1           1     3   186
+## 2 1           2     3   199
+## 3 1           3     3   220
+## 4 2           9    NA   187
+## 5 2          10    NA   202
+## 6 2          11    NA   185
 ```
 
 ---
