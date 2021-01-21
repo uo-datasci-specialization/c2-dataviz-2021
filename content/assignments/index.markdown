@@ -18,7 +18,7 @@ Each lab is worth 10 points. Please do not turn in partial work. Instead, please
 | Lab|Date Assigned    |Date Due         |Topic                                                      |
 |---:|:----------------|:----------------|:----------------------------------------------------------|
 |   1|Wed, January 13  |Wed, January 20  |[Distributions, git, and basic plot refinements](../lab-1) |
-|   2|Wed, January 27  |Wed, February 03 |Visual perception & reproducing plots                      |
+|   2|Wed, January 27  |Wed, February 03 |[Visual perception & reproducing plots](../lab-2)          |
 |   3|Wed, February 03 |Wed, February 10 |Uses of color to enhance interpretability                  |
 
 {{< /bootstrap-table >}}
