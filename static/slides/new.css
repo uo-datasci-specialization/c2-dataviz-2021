@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 	color: #18B6A2 !important;
 }
 
-.remark-code-line-highlighted .hljs-number{
+.remark-code-line-highlighted .hljs-string {
 	color: #a5f3e9 !important;
 }
 
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 	color: #DB5F05 !important;
 }
 
-.remark-code-line-highlighted .hljs-number{
+.remark-code-line-highlighted .hljs-number {
 	color: #fdc49b !important;
 }
 
@@ -68,7 +68,7 @@ h2, h3 {
 }
 
 table {
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 }
 
 a {
@@ -164,7 +164,7 @@ a:focus {
 div.slides-footer {
   position: absolute;
   bottom: 15px;
-  left: 82%;
+  left: 81%;
   height: 20px;
   width: 100%;
 }

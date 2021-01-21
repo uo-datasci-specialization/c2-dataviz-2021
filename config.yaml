@@ -5,6 +5,8 @@ title: Data Visualization for Educational Data Science
 theme: vanilla-bootstrap-hugo-theme
 # googleAnalytics: UA-123456789-1
 
+pygmentsUseClasses: true
+
 taxonomies:
   tag: tags
 
@@ -49,6 +51,7 @@ params:
   hideFooter: false
   katex: true
   custom_js: ["custom.js"]
+  custom_highlight: ["highlight.css"]
 
 markup:
   defaultMarkdownHandler: goldmark
@@ -75,7 +78,7 @@ markup:
     lineNos: false
     lineNumbersInTable: true
     noClasses: true
-    style: monokai
+    style:  xcode # base16-snazzy pastie rrt
     tabWidth: 2
   tableOfContents:
     endLevel: 3

@@ -4,6 +4,9 @@
   {{ range .Site.Params.custom_js }}
   <script src="{{ "/js/" | relURL }}{{ . }}"></script>
   {{ end }}
+  {{ range .Site.Params.custom_highlight }}
+  <link rel="stylesheet" href="{{ "/highlight/" | relURL }}{{ . }}">
+  {{ end }}
   {{ hugo.Generator }}
   <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | absURL }}">
   {{ $title := print .Title " | " .Site.Title }}
