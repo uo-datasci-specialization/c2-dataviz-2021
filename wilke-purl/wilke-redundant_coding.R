@@ -100,6 +100,7 @@ cvd_sim2(iris_scatter2_small,
          scale = 1, label_x = 0.)
 
 ## ----tech-stocks-bad-legend, fig.cap = '(ref:tech-stocks-bad-legend)'----
+tech_stocks <- ungroup(tech_stocks)
 price_plot_base <- ggplot(tech_stocks, aes(x = date, y = price_indexed, color = ticker)) +
   geom_line(na.rm = TRUE) +
   scale_color_manual(values = c("#000000", "#E69F00", "#56B4E9", "#009E73"),

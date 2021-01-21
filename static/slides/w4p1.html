@@ -4,11 +4,10 @@
     <title>Visual Perception!</title>
     <meta charset="utf-8" />
     <meta name="author" content="Daniel Anderson" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="new.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -20,6 +19,53 @@ class: center, middle, inverse, title-slide
 
 ---
 
+
+
+
+layout: true
+
+  &lt;script&gt;
+    feather.replace()
+  &lt;/script&gt;
+  
+  &lt;div class="slides-footer"&gt;
+  &lt;span&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021/raw/main/static/slides/w3p2.pdf"&gt;
+    &lt;i class = "footer-icon" data-feather="download"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w3p2.html"&gt;
+    &lt;i class = "footer-icon" data-feather="link"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021"&gt;
+    &lt;i class = "footer-icon" data-feather="github"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;/span&gt;
+  &lt;/div&gt;
+  
+
+---
+class: inverse-blue
+# Data viz in the wild
+
+.pull-left[
+* Kavya
+* Meg
+]
+
+.pull-right[
+* Anisha
+* Rachael
+]
+
+&lt;br&gt;
+
+## Zach and Tess on deck
+
+---
 
 # Agenda 
 
@@ -37,10 +83,10 @@ class: center, middle, inverse, title-slide
 * Understand how decisions you make may help or hinder comprehension
 
 ---
-class: inverse center middle
+class: inverse-red center middle
 # Disclaimer
 ### I'm not a psychologist
-I don't really know/care why we percieve things certain ways.
+I don't really know why we perceive things certain ways.
 
 I mainly care that we do, and that your visualizations should account for them.
 
@@ -56,11 +102,17 @@ I mainly care that we do, and that your visualizations should account for them.
 
 * **Direction:** *Numeric*. At what slope? In a time series, going up or down?
 
+
+---
+# Visual Cues
+
+.footnote[Taken from *Modern Data Science with R*, p. 15]
+
 * **Shape:** *Categorical*. Belonging to which group?
 
 * **Area:** *Numeric*. How big (in two dimensions)?
 
-* **Volumne:** *Numeric*. How big (in three dimensions)?
+* **Volume:** *Numeric*. How big (in three dimensions)?
 
 * **Shade:** *Numeric or Categorical*. To what extent? How Severely?
 
@@ -68,24 +120,20 @@ I mainly care that we do, and that your visualizations should account for them.
 
 ---
 class: middle center
-# Different ways of encoding data
+# Encoding data
 
 ![](w4p1_files/figure-html/data-encoding-1.png)&lt;!-- --&gt;
 
 ---
 # Other elements to consider
+
 * Text
-  
   + How is the text displayed (e.g., font, face, location)? 
-  
   + What is the purpose of the text?
 
 --
-
 * Transparency
-  
   + Are there overlapping pieces? 
-  
   + Can transparency help?
 
 --
@@ -100,7 +148,7 @@ class: middle center
 How would you encode each column of data?
 
 | Month | Day | Location     | Station ID  | Temperature |
-|:-----:|:---:|:-------------|-------------| ------------|
+|:-----:|:---:|:-------------|-------------| :----------:|
 |  Jan  |  1  | Chicago      | USW00014819 | 25.6        |
 |  Jan  |  1  | San Diego    | USW00093107 | 55.2        |
 |  Jan  |  1  | Houston      | USW00012918 | 53.9        |
@@ -126,16 +174,41 @@ class: middle center
 ![](w4p1_files/figure-html/scales-wilke-1.png)&lt;!-- --&gt;
 
 ---
-class: middle center
 # Putting it to practice
 
 ![](w4p1_files/figure-html/temp-change-1.png)&lt;!-- --&gt;
 
 ---
-class: middle center
+# Basic code for previous plot
+
+
+```r
+ggplot(temps_long, aes(date, temperature)) +
+  geom_line(aes(color = location))
+```
+
+![](w4p1_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
 # Alternative representation
 
 ![](w4p1_files/figure-html/temp-change2-1.png)&lt;!-- --&gt;
+
+
+---
+# Basic code for previous plot
+
+
+```r
+temps_long %&gt;% 
+  group_by(location, month) %&gt;% 
+  summarize(temp = mean(temperature)) %&gt;% 
+  ggplot(aes(month, location)) +
+  geom_tile(aes(fill = temp),
+            color = "white")
+```
+
+![](w4p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 ---
 # Comparison
@@ -156,11 +229,11 @@ class: center middle
 background-image:url(http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-multichannel-1.png)
 background-size:contain
 
-Additional scales can become lost without high structure in the data
+## Additional scales can become lost without high structure in the data
 
 
 ---
-class: inverse center middle
+class: inverse-blue center middle
 # Data ink ratio
 
 ---
@@ -188,20 +261,21 @@ figure
 
 --
 
-* First thought -might be  Cool!
+* First thought might be - Cool!
 
 ---
+class: inverse-red
 background-image:url(https://theamericanreligion.files.wordpress.com/2012/10/lee-corso-sucks.jpeg?w=660)
 background-size:cover
 
 ---
 # Minimize cognitive load
-* Empirically, Tufte's plot was .bolder[the most difficult] for viewers to
+* Empirically, Tufte's plot was **the most difficult** for viewers to
 interpret.
 
 
 --
-* Visual cues (labels, gridlines) reduce the data-ink ratio, but can also 
+* Visual cues (labels, gridlines) *reduce* the data-ink ratio, but can also 
 reduce cognitive load.
 
 ---
@@ -239,11 +313,11 @@ class: center middle
 ![](w4p1_files/figure-html/iris_filled-1.png)&lt;!-- --&gt;
 
 ---
-class: inverse bottom middle
+class: inverse-red middle
 background-image:url(img/monstrous-costs.png)
 background-size: contain
 
-### What about plots like these?
+## This?
 
 ---
 # The takeaway?
@@ -260,7 +334,7 @@ background-size: contain
 
 
 ---
-# Quick/easy compromise
+# Compromise?
 In some cases, it may be easy and more memorable to use glyphs instead of points or squares
 
 --
@@ -270,9 +344,9 @@ In some cases, it may be easy and more memorable to use glyphs instead of points
 
 ```r
 install.packages("extrafont")
-devtools::install_github("wch/extrafontdb")
-devtools::install_github("wch/Rttf2pt1")
-devtools::install_github("hrbrmstr/waffle")
+remotes::install_github("wch/extrafontdb")
+remotes::install_github("wch/Rttf2pt1")
+remotes::install_github("hrbrmstr/waffle")
 ```
 
 --
@@ -282,7 +356,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ```r
 parts &lt;- c(`Un-breached\nUS Population` = (318 - 11 - 79), 
-           `Premera` = 11, 
+           `Premera` = 11,
            `Anthem` = 79)
 ```
 
@@ -301,6 +375,7 @@ waffle(parts,
 
 ---
 # Glyph plot
+Doesn't seem to work anymore...🤷‍♂️
 
 * Download and install `fontawesome-webfont.ttf` on your machine locally (see [here](https://fontawesome.com/v4.7.0/))
 
@@ -322,7 +397,9 @@ waffle(parts/10,
 ```
 
 ---
-![](w4p1_files/figure-html/waffle3-1.png)&lt;!-- --&gt;
+# Should look like this
+
+![](https://github.com/hrbrmstr/waffle/raw/master/README_files/figure-gfm/medkit-1.png)
 
 ---
 class: inverse center middle
@@ -332,27 +409,31 @@ background-size: 100% 100%
 ---
 # You can create them!
 * Create plots
+
 * Use illustrator or similar to put them together
+
 * Add some annotations
+
 * Consider using glyphs for greater memory
 
+* You can do a lot in R without going to illustrator etc. by just using [**{patchwork}**](https://patchwork.data-imaginist.com) or [**{cowplot}**](https://wilkelab.org/cowplot/index.html)
 
---
-### Alternatively
-Consider [pagedown](https://github.com/rstudio/pagedown)!
 
 ---
 class: center middle
 # More visual properties
 ![](http://socviz.co/assets/ch-01-perception-adelson-checkershow.jpg)
 
+---
+# Or in real life
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/z9Sen1HTu5o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 ---
 background-image:url(http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-dual-search-1.png)
 background-size:contain
 
-# What "pops"?
-### Where's the blue circle in each plot?
+## Where's the blue circle in each plot?
 
 ---
 background-image:url(http://socviz.co/assets/ch-01-cleveland-task-types.png)
@@ -369,22 +450,20 @@ background-size:contain
 background-image:url(http://socviz.co/assets/ch-01-channels-for-cont-data-vertical.png)
 background-size:contain
 
-# Ordered 
-# data 
-# mappings: 
-# Ranked
+## Ordered 
+## data 
+## mappings: 
+## Ranked
 
 
 
 ---
-class: bottom
-background-image:url(http://socviz.co/assets/ch-01-channels-for-cat-data-vertical.png)
-background-size:contain
+# Unordered data mappings
 
-### Unordered data mappings: Ranked
+![](http://socviz.co/assets/ch-01-channels-for-cat-data-vertical.png)
 
 ---
-class: inverse center middle
+class: inverse-blue center middle
 # Some things to avoid
 
 ---
@@ -431,8 +510,7 @@ class: inverse center middle
 
 
 ---
-# Pie charts
-### Especially w/lots of categories
+# Pie charts w/lots of categories
 
 ![](https://serialmentor.com/dataviz/visualizing_proportions_files/figure-html/marketshare-pies-1.png)
 
@@ -457,7 +535,7 @@ Pie charts are just stacked bar charts with a radial coordinate system
 ![](w4p1_files/figure-html/stacked_bars_nopie-1.png)&lt;!-- --&gt;
 
 ---
-# My preference
+# Alternative represenation
 
 ![](w4p1_files/figure-html/horiz_stacked-1.png)&lt;!-- --&gt;
 
@@ -489,27 +567,25 @@ class: middle
 
 ---
 # Not always a bad thing
-&gt; It is tempting to lay down inflexible rules about what to do in terms of producing your graphs, and to dismiss people who don’t follow them as producing junk charts or lying with statistics. But being honest with your data is a bigger problem than can be solved by rules of thumb about making graphs. In this case there is a moderate level of agreement that bar charts should generally include a zero baseline (or equivalent) given that bars encode their variables as lengths. But it would be a mistake to think that a dot plot was by the same token deliberately misleading, just because it kept itself to the range of the data instead.
+&gt; It is tempting to lay down inflexible rules about what to do in terms of producing your graphs, and to dismiss people who don’t follow them as producing junk charts or lying with statistics. But **being honest with your data is a bigger problem than can be solved by rules of thumb** about making graphs. In this case there is a moderate level of agreement that bar charts should generally include a zero baseline (or equivalent) given that bars encode their variables as lengths. But it would be a mistake to think that a dot plot was by the same token deliberately misleading, just because it kept itself to the range of the data instead.
 
 ---
-class: middle
-.pull-left[
+# Bars
 ![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-bar-simple-1.png)
-]
+---
+# Points
 
-.pull-right[
 ![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-bar-simple-2.png)
-]
 
 ---
-class: middle
-.pull-left[
-![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-law-enrollments-1.png)
-]
+# Law school enrollments
 
-.pull-right[
+![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-law-enrollments-1.png)
+
+---
+# Start at zero
+
 ![](http://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-law-enrollments-2.png)
-]
 
 ---
 # Scaling issues
@@ -521,32 +597,44 @@ class: middle center
 ![](img/poor_binning.png)
 
 ---
-class: inverse
+class: inverse-blue middle
 # Conclusions
 
-* Essentially never
+---
+# Essentially never
 
-  + Use dual axes (produce separate plots instead)
+* Use dual axes (unles they are direct transformations, just produce separate plots instead)
 
-  + Use 3D unnecessarily
+* Use 3D unnecessarily
 
-* Be wary of
+
+--
+# Be wary of
 
   + Truncated axes
 
-  + Pie charts (usually (always?) use bars instead)
 
-* Do
+--
+# Do
 
-  + Minimize cognitive load
+* Minimize cognitive load
 
-  + Be as clear as possible
+* Be as clear as possible
+
+---
+class: inverse-green middle
+
+# Next time
+## Lab 2
+We'll replicate some plots produced by [fivethirtyeight](https://fivethirtyeight.com/)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "atelier-dune-light",
+"navigation": {
+"scroll": false
+},
 "highlightLines": true,
 "countIncrementalSlides": false
 });
@@ -589,6 +677,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -606,17 +720,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

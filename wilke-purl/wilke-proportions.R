@@ -273,7 +273,7 @@ p_marital <- ggplot(df_marital, aes(x = age, y = ..count.., fill = marital, colo
         axis.line.y = element_blank(),
         plot.margin = margin(7, 7, 3, 0))
 
-p_aligned <- align_plots(p_health, p_marital, align = 'v')
+p_aligned <- align_patches(p_health, p_marital)
 ggdraw(p_aligned[[1]])
 
 ## ----health-vs-age-facets, fig.width = 8.5, fig.asp = 0.35, fig.cap='(ref:health-vs-age-facets)'----
