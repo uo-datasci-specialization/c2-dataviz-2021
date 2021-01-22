@@ -99,9 +99,9 @@ g3
 ## # A tibble: 3 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     1     3   186
-## 2     2     3   199
-## 3     3     3   220
+## 1     1     3   215
+## 2     2     3   203
+## 3     3     3   200
 ```
 ]
 
@@ -116,9 +116,9 @@ g4
 ## # A tibble: 3 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     9     4   187
-## 2    10     4   202
-## 3    11     4   185
+## 1     9     4   213
+## 2    10     4   191
+## 3    11     4   209
 ```
 ]
 
@@ -138,12 +138,12 @@ bind_rows(g3, g4)
 ## # A tibble: 6 x 3
 ##     sid grade score
 ##   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     1     3   186
-## 2     2     3   199
-## 3     3     3   220
-## 4     9     4   187
-## 5    10     4   202
-## 6    11     4   185
+## 1     1     3   215
+## 2     2     3   203
+## 3     3     3   200
+## 4     9     4   213
+## 5    10     4   191
+## 6    11     4   209
 ```
 
 ---
@@ -160,12 +160,12 @@ bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset")
 ## # A tibble: 6 x 3
 ##   dataset   sid score
 ##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
-## 1 1           1   186
-## 2 1           2   199
-## 3 1           3   220
-## 4 2           9   187
-## 5 2          10   202
-## 6 2          11   185
+## 1 1           1   215
+## 2 1           2   203
+## 3 1           3   200
+## 4 2           9   213
+## 5 2          10   191
+## 6 2          11   209
 ```
 
 ---
@@ -180,12 +180,12 @@ bind_rows(g3[ ,-2], g4[ ,-2], .id = "dataset") %&gt;%
 ## # A tibble: 6 x 4
 ##   dataset   sid score grade
 ##   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-## 1 1           1   186     3
-## 2 1           2   199     3
-## 3 1           3   220     3
-## 4 2           9   187     4
-## 5 2          10   202     4
-## 6 2          11   185     4
+## 1 1           1   215     3
+## 2 1           2   203     3
+## 3 1           3   200     3
+## 4 2           9   213     4
+## 5 2          10   191     4
+## 6 2          11   209     4
 ```
 
 ---
@@ -200,12 +200,12 @@ bind_rows(g3 = g3[ ,-2], g4 = g4[ ,-2], .id = "grade")
 ## # A tibble: 6 x 3
 ##   grade   sid score
 ##   &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-## 1 g3        1   186
-## 2 g3        2   199
-## 3 g3        3   220
-## 4 g4        9   187
-## 5 g4       10   202
-## 6 g4       11   185
+## 1 g3        1   215
+## 2 g3        2   203
+## 3 g3        3   200
+## 4 g4        9   213
+## 5 g4       10   191
+## 6 g4       11   209
 ```
 
 ---
@@ -221,12 +221,12 @@ bind_rows(g3, g4[ ,-2], .id = "dataset")
 ## # A tibble: 6 x 4
 ##   dataset   sid grade score
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 1           1     3   186
-## 2 1           2     3   199
-## 3 1           3     3   220
-## 4 2           9    NA   187
-## 5 2          10    NA   202
-## 6 2          11    NA   185
+## 1 1           1     3   215
+## 2 1           2     3   203
+## 3 1           3     3   200
+## 4 2           9    NA   213
+## 5 2          10    NA   191
+## 6 2          11    NA   209
 ```
 
 ---
@@ -323,25 +323,20 @@ ecls
 
 ```
 ## # A tibble: 984 x 33
-##    child_id teacher_id school_id k_type   school_type sex   
-##    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; 
-##  1 0842021C 0842T02    0842      full-day public      male  
-##  2 0905002C 0905T01    0905      full-day private     male  
-##  3 0150012C 0150T01    0150      full-day private     female
-##  4 0556009C 0556T01    0556      full-day private     female
-##  5 0089013C 0089T04    0089      full-day public      male  
-##  6 1217001C 1217T13    1217      half-day public      female
-##  7 1092008C 1092T01    1092      half-day public      female
-##  8 0083007C 0083T16    0083      full-day public      male  
-##  9 1091005C 1091T02    1091      half-day private     male  
-## 10 2006006C 2006T01    2006      full-day private     male  
-## # … with 974 more rows, and 27 more variables: ethnic &lt;chr&gt;, famtype &lt;chr&gt;,
-## #   numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;,
-## #   T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;,
-## #   T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;,
-## #   T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;,
-## #   T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;,
-## #   ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
+##   child_id teacher_id school_id k_type   school_type sex    ethnic                                 
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;                                  
+## 1 0842021C 0842T02    0842      full-day public      male   BLACK OR AFRICAN AMERICAN, NON-HISPANIC
+## 2 0905002C 0905T01    0905      full-day private     male   ASIAN                                  
+## 3 0150012C 0150T01    0150      full-day private     female BLACK OR AFRICAN AMERICAN, NON-HISPANIC
+## 4 0556009C 0556T01    0556      full-day private     female HISPANIC, RACE NOT SPECIFIED           
+## 5 0089013C 0089T04    0089      full-day public      male   WHITE, NON-HISPANIC                    
+## 6 1217001C 1217T13    1217      half-day public      female NATIVE HAWAIIAN, OTHER PACIFIC ISLANDER
+## # … with 978 more rows, and 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;,
+## #   SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;,
+## #   T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;,
+## #   T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;,
+## #   ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;,
+## #   elapse &lt;dbl&gt;
 ```
 
 ---
@@ -355,19 +350,15 @@ ecls %&gt;%
 
 ```
 ## # A tibble: 984 x 2
-##    child_id     n
-##    &lt;chr&gt;    &lt;int&gt;
-##  1 0001010C     1
-##  2 0002010C     1
-##  3 0009005C     1
-##  4 0009014C     1
-##  5 0009026C     1
-##  6 0013003C     1
-##  7 0016004C     1
-##  8 0016009C     1
-##  9 0022005C     1
-## 10 0022014C     1
-## # … with 974 more rows
+##   child_id     n
+## * &lt;chr&gt;    &lt;int&gt;
+## 1 0001010C     1
+## 2 0002010C     1
+## 3 0009005C     1
+## 4 0009014C     1
+## 5 0009026C     1
+## 6 0013003C     1
+## # … with 978 more rows
 ```
 
 ---
@@ -446,16 +437,15 @@ head(flights)
 
 ```
 ## # A tibble: 6 x 19
-##    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-## 1  2013     1     1      517            515         2      830            819
-## 2  2013     1     1      533            529         4      850            830
-## 3  2013     1     1      542            540         2      923            850
-## 4  2013     1     1      544            545        -1     1004           1022
-## 5  2013     1     1      554            600        -6      812            837
-## 6  2013     1     1      554            558        -4      740            728
-## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+##    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1  2013     1     1      517            515         2      830            819        11 UA        1545
+## 2  2013     1     1      533            529         4      850            830        20 UA        1714
+## 3  2013     1     1      542            540         2      923            850        33 AA        1141
+## 4  2013     1     1      544            545        -1     1004           1022       -18 B6         725
+## 5  2013     1     1      554            600        -6      812            837       -25 DL         461
+## 6  2013     1     1      554            558        -4      740            728        12 UA        1696
+## # … with 8 more variables: tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
 ## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
 ```
 
@@ -470,19 +460,15 @@ flights %&gt;%
 
 ```
 ## # A tibble: 11 x 6
-##     year month   day flight tailnum     n
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
-##  1  2013     2     9    303 &lt;NA&gt;        2
-##  2  2013     2     9    655 &lt;NA&gt;        2
-##  3  2013     2     9   1623 &lt;NA&gt;        2
-##  4  2013     6     8   2269 N487WN      2
-##  5  2013     6    15   2269 N230WN      2
-##  6  2013     6    22   2269 N440LV      2
-##  7  2013     6    29   2269 N707SA      2
-##  8  2013     7     6   2269 N259WN      2
-##  9  2013     8     3   2269 N446WN      2
-## 10  2013     8    10   2269 N478WN      2
-## 11  2013    12    15    398 &lt;NA&gt;        2
+##    year month   day flight tailnum     n
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
+## 1  2013     2     9    303 &lt;NA&gt;        2
+## 2  2013     2     9    655 &lt;NA&gt;        2
+## 3  2013     2     9   1623 &lt;NA&gt;        2
+## 4  2013     6     8   2269 N487WN      2
+## 5  2013     6    15   2269 N230WN      2
+## 6  2013     6    22   2269 N440LV      2
+## # … with 5 more rows
 ```
 
 ---
@@ -500,19 +486,15 @@ flights %&gt;%
 
 ```
 ## # A tibble: 336,776 x 4
-##    rowid  year month time_hour          
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dttm&gt;             
-##  1     1  2013     1 2013-01-01 05:00:00
-##  2     2  2013     1 2013-01-01 05:00:00
-##  3     3  2013     1 2013-01-01 05:00:00
-##  4     4  2013     1 2013-01-01 05:00:00
-##  5     5  2013     1 2013-01-01 06:00:00
-##  6     6  2013     1 2013-01-01 05:00:00
-##  7     7  2013     1 2013-01-01 06:00:00
-##  8     8  2013     1 2013-01-01 06:00:00
-##  9     9  2013     1 2013-01-01 06:00:00
-## 10    10  2013     1 2013-01-01 06:00:00
-## # … with 336,766 more rows
+##   rowid  year month time_hour          
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dttm&gt;             
+## 1     1  2013     1 2013-01-01 05:00:00
+## 2     2  2013     1 2013-01-01 05:00:00
+## 3     3  2013     1 2013-01-01 05:00:00
+## 4     4  2013     1 2013-01-01 05:00:00
+## 5     5  2013     1 2013-01-01 06:00:00
+## 6     6  2013     1 2013-01-01 05:00:00
+## # … with 336,770 more rows
 ```
 
 ---
@@ -654,22 +636,15 @@ dis_code_tbl
 
 ```
 ## # A tibble: 14 x 2
-##    dis_code disability                  
-##    &lt;chr&gt;    &lt;chr&gt;                       
-##  1 00       Not Applicable              
-##  2 10       Intellectual Disability     
-##  3 20       Hearing Impairment          
-##  4 40       Visual Impairment           
-##  5 43       Deaf-Blindness              
-##  6 50       Communication Disorder      
-##  7 60       Emotional Disturbance       
-##  8 70       Orthopedic Impairment       
-##  9 74       Traumatic Brain Injury      
-## 10 80       Other Health Impairments    
-## 11 82       Autism Spectrum Disorder    
-## 12 90       Specific Learning Disability
-## 13 96       Developmental Delay 0-2yr   
-## 14 98       Developmental Delay 3-4yr
+##   dis_code disability             
+##   &lt;chr&gt;    &lt;chr&gt;                  
+## 1 00       Not Applicable         
+## 2 10       Intellectual Disability
+## 3 20       Hearing Impairment     
+## 4 40       Visual Impairment      
+## 5 43       Deaf-Blindness         
+## 6 50       Communication Disorder 
+## # … with 8 more rows
 ```
 
 
@@ -686,19 +661,15 @@ left_join(dis_tbl, dis_code_tbl)
 
 ```
 ## # A tibble: 200 x 4
-##      sid dis_code score disability               
-##    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;                    
-##  1     1 74         190 Traumatic Brain Injury   
-##  2     2 40         200 Visual Impairment        
-##  3     3 60         200 Emotional Disturbance    
-##  4     4 00         183 Not Applicable           
-##  5     5 10         210 Intellectual Disability  
-##  6     6 96         188 Developmental Delay 0-2yr
-##  7     7 60         203 Emotional Disturbance    
-##  8     8 82         204 Autism Spectrum Disorder 
-##  9     9 98         201 Developmental Delay 3-4yr
-## 10    10 10         198 Intellectual Disability  
-## # … with 190 more rows
+##     sid dis_code score disability               
+##   &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;                    
+## 1     1 74         190 Traumatic Brain Injury   
+## 2     2 40         200 Visual Impairment        
+## 3     3 60         200 Emotional Disturbance    
+## 4     4 00         183 Not Applicable           
+## 5     5 10         210 Intellectual Disability  
+## 6     6 96         188 Developmental Delay 0-2yr
+## # … with 194 more rows
 ```
 
 ---
@@ -898,9 +869,7 @@ stu
 ## 4     4     1     8
 ## 5     5     2     9
 ## 6     6     2    11
-## 7     7     3    12
-## 8     8     3    15
-## 9     9     3    17
+## # … with 3 more rows
 ```
 
 ---
@@ -943,9 +912,7 @@ left_join(stu, schl)
 ## 4     4     1     8         22.05           15741.08
 ## 5     5     2     9         31.14           11732.24
 ## 6     6     2    11         31.14           11732.24
-## 7     7     3    12         24.87           13027.88
-## 8     8     3    15         24.87           13027.88
-## 9     9     3    17         24.87           13027.88
+## # … with 3 more rows
 ```
 
 ---
@@ -981,9 +948,7 @@ seasonal_means
 ## 4     2 fall    0.9483894
 ## 5     2 winter -0.4792556
 ## 6     2 spring -1.514887 
-## 7     3 fall    0.4345367
-## 8     3 winter -0.5195367
-## 9     3 spring -0.8345590
+## # … with 3 more rows
 ```
 
 ---
@@ -994,19 +959,15 @@ left_join(stu, seasonal_means)
 
 ```
 ## # A tibble: 27 x 5
-##      sid  scid score season       mean
-##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
-##  1     1     1    10 fall    0.3447951
-##  2     1     1    10 winter  1.539648 
-##  3     1     1    10 spring -0.3295142
-##  4     2     1    12 fall    0.3447951
-##  5     2     1    12 winter  1.539648 
-##  6     2     1    12 spring -0.3295142
-##  7     3     1    15 fall    0.3447951
-##  8     3     1    15 winter  1.539648 
-##  9     3     1    15 spring -0.3295142
-## 10     4     1     8 fall    0.3447951
-## # … with 17 more rows
+##     sid  scid score season       mean
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1     1     1    10 fall    0.3447951
+## 2     1     1    10 winter  1.539648 
+## 3     1     1    10 spring -0.3295142
+## 4     2     1    12 fall    0.3447951
+## 5     2     1    12 winter  1.539648 
+## 6     2     1    12 spring -0.3295142
+## # … with 21 more rows
 ```
 
 ---
@@ -1060,9 +1021,7 @@ left_join(stu, seasonal_means_wide)
 ## 4     4     1     8 0.3447951  1.539648  -0.3295142
 ## 5     5     2     9 0.9483894 -0.4792556 -1.514887 
 ## 6     6     2    11 0.9483894 -0.4792556 -1.514887 
-## 7     7     3    12 0.4345367 -0.5195367 -0.8345590
-## 8     8     3    15 0.4345367 -0.5195367 -0.8345590
-## 9     9     3    17 0.4345367 -0.5195367 -0.8345590
+## # … with 3 more rows
 ```
 
 ---
@@ -1091,25 +1050,20 @@ ecls
 
 ```
 ## # A tibble: 984 x 33
-##    child_id teacher_id school_id k_type   school_type sex   
-##    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; 
-##  1 0842021C 0842T02    0842      full-day public      male  
-##  2 0905002C 0905T01    0905      full-day private     male  
-##  3 0150012C 0150T01    0150      full-day private     female
-##  4 0556009C 0556T01    0556      full-day private     female
-##  5 0089013C 0089T04    0089      full-day public      male  
-##  6 1217001C 1217T13    1217      half-day public      female
-##  7 1092008C 1092T01    1092      half-day public      female
-##  8 0083007C 0083T16    0083      full-day public      male  
-##  9 1091005C 1091T02    1091      half-day private     male  
-## 10 2006006C 2006T01    2006      full-day private     male  
-## # … with 974 more rows, and 27 more variables: ethnic &lt;chr&gt;, famtype &lt;chr&gt;,
-## #   numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;,
-## #   T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;,
-## #   T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;,
-## #   T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;,
-## #   T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;,
-## #   ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
+##   child_id teacher_id school_id k_type   school_type sex    ethnic                                 
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;                                  
+## 1 0842021C 0842T02    0842      full-day public      male   BLACK OR AFRICAN AMERICAN, NON-HISPANIC
+## 2 0905002C 0905T01    0905      full-day private     male   ASIAN                                  
+## 3 0150012C 0150T01    0150      full-day private     female BLACK OR AFRICAN AMERICAN, NON-HISPANIC
+## 4 0556009C 0556T01    0556      full-day private     female HISPANIC, RACE NOT SPECIFIED           
+## 5 0089013C 0089T04    0089      full-day public      male   WHITE, NON-HISPANIC                    
+## 6 1217001C 1217T13    1217      half-day public      female NATIVE HAWAIIAN, OTHER PACIFIC ISLANDER
+## # … with 978 more rows, and 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;,
+## #   SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;,
+## #   T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;,
+## #   T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;, T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;,
+## #   ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;,
+## #   elapse &lt;dbl&gt;
 ```
 
 ---
@@ -1124,19 +1078,15 @@ ecls %&gt;%
 
 ```
 ## # A tibble: 515 x 2
-##    school_id sch_pre_math
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 0001          20.45800
-##  2 0002          14.977  
-##  3 0009          18.82   
-##  4 0013          42.321  
-##  5 0016          17.55100
-##  6 0022          17.8465 
-##  7 0023          15.5050 
-##  8 0025          19.446  
-##  9 0026          16.866  
-## 10 0028          14.354  
-## # … with 505 more rows
+##   school_id sch_pre_math
+## * &lt;chr&gt;            &lt;dbl&gt;
+## 1 0001          20.45800
+## 2 0002          14.977  
+## 3 0009          18.82   
+## 4 0013          42.321  
+## 5 0016          17.55100
+## 6 0022          17.8465 
+## # … with 509 more rows
 ```
 
 ---
@@ -1153,19 +1103,15 @@ ecls %&gt;%
 
 ```
 ## # A tibble: 984 x 5
-##    school_id sch_pre_math child_id teacher_id k_type  
-##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   
-##  1 0001          20.45800 0001010C 0001T01    full-day
-##  2 0002          14.977   0002010C 0002T01    half-day
-##  3 0009          18.82    0009026C 0009T01    half-day
-##  4 0009          18.82    0009014C 0009T02    half-day
-##  5 0009          18.82    0009005C 0009T01    half-day
-##  6 0013          42.321   0013003C 0013T01    full-day
-##  7 0016          17.55100 0016004C 0016T01    half-day
-##  8 0016          17.55100 0016009C 0016T01    half-day
-##  9 0022          17.8465  0022005C 0022T01    half-day
-## 10 0022          17.8465  0022014C 0022T03    half-day
-## # … with 974 more rows
+##   school_id sch_pre_math child_id teacher_id k_type  
+##   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   
+## 1 0001          20.45800 0001010C 0001T01    full-day
+## 2 0002          14.977   0002010C 0002T01    half-day
+## 3 0009          18.82    0009026C 0009T01    half-day
+## 4 0009          18.82    0009014C 0009T02    half-day
+## 5 0009          18.82    0009005C 0009T01    half-day
+## 6 0013          42.321   0013003C 0013T01    full-day
+## # … with 978 more rows
 ```
 
 ---
@@ -1195,12 +1141,11 @@ weather[1:2, ]
 
 ```
 ## # A tibble: 2 x 15
-##   origin  year month   day  hour  temp  dewp humid wind_dir wind_speed wind_gust
-##   &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-## 1 EWR     2013     1     1     1 39.02 26.06 59.37      270   10.35702        NA
-## 2 EWR     2013     1     1     2 39.02 26.96 61.63      250    8.05546        NA
-## # … with 4 more variables: precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
-## #   time_hour &lt;dttm&gt;
+##   origin  year month   day  hour  temp  dewp humid wind_dir wind_speed wind_gust precip pressure visib
+##   &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1 EWR     2013     1     1     1 39.02 26.06 59.37      270   10.35702        NA      0   1012      10
+## 2 EWR     2013     1     1     2 39.02 26.96 61.63      250    8.05546        NA      0   1012.3    10
+## # … with 1 more variable: time_hour &lt;dttm&gt;
 ```
 
 ---
@@ -1216,21 +1161,16 @@ left_join(flights2, weather)
 
 ```
 ## # A tibble: 336,776 x 18
-##     year month   day  hour origin dest  tailnum carrier  temp  dewp    humid
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-##  1  2013     1     1     5 EWR    IAH   N14228  UA      39.02 28.04 64.43   
-##  2  2013     1     1     5 LGA    IAH   N24211  UA      39.92 24.98 54.81   
-##  3  2013     1     1     5 JFK    MIA   N619AA  AA      39.02 26.96 61.63   
-##  4  2013     1     1     5 JFK    BQN   N804JB  B6      39.02 26.96 61.63   
-##  5  2013     1     1     6 LGA    ATL   N668DN  DL      39.92 24.98 54.81   
-##  6  2013     1     1     5 EWR    ORD   N39463  UA      39.02 28.04 64.43   
-##  7  2013     1     1     6 EWR    FLL   N516JB  B6      37.94 28.04 67.21000
-##  8  2013     1     1     6 LGA    IAD   N829AS  EV      39.92 24.98 54.81   
-##  9  2013     1     1     6 JFK    MCO   N593JB  B6      37.94 26.96 64.29   
-## 10  2013     1     1     6 LGA    ORD   N3ALAA  AA      39.92 24.98 54.81   
-## # … with 336,766 more rows, and 7 more variables: wind_dir &lt;dbl&gt;,
-## #   wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;,
-## #   visib &lt;dbl&gt;, time_hour &lt;dttm&gt;
+##    year month   day  hour origin dest  tailnum carrier  temp  dewp humid wind_dir wind_speed wind_gust
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1  2013     1     1     5 EWR    IAH   N14228  UA      39.02 28.04 64.43      260   12.65858  NA      
+## 2  2013     1     1     5 LGA    IAH   N24211  UA      39.92 24.98 54.81      250   14.96014  21.86482
+## 3  2013     1     1     5 JFK    MIA   N619AA  AA      39.02 26.96 61.63      260   14.96014  NA      
+## 4  2013     1     1     5 JFK    BQN   N804JB  B6      39.02 26.96 61.63      260   14.96014  NA      
+## 5  2013     1     1     6 LGA    ATL   N668DN  DL      39.92 24.98 54.81      260   16.11092  23.0156 
+## 6  2013     1     1     5 EWR    ORD   N39463  UA      39.02 28.04 64.43      260   12.65858  NA      
+## # … with 336,770 more rows, and 4 more variables: precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;
 ```
 
 ---
@@ -1245,15 +1185,14 @@ head(planes)
 
 ```
 ## # A tibble: 6 x 9
-##   tailnum  year type                    manufacturer     model     engines seats
-##   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;       &lt;int&gt; &lt;int&gt;
-## 1 N10156   2004 Fixed wing multi engine EMBRAER          EMB-145XR       2    55
-## 2 N102UW   1998 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
-## 3 N103US   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
-## 4 N104UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
-## 5 N10575   2002 Fixed wing multi engine EMBRAER          EMB-145LR       2    55
-## 6 N105UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182
-## # … with 2 more variables: speed &lt;int&gt;, engine &lt;chr&gt;
+##   tailnum  year type                    manufacturer     model     engines seats speed engine   
+##   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;       &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    
+## 1 N10156   2004 Fixed wing multi engine EMBRAER          EMB-145XR       2    55    NA Turbo-fan
+## 2 N102UW   1998 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+## 3 N103US   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+## 4 N104UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+## 5 N10575   2002 Fixed wing multi engine EMBRAER          EMB-145LR       2    55    NA Turbo-fan
+## 6 N105UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
 ```
 
 ---
@@ -1267,21 +1206,16 @@ left_join(flights2, planes, by = "tailnum")
 
 ```
 ## # A tibble: 336,776 x 16
-##    year.x month   day  hour origin dest  tailnum carrier year.y
-##     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt;
-##  1   2013     1     1     5 EWR    IAH   N14228  UA        1999
-##  2   2013     1     1     5 LGA    IAH   N24211  UA        1998
-##  3   2013     1     1     5 JFK    MIA   N619AA  AA        1990
-##  4   2013     1     1     5 JFK    BQN   N804JB  B6        2012
-##  5   2013     1     1     6 LGA    ATL   N668DN  DL        1991
-##  6   2013     1     1     5 EWR    ORD   N39463  UA        2012
-##  7   2013     1     1     6 EWR    FLL   N516JB  B6        2000
-##  8   2013     1     1     6 LGA    IAD   N829AS  EV        1998
-##  9   2013     1     1     6 JFK    MCO   N593JB  B6        2004
-## 10   2013     1     1     6 LGA    ORD   N3ALAA  AA          NA
-## # … with 336,766 more rows, and 7 more variables: type &lt;chr&gt;,
-## #   manufacturer &lt;chr&gt;, model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;,
-## #   engine &lt;chr&gt;
+##   year.x month   day  hour origin dest  tailnum carrier year.y type                    manufacturer
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;       
+## 1   2013     1     1     5 EWR    IAH   N14228  UA        1999 Fixed wing multi engine BOEING      
+## 2   2013     1     1     5 LGA    IAH   N24211  UA        1998 Fixed wing multi engine BOEING      
+## 3   2013     1     1     5 JFK    MIA   N619AA  AA        1990 Fixed wing multi engine BOEING      
+## 4   2013     1     1     5 JFK    BQN   N804JB  B6        2012 Fixed wing multi engine AIRBUS      
+## 5   2013     1     1     6 LGA    ATL   N668DN  DL        1991 Fixed wing multi engine BOEING      
+## 6   2013     1     1     5 EWR    ORD   N39463  UA        2012 Fixed wing multi engine BOEING      
+## # … with 336,770 more rows, and 5 more variables: model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;,
+## #   speed &lt;int&gt;, engine &lt;chr&gt;
 ```
 
 ---
@@ -1317,9 +1251,7 @@ stu
 ## 4     4     1     8
 ## 5     5     2     9
 ## 6     6     2    11
-## 7     7     3    12
-## 8     8     3    15
-## 9     9     3    17
+## # … with 3 more rows
 ```
 
 
@@ -1342,9 +1274,7 @@ left_join(stu, schl, by = c("scid" = "school_id"))
 ## 4     4     1     8         22.05           15741.08
 ## 5     5     2     9         31.14           11732.24
 ## 6     6     2    11         31.14           11732.24
-## 7     7     3    12         24.87           13027.88
-## 8     8     3    15         24.87           13027.88
-## 9     9     3    17         24.87           13027.88
+## # … with 3 more rows
 ```
 
 ---
@@ -1373,19 +1303,15 @@ av_pre_mth
 ```
 ## # A tibble: 707 x 4
 ## # Groups:   teacher_id [707]
-##    teacher_id k_type   av_pre_mth cut_high
-##    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-##  1 0001T01    full-day   20.45800 42.62333
-##  2 0002T01    half-day   14.977   42.62333
-##  3 0009T01    half-day   17.6475  42.62333
-##  4 0009T02    half-day   21.165   42.62333
-##  5 0013T01    full-day   42.321   42.62333
-##  6 0016T01    half-day   17.55100 42.62333
-##  7 0022T01    half-day   20.368   42.62333
-##  8 0022T03    half-day   15.325   42.62333
-##  9 0023T01    half-day   10.988   42.62333
-## 10 0023T04    half-day   20.02200 42.62333
-## # … with 697 more rows
+##   teacher_id k_type   av_pre_mth cut_high
+##   &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1 0001T01    full-day   20.45800 42.62333
+## 2 0002T01    half-day   14.977   42.62333
+## 3 0009T01    half-day   17.6475  42.62333
+## 4 0009T02    half-day   21.165   42.62333
+## 5 0013T01    full-day   42.321   42.62333
+## 6 0016T01    half-day   17.55100 42.62333
+## # … with 701 more rows
 ```
 
 ---
@@ -1424,13 +1350,11 @@ semi_join(ecls, extr_high)
 ## 2 0663006C 0663T01    0663      full-day private     male   WHITE, NON-HISPANIC
 ## 3 0663012C 0663T01    0663      full-day private     female WHITE, NON-HISPANIC
 ## 4 0078020C 0078T04    0078      half-day public      female WHITE, NON-HISPANIC
-## # … with 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;,
-## #   SES_cat &lt;chr&gt;, age &lt;dbl&gt;, T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;,
-## #   T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;, IRTreadgain &lt;dbl&gt;,
-## #   IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;, T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;,
-## #   T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;,
-## #   ARSlitgain &lt;dbl&gt;, ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;,
-## #   testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
+## # … with 26 more variables: famtype &lt;chr&gt;, numsibs &lt;dbl&gt;, SES_cont &lt;dbl&gt;, SES_cat &lt;chr&gt;, age &lt;dbl&gt;,
+## #   T1RSCALE &lt;dbl&gt;, T1MSCALE &lt;dbl&gt;, T1GSCALE &lt;dbl&gt;, T2RSCALE &lt;dbl&gt;, T2MSCALE &lt;dbl&gt;, T2GSCALE &lt;dbl&gt;,
+## #   IRTreadgain &lt;dbl&gt;, IRTmathgain &lt;dbl&gt;, IRTgkgain &lt;dbl&gt;, T1ARSLIT &lt;dbl&gt;, T1ARSMAT &lt;dbl&gt;,
+## #   T1ARSGEN &lt;dbl&gt;, T2ARSLIT &lt;dbl&gt;, T2ARSMAT &lt;dbl&gt;, T2ARSGEN &lt;dbl&gt;, ARSlitgain &lt;dbl&gt;,
+## #   ARSmathgain &lt;dbl&gt;, ARSgkgain &lt;dbl&gt;, testdate1 &lt;date&gt;, testdate2 &lt;date&gt;, elapse &lt;dbl&gt;
 ```
 
 ---
@@ -1489,19 +1413,15 @@ austen_books()
 
 ```
 ## # A tibble: 73,422 x 2
-##    text                    book               
-##  * &lt;chr&gt;                   &lt;fct&gt;              
-##  1 "SENSE AND SENSIBILITY" Sense &amp; Sensibility
-##  2 ""                      Sense &amp; Sensibility
-##  3 "by Jane Austen"        Sense &amp; Sensibility
-##  4 ""                      Sense &amp; Sensibility
-##  5 "(1811)"                Sense &amp; Sensibility
-##  6 ""                      Sense &amp; Sensibility
-##  7 ""                      Sense &amp; Sensibility
-##  8 ""                      Sense &amp; Sensibility
-##  9 ""                      Sense &amp; Sensibility
-## 10 "CHAPTER 1"             Sense &amp; Sensibility
-## # … with 73,412 more rows
+##   text                    book               
+## * &lt;chr&gt;                   &lt;fct&gt;              
+## 1 "SENSE AND SENSIBILITY" Sense &amp; Sensibility
+## 2 ""                      Sense &amp; Sensibility
+## 3 "by Jane Austen"        Sense &amp; Sensibility
+## 4 ""                      Sense &amp; Sensibility
+## 5 "(1811)"                Sense &amp; Sensibility
+## 6 ""                      Sense &amp; Sensibility
+## # … with 73,416 more rows
 ```
 
 ---
@@ -1515,19 +1435,15 @@ austen_books() %&gt;%
 
 ```
 ## # A tibble: 725,055 x 2
-##    book                word       
-##    &lt;fct&gt;               &lt;chr&gt;      
-##  1 Sense &amp; Sensibility sense      
-##  2 Sense &amp; Sensibility and        
-##  3 Sense &amp; Sensibility sensibility
-##  4 Sense &amp; Sensibility by         
-##  5 Sense &amp; Sensibility jane       
-##  6 Sense &amp; Sensibility austen     
-##  7 Sense &amp; Sensibility 1811       
-##  8 Sense &amp; Sensibility chapter    
-##  9 Sense &amp; Sensibility 1          
-## 10 Sense &amp; Sensibility the        
-## # … with 725,045 more rows
+##   book                word       
+##   &lt;fct&gt;               &lt;chr&gt;      
+## 1 Sense &amp; Sensibility sense      
+## 2 Sense &amp; Sensibility and        
+## 3 Sense &amp; Sensibility sensibility
+## 4 Sense &amp; Sensibility by         
+## 5 Sense &amp; Sensibility jane       
+## 6 Sense &amp; Sensibility austen     
+## # … with 725,049 more rows
 ```
 
 ---
@@ -1542,19 +1458,15 @@ austen_books() %&gt;%
 
 ```
 ## # A tibble: 14,520 x 2
-##    word      n
-##    &lt;chr&gt; &lt;int&gt;
-##  1 the   26351
-##  2 to    24044
-##  3 and   22515
-##  4 of    21178
-##  5 a     13408
-##  6 her   13055
-##  7 i     12006
-##  8 in    11217
-##  9 was   11204
-## 10 it    10234
-## # … with 14,510 more rows
+##   word      n
+##   &lt;chr&gt; &lt;int&gt;
+## 1 the   26351
+## 2 to    24044
+## 3 and   22515
+## 4 of    21178
+## 5 a     13408
+## 6 her   13055
+## # … with 14,514 more rows
 ```
 
 ---
@@ -1586,19 +1498,15 @@ stop_words
 
 ```
 ## # A tibble: 1,149 x 2
-##    word        lexicon
-##    &lt;chr&gt;       &lt;chr&gt;  
-##  1 a           SMART  
-##  2 a's         SMART  
-##  3 able        SMART  
-##  4 about       SMART  
-##  5 above       SMART  
-##  6 according   SMART  
-##  7 accordingly SMART  
-##  8 across      SMART  
-##  9 actually    SMART  
-## 10 after       SMART  
-## # … with 1,139 more rows
+##   word      lexicon
+##   &lt;chr&gt;     &lt;chr&gt;  
+## 1 a         SMART  
+## 2 a's       SMART  
+## 3 able      SMART  
+## 4 about     SMART  
+## 5 above     SMART  
+## 6 according SMART  
+## # … with 1,143 more rows
 ```
 
 ---
@@ -1614,19 +1522,15 @@ austen_books() %&gt;%
 
 ```
 ## # A tibble: 13,914 x 2
-##    word       n
-##    &lt;chr&gt;  &lt;int&gt;
-##  1 miss    1855
-##  2 time    1337
-##  3 fanny    862
-##  4 dear     822
-##  5 lady     817
-##  6 sir      806
-##  7 day      797
-##  8 emma     787
-##  9 sister   727
-## 10 house    699
-## # … with 13,904 more rows
+##   word      n
+##   &lt;chr&gt; &lt;int&gt;
+## 1 miss   1855
+## 2 time   1337
+## 3 fanny   862
+## 4 dear    822
+## 5 lady    817
+## 6 sir     806
+## # … with 13,908 more rows
 ```
 
 ---
