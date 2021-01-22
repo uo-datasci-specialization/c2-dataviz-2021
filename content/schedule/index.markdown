@@ -177,7 +177,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "01-27" >}}
   {{< description "Lab 2" "We will use ggplot2 to replicate plots produced by [fivethirtyeight](https://fivethirtyeight.com)." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w4p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< assigned "assignments/#labs" "Lab 2" >}}

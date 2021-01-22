@@ -20,23 +20,18 @@ output:
 source(here::here("static", "slides", "slide-setup.R"))
 ```
 
-`r setup("w3p2")`
+`r setup("w4p1")`
 
 ---
 class: inverse-blue
 # Data viz in the wild
 
-.pull-left[
 * Kavya
 * Meg
-]
 
-.pull-right[
+
 * Anisha
 * Rachael
-]
-
-<br>
 
 ## Zach and Tess on deck
 
@@ -202,8 +197,38 @@ ggplot(temps_long, aes(date, temperature)) +
   geom_line(aes(color = location))
 ```
 
+
+---
+# Change colors
+If you want to change the colors on the previous plot, you have to change the colors of the scale for the color mapping.
+
+--
+
+In other words, color is being mapped to data, and you have to change the color scale.
+
+--
+
+```{r fig.height = 5}
+ggplot(temps_long, aes(date, temperature)) +
+  geom_line(aes(color = location)) +
+  scale_color_brewer(palette = "Dark2")
+```
+
+---
+# One more note on colors
+There are lots of different scales and some work better than others. We'll talk about them more next week.
+
+
+--
+You **do not** use `scale_color_*()` if you are not mapping data to color
+
+
+--
+Make sure to keep straight `scale_color_*()` and `scale_fill_*()`
+
 ---
 # Alternative representation
+### Same plot as before, but with different scales
 
 ```{r temp-change2, fig.width = 14}
 ggdraw(align_legend(p)) 
@@ -219,7 +244,22 @@ temps_long %>%
   summarize(temp = mean(temperature)) %>% 
   ggplot(aes(month, location)) +
   geom_tile(aes(fill = temp),
-            color = "white")
+            color = "white") +
+  coord_fixed()
+```
+
+---
+# Change the fill
+
+```{r echo = TRUE, fig.height = 6}
+temps_long %>% 
+  group_by(location, month) %>% 
+  summarize(temp = mean(temperature)) %>% 
+  ggplot(aes(month, location)) +
+  geom_tile(aes(fill = temp),
+            color = "white") +
+  coord_fixed() +
+  scico::scale_fill_scico(palette = "tokyo")
 ```
 
 ---

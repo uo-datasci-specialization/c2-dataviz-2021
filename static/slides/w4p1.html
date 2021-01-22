@@ -31,11 +31,11 @@ layout: true
   &lt;div class="slides-footer"&gt;
   &lt;span&gt;
   
-  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021/raw/main/static/slides/w3p2.pdf"&gt;
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021/raw/main/static/slides/w4p1.pdf"&gt;
     &lt;i class = "footer-icon" data-feather="download"&gt;&lt;/i&gt;
   &lt;/a&gt;
   
-  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w3p2.html"&gt;
+  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w4p1.html"&gt;
     &lt;i class = "footer-icon" data-feather="link"&gt;&lt;/i&gt;
   &lt;/a&gt;
   
@@ -51,17 +51,12 @@ layout: true
 class: inverse-blue
 # Data viz in the wild
 
-.pull-left[
 * Kavya
 * Meg
-]
 
-.pull-right[
+
 * Anisha
 * Rachael
-]
-
-&lt;br&gt;
 
 ## Zach and Tess on deck
 
@@ -189,8 +184,34 @@ ggplot(temps_long, aes(date, temperature)) +
 
 ![](w4p1_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
+
+---
+# Change colors
+If you want to change the colors on the previous plot, you have to change the colors of the scale for the color mapping.
+
+--
+
+In other words, color is being mapped to data, and you have to change the color scale.
+
+--
+
+![](w4p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+# One more note on colors
+There are lots of different scales and some work better than others. We'll talk about them more next week.
+
+
+--
+You **do not** use `scale_color_*()` if you are not mapping data to color
+
+
+--
+Make sure to keep straight `scale_color_*()` and `scale_fill_*()`
+
 ---
 # Alternative representation
+### Same plot as before, but with different scales
 
 ![](w4p1_files/figure-html/temp-change2-1.png)&lt;!-- --&gt;
 
@@ -205,10 +226,28 @@ temps_long %&gt;%
   summarize(temp = mean(temperature)) %&gt;% 
   ggplot(aes(month, location)) +
   geom_tile(aes(fill = temp),
-            color = "white")
+            color = "white") +
+  coord_fixed()
 ```
 
-![](w4p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](w4p1_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+# Change the fill
+
+
+```r
+temps_long %&gt;% 
+  group_by(location, month) %&gt;% 
+  summarize(temp = mean(temperature)) %&gt;% 
+  ggplot(aes(month, location)) +
+  geom_tile(aes(fill = temp),
+            color = "white") +
+  coord_fixed() +
+  scico::scale_fill_scico(palette = "tokyo")
+```
+
+![](w4p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 # Comparison
