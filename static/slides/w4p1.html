@@ -201,7 +201,15 @@ In other words, color is being mapped to data, and you have to change the color 
 
 --
 
-![](w4p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+```r
+ggplot(temps_long, aes(date, temperature)) +
+  geom_line(aes(color = location)) +
+  scale_color_brewer(palette = "Dark2")
+```
+
+---
+![](w4p1_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 # One more note on colors
@@ -236,7 +244,7 @@ temps_long %&gt;%
   coord_fixed()
 ```
 
-![](w4p1_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](w4p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 # Change the fill
@@ -253,7 +261,7 @@ temps_long %&gt;%
   scico::scale_fill_scico(palette = "tokyo")
 ```
 
-![](w4p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](w4p1_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 # Comparison

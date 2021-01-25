@@ -214,7 +214,14 @@ In other words, color is being mapped to data, and you have to change the color 
 
 --
 
-```{r fig.height = 5}
+```{r echo = TRUE, eval = FALSE}
+ggplot(temps_long, aes(date, temperature)) +
+  geom_line(aes(color = location)) +
+  scale_color_brewer(palette = "Dark2")
+```
+
+---
+```{r }
 ggplot(temps_long, aes(date, temperature)) +
   geom_line(aes(color = location)) +
   scale_color_brewer(palette = "Dark2")
