@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #9C9B9D !important;
 }
 
+.remark-code-line-highlighted .hljs-comment {
+  color: #b6e3fc !important;
+}
+
 .hljs-string {
 	color: #18B6A2 !important;
 }
