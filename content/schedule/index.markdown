@@ -170,7 +170,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "socviz" "lookatdata.html#lookatdata" "1" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/Ei6aJdBGOYk" >}}
 {{< /wrap >}}
 {{< /week-odd >}}
 
@@ -189,7 +189,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "dataviz" "aesthetic-mapping.html" "2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/f1aI5CKzv8E" >}}
 {{< /wrap >}}
 {{< /week-even >}}
 
