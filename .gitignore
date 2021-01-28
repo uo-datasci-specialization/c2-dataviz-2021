@@ -7,8 +7,9 @@ website-data/~$course-schedule.xlsx
 nopublish/
 data/kaggle-data/
 
-content/post/lab-1/index.Rmarkdown
 content/post/homework-1/index.Rmarkdown
 
 content/post/lab-2/index.Rmarkdown
 content/post/lab-2/index_files/figure-html/
+
+static/slides/w5p1_cache/

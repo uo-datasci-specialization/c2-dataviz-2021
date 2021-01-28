@@ -1,0 +1,963 @@
+---
+title: "Colors!"
+author: "Daniel Anderson "
+date: "Week 5, Class 1 "
+output:
+  xaringan::moon_reader:
+    css: ["default", "new.css"]
+    lib_dir: libs
+    nature:
+      navigation:
+        scroll: false
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+    includes:
+      in_header: "load-feather.html"
+---
+
+```{r include = FALSE, results = "asis"}
+source(here::here("static", "slides", "slide-setup.R"))
+```
+
+`r setup("w4p2")`
+
+---
+class: inverse-blue
+# Data viz in Wild
+
+Chris
+
+Vinita
+
+### Shijing and David on deck
+
+
+
+---
+# Agenda 
+* Color basics
+  + 3 basic ways color is used
+* Color blindness
+* Some common problems with color use
+* Quick discussion of palettes
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(fig.width = 13, 
+                      message = FALSE, 
+                      warning = FALSE,
+                      echo = TRUE,
+                      cache = TRUE)
+knitr::dep_auto()
+
+source(here::here("wilke-purl", "wilke-redundant_coding.R"))
+source(here::here("wilke-purl", "wilke-color_basics.R"))
+
+library(tidyverse)
+update_geom_defaults('path', list(size = 3))
+update_geom_defaults('point', list(size = 4))
+```
+
+--
+### Learning Objectives
+* Understand different types of color palettes
+  + ...and when you should use one versus another
+* Understand and be able to effectively evaluate concerns related to color
+blindness
+* Be able to fluently change colors/fills within ggplot
+
+---
+# Before we get too deep
+### Some very practical advice
+* Keep straight when color is mapped to a variable through `aes` and when it's
+modifying an element overall
+
+  + Former requires `scale_color_*` or `scale_fill_*` while the latter does not
+
+
+--
+* Keep straight colors and fills (see former bullet)
+
+
+--
+* Use advice of others to your advantage (e.g., http://colorbrewer2.org/)
+
+
+---
+class: inverse bottom center
+background-image:url(http://socviz.co/assets/ch-01-luminance-contrast-color.png)
+background-size:contain
+
+# Why color choice matters
+
+---
+class: inverse bottom center
+background-image:url(http://socviz.co/assets/ch-01-luminance-contrast-bw.png)
+background-size:contain
+
+# Why color choice matters
+
+
+---
+class: inverse-red middle
+# Another quick example
+
+.realbig[
+.middle[
+.center[
+[{rayshader}](https://resources.rstudio.com/rstudio-conf-2019/3d-mapping-plotting-and-printing-with-rayshader)
+]
+]
+]
+
+---
+# 3 fundamental uses of color
+
+--
+1. Distinguish groups from each other
+
+
+--
+1. Represent data values
+
+
+--
+1. Highlight
+
+
+---
+class:inverse-blue middle
+
+# Color as a tool to distinguish
+
+---
+# Discrete items
+* Often no intrinsic order
+
+
+--
+### Qualitative color scale
+* Finite number of colors
+	+ Chosen to maximize distinctness, while also be equivalent
+	+ Equivalent
+		- No  color should stand out
+		- No impression of order
+
+---
+background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/qualitative-scales-1.png)
+background-size:contain
+
+# Some examples
+
+.footnote[See more about the Okabe Ito palette origins [here]( http://jfly.iam.u-tokyo.ac.jp/color/)]
+
+---
+# How do we use them?
+Imagine we have data like this
+
+```{r popgrowth}
+popgrowth_df
+```
+
+---
+# Maybe a plot like this
+
+```{r theme_set1, include = FALSE}
+theme_set(theme_minimal(base_size = 15) +
+            theme(plot.margin = margin(-0.1, -0.1, 0, 0, unit = "cm")))
+```
+
+.pull-left[
+```{r popgrowthvis1, eval = FALSE}
+ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(alpha = 0.9)
+```
+]
+
+.pull-right[
+```{r ref.label="popgrowthvis1", echo=FALSE, fig.width = 7, fig.height = 9.6}
+```
+]
+
+---
+# Alternatively, fill by region
+
+.pull-left[
+```{r popgrowthvis2, eval = FALSE}
+ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9)
+```
+]
+
+.pull-right[
+```{r ref.label="popgrowthvis2", echo=FALSE, fig.width = 7, fig.height = 9.6}
+```
+]
+
+---
+# Problem with default palette 
+
+```{r colorblind1, echo = FALSE, fig.height = 8}
+p <- ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+  theme_void()
+colorblindr::cvd_grid(p)
+```
+
+---
+# Alternative: viridis
+
+.pull-left[
+
+```{r viridis1, eval = FALSE}
+ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+  scale_fill_viridis_d() #<<
+```
+]
+
+.pull-right[
+```{r ref.label="viridis1", echo=FALSE, fig.width = 7, fig.height = 9.6}
+```
+]
+
+---
+# Revised version
+
+```{r echo = FALSE, fig.height = 8}
+p2 <- ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) +
+  scale_fill_viridis_d() +
+  theme_void()
+
+colorblindr::cvd_grid(p2)
+```
+
+---
+# The Okabe Ito palette
+
+.pull-left[
+
+* From [Color Universal Design](http://jfly.iam.u-tokyo.ac.jp/color/)
+
+```{r OkabeIto1, eval = FALSE}
+library(colorblindr) #<<
+
+ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) +
+  scale_fill_OkabeIto() #<<
+```
+]
+
+.pull-right[
+```{r ref.label="OkabeIto1", echo=FALSE, fig.width = 7, fig.height = 9.6}
+```
+]
+
+---
+# Okabe Ito for colorblindness
+
+```{r echo = FALSE, fig.height = 8}
+p3 <- ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) +
+  scale_fill_OkabeIto() + #<<
+  theme_void()
+
+colorblindr::cvd_grid(p3)
+```
+
+---
+# How am I checking for colorblindness?
+* Also part of the **{colorblindr}** package ([here](https://github.com/clauswilke/colorblindr))
+  + depends on the dev versions of **{colorspace}** and **{cowplot}**, which are useful packages in their own right
+
+```{r install-colorblindr, eval = FALSE}
+devtools::install_github("wilkelab/cowplot")
+install.packages("colorspace", repos = "http://R-Forge.R-project.org")
+
+devtools::install_github("clauswilke/colorblindr")
+```
+
+---
+```{r okabe-ito2, fig.height = 5}
+p <- ggplot(popgrowth_df, 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) +
+  scale_fill_OkabeIto() + 
+  theme_void() # not necessary but I like it #<<
+
+colorblindr::cvd_grid(p) #<<
+```
+
+---
+class: inverse-orange middle
+
+# Colors for continuous values
+
+---
+background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/sequential-scales-1.png)
+background-size:contain
+
+# Sequential scale examples
+
+---
+# Sequential scales
+* Which values are larger/smaller
+
+
+--
+* How distant two values are from each other
+
+--
+	+ Scale must be perceptually uniform across its entire range
+
+--
+	+ Similar to an interval scale, but for color
+
+
+--
+* Often based on a single .bolder[hue]
+
+--
+* Multi-hue sequential scales tend to follow gradients in the natural world
+
+
+---
+class: inverse-red middle
+# Common uses of sequential palettes
+
+---
+# Heatmaps
+
+```{r theme_set2, include = FALSE}
+theme_set(theme_minimal(base_size = 25) +
+            theme(plot.margin = margin(-0.1, -0.1, 0, 0, unit = "cm")))
+```
+
+First the data:
+
+```{r }
+hm <- diamonds %>% 
+  select(table, price, depth, carat) %>% 
+  corrr::correlate() %>% 
+  pivot_longer(-rowname) %>% 
+  mutate(name = fct_reorder(name, value),
+         rowname = fct_reorder(rowname, value))
+hm
+```
+
+---
+
+```{r }
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() 
+```
+
+---
+```{r heatmap2}
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
+	scale_fill_distiller(palette = "Blues") #<<
+```
+
+---
+# Change the NA value
+
+In any `scale_*` you can change the `NA` value, including to `"transparent"`.
+
+```{r heatmap2b, fig.height = 4}
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
+	scale_fill_distiller(palette = "Blues",
+	                     na.value = "#b0bfb0") #<<
+```
+
+---
+```{r heatmap3}
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
+	scale_fill_viridis_c() #<<
+```
+
+---
+
+```{r heatmap4}
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
+	scale_fill_viridis_c(option = "magma") #<<
+```
+
+`option = c("viridis", "magma", "inferno", "plasma")`
+
+
+---
+# Choropleths
+
+```{r lane1, echo = FALSE}
+library(tidycensus)
+library(tigris)
+options(tigris_use_cache = TRUE)
+options(tigris_class="sf")
+
+lane <- get_decennial(geography = "tract", variables = "P005003", 
+                  state = "OR", county = "Lane", geometry = TRUE,
+                  summary_var = "P001001")
+
+or <- get_decennial(geography = "county", variables = "P005003", 
+                  state = "OR", geometry = TRUE,
+                  summary_var = "P001001")
+
+ca <- get_decennial(geography = "county", variables = "P005003", 
+                  state = "CA", geometry = TRUE,
+                  summary_var = "P001001")
+
+lane %>%
+  mutate(pct = 100 * (value / summary_value)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  theme_dviz_map(font_size = 25, font_family = "Roboto") +
+  labs(title = "Percentage of people identifying as White",
+       subtitle = "Lane County",
+       caption = "US Census Decennial Tract Data")
+```
+
+---
+# Heat palette 
+
+```{r lane2, echo = FALSE}
+lane %>%
+  mutate(pct = 100 * (value / summary_value)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  theme_dviz_map(font_size = 25, font_family = "Roboto") +
+  scale_fill_continuous_sequential("Heat") +
+  scale_color_continuous_sequential("Heat") +
+  labs(title = "Percentage of people identifying as White",
+       subtitle = "Lane County",
+       caption = "US Census Decennial Tract Data")
+
+```
+
+---
+# Options
+* `scale_fill_continuous_sequential("Heat")` 
+* `scale_color_continuous_sequential("Heat")` 
+* `scale_fill_discrete_sequential("Heat")`
+* `scale_color_discrete_sequential("Heat")`
+
+---
+# viridis palette
+
+```{r lane3, echo = FALSE}
+lane %>%
+  mutate(pct = 100 * (value / summary_value)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  theme_dviz_map(font_size = 25, font_family = "Roboto") +
+  scale_fill_viridis_c() +
+  scale_color_viridis_c() +
+  labs(title = "Percentage of people identifying as White",
+       subtitle = "Lane County",
+       caption = "US Census Decennial Tract Data")
+```
+
+---
+background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/diverging-scales-1.png)
+background-size:contain
+
+# Diverging palettes
+
+
+---
+# Earth palette
+
+```{r or1, echo = FALSE}
+or %>%
+  mutate(pct = 100 * (value / summary_value)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  theme_dviz_map(font_size = 25, font_family = "Roboto") +
+  scale_fill_continuous_divergingx(palette = "Earth", 
+                                   mid = 50, 
+                                   limits = c(0, 100)) +
+  scale_color_continuous_divergingx(palette = "Earth", 
+                                    mid = 50,
+                                    limits = c(0, 100)) +
+  labs(title = "Percentage of people identifying as White",
+       subtitle = "Oregon",
+       caption = "US Census Decennial Tract Data")
+
+```
+
+---
+```{r ca1, echo = FALSE, fig.height = 9}
+ca %>%
+  mutate(pct = 100 * (value / summary_value)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  theme_dviz_map(font_size = 25, font_family = "Roboto") +
+  scale_fill_continuous_divergingx(palette = "Earth", 
+                                   mid = 50, 
+                                   limits = c(0, 100)) +
+  scale_color_continuous_divergingx(palette = "Earth", 
+                                    mid = 50,
+                                    limits = c(0, 100)) +
+  labs(title = "Percentage of people identifying as White",
+       subtitle = "California",
+       caption = "US Census Decennial County Data")
+
+```
+
+```{r theme_set3, include = FALSE, cache = FALSE}
+theme_set(theme_minimal(base_size = 25))
+```
+
+---
+class: inverse-blue center middle
+# Color as a tool to highlight
+
+---
+# MPG data
+Basic scatterplot of weight to highway mpg
+
+```{r basic-scatter, fig.height = 5.5}
+ggplot(mpg, aes(displ, hwy)) +
+	geom_point()
+```
+
+---
+# Highlight compact cars
+
+```{r compact-cars-scatter, fig.height = 6}
+ggplot(mpg, aes(displ, hwy)) +
+	geom_point(color = "gray80") +
+	geom_point(data = filter(mpg, class == "compact"),
+	           color = "#C55644")
+```
+
+
+---
+# Highlight manual cars
+
+```{r compact-cars-scatter-h1, fig.height = 6}
+ggplot(mpg, aes(displ, hwy)) +
+	geom_point(color = "gray80") +
+	geom_point(data = filter(mpg, str_detect(trans, "manual")),
+	           color = "#C55644")
+```
+
+---
+# Back to our states plot
+### Highlight Oregon and Washington
+```{r basic-highlight-or-echo, eval = FALSE}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() 
+```
+
+---
+
+```{r basic-highlight-or-eval, echo = FALSE, fig.height = 10}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  theme(axis.text.y = element_text(size = 11))
+```
+
+---
+# Color labels
+```{r highlight-or}
+states <- unique(popgrowth_df$state)
+
+label_color <- ifelse(states == "Oregon" | states == "Washington", 
+                "#C55644",
+                "gray30")
+label_color
+
+label_face <- ifelse(states == "Oregon" | states == "Washington", 
+                "bold",
+                "plain")
+
+label_face
+```
+
+---
+```{r orwa-highlight-echo, eval = FALSE}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  theme(axis.text.y = element_text(color = label_color, #<<
+                                   face = label_face)) #<<
+```
+
+---
+```{r orwa-highlight-eval, echo = FALSE, fig.height = 10}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  theme(axis.text.y = element_text(color = label_color, #<<
+                                   face = label_face,
+                                   size = 11)) #<<
+```
+
+
+---
+# Even better
+
+```{r fig.height = 4}
+accent_OkabeIto <- palette_OkabeIto[c(1, 2, 7, 4, 5, 3, 6)]
+accent_OkabeIto[1:4] <- desaturate(lighten(accent_OkabeIto[1:4], .4), .8)
+accent_OkabeIto[5:7] <- darken(accent_OkabeIto[5:7], .3)
+gg_color_swatches(7) +
+	scale_fill_manual(values = accent_OkabeIto)
+```
+
+---
+```{r orwa-highlight-echo2, eval = FALSE}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  theme(axis.text.y = element_text(color = label_color, #<<
+                                   face = label_face)) #<<
+```
+
+
+---
+```{r orwa-highlight-eval2, echo = FALSE, fig.height = 10}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  theme(axis.text.y = element_text(color = label_color, #<<
+                                   face = label_face,
+                                   size = 11)) #<<
+```
+
+---
+# Or even better
+
+```{r eval = FALSE}
+library(ggtext) #<<
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  scale_x_continuous(expand = c(0, 0)) + #<<
+  labs(title = "Population growth by region",
+       subtitle = "The <span style = 'color: #C55644'>**northwest**</span> is where it's at") +
+  theme(axis.text.y = element_text(color = label_color, 
+                                   face = label_face),
+        plot.subtitle = element_markdown()) #<<
+```
+
+---
+
+```{r echo = FALSE, fig.height = 11}
+library(ggtext) #<<
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+  scale_x_continuous(expand = c(0, 0)) + #<<
+  labs(title = "Population growth by region",
+       subtitle = "The <span style = 'color: #C55644'>**northwest**</span> is where it's at") +
+  theme(axis.text.y = element_text(color = label_color, 
+                                   face = label_face,
+                                   size = 11),
+        plot.subtitle = element_markdown()) 
+```
+
+
+```{r set_theme4, echo = FALSE}
+theme_set(theme_minimal(20))
+```
+
+
+---
+# Last example
+
+```{r sleepstudy}
+data(sleepstudy, package = "lme4")
+head(sleepstudy)
+```
+
+---
+# Plot by subject
+```{r plot1, fig.height = 6}
+ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
+	geom_line() 
+```
+
+---
+```{r gghighlight1}
+library(gghighlight) #<<
+ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
+	geom_line() +
+	gghighlight(max(Reaction) > 400) #<<
+```
+
+---
+
+```{r gghighlight2}
+library(gghighlight) 
+ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
+	geom_line() +
+	gghighlight(max(Reaction) > 400) + 
+	scale_color_OkabeIto() #<<
+```
+
+---
+
+```{r gghighlight3, fig.height = 6}
+library(gghighlight)
+ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
+	geom_line() +
+	facet_wrap(~Subject) + #<<
+	gghighlight(max(Reaction) > 400) + 
+	scale_color_OkabeIto()
+```
+
+---
+class: inverse-red center middle
+# A few other things to consider
+
+---
+# Double encodings
+
+```{r iris-scatter1, echo = FALSE}
+library(palmerpenguins)
+penguin_scatter <- ggplot(penguins, aes(bill_length_mm, body_mass_g)) +
+  geom_point(aes(color = island),
+             alpha = 0.7, 
+             stroke = 0) +
+  scale_color_OkabeIto()
+```
+
+--
+This plot is less than ideal. Why?
+
+
+---
+# Color blindness
+
+```{r color-blind-iris_scatter, echo = FALSE}
+cvd_grid(penguin_scatter)
+```
+
+---
+# Better version
+
+```{r iris-scatter, echo = FALSE}
+penguin_scatter2 <- ggplot(penguins, aes(bill_length_mm, body_mass_g)) +
+  geom_point(aes(color = island,
+                 shape = island),
+             alpha = 0.7, 
+             stroke = 0) +
+  scale_color_OkabeIto()
+penguin_scatter2
+```
+
+---
+# Color blindness check
+
+```{r color-blind-iris_scatter2, echo = FALSE}
+cvd_sim2(penguin_scatter2)
+```
+
+---
+class:inverse-blue center middle
+# Common problems with color
+
+---
+# Too many colors
+
+More than 5-ish categories generally becomes too difficult to track
+
+```{r too-many-colors, fig.height = 5}
+ggplot(popgrowth_df, aes(pop2000, popgrowth, color = state)) +
+	geom_point()
+```
+
+
+---
+# Use labels
+
+More than 5-ish categories generally becomes too difficult to track
+
+```{r states-labeled, fig.height = 5}
+library(ggrepel) #<<
+
+ggplot(popgrowth_df, aes(pop2000, popgrowth)) +
+	geom_point(color = "gray70") +
+	geom_text_repel(aes(label = state)) #<<
+```
+
+---
+# Better
+
+Get a subset
+
+```{r subset-states}
+to_label <- c("Alaska", "Arizona", "California", "Florida", "Wisconsin", 
+              "Louisiana", "Nevada", "Michigan", "Montana", "New Mexico", 
+              "Pennsylvania", "New York", "Oregon", "Rhode Island",
+              "Tennessee", "Texas", "Utah", "Vermont")
+subset_states <- popgrowth_df %>%
+	filter(state %in% to_label)
+```
+
+---
+
+```{r repeled-labels, fig.height = 5}
+library(ggrepel) #<<
+
+ggplot(popgrowth_df, aes(pop2000, popgrowth)) +
+	geom_point(color = "gray70") +
+	geom_text_repel(aes(label = state), #<<
+	                data = subset_states, #<<
+	                min.segment.length = 0) #<<
+
+```
+
+(still lots more cleaning up we could do here...)
+
+```{r theme_set5, include = FALSE}
+theme_set(theme_minimal(base_size = 13))
+```
+
+---
+# Rainbow palette
+
+```{r rainbow1}
+rainbow(3)
+rainbow(7)
+```
+
+---
+# Pretty! Doesn't work well
+See [here](https://www.poynter.org/archive/2013/why-rainbow-colors-arent-always-the-best-options-for-data-visualizations/) for one (of many) articles on why this is the case
+
+```{r echo = FALSE}
+theme_set(theme_minimal() +
+  theme(axis.text.y = element_text(size = 11)))
+```
+
+```{r rainbow-pop, fig.height = 6.5}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = state)) +
+  scale_fill_manual(values = rainbow(51)) + 
+  guides(fill = "none") 
+```
+
+---
+# Last few note on palettes
+* Do some research, find what you like **and** what tends to work well
+
+* Check for colorblindness
+
+* Look into http://colorbrewer2.org/ 
+
+  + `scale_color_brewer()` and `scale_fill_brewer()` ship with ggplot2
+
+---
+# For example
+
+```{r brewer, eval = FALSE}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) +
+  scale_fill_brewer(palette = "Set2") #<<
+```
+
+---
+
+```{r echo=FALSE,  fig.height = 11}
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) +
+  scale_fill_brewer(palette = "Set2") +
+  theme(axis.text.y = element_text(size = 11))
+```
+
+---
+# Paleteer package
+
+.center[
+[![](https://github.com/EmilHvitfeldt/paletteer/raw/master/man/figures/logo.png)](https://github.com/EmilHvitfeldt/paletteer)
+]
+
+---
+class: inverse-green center middle
+# Next time
+Lab 3: Colors
+
+Note - this will be our final lab to make sure you have sufficient time for your final projects

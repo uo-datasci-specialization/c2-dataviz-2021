@@ -4,11 +4,10 @@
     <title>Colors!</title>
     <meta charset="utf-8" />
     <meta name="author" content="Daniel Anderson" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="new.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -21,6 +20,46 @@ class: center, middle, inverse, title-slide
 ---
 
 
+
+
+layout: true
+
+  &lt;script&gt;
+    feather.replace()
+  &lt;/script&gt;
+  
+  &lt;div class="slides-footer"&gt;
+  &lt;span&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021/raw/main/static/slides/w4p2.pdf"&gt;
+    &lt;i class = "footer-icon" data-feather="download"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://dataviz-2021.netlify.app/slides/w4p2.html"&gt;
+    &lt;i class = "footer-icon" data-feather="link"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a class = "footer-icon-link" href = "https://github.com/uo-datasci-specialization/c2-dataviz-2021"&gt;
+    &lt;i class = "footer-icon" data-feather="github"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;/span&gt;
+  &lt;/div&gt;
+  
+
+---
+class: inverse-blue
+# Data viz in Wild
+
+Chris
+
+Vinita
+
+### Shijing and David on deck
+
+
+
+---
 # Agenda 
 * Color basics
   + 3 basic ways color is used
@@ -71,29 +110,34 @@ background-size:contain
 
 
 ---
+class: inverse-red middle
 # Another quick example
 
+.realbig[
 .middle[
-  .center[
-# [rayshader](https://resources.rstudio.com/rstudio-conf-2019/3d-mapping-plotting-and-printing-with-rayshader)
-  ]
+.center[
+[{rayshader}](https://resources.rstudio.com/rstudio-conf-2019/3d-mapping-plotting-and-printing-with-rayshader)
+]
+]
 ]
 
 ---
-# Three fundamental uses of color
+# 3 fundamental uses of color
 
 --
 1. Distinguish groups from each other
 
+
 --
 1. Represent data values
+
 
 --
 1. Highlight
 
 
 ---
-class:inverse middle
+class:inverse-blue middle
 
 # Color as a tool to distinguish
 
@@ -116,7 +160,7 @@ background-size:contain
 
 # Some examples
 
-.footnote[See more about the Okabe Ito palette origins here: http://jfly.iam.u-tokyo.ac.jp/color/]
+.footnote[See more about the Okabe Ito palette origins [here]( http://jfly.iam.u-tokyo.ac.jp/color/)]
 
 ---
 # How do we use them?
@@ -129,34 +173,34 @@ popgrowth_df
 
 ```
 ## # A tibble: 51 x 7
-##   region    division         state        pop2000  pop2010    popgrowth     area
-##   &lt;fct&gt;     &lt;chr&gt;            &lt;fct&gt;          &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Midwest   East North Cent… Michigan     9938444  9883640 -0.005514344 56538.92
-## 2 Northeast New England      Rhode Isla…  1048319  1052567  0.004052202  1033.82
-## 3 South     West South Cent… Louisiana    4468976  4533372  0.01440956  43203.93
-## 4 Midwest   East North Cent… Ohio        11353140 11536504  0.01615095  40860.73
-## 5 Northeast Middle Atlantic  New York    18976457 19378102  0.02116544  47126.43
-## 6 South     South Atlantic   West Virgi…  1808344  1852994  0.02469110  24038.21
-## # … with 45 more rows
+##   region    division           state          pop2000  pop2010    popgrowth
+##   &lt;fct&gt;     &lt;chr&gt;              &lt;fct&gt;            &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Midwest   East North Central Michigan       9938444  9883640 -0.005514344
+## 2 Northeast New England        Rhode Island   1048319  1052567  0.004052202
+## 3 South     West South Central Louisiana      4468976  4533372  0.01440956 
+## 4 Midwest   East North Central Ohio          11353140 11536504  0.01615095 
+## 5 Northeast Middle Atlantic    New York      18976457 19378102  0.02116544 
+## 6 South     South Atlantic     West Virginia  1808344  1852994  0.02469110 
+## # … with 45 more rows, and 1 more variable: area &lt;dbl&gt;
 ```
 
 ---
-# We might build a plot like this
+# Maybe a plot like this
+
 
 
 .pull-left[
 
 ```r
 ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
-  geom_col(alpha = 0.7) + 
-  coord_flip() 
+       aes(x = popgrowth,
+           y = state)) + 
+  geom_col(alpha = 0.9)
 ```
 ]
 
 .pull-right[
-![](w5p1_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -166,16 +210,15 @@ ggplot(popgrowth_df,
 
 ```r
 ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+       aes(x = popgrowth,
+           y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.7) + 
-  coord_flip() 
+           alpha = 0.9)
 ```
 ]
 
 .pull-right[
-![](w5p1_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -191,23 +234,22 @@ ggplot(popgrowth_df,
 
 ```r
 ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+       aes(x = popgrowth,
+           y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.7) + 
-* scale_fill_viridis_d() +
-  coord_flip() 
+           alpha = 0.9) + 
+* scale_fill_viridis_d()
 ```
 ]
 
 .pull-right[
-![](w5p1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ]
 
 ---
 # Revised version
 
-![](w5p1_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
 ---
 # The Okabe Ito palette
@@ -221,28 +263,27 @@ ggplot(popgrowth_df,
 *library(colorblindr)
 
 ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+       aes(x = popgrowth,
+           y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.7) + 
-* scale_fill_OkabeIto() +
-  coord_flip() 
+           alpha = 0.9) +
+* scale_fill_OkabeIto()
 ```
 ]
 
 .pull-right[
-![](w5p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 ]
 
 ---
 # Okabe Ito for colorblindness
 
-![](w5p1_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
-## How am I checking for colorblindness?
-* Also part of the `colorblindr` package ([here](https://github.com/clauswilke/colorblindr))
-  + depends on the dev versions of `colorspace` and `cowplot`, which are useful packages in their own right
+# How am I checking for colorblindness?
+* Also part of the **{colorblindr}** package ([here](https://github.com/clauswilke/colorblindr))
+  + depends on the dev versions of **{colorspace}** and **{cowplot}**, which are useful packages in their own right
 
 
 ```r
@@ -256,12 +297,11 @@ devtools::install_github("clauswilke/colorblindr")
 
 ```r
 p &lt;- ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+       aes(x = popgrowth,
+           y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.7) + 
+           alpha = 0.9) +
   scale_fill_OkabeIto() + 
-  coord_flip()  +
 * theme_void() # not necessary but I like it
 
 *colorblindr::cvd_grid(p)
@@ -270,9 +310,9 @@ p &lt;- ggplot(popgrowth_df,
 ![](w5p1_files/figure-html/okabe-ito2-1.png)&lt;!-- --&gt;
 
 ---
-class: inverse middle center
+class: inverse-orange middle
 
-# Colors to represent continuous values
+# Colors for continuous values
 
 ---
 background-image:url(https://serialmentor.com/dataviz/color_basics_files/figure-html/sequential-scales-1.png)
@@ -281,7 +321,7 @@ background-size:contain
 # Sequential scale examples
 
 ---
-# Sequential scale representation
+# Sequential scales
 * Which values are larger/smaller
 
 
@@ -303,40 +343,84 @@ background-size:contain
 
 
 ---
-# Common use of sequential palettes
-### Heatmaps
+class: inverse-red middle
+# Common uses of sequential palettes
+
+---
+# Heatmaps
 
 
+
+First the data:
 
 
 ```r
-iris %&gt;%
-	gather(var, value, -Species) %&gt;%
-ggplot(aes(Species, fct_reorder(var, value))) +
-	geom_tile(aes(fill = value))
+hm &lt;- diamonds %&gt;% 
+  select(table, price, depth, carat) %&gt;% 
+  corrr::correlate() %&gt;% 
+  pivot_longer(-rowname) %&gt;% 
+  mutate(name = fct_reorder(name, value),
+         rowname = fct_reorder(rowname, value))
+hm
 ```
 
-![](w5p1_files/figure-html/heatmap1-1.png)&lt;!-- --&gt;
+```
+## # A tibble: 16 x 3
+##   rowname name       value
+##   &lt;fct&gt;   &lt;fct&gt;      &lt;dbl&gt;
+## 1 table   table NA        
+## 2 table   price  0.1271339
+## 3 table   depth -0.2957785
+## 4 table   carat  0.1816175
+## 5 price   table  0.1271339
+## 6 price   price NA        
+## # … with 10 more rows
+```
+
+---
+
+
+```r
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() 
+```
+
+![](w5p1_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 
 ```r
-iris %&gt;%
-	gather(var, value, -Species) %&gt;%
-ggplot(aes(Species, fct_reorder(var, value))) +
-	geom_tile(aes(fill = value)) +
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
 *scale_fill_distiller(palette = "Blues")
 ```
 
 ![](w5p1_files/figure-html/heatmap2-1.png)&lt;!-- --&gt;
 
 ---
+# Change the NA value
+
+In any `scale_*` you can change the `NA` value, including to `"transparent"`.
+
 
 ```r
-iris %&gt;%
-	gather(var, value, -Species) %&gt;%
-ggplot(aes(Species, fct_reorder(var, value))) +
-	geom_tile(aes(fill = value)) +
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
+	scale_fill_distiller(palette = "Blues",
+*                     na.value = "#b0bfb0")
+```
+
+![](w5p1_files/figure-html/heatmap2b-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
 *scale_fill_viridis_c()
 ```
 
@@ -346,20 +430,19 @@ ggplot(aes(Species, fct_reorder(var, value))) +
 
 
 ```r
-iris %&gt;%
-	gather(var, value, -Species) %&gt;%
-ggplot(aes(Species, fct_reorder(var, value))) +
-	geom_tile(aes(fill = value)) +
+ggplot(hm, aes(name, rowname)) +
+  geom_tile(aes(fill = value)) +
+  coord_fixed() +
 *scale_fill_viridis_c(option = "magma")
 ```
 
 ![](w5p1_files/figure-html/heatmap4-1.png)&lt;!-- --&gt;
+
 `option = c("viridis", "magma", "inferno", "plasma")`
 
 
 ---
-# Another common use
-### Choropleths
+# Choropleths
 
 ![](w5p1_files/figure-html/lane1-1.png)&lt;!-- --&gt;
 
@@ -398,7 +481,7 @@ background-size:contain
 
 
 ---
-class: inverse center middle
+class: inverse-blue center middle
 # Color as a tool to highlight
 
 ---
@@ -445,20 +528,18 @@ ggplot(mpg, aes(displ, hwy)) +
 ### Highlight Oregon and Washington
 
 ```r
-ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.3) + 
+           alpha = 0.9) + 
 	geom_col(data = filter(popgrowth_df,
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-* scale_fill_OkabeIto() +
-  coord_flip() 
+  scale_fill_OkabeIto() 
 ```
 
 ---
+
 ![](w5p1_files/figure-html/basic-highlight-or-eval-1.png)&lt;!-- --&gt;
 
 ---
@@ -504,17 +585,14 @@ label_face
 ---
 
 ```r
-ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.3) + 
+           alpha = 0.9) + 
 	geom_col(data = filter(popgrowth_df,
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-  scale_fill_OkabeIto() + 
-  coord_flip() +
+  scale_fill_OkabeIto() +
 * theme(axis.text.y = element_text(color = label_color,
 *                                  face = label_face))
 ```
@@ -535,28 +613,54 @@ gg_color_swatches(7) +
 	scale_fill_manual(values = accent_OkabeIto)
 ```
 
-![](w5p1_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 
 ```r
-ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
-  geom_col(aes(fill = region)) + 
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
 	geom_col(data = filter(popgrowth_df,
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-* scale_fill_manual(values = accent_OkabeIto) +
-  coord_flip() +
-  theme(axis.text.y = element_text(color = label_color, 
-                                   face = label_face)) 
+  scale_fill_OkabeIto() +
+* theme(axis.text.y = element_text(color = label_color,
+*                                  face = label_face))
 ```
 
 
 ---
 ![](w5p1_files/figure-html/orwa-highlight-eval2-1.png)&lt;!-- --&gt;
+
+---
+# Or even better
+
+
+```r
+*library(ggtext)
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
+  geom_col(aes(fill = region),
+           alpha = 0.9) + 
+	geom_col(data = filter(popgrowth_df,
+	                       state == "Oregon" |
+	                       state == "Washington"),
+           fill = "#C55644") +
+  scale_fill_OkabeIto() +
+* scale_x_continuous(expand = c(0, 0)) +
+  labs(title = "Population growth by region",
+       subtitle = "The &lt;span style = 'color: #C55644'&gt;**northwest**&lt;/span&gt; is where it's at") +
+  theme(axis.text.y = element_text(color = label_color, 
+                                   face = label_face),
+*       plot.subtitle = element_markdown())
+```
+
+---
+
+![](w5p1_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+
 
 
 
@@ -595,7 +699,7 @@ ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
 *library(gghighlight)
 ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
 	geom_line() +
-	gghighlight(max(Reaction) &gt; 400)
+*gghighlight(max(Reaction) &gt; 400)
 ```
 
 ![](w5p1_files/figure-html/gghighlight1-1.png)&lt;!-- --&gt;
@@ -604,11 +708,11 @@ ggplot(sleepstudy, aes(Days, Reaction, group = Subject)) +
 
 
 ```r
-*library(gghighlight)
+library(gghighlight) 
 ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
 	geom_line() +
-*gghighlight(max(Reaction) &gt; 400) +
-	scale_color_OkabeIto()
+	gghighlight(max(Reaction) &gt; 400) + 
+*scale_color_OkabeIto()
 ```
 
 ![](w5p1_files/figure-html/gghighlight2-1.png)&lt;!-- --&gt;
@@ -617,24 +721,24 @@ ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
 
 
 ```r
-*library(gghighlight)
+library(gghighlight)
 ggplot(sleepstudy, aes(Days, Reaction, color = Subject)) +
 	geom_line() +
 *facet_wrap(~Subject) +
-*gghighlight(max(Reaction) &gt; 400) +
+	gghighlight(max(Reaction) &gt; 400) + 
 	scale_color_OkabeIto()
 ```
 
 ![](w5p1_files/figure-html/gghighlight3-1.png)&lt;!-- --&gt;
 
 ---
-class: inverse center middle
+class: inverse-red center middle
 # A few other things to consider
 
 ---
 # Double encodings
 
-![](w5p1_files/figure-html/iris-scatter1-1.png)&lt;!-- --&gt;
+
 
 --
 This plot is less than ideal. Why?
@@ -656,7 +760,7 @@ This plot is less than ideal. Why?
 ![](w5p1_files/figure-html/color-blind-iris_scatter2-1.png)&lt;!-- --&gt;
 
 ---
-class:inverse center middle
+class:inverse-blue center middle
 # Common problems with color
 
 ---
@@ -732,7 +836,7 @@ rainbow(3)
 ```
 
 ```
-## [1] "#FF0000FF" "#00FF00FF" "#0000FFFF"
+## [1] "#FF0000" "#00FF00" "#0000FF"
 ```
 
 ```r
@@ -740,19 +844,20 @@ rainbow(7)
 ```
 
 ```
-## [1] "#FF0000FF" "#FFDB00FF" "#49FF00FF" "#00FF92FF" "#0092FFFF" "#4900FFFF"
-## [7] "#FF00DBFF"
+## [1] "#FF0000" "#FFDB00" "#49FF00" "#00FF92" "#0092FF" "#4900FF" "#FF00DB"
 ```
 
 ---
+# Pretty! Doesn't work well
+See [here](https://www.poynter.org/archive/2013/why-rainbow-colors-arent-always-the-best-options-for-data-visualizations/) for one (of many) articles on why this is the case
+
+
+
 
 ```r
-ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
   geom_col(aes(fill = state)) +
   scale_fill_manual(values = rainbow(51)) + 
-  coord_flip() +
   guides(fill = "none") 
 ```
 
@@ -760,7 +865,7 @@ ggplot(popgrowth_df,
 
 ---
 # Last few note on palettes
-* Do some research, find what you like .bold[and] what tends to work well
+* Do some research, find what you like **and** what tends to work well
 
 * Check for colorblindness
 
@@ -769,39 +874,41 @@ ggplot(popgrowth_df,
   + `scale_color_brewer()` and `scale_fill_brewer()` ship with ggplot2
 
 ---
-e.g., 
+# For example
 
 
 ```r
-ggplot(popgrowth_df, 
-       aes(x = state, 
-           y = 100*popgrowth)) + 
+ggplot(popgrowth_df, aes(x = popgrowth, y = state)) + 
   geom_col(aes(fill = region),
-           alpha = 0.7) +
-* scale_fill_brewer(palette = "Set2") +
-  coord_flip() +
-  guides(fill = "none") 
+           alpha = 0.9) +
+* scale_fill_brewer(palette = "Set2")
 ```
 
 ---
 
-![](w5p1_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](w5p1_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 # Paleteer package
 
+.center[
 [![](https://github.com/EmilHvitfeldt/paletteer/raw/master/man/figures/logo.png)](https://github.com/EmilHvitfeldt/paletteer)
+]
 
 ---
-class: inverse center middle
+class: inverse-green center middle
 # Next time
-Lab 4: Colors
+Lab 3: Colors
+
+Note - this will be our final lab to make sure you have sufficient time for your final projects
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "atelier-dune-light",
+"navigation": {
+"scroll": false
+},
 "highlightLines": true,
 "countIncrementalSlides": false
 });
@@ -844,6 +951,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -861,17 +994,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
