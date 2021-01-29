@@ -28,7 +28,7 @@ labs <- tibble(
   `Date Due` = mdy(c("1/20/21", "2/03/21", "2/10/21")),
   Topic = c("[Distributions, git, and basic plot refinements](../lab-1)",
             "[Visual perception & reproducing plots](../lab-2)",
-            "Uses of color to enhance interpretability")
+            "[Uses of color to enhance interpretability](../lab-3)")
 ) %>% 
   mutate(across(where(is.Date), ~format(.x, "%a, %B %d")))
 
