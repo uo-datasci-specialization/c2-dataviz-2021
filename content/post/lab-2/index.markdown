@@ -51,7 +51,7 @@ Both the *google_trends* and *tv_states* datasets come from a [fivethirtyeight s
 
 2. Replicate the "National cable news networks" plot from the story using the *tv_states* data. Don't worry about all the labels. Try to match the colors but don't worry about getting them exact.
 
-3. Use the *comic_characters* dataset to visualize the proportion of different genders using at least three different methods. With your final visualization, make any additional modifications you think would help reduce the cognitive load necessary to comprehend the figure. Note that the {fivethirtyeight} package only includes a preview (10 rows) of the data. Run the following code to get access to the full dataset.
+3. Use the *comic_characters* dataset to visualize the proportion of different genders using at least three different methods. With your final visualization, make any additional modifications you think would help reduce the cognitive load necessary to comprehend the figure.
 
 
 
