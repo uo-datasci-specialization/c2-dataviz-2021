@@ -189,7 +189,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "dataviz" "aesthetic-mapping.html" "2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "https://youtu.be/f1aI5CKzv8E" >}}
+{{< lecture "https://youtu.be/66aGofxb-t4" >}}
 {{< /wrap >}}
 {{< /week-even >}}
 
