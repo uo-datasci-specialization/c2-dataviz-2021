@@ -673,9 +673,9 @@ ggplot(popgrowth_df, aes(x = popgrowth, y = state)) +
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-  scale_fill_OkabeIto() +
-  theme(axis.text.y = element_text(color = label_color, #<<
-                                   face = label_face)) #<<
+  scale_fill_manual(values = accent_OkabeIto) + #<<
+  theme(axis.text.y = element_text(color = label_color,
+                                   face = label_face)) 
 ```
 
 
@@ -688,10 +688,10 @@ ggplot(popgrowth_df, aes(x = popgrowth, y = state)) +
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-  scale_fill_OkabeIto() +
-  theme(axis.text.y = element_text(color = label_color, #<<
+  scale_fill_manual(values = accent_OkabeIto) + #<<
+  theme(axis.text.y = element_text(color = label_color,
                                    face = label_face,
-                                   size = 11)) #<<
+                                   size = 11)) 
 ```
 
 ---
@@ -706,7 +706,7 @@ ggplot(popgrowth_df, aes(x = popgrowth, y = state)) +
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-  scale_fill_OkabeIto() +
+  scale_fill_manual(values = accent_OkabeIto) +
   scale_x_continuous(expand = c(0, 0)) + #<<
   labs(title = "Population growth by region",
        subtitle = "The <span style = 'color: #C55644'>**northwest**</span> is where it's at") +
@@ -726,7 +726,7 @@ ggplot(popgrowth_df, aes(x = popgrowth, y = state)) +
 	                       state == "Oregon" |
 	                       state == "Washington"),
            fill = "#C55644") +
-  scale_fill_OkabeIto() +
+  scale_fill_manual(values = accent_OkabeIto) +
   scale_x_continuous(expand = c(0, 0)) + #<<
   labs(title = "Population growth by region",
        subtitle = "The <span style = 'color: #C55644'>**northwest**</span> is where it's at") +
@@ -800,6 +800,7 @@ penguin_scatter <- ggplot(penguins, aes(bill_length_mm, body_mass_g)) +
              alpha = 0.7, 
              stroke = 0) +
   scale_color_OkabeIto()
+penguin_scatter
 ```
 
 --
