@@ -1,0 +1,45 @@
+---
+title: "Lab 3"
+author: "Daniel Anderson "
+date: "Week 5, Class 2 "
+output:
+  xaringan::moon_reader:
+    css: ["default", "new.css"]
+    lib_dir: libs
+    nature:
+      navigation:
+        scroll: false
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+    includes:
+      in_header: "load-feather.html"
+---
+
+```{r include = FALSE, results = "asis"}
+source(here::here("static", "slides", "slide-setup.R"))
+```
+
+`r setup("w5p2")`
+
+
+---
+class: inverse-blue
+# Data viz in Wild
+
+Shijing
+
+David
+
+## Raleigh and Maggie on deck
+
+
+---
+# Reviewing labs/homeworks
+
+We'll review Lab 2 on Monday and Homework 1 on Wednesday
+
+---
+class: inverse-red middle
+
+# Lab 3 overview

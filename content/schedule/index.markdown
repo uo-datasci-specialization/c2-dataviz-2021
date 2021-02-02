@@ -213,14 +213,14 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "dataviz" "color-pitfalls.html" "19" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/UUxCl50aunk" >}}
 {{< /wrap >}}
 {{< /week-odd >}}
 
 {{< week-even "02-03" >}}
   {{< description "Lab 3" "We will use color for each of its primary uses in data visualization and explore and evaluate different palettes by different types of color blindness." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w5p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< assigned "assignments/#labs" "Lab 3" >}}
