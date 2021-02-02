@@ -21,6 +21,16 @@ For this homework we will again use data from [#tidytuesday](https://twitter.com
 
 Please visit each of the previous links for more information on each data source.
 
+## git/GitHub
+Use of *git*/GitHub is optional for this homework. However, I would like to encourage you to use these tools to help you become more fluent with them, and in particular their use in collaborating. I am therefore offering a small amount of extra credit (**3 points**) for all group members who complete this homework collaboratively. To obtain the three points extra credit, you must:
+
+* Have more than two group members
+* Use branching
+* Use issues
+* Have evidence in your commit history that all members contributed to the homework roughly equally
+
+This is optional, but will provide you a small amount of "buffer" if you happen to lose points elsewhere on the lab.
+
 ## Getting Started
 
 You can download the tidytuesday data using one of the following approaches:
