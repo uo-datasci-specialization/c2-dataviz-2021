@@ -395,7 +395,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< /week-odd >}}
 
 {{< week-even "03-03" >}}
-  {{< description "Loose ends and review" "This course moves very fast. This is a designated "fudge" day to catch up on topics we either did not get to or covered too quickly the first time around. Assuming we have time, we will also review many of the core concepts of the course." >}}
+  {{< description "Loose ends and review" "This course moves very fast. This is a designated *fudge* day to catch up on topics we either did not get to or covered too quickly the first time around. Assuming we have time, we will also review many of the core concepts of the course." >}}
   {{< wrap >}}
 {{< slides "" >}}
 {{< /wrap >}}
