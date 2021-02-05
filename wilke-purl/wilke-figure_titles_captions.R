@@ -152,188 +152,188 @@ price_plot_base <- ggplot(tech_stocks, aes(x = date, y = price_indexed, color = 
   ) +
   theme_dviz_hgrid(25, font_family = "Roboto Light") + 
   theme(plot.margin = margin(3, 7, 3, 0))
-
-price_plot_base + xlab(NULL) + ylab("stock price, indexed")
-
-## ----tech-stocks-minimal-labeling-bad, fig.cap = '(ref:tech-stocks-minimal-labeling-bad)'----
-stamp_bad(
-  price_plot_base + xlab(NULL) + ylab(NULL)
-)
-
-## ----tech-stocks-labeling-ugly, fig.cap = '(ref:tech-stocks-labeling-ugly)'----
-stamp_ugly(
-  price_plot_base + xlab("time (years AD)") + ylab("stock price, indexed\n(100/share price on Jun 1, 2012)") +
-    scale_color_manual(
-      values = c("#000000", "#E69F00", "#56B4E9", "#009E73"),
-      name = "company",
-      breaks = c("FB", "GOOG", "MSFT", "AAPL"),
-      labels = c("Facebook", "Alphabet", "Microsoft", "Apple")
-    ) +
-    theme(legend.title.align = 0.5)
-
-)
-
-## ----table-examples, fig.asp = 0.65, fig.cap = '(ref:table-examples)'----
-boxoffice <- tibble(
-  Rank = 1:5,
-  Title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
-  Amount = c("$71,565,498", "$36,169,328", "$19,928,525", "$8,805,843", "$7,316,746")
-)
-
-table_base_size = 11
-zgrob <- function(...) ggplot2::zeroGrob()
-
-tt1 <- ttheme_minimal(
-  base_size = table_base_size,
-  base_family = dviz_font_family,
-  core = list(
-    bg_params = list(
-      col = "black",
-      lwd = 1
-    )
-  ),
-  colhead = list(
-    fg_params = list(
-      fontface = 1L,
-      fontfamily = dviz_font_family_bold
-    ),
-    bg_params = list(
-      col = "black",
-      lwd = 1
-    )
-  ),
-  rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
-)
-
-tt2 <- ttheme_default(
-  base_size = table_base_size,
-  base_family = dviz_font_family,
-  core = list(
-    fg_params = list(
-      col = c("white", "black")
-    ),
-    bg_params = list(
-      col = "black",
-      lwd = 0.5,
-      fill = c("grey45", "grey85")
-    )
-  ),
-  colhead = list(
-    fg_params = list(
-      fontface = 1L,
-      fontfamily = dviz_font_family_bold
-    ),
-    bg_params = list(
-      col = "black",
-      lwd = 0.5,
-      fill = "grey85"
-    )
-  ),
-  rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
-)
-
-tt3 <- ttheme_minimal(
-  base_size = table_base_size,
-  base_family = dviz_font_family,
-  padding = unit(c(4, 3.2), "mm"),
-  core = list(
-    fg_params = list(
-      hjust = rep(c(0.5, 0, 1), each = 5),
-      x = rep(c(0.5, 0.1, 0.9), each = 5)
-    ),
-    bg_params = list(
-      col = NA
-    )
-  ),
-  colhead = list(
-    fg_params = list(
-      hjust = c(0.5, 0, 1),
-      x = c(0.5, 0.1, 0.9),
-      fontface = 1L,
-      fontfamily = dviz_font_family_bold
-    ),
-    bg_params = list(
-      col = NA
-    )
-  ),
-  rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
-)
-
-tt4 <- ttheme_default(
-  base_size = table_base_size,
-  base_family = dviz_font_family,
-  core = list(
-    fg_params = list(
-      col = "black",
-      hjust = rep(c(0.5, 0, 1), each = 5),
-      x = rep(c(0.5, 0.1, 0.9), each = 5)
-    ),
-    bg_params = list(
-      col = NA,
-      fill = c('#D9E0EF', '#C2CCE3') #c("grey95", "grey85")
-    )
-  ),
-  colhead = list(
-    fg_params = list(
-      col = "white",
-      hjust = c(0.5, 0, 1),
-      x = c(0.5, 0.1, 0.9),
-      fontface = 1L,
-      fontfamily = dviz_font_family_bold
-    ),
-    bg_params = list(
-      col = NA,
-      fill = "#4069A6"#"grey65"
-    )
-  ),
-  rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
-)
-
-# horizontal line to be used as separator
-hline_top <- segmentsGrob(
-  x0 = unit(0,"npc"),
-  y0 = unit(1,"npc"),
-  x1 = unit(1,"npc"),
-  y1 = unit(1,"npc"),
-  gp = gpar(lwd = 0.75, col = "black")
-)
-hline_bottom <- segmentsGrob(
-  x0 = unit(0,"npc"),
-  y0 = unit(0,"npc"),
-  x1 = unit(1,"npc"),
-  y1 = unit(0,"npc"),
-  gp = gpar(lwd = 0.75, col = "black")
-)
-
-t1 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt1)
-t1$layout$clip <- "off"
-t1 <- gtable_add_padding(t1, margin(14, 16, 0, -2))
-
-t2 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt2)
-t2$layout$clip <- "off"
-t2 <- gtable_add_padding(t2, margin(14, 16, 0, -2))
-
-t3 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt3)
-t3 <- gtable_add_grob(t3,
-  grobs = grobTree(hline_top, hline_bottom),
-  t = 1, b = 1, l = 2, r = 4)
-t3 <- gtable_add_grob(t3,
-  grobs = hline_bottom,
-  t = 6, b = 6, l = 2, r = 4)
-t3$layout$clip <- "off"
-t3 <- gtable_add_padding(t3, margin(14, 14, 0, -7))
-
-t4 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt4)
-t4$layout$clip <- "off"
-t4 <- gtable_add_padding(t4, margin(14, 16, 0, -2))
-
-plot_grid(
-  stamp_ugly(t1), NULL, stamp_ugly(t2),
-  NULL, NULL, NULL,
-  t3, NULL, t4,
-  rel_widths = c(1, 0.06, 1),
-  rel_heights = c(1, 0.08, 1),
-  labels = c("a", "", "b", "", "", "", "c", "", "d")
-)
-
+# 
+# price_plot_base + xlab(NULL) + ylab("stock price, indexed")
+# 
+# ## ----tech-stocks-minimal-labeling-bad, fig.cap = '(ref:tech-stocks-minimal-labeling-bad)'----
+# stamp_bad(
+#   price_plot_base + xlab(NULL) + ylab(NULL)
+# )
+# 
+# ## ----tech-stocks-labeling-ugly, fig.cap = '(ref:tech-stocks-labeling-ugly)'----
+# stamp_ugly(
+#   price_plot_base + xlab("time (years AD)") + ylab("stock price, indexed\n(100/share price on Jun 1, 2012)") +
+#     scale_color_manual(
+#       values = c("#000000", "#E69F00", "#56B4E9", "#009E73"),
+#       name = "company",
+#       breaks = c("FB", "GOOG", "MSFT", "AAPL"),
+#       labels = c("Facebook", "Alphabet", "Microsoft", "Apple")
+#     ) +
+#     theme(legend.title.align = 0.5)
+# 
+# )
+# 
+# ## ----table-examples, fig.asp = 0.65, fig.cap = '(ref:table-examples)'----
+# boxoffice <- tibble(
+#   Rank = 1:5,
+#   Title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
+#   Amount = c("$71,565,498", "$36,169,328", "$19,928,525", "$8,805,843", "$7,316,746")
+# )
+# 
+# table_base_size = 11
+# zgrob <- function(...) ggplot2::zeroGrob()
+# 
+# tt1 <- ttheme_minimal(
+#   base_size = table_base_size,
+#   base_family = dviz_font_family,
+#   core = list(
+#     bg_params = list(
+#       col = "black",
+#       lwd = 1
+#     )
+#   ),
+#   colhead = list(
+#     fg_params = list(
+#       fontface = 1L,
+#       fontfamily = dviz_font_family_bold
+#     ),
+#     bg_params = list(
+#       col = "black",
+#       lwd = 1
+#     )
+#   ),
+#   rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
+# )
+# 
+# tt2 <- ttheme_default(
+#   base_size = table_base_size,
+#   base_family = dviz_font_family,
+#   core = list(
+#     fg_params = list(
+#       col = c("white", "black")
+#     ),
+#     bg_params = list(
+#       col = "black",
+#       lwd = 0.5,
+#       fill = c("grey45", "grey85")
+#     )
+#   ),
+#   colhead = list(
+#     fg_params = list(
+#       fontface = 1L,
+#       fontfamily = dviz_font_family_bold
+#     ),
+#     bg_params = list(
+#       col = "black",
+#       lwd = 0.5,
+#       fill = "grey85"
+#     )
+#   ),
+#   rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
+# )
+# 
+# tt3 <- ttheme_minimal(
+#   base_size = table_base_size,
+#   base_family = dviz_font_family,
+#   padding = unit(c(4, 3.2), "mm"),
+#   core = list(
+#     fg_params = list(
+#       hjust = rep(c(0.5, 0, 1), each = 5),
+#       x = rep(c(0.5, 0.1, 0.9), each = 5)
+#     ),
+#     bg_params = list(
+#       col = NA
+#     )
+#   ),
+#   colhead = list(
+#     fg_params = list(
+#       hjust = c(0.5, 0, 1),
+#       x = c(0.5, 0.1, 0.9),
+#       fontface = 1L,
+#       fontfamily = dviz_font_family_bold
+#     ),
+#     bg_params = list(
+#       col = NA
+#     )
+#   ),
+#   rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
+# )
+# 
+# tt4 <- ttheme_default(
+#   base_size = table_base_size,
+#   base_family = dviz_font_family,
+#   core = list(
+#     fg_params = list(
+#       col = "black",
+#       hjust = rep(c(0.5, 0, 1), each = 5),
+#       x = rep(c(0.5, 0.1, 0.9), each = 5)
+#     ),
+#     bg_params = list(
+#       col = NA,
+#       fill = c('#D9E0EF', '#C2CCE3') #c("grey95", "grey85")
+#     )
+#   ),
+#   colhead = list(
+#     fg_params = list(
+#       col = "white",
+#       hjust = c(0.5, 0, 1),
+#       x = c(0.5, 0.1, 0.9),
+#       fontface = 1L,
+#       fontfamily = dviz_font_family_bold
+#     ),
+#     bg_params = list(
+#       col = NA,
+#       fill = "#4069A6"#"grey65"
+#     )
+#   ),
+#   rowhead = list(fg_fun = zgrob, bg_fun = zgrob)
+# )
+# 
+# # horizontal line to be used as separator
+# hline_top <- segmentsGrob(
+#   x0 = unit(0,"npc"),
+#   y0 = unit(1,"npc"),
+#   x1 = unit(1,"npc"),
+#   y1 = unit(1,"npc"),
+#   gp = gpar(lwd = 0.75, col = "black")
+# )
+# hline_bottom <- segmentsGrob(
+#   x0 = unit(0,"npc"),
+#   y0 = unit(0,"npc"),
+#   x1 = unit(1,"npc"),
+#   y1 = unit(0,"npc"),
+#   gp = gpar(lwd = 0.75, col = "black")
+# )
+# 
+# t1 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt1)
+# t1$layout$clip <- "off"
+# t1 <- gtable_add_padding(t1, margin(14, 16, 0, -2))
+# 
+# t2 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt2)
+# t2$layout$clip <- "off"
+# t2 <- gtable_add_padding(t2, margin(14, 16, 0, -2))
+# 
+# t3 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt3)
+# t3 <- gtable_add_grob(t3,
+#   grobs = grobTree(hline_top, hline_bottom),
+#   t = 1, b = 1, l = 2, r = 4)
+# t3 <- gtable_add_grob(t3,
+#   grobs = hline_bottom,
+#   t = 6, b = 6, l = 2, r = 4)
+# t3$layout$clip <- "off"
+# t3 <- gtable_add_padding(t3, margin(14, 14, 0, -7))
+# 
+# t4 <- tableGrob(boxoffice, rows = rep("", nrow(boxoffice)), theme = tt4)
+# t4$layout$clip <- "off"
+# t4 <- gtable_add_padding(t4, margin(14, 16, 0, -2))
+# 
+# plot_grid(
+#   stamp_ugly(t1), NULL, stamp_ugly(t2),
+#   NULL, NULL, NULL,
+#   t3, NULL, t4,
+#   rel_widths = c(1, 0.06, 1),
+#   rel_heights = c(1, 0.08, 1),
+#   labels = c("a", "", "b", "", "", "", "c", "", "d")
+# )
+# 
 
