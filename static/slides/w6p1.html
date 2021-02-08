@@ -75,6 +75,8 @@ Maggie
 
 * Annotations
 
+* Themes (a little bit)
+
 
 --
 ### What we won't get to
@@ -153,13 +155,9 @@ exaggerate/hide it
   + Try different aspect ratios by changing the width/length
 
 
-
-```{=html}
-&lt;div class="countdown" id="timer_601c9e07" style="right:0;bottom:0;" data-warnwhen="0"&gt;
-&lt;code class="countdown-time"&gt;&lt;span class="countdown-digits minutes"&gt;05&lt;/span&gt;&lt;span class="countdown-digits colon"&gt;:&lt;/span&gt;&lt;span class="countdown-digits seconds"&gt;00&lt;/span&gt;&lt;/code&gt;
-&lt;/div&gt;
-```
-
+<div class="countdown" id="timer_60217e2a" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 # Scale transformations
@@ -1001,6 +999,111 @@ ggplot(by_country, aes(gdp_mean, health_mean)) +
 
 ---
 ![](w6p1_files/figure-html/label-by-group-eval-1.png)&lt;!-- --&gt;
+
+---
+class: inverse-blue middle
+
+# ggforce
+Quickly
+
+---
+# Annotating groups of points
+Consider using  any of the following from **ggforce** to annotate specific points
+
+`geom_mark_rect()`
+`geom_mark_circle()`
+`geom_mark_ellipse()`
+`geom_mark_hull()`
+
+---
+# Examples
+
+
+```r
+library(palmerpenguins)
+library(ggforce)
+
+penguins %&gt;% 
+  drop_na() %&gt;% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+* geom_mark_ellipse(aes(group = species, label = species)) +
+  geom_point(aes(color = species)) +
+* coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) +
+  guides(color = "none")
+```
+
+
+---
+class: middle
+![](w6p1_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+# Limit to a single group
+
+
+```r
+penguins %&gt;% 
+  drop_na() %&gt;% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_ellipse(aes(group = species, label = species),
+*                   data = filter(drop_na(penguins), species == "Gentoo")) +
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+
+---
+class: middle
+
+![](w6p1_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+# Switch to hull
+
+Note - requires the **concaveman** package be installed 
+
+
+```r
+penguins %&gt;% 
+  drop_na() %&gt;% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_hull(aes(group = species, label = species),
+*                   data = filter(drop_na(penguins), species == "Gentoo")) +
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+class: middle
+
+![](w6p1_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+# Change expand
+
+
+```r
+penguins %&gt;% 
+  drop_na() %&gt;% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_hull(aes(group = species, label = species),
+*                expand = unit(1, "mm"),
+                 data = filter(drop_na(penguins), species == "Gentoo")) + 
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+class: middle
+
+![](w6p1_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+# Last bit
+
+The **ggforce** package is well worth exploring more.
+
+See [here](https://z3tt.github.io/OutlierConf2021/) for a nice walkthrough that has good data viz and uses some of the **ggforce** functions (as well as illustrating a few other cool packages)
 
 ---
 class: inverse-red center middle

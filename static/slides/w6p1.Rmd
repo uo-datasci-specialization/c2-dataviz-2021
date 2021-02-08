@@ -69,6 +69,8 @@ update_geom_defaults('text', list(size = 6))
 
 * Annotations
 
+* Themes (a little bit)
+
 
 --
 ### What we won't get to
@@ -1137,6 +1139,143 @@ ggplot(by_country, aes(gdp_mean, health_mean)) +
          x = "Mean GDP",
          y = "Mean Health")
 ```
+
+---
+class: inverse-blue middle
+
+# ggforce
+Quickly
+
+---
+# Annotating groups of points
+Consider using  any of the following from **ggforce** to annotate specific points
+
+`geom_mark_rect()`
+`geom_mark_circle()`
+`geom_mark_ellipse()`
+`geom_mark_hull()`
+
+---
+# Examples
+
+```{r eval = FALSE}
+library(palmerpenguins)
+library(ggforce)
+
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_ellipse(aes(group = species, label = species)) + #<<
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) + #<<
+  guides(color = "none")
+```
+
+
+---
+class: middle
+```{r echo = FALSE}
+library(palmerpenguins)
+library(ggforce)
+
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_ellipse(aes(group = species, label = species)) + #<<
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) + #<<
+  guides(color = "none")
+```
+
+---
+# Limit to a single group
+
+```{r eval = FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_ellipse(aes(group = species, label = species),
+                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+
+---
+class: middle
+
+```{r echo = FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_ellipse(aes(group = species, label = species),
+                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+# Switch to hull
+
+Note - requires the **concaveman** package be installed 
+
+```{r eval=FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_hull(aes(group = species, label = species),
+                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+class: middle
+
+```{r echo=FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_hull(aes(group = species, label = species),
+                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+# Change expand
+
+```{r eval=FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_hull(aes(group = species, label = species),
+                 expand = unit(1, "mm"), #<<
+                 data = filter(drop_na(penguins), species == "Gentoo")) + 
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+class: middle
+
+```{r echo=FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_mark_hull(aes(group = species, label = species),
+                 expand = unit(1, "mm"), #<<
+                 data = filter(drop_na(penguins), species == "Gentoo")) + 
+  geom_point(aes(color = species)) +
+  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+```
+
+---
+# Last bit
+
+The **ggforce** package is well worth exploring more.
+
+See [here](https://z3tt.github.io/OutlierConf2021/) for a nice walkthrough that has good data viz and uses some of the **ggforce** functions (as well as illustrating a few other cool packages)
 
 ---
 class: inverse-red center middle
