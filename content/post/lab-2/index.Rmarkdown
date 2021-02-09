@@ -1,0 +1,240 @@
+---
+title: 'Lab 2'
+author: Daniel Anderson
+date: '2021-01-20'
+assigned: '2020-01-27'
+due: '2020-02-03'
+slug: lab-2
+categories:
+  - Assignment
+tags: [Lab, Assignments]
+toc: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE,
+                      warning = FALSE,
+                      echo = TRUE,
+                      fig.width = 10,
+                      fig.height = 10,
+                      dev.args = list(bg="transparent"))
+```
+
+## Overview
+The purpose of this lab is to get you to try different methods of visualizing the same data to explore what seems to work better.
+
+## Data
+We'll work with  [fivethirtyeight](https://fivethirtyeight.com) data. via the [R package](https://github.com/rudeboybert/fivethirtyeight) of the same name.
+
+To get started, please run the following lines of code. The GitHub install in particular will take a minute or two.
+
+```{r install-fivethirtyeight, eval = FALSE}
+install.packages("fivethirtyeight")
+remotes::install_github("fivethirtyeightdata/fivethirtyeightdata")
+library(fivethirtyeight)
+library(fivethirtyeightdata)
+```
+
+One you've loaded the packages, you will have access to a variety of datasets. The datasets we will work with are *google_trends*, *tv_states*, and *comic_characters*.
+
+## Assignment
+Start a new R Markdown document - you can choose to house this lab on 
+   GitHub or not. Either way is fine. If you choose to work together with a partner or in a small group a GitHub repo is required.
+
+Both the *google_trends* and *tv_states* datasets come from a [fivethirtyeight story](https://fivethirtyeight.com/features/the-media-really-started-paying-attention-to-puerto-rico-when-trump-did/) about how the media covered hurricanes and Trump.
+
+1. Start with the google trends data. 
+  + Visualize the change in trends for each hurricane over time in one plot with three scales. Map color to a discrete scale.
+  + Visualize the trends again, this time with solid shapes (if your first plot was already solid shapes, use lines). Hint, `geom_area` can be difficult to work with if you have a grouping factor. Try `geom_ribbon` instead.
+  + Visualize the same relation, but change the scales so color is mapped to a *continuous* scale.
+  + Create a data frame (using `tibble()` or `data.frame()`) that includes the dates that each hurricane made landfall. Annotate one of your first two plots to include these reference points with vertical lines (*Hint*: use `geom_vline()`, specifying the data source for this layer as as this new dataset). You do not have to include text annotations - just the vertical lines, but if you would like to try, look into `geom_text()` or `geom_label()`. The hurricanes made landfall on (approximately) the following days:
+    - Harvey: August 25, 2017
+    - Irma: September 10, 2017
+    - Jose: Did not make landfall
+    - Maria: September 20, 2017
+  + Make any final modifications to the plot you'd like to communicate the information as effectively as possible
+
+2. Replicate the "National cable news networks" plot from the story using the *tv_states* data. Don't worry about all the labels. Try to match the colors but don't worry about getting them exact.
+
+3. Use the *comic_characters* dataset to visualize the proportion of different genders using at least three different methods. With your final visualization, make any additional modifications you think would help reduce the cognitive load necessary to comprehend the figure.
+
+```{r answers, include = FALSE}
+library(fivethirtyeight)
+library(fivethirtyeightdata)
+library(tidyverse)
+theme_set(theme_minimal(15))
+
+g <- google_trends %>% 
+  pivot_longer(starts_with("hurricane"), 
+               names_to = "hurricane", 
+               values_to = "interest",
+               names_pattern = "_(.+)_") %>% 
+  mutate(hurricane = stringr::str_to_title(hurricane))
+
+ggplot(g, aes(date, interest)) +
+  geom_line(aes(color = hurricane))
+
+ggplot(g, aes(date, interest)) +
+  geom_ribbon(aes(ymin = 0, 
+                  ymax = interest, 
+                  fill = hurricane, 
+                  color = NULL), 
+              alpha = 0.6)
+
+ggplot(g, aes(date, hurricane)) +
+  geom_tile(aes(fill = interest),
+            color = "gray90") +
+  scico::scale_fill_scico(palette = "devon") +
+  #scale_fill_viridis_c(option = "magma") +
+  coord_fixed() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.key.size = unit(1, 'cm'),
+        legend.key.height = unit(.5,"cm"))
+
+landfall <- tibble(
+  date = lubridate::mdy(c("August 25, 2017",
+                          "September 10, 2017", 
+                          "September 20, 2017")),
+  hurricane = c("Harvey Landfall",
+                "Irma Landfall",
+                "Maria Landfall")
+)
+
+ggplot(g, aes(date, interest)) +
+  geom_ribbon(aes(fill = hurricane, 
+                  color = hurricane,
+                  ymin = 0,
+                  ymax = interest), 
+              alpha = 0.8) + 
+  geom_vline(aes(xintercept = date), 
+             data = landfall,
+             color = "gray40", 
+             lty = "dashed") +
+  geom_text(aes(x = date, y = 80, label = hurricane), 
+            data = landfall,
+            color = "gray40",
+            nudge_x = 2) +
+  labs(x = "Date", 
+       y = "Google Trends",
+       title = "Hurricane Google trends over time",
+       caption = "Source: https://github.com/fivethirtyeight/data/tree/master/puerto-rico-media") + 
+  scale_fill_brewer("Hurricane", palette = "Set2")  +
+  scale_color_brewer("Hurricane", palette = "Set2") +
+  theme(panel.grid = element_line(colour = "gray30"), 
+        axis.text = element_text(colour = "gray80"), 
+        axis.title = element_text(colour = "gray80"),
+        legend.text = element_text(colour = "gray80"), 
+        legend.title = element_text(colour = "gray80"), 
+        panel.background = element_rect(fill = "gray10"), 
+        plot.background = element_rect(fill = "gray10"), 
+        legend.background = element_rect(fill = NA, color = NA), 
+        legend.position = c(0.1, -0.1), 
+        legend.direction = "horizontal",
+        plot.margin = margin(10, 10, b = 20, 10),
+        plot.caption = element_text(colour = "gray80", vjust = 1), 
+        plot.title = element_text(colour = "gray80"))
+
+tv <- tv_states %>%
+  pivot_longer(cols = -date,
+               names_to = "state",
+               values_to = "percentage") %>% 
+  mutate(state = factor(state, 
+                        levels = c("florida", "texas", "puerto_rico")))
+
+state_labels <- tibble(
+  state_label = c("Texas", "Florida", "Puerto Rico"),
+  date = lubridate::mdy(c("August 29, 2017",
+                          "September 9, 2017",
+                          "September 29, 2017")),
+  percentage = c(1, 1.5, 0.9)
+)
+
+landfall2 <- tibble(date = lubridate::mdy(c("August 25, 2017", 
+                                           "September 10, 2017", 
+                                           "September 20, 2017",
+                                           "October 1, 2017")),
+                   hurricane = c("Harvey\nLandfall", 
+                                 "Irma\nLandfall", 
+                                 "Maria\nLandfall",
+                                 "Las Vegas\nshooting"),
+                   percentage = c(3.8, 3.8, 2.4, 2.8))
+
+
+
+library(extrafont)
+
+ggplot(tv, aes(date, percentage)) +
+  geom_ribbon(aes(fill = state, ymin = 0, ymax = percentage), 
+    color = "white") +
+  geom_vline(aes(xintercept = date),
+             linetype = "dashed",
+             color = "gray80",
+             data = landfall2) +
+  geom_hline(yintercept = 0) +
+  shadowtext::geom_shadowtext(aes(label = state_label),
+                              color = "black",
+                              bg.color = "white",
+                              family = "Roboto Black",
+                              data = state_labels) +
+  geom_label(aes(label = hurricane),
+            color = "white",
+            data = landfall2) +
+  geom_text(aes(label = hurricane),
+            color = "gray80",
+            data = landfall2) +
+  scale_fill_manual(values = c("#FC477A","#EA6533", "#37B9C2")) +
+  scale_y_continuous(name = "Share of sentences",
+                     breaks = c(0, 1, 2, 3),
+                     labels = c("0", "1", "2", "3%")) +
+  scale_x_date(name = "",
+               breaks = c(
+                 lubridate::mdy("August 15, 2017"),
+                 lubridate::mdy("September 1, 2017"),
+                 lubridate::mdy("September 15, 2017"),
+                 lubridate::mdy("October 1, 2017")
+               ),
+               labels = c("Aug. 15, 2017",
+                          "Sept. 1",
+                          "Sept. 15",
+                          "Oct. 1"),
+               expand = c(0.1, 0)
+               ) +
+  guides(fill = "none") +
+  labs(title = "National cable news networks") +
+  theme(plot.title = element_text(hjust = 0.5),
+        panel.grid.minor = element_blank(),
+        text = element_text(family = "Roboto Black"),
+        axis.text = element_text(color = "gray80"),
+        axis.text.x = element_text(face = "plain",
+                                   size = 8))
+
+percents <- comic_characters %>% 
+  count(sex) %>% 
+  mutate(percent = n / sum(n)*100) 
+
+ggplot(percents, aes(x = 1, y = percent)) +
+  geom_col(aes(fill = sex))
+
+ggplot(percents, aes(x = 1, y = percent)) +
+  geom_col(aes(fill = sex)) +
+  coord_flip()
+
+ggplot(percents, aes(x = fct_reorder(sex, n), y = percent)) +
+  geom_col(aes(fill = fct_reorder(sex, n)), position = "dodge") +
+  coord_flip() +
+  scale_y_continuous(expand = c(0, 0.4)) +
+  geom_text(aes(label = as.character(paste0(round(percent, 2), "%"))), nudge_y = 2) +
+  guides(fill = "none") +
+  labs(title = "Gender of Comic Book Characters",
+       y = "Percent",
+       x = "",
+       subtitle = "DC and Marvel Publishing",
+       caption = "Source: https://github.com/fivethirtyeight/data/tree/master/puerto-rico-media") +
+  theme(plot.title.position = "plot")
+```
+
+
+# Finishing up
+When you have finished the above, upload your rendered (knit) HTML file to canvas.
