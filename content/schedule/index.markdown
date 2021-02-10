@@ -138,7 +138,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< slides "w3p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< assigned "assignments/#homework" "HW 1" >}}
+{{< assigned "homework-1" "HW 1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< due "lab-1" "Lab 1" >}}
@@ -180,10 +180,10 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< slides "w4p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< assigned "assignments/#labs" "Lab 2" >}}
+{{< assigned "lab-2" "Lab 2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< due "syllabus/#final-project" "Prop" >}}
+{{< due "assignments/#proposal" "Prop" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< readings "dataviz" "aesthetic-mapping.html" "2" >}}
@@ -223,11 +223,11 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< slides "w5p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< assigned "assignments/#labs" "Lab 3" >}}
+{{< assigned "lab-3" "Lab 3" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< due "assignments/#labs" "Lab 2" >}}
-{{< due "assignments/#homework" "HW 1" >}}
+{{< due "lab-2" "Lab 2" >}}
+{{< due "homework-1" "HW 1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< readings "dataviz" "visualizing-amounts.html" "6" >}}
@@ -264,15 +264,15 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< /week-odd >}}
 
 {{< week-even "02-10" >}}
-  {{< description "Uncertainty" "Common methods for visualizing uncertainty (and their implementation w/{ggplot2}). Framing uncertainty as relative frequencies. Non-standard methods for visualizing standard errors, boostrapping, and a brief foray into hypothetical outcomes plots" >}}
+  {{< description "Uncertainty 1" "As it turned out, we didn't get very far here, so we'll do it again!" >}}
   {{< wrap >}}
 {{< slides "w6p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< assigned "assignments/#homework" "HW 2" >}}
+{{< assigned "homework-2" "HW 2" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< due "assignments/#labs" "Lab 3" >}}
+{{< due "lab-3" "Lab 3" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< readings "dataviz" "visualizing-uncertainty.html" "16" >}}
@@ -307,9 +307,9 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< /week-odd >}}
 
 {{< week-even "02-17" >}}
-  {{< description "Websites" "This lecture will focus on the [{distill}](https://rstudio.github.io/distill/) package, which helps you createrelatively simple yet customizable blogs, optimized for scientific communication. In addition to setting up the site and creating posts, we'll focus specifically on different layouts for displaying visual information (e.g., plots, tables)" >}}
+  {{< description "Uncertainty 2" "Common methods for visualizing uncertainty (and their implementation w/{ggplot2}). Framing uncertainty as relative frequencies. Non-standard methods for visualizing standard errors, boostrapping, and a brief foray into hypothetical outcomes plots" >}}
   {{< wrap >}}
-{{< slides "w7p2" >}}
+{{< slides "w6p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -318,8 +318,8 @@ Each of the below links to the full book. Icons in the schedule link to specific
 
 {{< /wrap >}}
   {{< wrap >}}
-{{< readings "other" "https://rstudio.github.io/distill/" "distill" >}}
-{{< readings "other" "https://bookdown.org/yihui/rmarkdown/websites.html" "sites" >}}
+{{< readings "dataviz" "visualizing-uncertainty.html" "16" >}}
+{{< readings "other" "https://www.youtube.com/watch?v=E1kSnWvqCw0&feature=youtu.be" "Kay" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< lecture "" >}}
@@ -331,25 +331,6 @@ Each of the below links to the full book. Icons in the schedule link to specific
  {{< schedule >}}
 
 {{< week-odd "02-22" >}}
-  {{< description "Customizing web pages" "We'll talk about customizations generally, introducing styling with CSS, but focus speifically on customizations to websites and dashboards." >}}
-  {{< wrap >}}
-{{< slides "" >}}
-{{< /wrap >}}
-  {{< wrap >}}
-
-{{< /wrap >}}
-  {{< wrap >}}
-
-{{< /wrap >}}
-  {{< wrap >}}
-{{< readings "NA" "NA" "NA" >}}
-{{< /wrap >}}
-  {{< wrap >}}
-{{< lecture "" >}}
-{{< /wrap >}}
-{{< /week-odd >}}
-
-{{< week-even "02-24" >}}
   {{< description "Tables and fonts" "We will focus primarily on two packages for creating tables: [{gt}](https://gt.rstudio.com) for static tables, and [{reactable}](https://glin.github.io/reactable/index.html) for interactive tables. We'll also discuss changing fonts, both within websites/applications, as well as with {ggplot2}." >}}
   {{< wrap >}}
 {{< slides "w8p2" >}}
@@ -358,12 +339,32 @@ Each of the below links to the full book. Icons in the schedule link to specific
 
 {{< /wrap >}}
   {{< wrap >}}
-{{< due "assignments/#homework" "HW 2" >}}
-{{< due "syllabus/#final-project" "Draft" >}}
+
 {{< /wrap >}}
   {{< wrap >}}
 {{< readings "socviz" "workgeoms.html#workgeoms" "5" >}}
 {{< readings "other" "https://gt.rstudio.com/articles/intro-creating-gt-tables.html" "gt" >}}
+{{< /wrap >}}
+  {{< wrap >}}
+{{< lecture "" >}}
+{{< /wrap >}}
+{{< /week-odd >}}
+
+{{< week-even "02-24" >}}
+  {{< description "Websites" "This lecture will focus on the [{distill}](https://rstudio.github.io/distill/) package, which helps you createrelatively simple yet customizable blogs, optimized for scientific communication. In addition to setting up the site and creating posts, we'll focus specifically on different layouts for displaying visual information (e.g., plots, tables)" >}}
+  {{< wrap >}}
+{{< slides "w7p2" >}}
+{{< /wrap >}}
+  {{< wrap >}}
+{{< assigned "assignments/#peer-review" "PR" >}}
+{{< /wrap >}}
+  {{< wrap >}}
+{{< due "assignments/#draft" "Draft" >}}
+{{< due "homework-2" "HW2" >}}
+{{< /wrap >}}
+  {{< wrap >}}
+{{< readings "other" "https://rstudio.github.io/distill/" "distill" >}}
+{{< readings "other" "https://bookdown.org/yihui/rmarkdown/websites.html" "sites" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< lecture "" >}}
@@ -395,7 +396,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< /week-odd >}}
 
 {{< week-even "03-03" >}}
-  {{< description "Loose ends and review" "This course moves very fast. This is a designated *fudge* day to catch up on topics we either did not get to or covered too quickly the first time around. Assuming we have time, we will also review many of the core concepts of the course." >}}
+  {{< description "Customizing web pages" "We'll talk about customizations generally, introducing styling with CSS, but focus speifically on customizations to websites and dashboards." >}}
   {{< wrap >}}
 {{< slides "" >}}
 {{< /wrap >}}
@@ -403,7 +404,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 
 {{< /wrap >}}
   {{< wrap >}}
-{{< due "syllabus/#final-project" "PR" >}}
+{{< due "assignments/#peer-review" "PR" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< readings "NA" "NA" "NA" >}}
@@ -468,7 +469,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 
 {{< /wrap >}}
   {{< wrap >}}
-{{< due "syllabus/#final-project" "Product" >}}
+{{< due "assignments/#final-project" "Product" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< readings "NA" "NA" "NA" >}}
