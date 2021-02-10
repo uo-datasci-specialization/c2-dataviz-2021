@@ -1299,8 +1299,7 @@ ggplot(aes(bill_length_mm, bill_depth_mm)) +
                    description = desc), #<<
                data = filter(drop_na(penguins), 
                              species == "Gentoo"),
-               label.fill = "#b3cfff",
-               label.alpha = 0.7) + 
+               label.fill = "#b3cfff") + #<< 
   coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
 ```
 
