@@ -1150,10 +1150,10 @@ Quickly
 # Annotating groups of points
 Consider using  any of the following from **ggforce** to annotate specific points
 
-`geom_mark_rect()`
-`geom_mark_circle()`
-`geom_mark_ellipse()`
-`geom_mark_hull()`
+* `geom_mark_rect()`
+* `geom_mark_circle()`
+* `geom_mark_ellipse()`
+* `geom_mark_hull()`
 
 ---
 # Examples
@@ -1163,11 +1163,11 @@ library(palmerpenguins)
 library(ggforce)
 
 penguins %>% 
-  drop_na() %>% 
+  drop_na() %>% # Can't take missing data
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
   geom_mark_ellipse(aes(group = species, label = species)) + #<<
   geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) + #<<
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) + #<<
   guides(color = "none")
 ```
 
@@ -1181,9 +1181,9 @@ library(ggforce)
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
-  geom_mark_ellipse(aes(group = species, label = species)) + #<<
   geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) + #<<
+  geom_mark_ellipse(aes(group = species, label = species)) + #<<
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) + #<<
   guides(color = "none")
 ```
 
@@ -1194,10 +1194,11 @@ ggplot(aes(bill_length_mm, bill_depth_mm)) +
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
-  geom_mark_ellipse(aes(group = species, label = species),
-                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
   geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+  geom_mark_ellipse(aes(group = species, label = species),
+                    data = filter(drop_na(penguins),  #<<
+                                  species == "Gentoo")) + #<<
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
 ```
 
 
@@ -1208,10 +1209,11 @@ class: middle
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
-  geom_mark_ellipse(aes(group = species, label = species),
-                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
   geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+  geom_mark_ellipse(aes(group = species, label = species),
+                    data = filter(drop_na(penguins),  #<<
+                                  species == "Gentoo")) + #<<
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
 ```
 
 ---
@@ -1223,10 +1225,11 @@ Note - requires the **concaveman** package be installed
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
-  geom_mark_hull(aes(group = species, label = species),
-                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
   geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+  geom_mark_hull(aes(group = species, label = species), #<<
+                    data = filter(drop_na(penguins), #<<
+                                  species == "Gentoo")) + #<<
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
 ```
 
 ---
@@ -1236,10 +1239,11 @@ class: middle
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
-  geom_mark_hull(aes(group = species, label = species),
-                    data = filter(drop_na(penguins), species == "Gentoo")) + #<<
   geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+  geom_mark_hull(aes(group = species, label = species),
+                    data = filter(drop_na(penguins), 
+                                  species == "Gentoo")) + #<<
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
 ```
 
 ---
@@ -1249,11 +1253,12 @@ ggplot(aes(bill_length_mm, bill_depth_mm)) +
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(color = species)) +
   geom_mark_hull(aes(group = species, label = species),
                  expand = unit(1, "mm"), #<<
-                 data = filter(drop_na(penguins), species == "Gentoo")) + 
-  geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+                 data = filter(drop_na(penguins), 
+                               species == "Gentoo")) + 
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23))  
 ```
 
 ---
@@ -1263,13 +1268,83 @@ class: middle
 penguins %>% 
   drop_na() %>% 
 ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(color = species)) +
   geom_mark_hull(aes(group = species, label = species),
                  expand = unit(1, "mm"), #<<
-                 data = filter(drop_na(penguins), species == "Gentoo")) + 
-  geom_point(aes(color = species)) +
-  coord_cartesian(xlim = c(25, 65), ylim = c(10, 25)) 
+                 data = filter(drop_na(penguins), 
+                               species == "Gentoo")) + 
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
 ```
 
+---
+# More in-depth annotations
+
+First create a description
+
+```{r }
+penguins <- penguins %>% 
+  mutate(desc = ifelse(species != "Gentoo", "", "During deep dives, gentoo penguins reduce their heart rate from 80 to 100 beats per minute (bpm) down to 20 bpm. Gentoo penguins use nesting materials ranging from pebbles and molted feathers in Antarctica to vegetation on subantarctic islands. Gentoos are the third largest penguin, following the emperor and king."))
+```
+
+---
+# Now add as a description
+
+```{r eval=FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_mark_ellipse(aes(group = species, 
+                   label = species,
+                   description = desc), #<<
+               data = filter(drop_na(penguins), 
+                             species == "Gentoo"),
+               label.fill = "#b3cfff",
+               label.alpha = 0.7) + 
+  coord_cartesian(xlim = c(28, 62), ylim = c(13, 23)) 
+```
+
+---
+class: middle
+
+```{r echo=FALSE}
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_mark_ellipse(aes(group = species, 
+                   label = species,
+                   description = desc), #<<
+               data = filter(drop_na(penguins), 
+                             species == "Gentoo"),
+               label.fill = "#b3cfff",
+               expand = unit(1, "mm"),) + 
+  coord_cartesian(xlim = c(22, 62), ylim = c(10, 23)) 
+```
+
+
+---
+# Similar
+We can also just add a textbox through **{ggtext}**
+
+```{r }
+txtbox <- tibble(
+  bill_length_mm = 23,
+  bill_depth_mm = 16,
+  lab = '"They may all waddle around in their tuxedolike feathers, but the penguins of the Antarctic Peninsula are not equal in their ability to adapt to a warming climate. While the populations of the Adélie and chinstrap penguin species are currently declining, the gentoo species is increasing. But this has not always been the case, according to a recent study published in the journal Scientific Reports." - Scientific American'
+)
+```
+
+---
+```{r }
+penguins %>% 
+  drop_na() %>% 
+ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  ggtext::geom_textbox(aes(label = lab),
+                       data = txtbox) +
+  coord_cartesian(xlim = c(17, 62), ylim = c(13, 22))
+```
 ---
 # Last bit
 
