@@ -27,7 +27,7 @@ the *honeyproduction.csv* file, which is posted [in the data folder in the cours
 highlight the west coast (Washington, Oregon, and California) with a different color used for each west coast state.
   + **Hint 2**: I'm not asking for a specific kind of plot, just one that does the preceding. But if you're trying to visualize change over time, a bar chart is likely not going to be the best choice.
   + **Hint 2**: To get each state to be a different color you should either map state to color (for your layer that adds the west coast colors) or use the [gghighlight](https://yutannihilation.github.io/gghighlight/index.html) package.
-2. Reproduce the plot according three different kinds of color blindness, as
+2. Reproduce the plot according to three different kinds of color blindness, as
 well as a desaturated version. 
 3. Reproduce the plot using a color blind safe palette. 
 4. Download the file [here](https://github.com/cphalpert/census-regions/raw/master/us%20census%20bureau%20regions%20and%20divisions.csv) denoting the region and division of each state. 
