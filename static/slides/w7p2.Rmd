@@ -1,7 +1,7 @@
 ---
 title: "Visualizing uncertainty"
 author: "Daniel Anderson "
-date: "Week 6, Class 2"
+date: "Week 7, Class 2"
 output:
   xaringan::moon_reader:
     css: ["default", "new.css"]
@@ -20,27 +20,27 @@ output:
 source(here::here("static", "slides", "slide-setup.R"))
 ```
 
-`r setup("w6p2")`
+`r setup("w7p2")`
 
 ---
 class: inverse-red middle
-# Reviewing Homework 1
+# Reviewing Lab 3
 
 ---
 class: inverse-blue
 # Data viz in the wild
 
-Raleigh
+Ann-Marie
 
-Maggie
+Murat
 
-### Ann-Marie and Murat on Deck
+### Sarah Donaldson & Hyeonjin on deck
 
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(fig.width = 13, 
-                      message = FALSE, 
+knitr::opts_chunk$set(fig.width = 13,
+                      message = FALSE,
                       warning = FALSE,
                       echo = TRUE)
 
@@ -51,17 +51,13 @@ theme_set(theme_minimal(25))
 #source(here::here("resources", "wilke-redundant_coding.R"))
 #source(here::here("resources", "wilke-proportions.R"))
 
-update_geom_defaults('path', list(size = 3))
-update_geom_defaults('point', list(size = 4))
-#update_geom_defaults('text_repel', list(size = 6))
-update_geom_defaults('text', list(size = 6))
+update_geom_defaults("path", list(size = 3))
+update_geom_defaults("point", list(size = 4))
+#update_geom_defaults("text_repel", list(size = 6))
+update_geom_defaults("text", list(size = 6))
 ```
 
 # Agenda 
-* Common ways of visualizing uncertainty
-  + And how to implement them with {ggplot2}
-
---
 * Framing uncertainty as relative frequencies
   + Discrete probabilities
   + Non-discrete probabilities
@@ -79,212 +75,6 @@ update_geom_defaults('text', list(size = 6))
 1. Understand there are lots of different ways to visualize uncertainty, and the best method may often be non-standard.
 
 2. Understand how to implement basic methods, and the resources available to you to implement more advanced methods
-
-
----
-# The primary problem
-* When we see a point on a plot, we interpret it as .bolder[THE] value.
-
-```{r loc_point, echo = FALSE}
-ggplot(data.frame(x = -5:5, y = -5:5), aes(x, y)) +
-  geom_point(data = data.frame(x = 3, y = 2),
-             color = "magenta",
-             size = 5) +
-  geom_segment(aes(x = 5, xend = 3.2, y = 4, yend = 2.2),
-               arrow = arrow(length = unit(0.5, "cm"),
-                             type = "closed"),
-               color = "gray40") +
-  geom_vline(xintercept = 0, 
-             color = "gray40",
-             size = 1.4) +
-  geom_hline(yintercept = 0,
-             color = "gray40",
-             size = 1.4) +
-  scale_x_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 2)) +
-  scale_y_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 2)) +
-  coord_fixed()
-```
-
----
-# Let's have Dr. Kay explain
-
-<br/>
-<br/>
-
-<div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/E1kSnWvqCw0?start=52" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
----
-# Some secondary problem
-* We're not great at understanding probabilities
-* We regularly round probabilities to 100% or 0%
-* As probabilities move to the tails, we're generally worse
-
----
-# How do we typically communicate uncertainty?
-* Error bars
-
-```{r error_bars, echo = FALSE, fig.height = 6}
-ggplot(data.frame(x = -5:5, y = -5:5), aes(x, y)) +
-  geom_errorbar(data = data.frame(x = 3, y = 2),
-               aes(ymin = 1.5, ymax = 2.5),
-               color = "gray40",
-               size = 1.4) +
-  geom_point(data = data.frame(x = 3, y = 2),
-             color = "magenta",
-             size = 5) +
-  geom_vline(xintercept = 0, 
-             color = "gray40",
-             size = 1.4) +
-  geom_hline(yintercept = 0,
-             color = "gray40",
-             size = 1.4) +
-  scale_x_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 2)) +
-  scale_y_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 2)) +
-  coord_fixed()
-```
-
----
-# How?
-### Vertical error bars
-`geom_errorbar` 
-* Requires `ymin` and `ymax` aesthetics
-* You have to supply these - no calculation for you
-
-
-
---
-### Horizontal error bars
-`geom_errorbarh`
-* Requires `xmin` and `xmax`
-
----
-# Example
-
-```{r mpg_se}
-mpg_by_man <- mpg %>%
-  group_by(manufacturer) %>%
-  summarize(mean_cty = mean(cty),
-            se_cty = sd(cty)/sqrt(n()))
-
-head(mpg_by_man)
-```
-
----
-```{r mpg_plot1}
-mpg_by_man %>% 
-  mutate(manufacturer = fct_reorder(manufacturer, mean_cty)) %>% 
-  ggplot(aes(manufacturer, mean_cty)) +
-  geom_errorbar(aes(ymin = mean_cty + qnorm(0.025)*se_cty, 
-                    ymax = mean_cty + qnorm(0.975)*se_cty))
-
-```
-
----
-# Put points on top 
-### Not under
-
-```{r mpg_plot2, fig.height = 5}
-mpg_by_man %>% 
-  mutate(manufacturer = fct_reorder(manufacturer, mean_cty)) %>% 
-  ggplot(aes(manufacturer, mean_cty)) +
-  geom_errorbar(aes(ymin = mean_cty + qnorm(0.025)*se_cty, 
-                    ymax = mean_cty + qnorm(0.975)*se_cty)) +
-   geom_point()
-```
-
----
-```{r mpg_plot3, fig.height = 6}
-mpg_by_man %>% 
-  mutate(manufacturer = fct_reorder(manufacturer, mean_cty)) %>% 
-  ggplot(aes(mean_cty, manufacturer)) +
-  geom_errorbarh(aes(xmin = mean_cty - 1.96*se_cty, 
-                     xmax = mean_cty + 1.96*se_cty),
-                color = "gray40") +
-   geom_point()
-```
-
----
-# Dodging
-
-```{r props_df}
-props <- mpg %>%
-  count(drv, year) %>%
-  mutate(prop = n/sum(n), 
-         prop_se = sqrt((prop*(1-prop)) / n))
-
-head(props)
-```
-
----
-```{r props_plot1}
-ggplot(props, aes(drv, prop)) +
-  geom_col(aes(fill = factor(year)), position = "dodge")
-```
-
----
-```{r props_plot2}
-ggplot(props, aes(drv, prop)) +
-  geom_col(aes(fill = factor(year)), position = "dodge") +
-  geom_errorbar(aes(ymin = prop - 1.96*prop_se, 
-                    ymax = prop + 1.96*prop_se),
-                color = "gray40")
-```
-
----
-```{r props_plot3, fig.height = 6}
-pd <- position_dodge(.9) #<<
-ggplot(props, aes(drv, prop)) +
-  geom_col(aes(fill = factor(year)), position = pd) + #<<
-  geom_errorbar(aes(ymin = prop - 1.96*prop_se, 
-                    ymax = prop + 1.96*prop_se),
-                color = "gray40",
-                position = pd) #<<
-```
-
----
-```{r props_plot4, fig.height = 5.5}
-pd <- position_dodge(.9)
-ggplot(props, aes(drv, prop)) +
-  geom_col(aes(fill = factor(year)), position = pd) +
-  geom_errorbar(aes(ymin = prop - 1.96*prop_se, 
-                    ymax = prop + 1.96*prop_se,
-                    group = year), #<<
-                color = "gray40",
-                position = pd)
-```
-
----
-```{r props_plot5-echo, eval = FALSE}
-pd <- position_dodge(.9)
-ggplot(props, aes(drv, prop)) +
-  geom_col(aes(fill = factor(year)), position = pd) +
-  geom_errorbar(aes(ymin = ifelse(prop - 1.96*prop_se < 0, #<<
-                                  0, #<<
-                                  prop - 1.96*prop_se), #<<
-                    ymax = prop + 1.96*prop_se,
-                    group = year),
-                color = "gray40",
-                position = pd,
-                width = 0.5, #<<
-                size = 1.4) #<<
-```
-
----
-```{r props_plot5-eval, echo = FALSE}
-pd <- position_dodge(.9)
-ggplot(props, aes(drv, prop)) +
-  geom_col(aes(fill = factor(year)), position = pd) +
-  geom_errorbar(aes(ymin = ifelse(prop - 1.96*prop_se < 0, 
-                                  0, 
-                                  prop - 1.96*prop_se), 
-                    ymax = prop + 1.96*prop_se,
-                    group = year),
-                color = "gray40",
-                position = pd,
-                width = 0.5,
-                size = 1.4) 
-```
-
 
 ---
 # Thinking about uncertainty
@@ -412,7 +202,7 @@ ggplot(grid, aes(x, y)) +
 
 ---
 # Chance of rain
-
+## 80%
 ```{r rain1, echo = FALSE, fig.height = 8.5}
 grid <- expand.grid(x = 1:20, y = 1:20)
 samp <- sample(seq_len(nrow(grid)), nrow(grid)*.80)
@@ -519,7 +309,7 @@ class: inverse-red center middle
 
 ---
 # Hypothetical
-Blue party has 1% advantage w/ margin of error of 1.76 points
+Blue party has 1% advantage (technically 1.02%) w/ margin of error of 1.76 points
 
 ### Who will win?
 
@@ -529,7 +319,7 @@ Blue party has 1% advantage w/ margin of error of 1.76 points
 # Wilke code
 x <- c(seq(-2.5, 0, length.out = 50), seq(0.00001, 5, length.out = 100))
 mu <- 1.02
-sd <- .9
+sd <- .88
 
 df_norm <- data.frame(
   x,
@@ -555,7 +345,10 @@ ggplot(df_norm, aes(x, y)) +
   geom_segment(
     data = data.frame(x = 1),
     x = ci_x[1], xend = ci_x[2], y = ci_y[1], yend = ci_y[2],
-    arrow = arrow(angle = 15, length = grid::unit(15, "pt"), ends = "both", type = "closed"),
+    arrow = arrow(angle = 15, 
+                  length = grid::unit(15, "pt"), 
+                  ends = "both", 
+                  type = "closed"),
     inherit.aes = FALSE
   ) +
   geom_segment(
@@ -588,7 +381,7 @@ ggplot(df_norm, aes(x, y)) +
 
 ---
 # A bit of math
-Our prior distribution was defined by $\mu = 1.02$ and $sd = 0.9$.
+Our prior distribution was defined by $\mu = 1.02$ and $sd = 0.88$ (margin of error divided by two).
 
 --
 * What's the chance the end result is below zero?
@@ -599,7 +392,7 @@ Calculate the exact probability of data below zero under this distribution
 
 ```{r dnorm, fig.height = 5}
 x <- seq(-5, 5, 0.001)
-likelihood <- dnorm(x, 1.02, 0.9)
+likelihood <- dnorm(x, 1.02, 0.88)
 sim <- data.frame(x, likelihood)
 ggplot(sim, aes(x, likelihood)) +
   geom_line(size = 1.2)
@@ -610,7 +403,7 @@ ggplot(sim, aes(x, likelihood)) +
 
 ```{r auc, echo = FALSE}
 x <- seq(-5, 5, 0.001)
-likelihood <- dnorm(x, 1.02, 0.9)
+likelihood <- dnorm(x, 1.02, 0.88)
 sim <- data.frame(x, likelihood)
 ggplot(sim, aes(x, likelihood)) +
   geom_area(data = filter(sim, x <= 0),
@@ -837,11 +630,12 @@ map_dbl(samples2, mean) %>%
 # Visualize the sampling distributions
 
 ```{r sampling_dist}
-sample_means <- tibble(iter = rep(1:1000, 2),
-                       sample = rep(c(10, 100), each = 1000),
-                       mean = c(map_dbl(samples, mean),
-                                map_dbl(samples2, mean))
-                       )
+sample_means <- tibble(
+  iter = rep(1:1000, 2),
+  sample = rep(c(10, 100), each = 1000),
+  mean = c(map_dbl(samples, mean),
+           map_dbl(samples2, mean))
+)
 sample_means
 ```
 
@@ -935,6 +729,7 @@ ggplot(tidied_m, aes(term, estimate)) +
 
 ---
 # Add levels to legend
+Include the color spec in `aes()`
 ```{r add_legend-echo, fig.show = "hide"}
 p <- ggplot(tidied_m, aes(term, estimate)) +
   geom_hline(yintercept = 0,
@@ -942,17 +737,17 @@ p <- ggplot(tidied_m, aes(term, estimate)) +
              linetype = 2) +
   geom_errorbar(aes(ymin = estimate + qnorm(.025)*std.error, 
                     ymax = estimate + qnorm(.975)*std.error,
-                    color = "95%"),
+                    color = "95%"), #<<
                 width = 0.2,
                 size = 0.8) + 
   geom_errorbar(aes(ymin = estimate + qnorm(.05)*std.error, 
                     ymax = estimate + qnorm(.95)*std.error,
-                    color = "90%"),
+                    color = "90%"), #<<
                 width = 0.2,
                 size = 1.2) + 
   geom_errorbar(aes(ymin = estimate + qnorm(.1)*std.error, 
                     ymax = estimate + qnorm(.9)*std.error,
-                    color = "80%"),
+                    color = "80%"), #<<
                 width = 0.2,
                 size = 1.6) 
 ```
@@ -1155,7 +950,7 @@ animated_p <- ggplot(mtcars, aes(disp, mpg)) +
   transition_states(sample, 
                     transition_length = 0.5,
                     state_length = 0.5) +
-   ease_aes('linear') +
+   ease_aes("linear") +
   theme_minimal(25)
 
 animate(animated_p, fps = 5, width = 800)
@@ -1186,12 +981,18 @@ ggplot(mtcars, aes(disp, mpg)) +
 
 ---
 # Another example
+Canada has the highest average rating for their chocolate bars in the world, according to a recent study. But the sample size is also smaller than other countries, like the US. 
+
+How certain are we that Canada's chocolate is better? Compare the ratings of a randomly chosen Canadian chocolate bar to a randomly chosen US Chocolate bar.
+
+---
+class: middle
 
 ![](https://github.com/wilkelab/ungeviz/raw/master/man/figures/README-cacao-samples-anim-1.gif)
 
 ---
-# Another examples
-### From Dr. Kay again
+# Another example
+## From Dr. Kay again
 
 <div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/E1kSnWvqCw0?start=2380" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
@@ -1206,5 +1007,5 @@ ggplot(mtcars, aes(disp, mpg)) +
 ---
 class: inverse-green middle
 
-# Next time: Dashboards
-### Guest Lecturer: [Akhila Nekkanti](https://twitter.com/akhilanekkanti)
+# Next time
+## Tables and Fonts
