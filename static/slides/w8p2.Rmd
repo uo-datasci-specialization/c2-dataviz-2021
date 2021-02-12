@@ -28,6 +28,8 @@ class: inverse-blue
 
 Anwesha
 
+Ping
+
 ### Makayla on deck
 
 ---
