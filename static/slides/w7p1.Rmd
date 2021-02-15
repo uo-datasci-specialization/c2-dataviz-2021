@@ -1,0 +1,611 @@
+---
+title: "{flexdashboards}"
+subtitle: "Data visuals. On a board."
+author: "Akhila Nekkanti"
+date: "Winter 2021"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      navigation:
+        scroll: false
+      highlightStyle: atelier-dune-light
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      in_header: "load-feather.html"
+---
+
+```{r include = FALSE, results = "asis"}
+source(here::here("static", "slides", "slide-setup.R"))
+```
+
+`r setup("w7p1")`
+
+```{css, echo = FALSE}
+div.slides-footer {
+  position: absolute;
+  bottom: 15px;
+  left: 81%;
+  height: 20px;
+  width: 100%;
+}
+```
+
+---
+class: center, left
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+
+theme_set(theme_minimal(15))
+#[metropolis, metropolis-fonts]
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#ef8b43",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+#Why use a dashboard?
+https://ramikrispin.github.io/coronavirus_dashboard/
+
+![](img/covid19.PNG)
+---
+
+#Why use a dashboard?
+http://jkunst.com/flexdashboard-highcharter-examples/pokemon/
+
+![](img/pokemon.PNG)
+
+---
+#Why use a dashboard?
+https://jim-wright90.github.io/data_sci_capstone_project/
+
+![](img/jim.PNG)
+
+---
+#Why use a dashboard?
+
+https://github.com/akhilanekkanti1/FlexDashboards
+
+![](img/akhila.PNG)
+
+---
+
+# The ultimate source
+https://rmarkdown.rstudio.com/flexdashboard/
+
+![](img/flexdash.PNG)
+
+---
+#Where to start?
+
+--
+
+Workflow!
+
+--
+
+We want to make sure we have the *option* to make our dashboard public.
+
+--
+
+1. Create a new Project
+
+--
+
+2. Create a new Rmarkdown from template {flexdashboards}
+
+--
+
+3. Knit right away
+
+--
+
+4. Create a github Repo
+
+--
+
+5. Link your local and remote repos with GitKraken
+
+
+---
+
+#Mise en place: Set yourself up.
+
+--
+Open:
+
+- R
+
+- GitKraken
+
+- Github
+
+
+---
+class: center, middle
+
+##1. Create a new Project
+
+File > New Project > New Directory
+
+
+![](img/newproj.gif)
+
+
+---
+class: center, middle
+
+##2. Create a new Rmarkdown from template and (#3) Knit
+
+```{r install, echo = TRUE, eval = FALSE}
+#One time only
+install.packages("flexdashboard")
+```
+
+![](img/newrmd.gif)
+
+---
+class: center, middle
+
+##4. Create a GitHub repo and (#5) Link it with your local
+
+![](img/link.gif)
+
+---
+class: center, middle
+
+# Ready to PUBLISH!
+
+![](img/publish.gif)
+
+---
+class: center, middle
+
+## Now let's play around with our dashboard! 
+
+
+---
+## Let's start with the YAML.
+
+```{r eval=FALSE, echo= TRUE}
+
+---
+title: "Coolest DEMO EVER"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    social: menu #<<
+    source_code: https://github.com/akhilanekkanti1/dashboard_demo #<<
+---
+
+```
+
+![](img/source.PNG)
+
+---
+## Let's add a new page.
+
+```{r eval=FALSE, echo= TRUE}
+
+Weird Flex #<<
+========================= #<<
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+< r code chunk >
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+< r code chunk >
+  
+But Okay #<<
+======================== #<<
+### Chart C
+< r code chunk >
+  
+```
+
+![](img/tabs.PNG)
+---
+##Play around!
+
+- Change the name of each square
+
+- Try adding a different plot in each square
+
+- Can you change the number of squares in each page?
+
+- Can you change the size of each square?
+
+Plot example:
+```{r plots, eval = FALSE, echo= TRUE}
+
+library(tidyverse)
+
+mtcars %>% 
+  ggplot(aes(wt, mpg, col=as_factor(cyl))) +
+  geom_point() +
+  facet_grid(~cyl)
+
+```
+
+## 5 minutes :)
+
+---
+##Want to add some text?
+
+Just add it in like you would for a typical Rmarkdown doc.
+
+```{r eval=FALSE, echo=TRUE}
+
+# Page 1
+
+Check out this plot I made. 
+
+### Plot A
+
+<R code for your plot>
+
+```
+
+
+---
+##Columns
+
+- Create a new column with
+
+```{}
+Column
+--------------------------------------
+```
+
+- Change the width of each column
+  - Notice there are NO spaces around the '='
+  
+```{}
+Column {data-width=400}
+--------------------------------------
+```
+
+- Add a new square within each column
+
+```{}
+Column {data-width=400}
+--------------------------------------
+### New Square
+```
+
+---
+##Columns vs. Rows
+
+- If you want all rows:
+```{r eval=FALSE, echo= TRUE}
+
+---
+title: "Coolest DEMO EVER"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows #<<
+    vertical_layout: fill
+    social: menu 
+    source_code: https://github.com/akhilanekkanti1/dashboard_demo 
+---
+
+```
+
+---
+##Columns vs. Rows
+
+- If you want rows for some pages and columns for other pages:
+  - don't specify the orientation
+  - **do** add 'data-orientation' when you name your pages.
+  
+In this example, Page 1 will have rows and Page 2 will have columns.
+```{r eval=FALSE, echo= TRUE}
+#change your yaml
+---
+title: "Coolest DEMO EVER"
+output: 
+  flexdashboard::flex_dashboard:
+    vertical_layout: fill #<<
+    horizontal_layout: fill #<<
+    social: menu 
+    source_code: https://github.com/akhilanekkanti1/dashboard_demo 
+---
+
+
+Page 1 {data-orientation=rows} #<<
+=============================== #<<
+
+      
+Page 2 #<<
+=============================== #<<
+```
+
+---
+##Rows
+
+- Create a new row with
+
+```{}
+Row
+--------------------------------------
+```
+
+- Change the width of each row
+  - Notice there are NO spaces around the '='
+  
+```{}
+Row {data-height=400}
+--------------------------------------
+```
+
+- Add a new square within each row
+
+```{}
+Row {data-height=400}
+--------------------------------------
+### New Square
+```
+
+---
+# You can also add a sidebar!
+
+Here's an example from my dashboard.
+![](img/akhila.PNG)
+
+---
+# You can also add a sidebar!
+
+If you want the sidebar on all pages:
+
+```{}
+Sidebar Title {.sidebar}
+===================================
+
+This Dashboard is Important. 
+
+RMarkdown syntax works here! 
+
+[Click here](https://youtu.be/dQw4w9WgXcQ). 
+
+```
+
+
+If you want the sidebar on just one page:
+
+```{}
+
+Sidebar Title {.sidebar}
+------------------------------
+```
+
+---
+#What if you want to organize your columns even more?
+
+You can use tabs:
+![](img/minitabs_LI.jpg)
+
+---
+## Use tabset to split your columns or rows into tabs.
+
+```{r eval=FALSE, echo = TRUE}
+Column {.tabset} #<<
+-------------------------------------
+
+### Part 1 #<<
+
+<r code chunk>
+
+### Part 2 #<<
+
+<r code chunk>
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### OH la la, Final Plot
+```
+
+**For multiple arguments, there's no comma in between.**
+
+```{}
+Column {.tabset data-width=350}
+-------------------------------------
+```
+
+---
+#Interactivity!
+
+You can use {reactable} or {plotly} to make your tables or plots interactive!
+
+Here's a simple example:
+
+```{r echo=TRUE, include=TRUE}
+
+p <- mtcars %>% 
+  ggplot(aes(wt, mpg)) +
+  geom_point() 
+
+plotly::ggplotly(p)
+
+
+reactable::reactable(mtcars)
+
+```
+
+---
+#Interactivity!
+
+If you have more than one page, make it *shiny*!
+
+[{shiny}](https://shiny.rstudio.com/tutorial/*) allows you to make interactive web applications with R. 
+
+First, change your YAML.
+
+```{r echo=TRUE, eval=FALSE}
+
+---
+title: "Coolest DEMO EVER"
+runtime: shiny #<<
+output: 
+  flexdashboard::flex_dashboard:
+
+```
+
+Next, assign your interactive plot or table to an object, and **render**.
+
+```{r echo=TRUE, eval=FALSE}
+
+renderPlotly(plot1)
+
+renderReactable(table1)
+
+```
+
+---
+#I know what you're thinking.
+
+Interactivity isn't enough. How can I make my dashboard even cooler?
+
+### I have the answer. Icons. 
+
+I recommend using [Fontawesome icons](https://fontawesome.com/icons?d=gallery).But you can also use [ionicons](https://ionicons.com/).
+
+```{r eval=FALSE, echo=TRUE}
+
+#Use the prefix "fa" for fontawesome icons or "ion" for ionicons.
+
+Weird Flex {data-icon="fa-code-branch"}
+=================================
+
+```
+
+![](img/icon.PNG)
+
+
+---
+# Want a logo?
+
+So simple, my friends. Download a fontawesome icon to your project folder, and change your YAML.
+
+Check the size of your png file!
+
+```{r echo=TRUE, eval=FALSE}
+
+---
+title: "Coolest DEMO EVER"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    logo: coolpic.png #<<
+    favicon: coolicon.png #<<
+    social: menu
+    source_code: https://github.com/akhilanekkanti1/dashboard_demo
+    
+---
+
+```
+
+---
+# Storyboards 
+
+![](img/storyboard.PNG)
+
+---
+# Storyboard all the way.
+
+1. First, change your YAML. 
+2. Use level 3 headers (###) for each frame in your storyboard.
+
+```{r eval=FALSE, echo=TRUE}
+---
+title: "Storyboard"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true #<<
+---
+
+### Frame 1 #<<
+
+### Frame 2 #<<
+
+### Frame 3 #<<
+
+```
+
+---
+# Storyboard all the way.
+
+![](img/storyboard1.PNG)
+
+---
+# Storyboards on just one page.
+
+1. Just add {.storyboard} to your page title.
+
+```{r eval=FALSE, echo=TRUE}
+            
+Cool Story {.storyboard}  #<<   
+========================== #<<
+### Frame 1 #<<
+
+### Frame 2 #<<
+      
+```
+
+![](img/storypage.PNG)
+
+---
+#Last but not least, [themes](https://rmarkdown.rstudio.com/flexdashboard/using.html#themes)!
+
+https://rmarkdown.rstudio.com/flexdashboard/using.html#themes
+
+```{r eval=FALSE, echo=TRUE}
+
+---
+title: "Coolest DEMO EVER"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: united #<<
+    social: menu
+    source_code: https://github.com/akhilanekkanti1/dashboard_demo
+    
+---
+
+```
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.org/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
