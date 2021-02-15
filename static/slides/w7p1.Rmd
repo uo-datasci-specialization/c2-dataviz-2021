@@ -8,10 +8,31 @@ output:
     css: xaringan-themer.css
     lib_dir: libs
     nature:
+      navigation:
+        scroll: false
       highlightStyle: atelier-dune-light
       highlightLines: true
       countIncrementalSlides: false
-      
+    includes:
+      in_header: "load-feather.html"
+---
+
+```{r include = FALSE, results = "asis"}
+source(here::here("static", "slides", "slide-setup.R"))
+```
+
+`r setup("w7p1")`
+
+```{css, echo = FALSE}
+div.slides-footer {
+  position: absolute;
+  bottom: 15px;
+  left: 81%;
+  height: 20px;
+  width: 100%;
+}
+```
+
 ---
 class: center, left
 
