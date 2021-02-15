@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>flexdashboards</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Daniel Anderson" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# flexdashboards
+### Daniel Anderson
+### Week 8, Class 2
+
+---
+
+
+
+# The definitive source!
+https://rmarkdown.rstudio.com/flexdashboard/
+
+![](img/flexdashboards.png)
+
+---
+class: inverse
+# Example
+
+![](https://arm.rbind.io/slides/img/flexdashboard-fatalpoliceshootings.png)
+
+.footnote[Credit: This example from [Alison Hill's rstudio::conf(2019L) class]()]
+
+--
+By [Julia Silge](https://juliasilge.com) (see the [blog post](https://juliasilge.com/blog/fatal-shootings/), [dashboard](https://beta.rstudioconnect.com/juliasilge/policeshooting/policeshooting.html),
+and [source code](https://gist.github.com/juliasilge/9acbe97c549502bac85404779edceba0))
+
+---
+class: inverse
+
+![](https://arm.rbind.io/slides/img/flexdashboard-mosaic.png)
+
+.footnote[Credit: This example from [Alison Hill's rstudio::conf(2019L) class]()]
+
+--
+By [Jennifer Thompson](https://jenthompson.me) (see the [blog post](https://jenthompson.me/2018/02/09/flexdashboards-monitoring/), [dashboard](https://jenthompson.me/examples/progressdash.html),
+and [source code](https://github.com/jenniferthompson/MOSAICProgress))
+
+
+---
+# Getting started
+
+```r
+install.packages("flexdashboard")
+```
+
+![](https://rmarkdown.rstudio.com/flexdashboard/images/NewRMarkdown.png)
+
+
+---
+class: inverse middle center
+# Do it
+### knit right away
+### Add some plots
+### Play
+
+<div class="countdown" id="timer_5e556bb9" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+# Columns
+
+* Define new column with 
+
+```
+Column
+----------------------------------
+```
+
+* Optionally specify the width with `{data-width}`
+
+--
+* Annoyingly, be careful with spacing! 
+
+`{data-width=650}` will work
+
+### but 
+
+`{data-width = 650}` will not work
+
+
+---
+# New squares
+
+
+```md
+### Square title
+&lt; r code chunk &gt;
+```
+
+* Each time you add a square it will split the area evenly among all the squares
+
+---
+# Thinking in rows
+
+* Change the YAML to 
+
+```md
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+```
+
+--
+
+* Each `###` will then create a new column
+
+
+--
+* Add new rows with
+
+```md
+Row
+----------------------------------
+```
+
+--
+* Modify height with `{data-height=XXX}`
+
+
+---
+# Pages
+You can easily specify multiple pages by just specifying a Level 1 Header
+
+```md
+# Page 1
+
+Column {data-width=650}
+----------------------------
+### Chart A
+&lt; r code&gt;
+
+Column {data-width=350}
+----------------------------
+### Chart B
+&lt; r code&gt;
+
+### Chart C
+&lt; r code&gt;
+
+# Page 2
+
+```
+
+---
+# A brief aside on interactivity
+
+* Things like `reactable::reactable` and `plotly::ggplotly` can help give your dashboard some nice interactvity. 
+
+
+--
+### However!
+* If you have more than one page, you'll have to turn it into a shiny app (basically)
+
+--
+
+* This is not as hard as it sounds!
+
+---
+# Steps to interactivity
+### With multipage layouts
+
+Add `runtime: shiny` to your YAML
+
+```
+---
+title: "My amazing dashboard"
+runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+```
+
+--
+Save your interactive piece into an object, and call the corresponding `render*` fucntion.
+
+.pull-left[
+
+```r
+p &lt;- ggplot(...)
+renderPlotly(p)
+```
+]
+
+.pull-right[
+
+```r
+tbl &lt;- reactable(...)
+renderReactable(tbl)
+```
+]
+
+---
+# Sidebar
+* Julia Silge's had a nice sidebar where she explained things about the flexdashboard... You can have this too!
+
+```md
+Sidebar Title {.sidebar}
+--------
+
+Your text here. You can use markdown syntax, including 
+[links](http://blah.com), *italics*, **bolding**, etc.   
+```
+
+--
+* Multiple pages? Just change the separator to keep it there
+
+```md
+Sidebar {.sidebar}
+============
+
+Your text here. You can use markdown syntax, including [links](http://blah.com), *italics*, **bolding**, etc.   
+```
+
+
+---
+# Tabsets
+
+This is actually a standard R Markdown feature, but you can use it with flexdashboards as well
+
+
+```md
+Column {.tabset}
+----------------------------------------------------------------------
+
+### Chart 1
+&lt; r code&gt;
+
+### Chart 2
+&lt; r code&gt;
+
+### Data Table
+&lt; r code&gt;
+```
+
+--
+No comma between multiple column arguments 
+
+.pull-left[
+### Good
+```
+Column {.tabset data-width=650}
+```
+]
+
+.pull-right[
+### bad
+```
+Column {.tabset, data-width=650}
+```
+]
+
+
+
+---
+# Icons
+* Probably not the most important thing, but fun
+
+* Use Font awesome!
+
+```md
+# Years {data-icon="fa-calendar"}
+```
+
+---
+# HTML Widgets
+
+Add a touch of interactivity
+
+* Plenty of HTML widgets for R out there (see https://www.htmlwidgets.org/showcase_leaflet.html)
+
+* {plotly} is cool
+
+
+```r
+library(plotly)
+p &lt;- ggplot(mpg, aes(displ, cty)) +
+  geom_point() +
+  geom_smooth()
+
+*ggplotly(p)
+```
+
+---
+# Including Text
+
+* If you want to include text about an overall figure, just put the text in the R Markdown doc like you normally would
+
+```md
+# Base {data-icon="fa-calendar"}
+Here's a description about the plot that follows
+
+### A base R plot
+&lt; r code&gt;
+
+```
+
+---
+# What if you have tabsets?
+
+* Works great if you want to describe all the plots/tables/content in the tabset
+
+* If you want to provide text for an individual plot, use `&gt;`
+
+```md
+
+Column {.tabset data-width=350}
+-------------------
+
+This text will describe the full tabset
+
+###  Chart 1
+&lt; r code&gt;
+
+&gt; Here's some text for Chart 1
+
+###  Table 1
+&lt; r code&gt;
+
+&gt; Here's some text for Table 1
+
+```
+
+---
+# Storyboarding
+
+* A little bit advanced, but pretty cool
+
+* First, change the YAML
+
+```md
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+```
+
+---
+```md
+# Method {.storyboard}
+
+### Sample Descriptives {data-commentary-width=400}
+&lt; r code&gt;
+
+**** 
+
+This is some text describing what's going on with the sample, and how we moved from the raw data tot he analytic sample. 
+
+### Correlation Matrix {data-commentary-width=200}
+&lt; r code&gt;
+
+****
+
+There is less to say here so I made the commentary box smaller
+
+# Results {.storyboard}
+
+### Plot 1 {data-commentary-width=600}
+&lt; r code&gt;
+
+****
+
+Lots to say here. There is important
+
+### Plot 2 {data-commentary-width=200}
+
+****
+
+Move along
+
+```
+
+---
+# Customization
+* Add font-awesome stuff
+* Change the [theme](https://rmarkdown.rstudio.com/flexdashboard/using.html#appearance)
+
+```md
+flexdashboard::flex_dashboard:
+  theme: readable
+```
+
+---
+# CSS
+Consider creating some custom CSS (Rather complicated in this case)
+
+Change the navigation bar to bright pink with thin blue border
+
+```css
+.navbar-inverse {
+  background-color: #FE08A5;
+  border-color: #0822FE;
+}
+```
+
+Save the above code in "custom.css" then specify in the YAML
+
+```md
+  flexdashboard::flex_dashboard:
+    css: custom.css
+```
+
+Making sure "custom.css" is in the same directory as your flexdashboard Rmd.
+
+
+---
+# Add a logo and favicon
+
+```md
+output: 
+  flexdashboard::flex_dashboard:
+    logo: logo.png
+    favicon: favicon.png
+```
+
+---
+class: inverse center middle
+# Slides (briefly)
+
+--
+
+# xaringan
+
+### /ʃæ.'riŋ.ɡæn/
+
+---
+# Install
+* I'd recommend going with the GitHub version
+
+
+```r
+devtools::install_github("yihui/xaringan")
+```
+
+* If you're more comfortable using fully stable software, install from CRAN
+
+
+```r
+install.packages("xaringan")
+```
+
+---
+# What it is
+
+.pull-left[
+* HTML-based slides
+* Produced with R Markdown
+* Styled with CSS
+]
+
+.pull-right[
+![](img/rmd.png)
+]
+
+
+---
+# Themes
+This is the `uo` theme
+See All the available themes with `xaringan:::list_css()`
+
+
+```r
+names(xaringan:::list_css())
+```
+
+```
+##  [1] "chocolate-fonts"  "chocolate"        "default-fonts"    "default"         
+##  [5] "duke-blue"        "fc-fonts"         "fc"               "hygge-duke"      
+##  [9] "hygge"            "kunoichi"         "lucy-fonts"       "lucy"            
+## [13] "metropolis-fonts" "metropolis"       "middlebury-fonts" "middlebury"      
+## [17] "ninjutsu"         "rladies-fonts"    "rladies"          "robot-fonts"     
+## [21] "robot"            "rutgers-fonts"    "rutgers"          "shinobi"         
+## [25] "tamu-fonts"       "tamu"             "uo-fonts"         "uo"              
+## [29] "uol-fonts"        "uol"
+```
+
+---
+# Specify a theme
+
+.pull-left[
+.grey[.Large[**Default YAML**]]
+```
+---
+title: "Presentation Ninja"
+subtitle: "⚔&lt;br/&gt;with xaringan"
+author: "Yihui Xie"
+date: "2016/12/12"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```
+]
+
+.pull-right[
+.grey[.Large[**Add a theme**]]
+```
+---
+title: "Presentation Ninja"
+subtitle: "⚔&lt;br/&gt;with xaringan"
+author: "Yihui Xie"
+date: "2016/12/12"
+output:
+  xaringan::moon_reader:
+* css: ["default", "uo", "uo-fonts"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```
+]
+
+---
+# Where do the themes live?
+CSS Files
+
+![](img/css-files.png)
+.footnote[Slides available at [datalorax.com/talks/cascadia18](http://www.datalorax.com/talks/cascadia18/)]
+
+---
+## How do you create your own theme?
+
+&lt;br/&gt;
+### My advice
+1. Start with an existing theme
+1. Modify the CSS 
+  + Change .large[.bolder[.red[c].blue[o].green[l].yellow[o].purple[r].orange[s]]]!
+  + Change fonts! (see [here](https://github.com/yihui/xaringan/wiki/Changing-fonts), 
+  import fonts with [google fonts](https://fonts.google.com))
+  + Consider changes to the background
+1. Once you've found the parts you want to modify, copy them into a new CSS file, and reference it from your YAML
+
+
+---
+```
+---
+title: "Presentation Ninja"
+subtitle: "⚔&lt;br/&gt;with xaringan"
+author: "Yihui Xie"
+date: "2016/12/12"
+output:
+  xaringan::moon_reader:
+* css: ["default", "uo", "uo-fonts", "my-customizations.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```
+
+
+---
+# Look at CSS for [existing themes](https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources)
+
+![](img/existing-themes.png)
+
+---
+# Basically this
+
+.center[&lt;img src = "https://i.pinimg.com/736x/33/fb/06/33fb067593a2a949e349a4e899c508d3--programming-humor-o-reilly.jpg",
+ height = 480 /&gt;]
+
+
+---
+# Some basic features
+* separate slides with `---`
+
+* Get incremental appearance of items on the slide with `--`
+
+* Separate into two-panel format with `pull-left[]` and `pull-right[]`
+
+* Titles with Level 1 header
+
+* Specify class of slides with `class`
+
+
+---
+```md
+&lt;YAML&gt;
+
+# Title slide 1
+
+Here's some text
+
+&lt; r code &gt;
+
+.pull-left[
+This part will be in the left panel
+]
+
+.pull-right[
+this part will be in the right panel
+]
+
+--
+
+This will be back to the default format, and appear on click
+
+---
+class: inverse center middle
+# Slide 2
+
++ New slide with a bullet in inverse, center, middle format
+
+```
+
+---
+class: inverse middle
+background-image: url(https://images.pexels.com/photos/257840/pexels-photo-257840.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260)
+background-size: cover
+
+# Background images
+
+---
+Code for previous slide looked like this
+
+```md
+class: inverse middle
+background-image: url(https://images.pexels.com/photos/257840/pexels-photo-257840.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260)
+background-size: cover
+```
+
+---
+# Publish
+
+Lots of options, but GitHub pages works great
+* Create a repo on GitHub with everything for your slides
+
+  + CSS files, image files, etc. (it all needs to be in there)
+
+* Make your HTML file named `index.html`
+
+* Change the GitHub pages setting to publish the master branch
+
+---
+# [slidex](https://github.com/datalorax/slidex)
+
+https://github.com/datalorax/slidex
+
+Transition PowerPoint slides to xaringan slides
+* Currently exports one function: 
+
+
+```r
+convert_pptx("path/to/pptx", author = "Your Name")
+```
+
+--
+
+* Still a WIP - not perfect but can do a lot
+  + Maintains bulleting (basically)
+  + Maintains and reproduces tables 
+  + Maintains images
+  + Maintains links
+  + Easy selection of existing themes (additional `theme` argument).
+  
+---
+class: inverse
+background-image: url(https://github.com/datalorax/slidex/raw/master/docs/slidex-preview.gif)
+background-size: contain
+
+---
+background-image:url("https://images.pexels.com/photos/346796/pexels-photo-346796.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260")
+background-size:cover
+class: center
+# Go forth and share your work!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "atelier-dune-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
