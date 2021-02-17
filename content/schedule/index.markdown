@@ -309,7 +309,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "02-17" >}}
   {{< description "Uncertainty 2" "Common methods for visualizing uncertainty (and their implementation w/{ggplot2}). Framing uncertainty as relative frequencies. Non-standard methods for visualizing standard errors, boostrapping, and a brief foray into hypothetical outcomes plots" >}}
   {{< wrap >}}
-{{< slides "w6p2" >}}
+{{< slides "w7p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -333,7 +333,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-odd "02-22" >}}
   {{< description "Tables and fonts" "We will focus primarily on two packages for creating tables: [{gt}](https://gt.rstudio.com) for static tables, and [{reactable}](https://glin.github.io/reactable/index.html) for interactive tables. We'll also discuss changing fonts, both within websites/applications, as well as with {ggplot2}." >}}
   {{< wrap >}}
-{{< slides "w8p2" >}}
+{{< slides "w8p1" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
@@ -353,7 +353,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "02-24" >}}
   {{< description "Websites" "This lecture will focus on the [{distill}](https://rstudio.github.io/distill/) package, which helps you createrelatively simple yet customizable blogs, optimized for scientific communication. In addition to setting up the site and creating posts, we'll focus specifically on different layouts for displaying visual information (e.g., plots, tables)" >}}
   {{< wrap >}}
-{{< slides "w7p2" >}}
+{{< slides "w8p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 {{< assigned "assignments/#peer-review" "PR" >}}
