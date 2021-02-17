@@ -1,0 +1,215 @@
+---
+title: 'Lab 3'
+author: Daniel Anderson
+date: '2021-01-28'
+assigned: '2021-02-03'
+due: '2021-02-10'
+slug: lab-3
+categories:
+  - Assignment
+tags: [Lab, Assignments]
+toc: true
+---
+
+## Overview
+The purpose of this lab is to use color to your advantage. You will be asked to
+use a variety of color palettes, and use color for its three main purposes: 
+(a) distinguish groups from each other, (b) represent data values, and (c)
+highlight particular data points.
+
+## Data
+We'll be working with the honey production data from #tidytuesday. [The #tidytuesday repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-05-21) 
+contains the full data, but we'll work with just the cleaned up version, using
+the *honeyproduction.csv* file, which is posted [in the data folder in the course repo](https://github.com/uo-datasci-specialization/c2-dataviz-2021/tree/main/data) (i.e., if you pull for the most recent changes, you should have the data).
+
+## Assignment
+1. Visualize the total production of honey across years by state  Use color to
+highlight the west coast (Washington, Oregon, and California) with a different color used for each west coast state.
+  + **Hint 2**: I'm not asking for a specific kind of plot, just one that does the preceding. But if you're trying to visualize change over time, a bar chart is likely not going to be the best choice.
+  + **Hint 2**: To get each state to be a different color you should either map state to color (for your layer that adds the west coast colors) or use the [gghighlight](https://yutannihilation.github.io/gghighlight/index.html) package.
+2. Reproduce the plot according three different kinds of color blindness, as
+well as a desaturated version. 
+3. Reproduce the plot using a color blind safe palette. 
+4. Download the file [here](https://github.com/cphalpert/census-regions/raw/master/us%20census%20bureau%20regions%20and%20divisions.csv) denoting the region and division of each state. 
+  + Join the file with your honey file. 
+  + Produce a bar plot displaying the average honey for each state (collapsing across years). 
+  + Use color to highlight the region of the country the state is from. 
+  + Note patterns you notice. 
+5. Create a heatmap displaying the average honey production across years by *region* (averaging across states within region).
+6. Create at least one more plot of your choosing using color to distinguish,
+represent data values, or highlight. If you are interested in producing maps, I
+suggest grabbing a simple features data frame of the US using the Albers projection
+by doing the following:
+
+```{r eval = FALSE}
+remotes::install_github("hrbrmstr/albersusa")
+library(albersusa)
+us <- usa_sf()
+```
+
+You can then join your honey data with this dataset. We'll talk about geographic
+data more later in the course, but it is pretty easy to work with. For example,
+you could use the data frame above to create a map of the US with:
+
+```{r eval = FALSE}
+library(ggplot2)
+ggplot(us) +
+  geom_sf()
+```
+
+You could, of course, theme it more from there, but if you join it with your
+honey data, you should be able to `fill` and/or `facet` by specific variables.
+
+Note - this is a little trickier than it initially seems because you can "lose"
+states in your map if they don't have any data (there are only 44 states
+represented in your honey dataset). You should still plot all states, but just 
+have them not be filled according to your fill scale if there is no data.
+
+```{r possible-answers, include=FALSE}
+knitr::opts_chunk$set(message = FALSE,
+                      warning = FALSE,
+                      echo = FALSE,
+                      fig.width = 10,
+                      fig.height = 10,
+                      dev.args = list(bg = "transparent"))
+
+library(tidyverse)
+library(gghighlight)
+library(colorblindr)
+library(albersusa)
+
+theme_set(theme_minimal(15))
+
+honey <- read_csv(here::here("data", "honeyproduction.csv"))
+
+west_coast <- c("WA", "OR", "CA")
+
+ggplot(honey, aes(year, totalprod, group = state)) +
+  geom_line(color = "gray80") +
+  geom_line(aes(color = state), 
+            data = filter(honey, state %in% west_coast))
+
+p <- ggplot(honey, aes(year, totalprod, color = state)) +
+  geom_line() +
+  gghighlight(state %in% west_coast) 
+p
+cvd_grid(p)
+
+p +
+  scale_color_OkabeIto()
+
+region <- read_csv("https://github.com/cphalpert/census-regions/raw/master/us%20census%20bureau%20regions%20and%20divisions.csv") %>%
+  janitor::clean_names() %>%
+  rename(state_name = state,
+         state = state_code)
+
+honey <- left_join(honey, region)
+
+by_state <- honey %>%
+  group_by(state_name, region) %>%
+  summarize(average_honey = mean(totalprod))
+
+ggplot(by_state, aes(average_honey, fct_reorder(state_name, average_honey))) +
+  geom_col(aes(fill = region),
+           color = "white",
+           alpha = 0.8) +
+  scale_x_continuous(expand = c(0,0), 
+                     labels = scales::comma) +
+  scale_fill_OkabeIto(name = "Region") +
+  theme(panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "gray70"),
+        panel.grid.minor.x = element_line(color = "gray70")) +
+  labs(x = "Average Honey Production (lbs)",
+       y = "")
+
+honey %>%
+  group_by(year, region) %>%
+  summarize(average_honey = mean(totalprod)/1e6) %>%
+  ggplot(aes(year, fct_reorder(region, average_honey))) +
+  geom_tile(aes(fill = average_honey),
+            color = "gray90") +
+  scale_fill_viridis_c("Honey Production\n(Millions of lbs)\n",
+                       option = "magma") +
+  coord_fixed(expand = c(0, 0)) +
+  labs(x = "Year", 
+       y = "Region") +
+  theme(legend.position = c(0.20, 1.15),
+        legend.direction = "horizontal",
+        legend.key.size = unit(1, 'cm'),
+        legend.key.height = unit(.5,"cm"),
+        legend.title = element_text(size = 8))
+
+#dir.create(here::here("content", "post", "lab-3", "lab-3_files"))
+ggsave(
+  here::here("content", "post", "lab-3", "lab-3_files", "honey-heatmap.pdf"), 
+  width = 9,
+  device = cairo_pdf
+)
+
+us <- usa_sf()
+
+ggplot(us) +
+  geom_sf()
+
+honey_subset <- honey %>% 
+  select("iso_3166_2" = "state", year, totalprod)
+
+# Missing some years in the honey dataset, so create them here
+full_set <- expand.grid(iso_3166_2 = unique(us$iso_3166_2),
+                        year = 1998:2012)
+
+# Add them into the honey dataset as missing values
+honey_subset <- left_join(full_set, honey_subset)
+
+# Now join it to the USA dataset
+honey_geo <- left_join(us, honey_subset) 
+
+ggplot(honey_geo) +
+  geom_sf(aes(fill = totalprod/1e6)) +
+  facet_wrap(~year) +
+  colorspace::scale_fill_continuous_sequential(
+    palette = "Purples",
+    na.value = "white",
+    name = "Honey Production\n(Millions of lbs)\n"
+  ) +
+  theme_minimal() +
+  theme(legend.direction = "horizontal",
+        legend.position = "bottom",
+        legend.key.size = unit(2, 'cm'),
+        legend.key.height = unit(.5,"cm"),
+        axis.text.x = element_text(size = 5))
+
+# ggsave(
+#   here::here("content", "post", "lab-3", "lab-3_files", "honeymap.pdf"), 
+#   width = 9,
+#   height = 6.5,
+#   dpi = 600,
+#   device = cairo_pdf
+# )
+
+# Animate it, just for fun
+# library(gganimate)
+# honey_geo_anim <- ggplot(honey_geo) +
+#   geom_sf(aes(fill = totalprod/1e6)) +
+#   transition_states(year) +
+#   colorspace::scale_fill_continuous_sequential(
+#     palette = "Purples",
+#     na.value = "white",
+#     name = "Honey Production\n(Millions of lbs)\n"
+#   ) +
+#   labs(title = 'Year: {closest_state}') +
+#   theme_minimal() +
+#   theme(legend.direction = "horizontal",
+#         legend.position = "bottom",
+#         legend.key.size = unit(2, 'cm'),
+#         legend.key.height = unit(.5,"cm"),
+#         axis.text.x = element_text(size = 5))
+# animate(honey_geo_anim, fps = 5)
+# anim_save(
+#   here::here("content", "post", "lab-3", "lab-3_files", "honeymap.gif")
+# )
+```
+
+
+# Finishing up
+When you have finished the above, upload your rendered (knit) HTML file to canvas.
