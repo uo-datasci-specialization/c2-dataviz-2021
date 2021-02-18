@@ -322,7 +322,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "other" "https://www.youtube.com/watch?v=E1kSnWvqCw0&feature=youtu.be" "Kay" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/N01vfzx2abo" >}}
 {{< /wrap >}}
 {{< /week-even >}}
 

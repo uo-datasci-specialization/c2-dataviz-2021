@@ -26,6 +26,15 @@ source(here::here("static", "slides", "slide-setup.R"))
 table {
 	font-size: 1rem;
 }
+.rt-table {
+  font-size: 0.5rem;
+}
+.rt-pagination {
+  font-size: 0.5rem;
+}
+.rt-search {
+  font-size: 0.5rem;
+}
 ```
 
 ---
@@ -41,7 +50,7 @@ Hyeonjin
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(dev = "CairoPNG",
+knitr::opts_chunk$set(dev = "ragg_png",
                       fig.width = 13, 
                       message = FALSE, 
                       warning = FALSE,
@@ -514,12 +523,6 @@ What about Microsoft Word?
 
 [![](img/flextable.png)](https://davidgohel.github.io/flextable/index.html)
 
----
-# reactable
-
-[![](img/reactable.png)](https://glin.github.io/reactable/index.html)
-
-Probably my favorite for interactive HTML tables - works great with [**shiny**](https://shiny.rstudio.com) too
 
 ---
 # Many others
@@ -541,6 +544,182 @@ Probably my favorite for interactive HTML tables - works great with [**shiny**](
 * [gtsummary](https://github.com/ddsjoberg/gtsummary)
 
 ---
+class: inverse-red middle
+# reactable
+My favorite for interactive tables
+
+---
+
+[![](img/reactable.png)](https://glin.github.io/reactable/index.html)
+
+Works great with [**shiny**](https://shiny.rstudio.com) too
+
+---
+# Penguins data
+
+```{r }
+library(palmerpenguins)
+library(reactable)
+reactable(penguins)
+```
+
+---
+# Rename columns
+
+```{r eval = FALSE}
+penguins %>% 
+  reactable(
+    columns = list(
+      bill_length_mm = colDef(name = "Bill Length (mm)"),
+      bill_depth_mm = colDef(name = "Bill Depth (mm)")
+    )
+  )
+```
+
+---
+```{r echo = FALSE}
+penguins %>% 
+  reactable(
+    columns = list(
+      bill_length_mm = colDef(name = "Bill Length (mm)"),
+      bill_depth_mm = colDef(name = "Bill Depth (mm)")
+    )
+  )
+```
+
+---
+# Or use a function
+
+```{r eval = FALSE}
+library(stringr)
+
+penguins %>% 
+  reactable(
+    defaultColDef = colDef(
+      header = function(x) str_to_title(gsub("_", " ", x))
+    )
+  )
+```
+
+---
+```{r echo = FALSE}
+library(stringr)
+
+penguins %>% 
+  reactable(
+    defaultColDef = colDef(
+      header = function(x) str_to_title(gsub("_", " ", x))
+    )
+  )
+```
+
+---
+# Add filter
+
+```{r}
+reactable(penguins, filterable = TRUE)
+```
+
+---
+# Searchable
+
+```{r}
+reactable(penguins, searchable = TRUE)
+```
+
+---
+# Pagination
+
+```{r}
+reactable(penguins, defaultPageSize = 3)
+```
+
+---
+# Page jump
+
+```{r}
+reactable(penguins, 
+          defaultPageSize = 3, 
+          paginationType = "jump")
+```
+
+---
+# Grouping
+
+```{r}
+reactable(penguins, groupBy = c("species", "island"))
+```
+
+---
+# Aggregate
+
+```{r}
+penguins %>% 
+  reactable(
+    groupBy = c("species", "island"),
+    columns = list(
+      bill_length_mm = colDef(aggregate = "mean", 
+                              format = colFormat(digits = 2))
+    )
+  )
+```
+
+---
+# Sparklines
+
+```{r }
+library(sparkline)
+table_data <- penguins %>% 
+  group_by(species) %>% 
+  summarize(bill_length = list(bill_length_mm)) %>% 
+  mutate(boxplot = NA,
+         sparkline = NA)
+table_data
+```
+
+---
+
+```{r eval = FALSE}
+table_data %>% 
+  reactable(
+    columns = list(
+      bill_length = colDef(cell = function(value) {
+        sparkline(value, type = "bar")
+      }),
+      boxplot = colDef(cell = function(value, index) {
+        sparkline(table_data$bill_length[[index]], type = "box")
+      }),
+      sparkline = colDef(cell = function(value, index) {
+        sparkline(table_data$bill_length[[index]])
+      })
+    )
+  )
+```
+
+---
+```{r echo = FALSE}
+table_data %>% 
+  reactable(
+    columns = list(
+      bill_length = colDef(cell = function(value) {
+        sparkline(value, type = "bar")
+      }),
+      boxplot = colDef(cell = function(value, index) {
+        sparkline(table_data$bill_length[[index]], type = "box")
+      }),
+      sparkline = colDef(cell = function(value, index) {
+        sparkline(table_data$bill_length[[index]])
+      })
+    )
+  )
+```
+
+---
+# Lots more!
+Idea of today is not to teach you everything, but to give you an idea of what's
+possible. Check out the [documentation]() for more information.
+
+---
 class:inverse-blue center middle
 # Fonts
 
@@ -556,6 +735,80 @@ class:inverse-blue center middle
 you may expect if you haven't played with fonts much before)
 
 * Try not to get sucked into too deep of a rabbit hole
+
+
+---
+# {ragg}
+
+*Brand* new pacakge - just learning about it myself.
+
+Alternative device to Cairo, png, etc.
+
+See the announcement [here](https://www.tidyverse.org/blog/2021/02/modern-text-features/)
+
+After install, be sure to set *Global Options > General > Graphics* to *AGG*
+
+Use with RMarkdown with `knitr::opts_chunk$set(dev = "ragg_png")`
+
+Will automatically detect fonts you have installed on your computer
+
+---
+
+```{r extrafont-plot}
+ggplot(mtcars, aes(wt, mpg)) + 
+  geom_point() +
+  labs(title = "Fuel Efficiency of 32 Cars",
+       x = "Weight (x1000 lb)",
+       y = "Miles per Gallon") +
+  theme(text = element_text(family = "Luminari", size = 30)) #<<
+```
+
+
+---
+# Support for lots of things!
+Ligatures and font-awesome icons
+
+```{r eval = FALSE}
+library(ragg)
+
+ggplot() + 
+  geom_text(
+    aes(x = 0, y = 2, label = "x <- y != z"), 
+    family = "Fira Code"
+  ) +
+  labs(title = "twitter") +
+  theme(plot.title = element_text(
+      family = "Font Awesome 5 brands"
+    )
+  )
+```
+
+---
+```{r echo = FALSE}
+library(ragg)
+
+ggplot() + 
+  geom_text(
+    aes(x = 0, y = 2, label = "x <- y != z"),
+    size = 20,
+    family = "Fira Code"
+  ) +
+  labs(title = "twitter") +
+  theme(plot.title = element_text(
+      family = "Font Awesome 5 brands"
+    )
+  )
+```
+
+---
+# emojis
+
+```{r }
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_text(label = "🎉",
+            family = "Apple Color Emoji",
+            size = 10)
+```
 
 ---
 # Google fonts
@@ -598,46 +851,6 @@ ggplot(mtcars, aes(disp, mpg)) +
 background-image:url("w8p1_files/figure-html/font-change.png")
 background-size: contain
 
-
----
-# extrafont
-* Primary downside - you have to have the fonts installed on your computer
-* Look at the install documentation - it's pretty good and fairly comprehensive
-
---
-```{r extrafont-list}
-library(extrafont)
-# font_import() Only need to run once
-fonts() # list fonts
-```
-
-
----
-```{r extrafont-plot-eval, echo = FALSE}
-p <- ggplot(mtcars, aes(wt, mpg)) + 
-  geom_point() +
-  labs(title = "Fuel Efficiency of 32 Cars",
-       x = "Weight (x1000 lb)",
-       y = "Miles per Gallon") +
-  theme(text = element_text(family = "Luminari", size = 30)) #<<
-
-# fs::dir_create(here::here("static", "slides", "w8p1_files", "figure-html"))
-ggsave(here::here("static", "slides", "w8p1_files", "figure-html", "luminari-font.png"),
-       p,
-       height = 5.5)
-```
-
-```{r extrafont-plot, eval = FALSE, fig.height = 5}
-ggplot(mtcars, aes(wt, mpg)) + 
-  geom_point() +
-  labs(title = "Fuel Efficiency of 32 Cars",
-       x = "Weight (x1000 lb)",
-       y = "Miles per Gallon") +
-  theme(text = element_text(family = "Luminari", size = 30)) #<<
-```
-
-![](w8p1_files/figure-html/luminari-font.png)
-
 ---
 class: inverse-blue center middle
 # Why fonts matter
@@ -661,7 +874,7 @@ background-image: url(img/always-mine.png)
 # Quick aside
 ### Change the font of your R Markdown!
 
-Create a new text file, import the text there, write a tiny bit of css.
+Create a CSS code chunk - write tiny bit of CSS - voila!
 
 ```{css, eval = FALSE}
 @import url('https://fonts.googleapis.com/css?family=Akronim&display=swap');
@@ -671,19 +884,6 @@ body {
 }
 ```
 
-Save this in a new file in the same directory.
-
----
-# Modify Rmd YAML
-You need to have the CSS file in the same directory as your Rmd, then reference it with 
-
-```yaml
-output: 
-  html_document:
-    css: custom.css
-```
-
-Here I'm assuming the file you saved before is called "custom.css".
 
 ---
 # Render!
@@ -691,11 +891,8 @@ Here I'm assuming the file you saved before is called "custom.css".
 ![](img/font-change-rmd.png)
 
 ---
-# Alternative approach
-It's good to think more about CSS and how it links with everything HTML. We'll talk about this a bit more next week. But, if you only have a little bit of CSS you need to write, you can do it right within RMarkdown!
+# Aside
 
-
---
 I actually did this for these slides to make the tables a bit smaller!
 
 ![](img/css-chunk.png)
@@ -726,6 +923,6 @@ Use others work to help you - I found the font for these slides from a different
 Use google chrome's developer tools to help!
 
 ---
-class: inverse-green
+class: inverse-green middle
 # Next time
-Create your own blog!
+## Create your own blog!
