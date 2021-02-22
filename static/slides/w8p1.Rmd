@@ -288,7 +288,7 @@ smry %>%
   ) %>% 
   cols_label(recline_frequency = "Recline") %>% 
   cols_align(align = "left",
-             columns = vars(recline_frequency)) 
+             columns = vars(recline_frequency)) %>%
   tab_header( #<<
     title = "Airline Passengers", #<<
     subtitle = "Leg space is limited, what do you do?" #<<
