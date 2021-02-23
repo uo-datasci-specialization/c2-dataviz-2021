@@ -15,21 +15,21 @@ Each final project repo is linked below.
 
 ```{r, message = FALSE, echo = FALSE, results = "asis", warning = FALSE}
 library(tidyverse)
-class <- read_csv(here::here("nopublish", "class-list.csv"))
-nms <- strsplit(class$person, ",") %>% 
-  map_chr(2) %>% 
-  strsplit(" ") %>% 
-  map_chr(2)
-
-class$person <- nms
-class <- class %>% 
-  mutate(
-    link = ifelse(
-      !is.na(link),
-      paste0("[<i class = 'gh' data-feather='github'>](", link, ")"),
-      "<i class = 'gh' data-feather='github'>"
-    )
-) 
+class <- read_csv(here::here("nopublish", "class-list.csv")) %>% 
+  mutate(person = gsub("[^[:print:]]", "", person),
+         person = gsub(".+,\\s(.+)", "\\1", person),
+         person = map_chr(strsplit(person, "\\s"), 1),
+         repo = ifelse(
+           !is.na(repo),
+           paste0("[<i class = 'gh' data-feather='github'>](", repo, ")"),
+           "<i class = 'gh' data-feather='github'>"
+          ),
+         link = ifelse(
+           !is.na(link),
+           paste0("[<i class = 'gh' data-feather='link'>](", link, ")"),
+           "<i class = 'gh' data-feather='link'>"
+          )
+         ) 
 ```
 
 <div class = "assigned-tbl">
@@ -37,6 +37,6 @@ class <- class %>%
 knitr::kable(cbind(class[1:12, ], 
                    class[13:24, ]), 
              col.names = NULL,
-             align = c("llll"))
+             align = c("lrllll"))
 ```
 </div>
