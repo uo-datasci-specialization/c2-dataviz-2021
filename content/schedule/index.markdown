@@ -346,7 +346,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< readings "other" "https://gt.rstudio.com/articles/intro-creating-gt-tables.html" "gt" >}}
 {{< /wrap >}}
   {{< wrap >}}
-{{< lecture "" >}}
+{{< lecture "https://youtu.be/z4xisZX5j3U" >}}
 {{< /wrap >}}
 {{< /week-odd >}}
 
