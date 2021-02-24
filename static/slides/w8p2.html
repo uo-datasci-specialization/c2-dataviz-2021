@@ -73,7 +73,7 @@ Ping
 
 --
 
-.b[ By the end of the day! You will have a site! ]
+By the end of the day! You will have a site!
 
 
 ---
@@ -90,7 +90,7 @@ https://rstudio.github.io/distill/
 * I assume most of you have never created or deployed a website before
   + If you have, some of this might be slow but you can help others
 
-* Distill was recently updated to include newer themeing features. Checkout the [website](https://rstudio.github.io/distill/) for the most complete and up-to-date info
+* Distill was recently updated to include newer themeing features, among other things. Checkout the [website](https://rstudio.github.io/distill/) for the most complete and up-to-date info
 
 * This "lecture" will be highly interactive
 
@@ -106,17 +106,9 @@ install.packages("distill")
 remotes::install_github("rstudio/distill")
 ```
 
-* Go to GitHub and create a repo to store your website (which 
-you'll also use for deployment)
-
-* Make sure you don't start it with a README or LICENSE or anything else. It should be **totally** empty.
-
 
 ---
 # Back to RStudio
-.r[Don't clone your repo yet!]
-
---
 
 ### Create new project
 &lt;img src = "img/create-blog.png" height = "350px"&gt;
@@ -126,19 +118,10 @@ you'll also use for deployment)
 * Create a new RStudio Project 
 
 * Select distill blog
-  - Make sure to Select "Configure for GitHub Pages"
+  - **Make sure** to Select "Configure for GitHub Pages"
 
 &lt;img src = "img/distill-gh-pages.png" height = "350px"&gt;
 
----
-* Use gitkraken (or command line if you're comfortable with that) to initiate a
-repo locally and link it with your remote
-
-* Commit/push
-
-* Change GH settings for deployment
-
-[demo]
 
 ---
 # Author a new article
@@ -146,22 +129,19 @@ repo locally and link it with your remote
 
 * Create another one!
 
---
-### Listings
-Make sure your index file has
-
-```
----
-listing: posts
----
-```
-
-* Note that galleries are also possible
 
 ---
 # Build your website
 ![](img/website-build.png)
 
+---
+class: inverse-blue middle
+# Connect to GitHub
+## Use the project-first workflow and publish the docs folder
+
+.center[
+[Demo]
+]
 
 ---
 class: inverse-red center middle
@@ -304,7 +284,9 @@ ggplot(mtcars, aes(mpg)) +
 ---
 # Customizing the theme
 
-* Create a `style.css` file (or whatevs)
+Use `distill::create_theme("style")`
+
+* Creates a `style.css` file (or whatevs you want to call it in the above)
 
 * Modify `_site.yml` to 
 
@@ -315,7 +297,7 @@ output:
 ```
 
 ---
-* Start with default CSS, and modify small elements
+* Modify small elements
 
 ```
 .distill-site-nav {
