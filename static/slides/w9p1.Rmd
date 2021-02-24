@@ -1,0 +1,911 @@
+---
+title: "Geographic Data"
+subtitle: "A very quick introduction"
+author: "Daniel Anderson "
+date: "Week 9, Class 1"
+output:
+  xaringan::moon_reader:
+    css: ["default", "new.css"]
+    lib_dir: libs
+    nature:
+      navigation:
+        scroll: false
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+    includes:
+      in_header: "load-feather.html"
+---
+
+```{r include = FALSE, results = "asis"}
+source(here::here("static", "slides", "slide-setup.R"))
+```
+
+`r setup("w9p1")`
+
+---
+class: inverse-blue
+# Data viz in Wild
+
+Makayla
+
+### Sarah Dimakis on deck
+
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(dev = "CairoPNG",
+                      fig.width = 13, 
+                      message = FALSE, 
+                      warning = FALSE,
+                      echo = TRUE, 
+                      cache = TRUE)
+knitr::dep_auto()
+
+library(tidyverse)
+library(sf)
+theme_set(theme_minimal(25))
+
+update_geom_defaults('text', list(size = 6))
+```
+
+# First - a disclaimer
+* We're *only* talking about visualizing geographic data, not analyzing geographic data
+
+
+--
+* Even so, there's SO MUCH we won't get to
+
+
+--
+* Today is an intro - lots more you can do, hopefully you'll feel comfortable with the basics
+
+---
+# Learning objectives
+* Know the difference between vector and raster data
+
+* Be able to produce basic maps
+
+* Be able to obtain different types of geographic data from a few different places
+
+* Be able to produce basic interactive maps
+
+* Understand the basics of the R geospatial ecosystem
+
+
+---
+# Where to learn more
+### [Geocomputation with R](https://geocompr.robinlovelace.net)
+
+.center[
+<img src="https://geocompr.robinlovelace.net/images/cover.png" 
+     width = "260px">
+]
+
+
+---
+# Zev Ross 2-day Workshop
+### From rstudio::conf(2020)
+
+```{r echo = FALSE}
+knitr::include_url("http://files.zevross.com/workshops/spatial/slides/html/0-deck-list.html")
+```
+
+Some of this presentation comes from the above.
+
+---
+class: inverse-orange center middle
+# Vector versus raster data
+![](https://s3.amazonaws.com/files.zevross.com/workshops/spatial/slides/html/images/section-1/vector_raster2-sara.png)
+
+.left[
+.footnote[Image from Zev Ross]
+]
+
+---
+# Vector data
+* points, lines, and polygons
+
+* Can easily include non-spatial data (e.g., number of people living within the polygon)
+
+--
+* Come in the form of shapefiles (`.shp`), GeoJSON, or frequently in R packages.
+
+
+--
+### This is what we'll talk about almost exclusively today
+Tends to be the most relevant for social science research questions
+
+---
+# Raster data
+
+.pull-left[
+
+* Divide the space into a grid
+
+* Assign each square (pixel) a value
+]
+
+
+.pull-right[
+
+![](https://s3.amazonaws.com/files.zevross.com/workshops/spatial/slides/html/images/section-1/raster-sara.png)
+
+]
+
+--
+Common formats include images and are often used in satellite and remote sensing data.
+
+
+--
+Can occasionally be helpful in social science data to show things like population density.
+
+---
+# Example
+![](https://pbs.twimg.com/media/EuZHPGuWQAk4aL6?format=jpg&name=4096x4096)
+
+---
+# Some of the #rspatial ecosystem
+
+* [{sf}](https://r-spatial.github.io/sf/index.html) 
+
+* [{raster}](https://cran.r-project.org/web/packages/raster/raster.pdf)
+
+* [{ggplot2}](https://ggplot2.tidyverse.org)
+
+* [{tmap}](https://github.com/mtennekes/tmap)
+
+* [{mapview}](https://r-spatial.github.io/mapview/index.html)
+
+
+--
+### My goal
+Take you through at least a basic tour of each of these (minus {raster}, although we'll discuss raster data).
+
+---
+# Some specific challenges with geospatial data
+
+* Coordinate reference systems and projections (we won't have much time for this)
+
+* List columns (specifically when working wtih {sf} objects)
+
+* Different geometry types (lines, points, polygons)
+
+* Vector versus raster
+
+* Data regularly stored in data "cubes" or "bricks" to represent, e.g., longitude, latitude, and elevation, or time series, or different colors
+
+---
+# Getting spatial data
+* We'll only cover a few ways to do this
+
+
+--
+
+* Purposefully United States centric
+
+--
+
+* Generally reading shape files is not terrifically difficult. Reading in and manipulating raster data can be tricky at times.
+
+
+--
+* Lots of organizations out there that publish spatial data, and a fair amount are available through R packages
+
+---
+# Working with spatial data
+### Two basic options
+* spatial`*`DataFrame (from the [{sp}](https://cran.r-project.org/web/packages/sp/sp.pdf) package)
+
+* sf data frame (simple features)
+
+  + We'll mostly talk about this
+
+
+--
+I can show you spatial`*`DataFrame outside the slides (it hung things up here). Generally, I'd stick with {sf}.
+
+Use `sf::st_as_sf` to convert `{sp}` to `{sf}`
+
+---
+# {tigris}
+
+```{r tigris1, eval = FALSE}
+library(tigris)
+library(sf)
+options(tigris_class = "sf") #<<
+
+roads_laneco <- roads("OR", "Lane")
+roads_laneco
+```
+
+---
+#I/O
+
+Let's say I want to write the file to disk.
+
+```{r write_roads, eval = FALSE}
+# from the sf library
+write_sf(roads_laneco, here::here("data", "roads_lane.shp"))
+```
+
+--
+Then read it in later
+
+```{r read_roads}
+roads_laneco <- read_sf(here::here("data", "roads_lane.shp"))
+roads_laneco
+```
+
+---
+# {sf} works with ggplot
+  
+Use `ggplot2::geom_sf`
+
+```{r roads2, fig.height = 6}
+ggplot(roads_laneco) +
+  geom_sf(color = "gray60")
+```
+
+---
+# Add water features
+```{r add-water-echo, eval = FALSE}
+lakes <- area_water("OR", "Lane")
+streams <- linear_water("OR", "Lane")
+
+ggplot() +
+  geom_sf(data = lakes, fill = "#518FB5") + # Add lakes
+  geom_sf(data = streams, color = "#518FB5") + # Add streams/drainage
+  geom_sf(data = roads_laneco, color = "gray60") # add roads
+```
+
+Note - these functions are all from the [{tigris}](https://github.com/walkerke/tigris) package.
+
+```{r write-water, echo = FALSE, eval = FALSE}
+sf::write_sf(lakes, here::here("data", "lakes_lane.shp"))
+sf::write_sf(streams, here::here("data", "streams_lane.shp"))
+```
+
+---
+```{r add-water-eval, echo = FALSE, fig.height = 9}
+lakes <- read_sf(here::here("data", "lakes_lane.shp"))
+streams <- read_sf(here::here("data", "streams_lane.shp"))
+
+ggplot() +
+  geom_sf(data = lakes, fill = "#518FB5") + # Add lakes
+  geom_sf(data = streams, color = "#518FB5") + # Add streams
+  geom_sf(data = roads_laneco, color = "gray60") # add roads
+```
+
+---
+# Quick aside
+### Similar package `osmdata`
+* Specifically for street-level data.
+* We'll just use the boundry box functionality, but you can add many of the same things (and there are other packages that will provide you with boundary boxes)
+
+```{r setbb}
+bb <- osmdata::getbb("Eugene")
+bb
+```
+
+---
+```{r eugene-echo, eval = FALSE}
+ggplot() +
+  geom_sf(data = lakes, fill = "#518FB5") + # Add lakes
+  geom_sf(data = streams, color = "#518FB5", size = 1.2) + # Add streams
+  geom_sf(data = roads_laneco, color = "gray60") + # add roads
+  coord_sf(xlim = bb[1, ], ylim = bb[2, ]) # limit range
+```
+
+---
+class: center middle
+```{r eugene-eval, echo = FALSE, fig.height = 9}
+ggplot() +
+  geom_sf(data = lakes, fill = "#518FB5") + # Add lakes
+  geom_sf(data = streams, color = "#518FB5", size = 1.2) + # Add streams
+  geom_sf(data = roads_laneco, color = "gray60") + # add roads
+  coord_sf(xlim = bb[1, ], ylim = bb[2, ]) # limit range
+```
+
+---
+# Quickly
+### Same thing but fully `osmdata`
+
+```{r eval = FALSE}
+library(osmdata)
+library(colorspace)
+
+bb <- getbb("Eugene")
+
+roads <- bb %>% 
+  opq() %>% #overpass query
+  add_osm_feature("highway") %>% # feature to add
+  osmdata_sf() # Change it to sf
+
+water <- bb %>% 
+  opq() %>% 
+  add_osm_feature("water") %>% 
+  osmdata_sf()
+```
+
+---
+# Use the data to plot
+
+```{r ggplot-osm, eval = FALSE}
+ggplot() +
+  geom_sf(data = water$osm_multipolygons, 
+          fill = "#518FB5", 
+          color = darken("#518FB5")) +
+  geom_sf(data = water$osm_polygons, 
+          fill = "#518FB5", 
+          color = darken("#518FB5")) +
+  geom_sf(data = water$osm_lines, 
+          color = darken("#518FB5")) +
+  geom_sf(data = roads$osm_lines, 
+          color = "gray40", 
+          size = 0.2)  +
+  coord_sf(xlim = bb[1, ], 
+           ylim = bb[2, ],
+           expand = FALSE) +
+  labs(caption = "Eugene, OR") 
+```
+
+
+---
+class: center
+
+```{r eugene-osm, fig.height = 8, fig.width = 8, echo = FALSE}
+library(osmdata)
+library(colorspace)
+
+bb <- getbb("Eugene")
+
+roads <- bb %>% 
+  opq() %>% #overpass query
+  add_osm_feature("highway") %>% # feature to add
+  osmdata_sf() # Change it to sf
+
+water <- bb %>% 
+  opq() %>% 
+  add_osm_feature("water") %>% 
+  osmdata_sf()
+
+ggplot() +
+  geom_sf(data = water$osm_multipolygons, fill = "#518FB5", color = darken("#518FB5")) +
+  geom_sf(data = water$osm_polygons, fill = "#518FB5", color = darken("#518FB5")) +
+  geom_sf(data = water$osm_lines, color = darken("#518FB5")) +
+  geom_sf(data = roads$osm_lines, color = "gray40", size = 0.2)  +
+  coord_sf(xlim = bb[1, ], 
+           ylim = bb[2, ],
+           expand = FALSE) +
+  labs(caption = "Eugene, OR") +
+  theme_void(35)
+```
+
+---
+# Let's get some census data
+### Note 
+
+To do this, you need to first register an API key with the US Census, 
+which you can do [here](https://api.census.gov/data/key_signup.html). Then
+use `census_api_key("YOUR API KEY")`. 
+
+Alternatively, you can specify `CENSUS_API_KEY  = "YOUR API KEY"` 
+in **.Renviron**. You can do this by using `usethis::edit_r_environ()`
+
+---
+# Getting the data
+
+```{r tidycensus1}
+library(tidycensus)
+# Find variable code
+# v <- load_variables(2018, "acs5")
+# View(v)
+
+census_vals <- get_acs(geography = "tract",
+                       state = "OR",
+                       variables = c(med_income = "B06011_001",
+                                     ed_attain = "B15003_001"),
+                       year = 2018,
+                       geometry = TRUE)
+```
+
+---
+# Look at the data
+```{r census-data}
+census_vals
+```
+
+---
+# Plot it
+```{r plot-census-1-echo, eval = FALSE}
+library(colorspace)
+ggplot(census_vals) +
+  geom_sf(aes(fill = estimate, color = estimate)) +
+  facet_wrap(~variable) +
+  guides(color = "none") +
+  scale_fill_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE) +
+  scale_color_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE)
+```
+
+---
+# hmm...
+
+```{r plot-census-1-eval, echo = FALSE}
+library(colorspace)
+ggplot(census_vals) +
+  geom_sf(aes(fill = estimate, color = estimate)) +
+  facet_wrap(~variable) +
+  guides(color = "none") +
+  scale_fill_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE) +
+  scale_color_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE)
+```
+
+---
+# Try again
+```{r plot-census-2-echo}
+library(colorspace)
+income <- filter(census_vals, variable == "med_income") #<<
+
+income_plot <- ggplot(income) + 
+  geom_sf(aes(fill = estimate, color = estimate)) +
+  facet_wrap(~variable) +
+  guides(color = "none") +
+  scale_fill_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE,
+                                  mid = mean(income$estimate, na.rm = TRUE)) + #<<
+  scale_color_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE,
+                                  mid = mean(income$estimate, na.rm = TRUE)) + #<<
+  theme(legend.position = "bottom",
+        legend.key.width = unit(2, "cm"))
+```
+
+---
+```{r plot-census-2-eval, fig.height = 9}
+income_plot
+```
+
+---
+# Same thing for education
+
+```{r edu-1}
+ed <- filter(census_vals, variable == "ed_attain") #<<
+
+ed_plot <- ggplot(ed) + 
+  geom_sf(aes(fill = estimate, color = estimate)) +
+  facet_wrap(~variable) +
+  guides(color = "none") +
+  scale_fill_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE,
+                                  mid = mean(ed$estimate, na.rm = TRUE)) + #<<
+  scale_color_continuous_diverging("Blue-Red 3",
+                                  rev = TRUE,
+                                  mid = mean(ed$estimate, na.rm = TRUE)) + #<<
+  theme(legend.position = "bottom",
+        legend.key.width = unit(2, "cm"))
+```
+
+
+---
+```{r edu-2-eval, fig.height = 9}
+ed_plot
+```
+
+---
+# Put them together
+```{r together}
+gridExtra::grid.arrange(income_plot, ed_plot, ncol = 2)
+```
+
+
+---
+background-image: url(https://timogrossenbacher.ch/wp-content/uploads/2019/04/bm-thematic-bivariate-map-with-legend-1-2.png)
+background-size: cover
+
+## Bivariate color scales
+
+---
+# How?
+There are a few different ways. Here's one:
+
+* Break continuous variable into categorical values
+
+* Assign each combination of values between categorical vars a color
+
+* Make sure the combinations of the colors make sense
+
+--
+![](https://www.joshuastevens.net/images/js_bivariateMix.gif)
+
+
+.footnote[gif from [Joshua Stevens](https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/)]
+
+---
+# Do it
+
+Note - this will be fairly quick. I'm not expecting you to know how to do this,
+but I want to show you the idea and give you the breadcrumbs for the code you
+may need for your specific use case.
+
+```{r bivariate-scale}
+wider <- census_vals %>% 
+  select(-moe) %>% 
+  spread(variable, estimate) %>% # pivot_wider doesn't work w/sf yet
+  drop_na(ed_attain, med_income) %>% 
+  mutate(cat_ed = cut(ed_attain, 
+                      quantile(ed_attain, 
+                               probs = seq(0, 1, length.out = 4))
+                      ),
+         cat_inc = cut(med_income, 
+                      quantile(med_income, 
+                               probs = seq(0, 1, length.out = 4))
+                      )
+         )
+```
+
+---
+# Set palette
+
+```{r pal}
+# First drop geo column
+pal <- st_drop_geometry(wider) %>%  
+  count(cat_ed, cat_inc) %>% 
+  arrange(cat_ed, cat_inc) %>% 
+  drop_na(cat_ed, cat_inc) %>% 
+  mutate(pal = c("#F3F3F3", "#C3F1D5", "#8BE3AF",
+                 "#EBC5DD", "#C3C5D5", "#8BC5AF",
+                 "#E7A3D1", "#C3A3D1", "#8BA3AE"))
+pal
+```
+
+---
+# Join & plot
+```{r join}
+bivar_map <- left_join(wider, pal) %>% 
+  ggplot() + 
+  geom_sf(aes(fill = pal, color = pal)) +
+  guides(fill = "none", color = "none") +
+  scale_fill_identity() +
+  scale_color_identity()
+```
+
+---
+class: center middle
+
+```{r bivar-plot, fig.height = 8}
+bivar_map
+```
+
+---
+# Add in legend
+
+### First create it
+```{r legend, fig.height = 3}
+leg <- ggplot(pal, aes(cat_ed, cat_inc)) +
+  geom_tile(aes(fill = pal)) +
+  scale_fill_identity() +
+  coord_fixed() +
+  labs(x = expression("Higher education" %->% ""),
+       y = expression("Higher income" %->% "")) +
+  theme(axis.text = element_blank(),
+        axis.title = element_text(size = 12))
+leg
+```
+
+---
+# Put together
+```{r bivar-full-echo, eval = FALSE, fig.height = 9}
+library(cowplot)
+ggdraw() +
+  draw_plot(bivar_map + theme_void(), 0.1, 0.1, 1, 1) +
+  draw_plot(leg, -0.05, 0, 0.3, 0.3)
+```
+
+Coordinates are mostly guess/check depending on aspect ratio
+
+---
+```{r bivar-full-eval, echo = FALSE, fig.height = 9}
+library(cowplot)
+ggdraw() +
+  draw_plot(bivar_map + theme_void(), 0.1, 0, 1, 1) +
+  draw_plot(leg, -0.05, 0.4, 0.3, 0.3)
+```
+
+---
+class: inverse-red
+# {tmap}
+### Back to just one variable
+
+I mostly use `ggplot()`, but the **{tmap}** package is really powerful and
+the syntax is pretty straightforward, so let's have a quick overview.
+
+---
+# Education map with [{tmap}](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html).
+
+```{r tmap-edu, fig.height = 5}
+library(tmap)
+tm_shape(wider) +
+  tm_polygons("med_income")
+```
+
+---
+# Facet
+
+```{r tmap-facet1, fig.height = 6}
+tm_shape(census_vals) +
+  tm_polygons("estimate") +
+  tm_facets("variable")
+```
+
+---
+# Change colors
+
+```{r tmap-facet3, fig.height = 5.5}
+tm_shape(wider) +
+  tm_polygons("ed_attain",
+              palette = "magma", #<<
+              border.col = "gray90", #<<
+              lwd = 0.1) #<<
+```
+
+---
+# Change to continuous legend
+
+```{r tmap-cont-leg, fig.height = 6}
+tm_shape(wider) +
+  tm_polygons("ed_attain",
+              style = "cont") +
+  tm_layout(legend.outside = TRUE)
+```
+
+---
+# Add text
+
+* First, let's get data at the county level, instead of census tract level
+
+```{r pull-county-data}
+cnty <- get_acs(geography = "county",
+                state = "OR",
+                variables = c(ed_attain = "B15003_001"),
+                year = 2018,
+                geometry = TRUE)
+```
+
+---
+```{r cnty-data}
+cnty
+```
+
+---
+# Extract just county name
+```{r county-name}
+cnty <- cnty %>% 
+  mutate(county = str_replace_all(NAME, " County, Oregon", ""))
+```
+
+
+--
+### Estimate polygon centroid 
+
+```{r centroid}
+centroids <- st_centroid(cnty)
+```
+
+---
+### Plot
+```{r county-name-plot, fig.height = 5}
+tm_shape(cnty) +
+  tm_polygons("estimate") +
+tm_shape(centroids) +
+  tm_text("county", size = 0.5)
+```
+
+---
+# Add raster elevation data
+```{r get-elevation, fig.height=5}
+states <- get_acs("state", 
+              variables = c(ed_attain = "B15003_001"),
+              year = 2018,
+              geometry = TRUE)
+or <- filter(states, NAME == "Oregon")
+
+# convert to spatial data frame
+sp <- as(or, "Spatial")
+
+# use elevatr library to pull data
+library(elevatr)
+or_elev <- get_elev_raster(sp, z = 9)
+lane_elev <- get_elev_raster(sp, z = 9)
+```
+
+---
+# Plot
+```{r plot-raster}
+tm_shape(or_elev) +
+  tm_raster(midpoint = NA,
+            style = "cont") +
+  tm_layout(legend.outside = TRUE) +
+tm_shape(cnty) +
+  tm_borders(col = "gray60") 
+```
+
+---
+# Add custom palette
+
+```{r plot-raster-custom-echo, eval = FALSE}
+tm_shape(or_elev) +
+  tm_raster(midpoint = NA,
+            style = "cont",
+            palette = c("#E2FCFF", "#83A9CE", "#485C6E", 
+                        "#181818", "#5C5B3E", "#AAA971",
+                        "#FCFCD3", "#ffffff")) +
+  tm_layout(legend.outside = TRUE) +
+tm_shape(cnty) +
+  tm_borders(col = "gray60") 
+```
+
+---
+```{r plot-raster-custom-eval, echo = FALSE, fig.height = 10}
+tm_shape(or_elev) +
+  tm_raster(style = "cont",
+            palette = c("#E2FCFF", "#83A9CE", "#485C6E", 
+                        "#181818", "#5C5B3E", "#AAA971",
+                        "#FCFCD3", "#ffffff")) +
+  tm_layout(legend.outside = TRUE) +
+tm_shape(cnty) +
+  tm_borders(col = "gray60") 
+```
+
+---
+# You can do some amazing things!
+```{r echo = FALSE}
+data("land", "rivers", "World", package = "tmap")
+tm_shape(land) +
+  tm_raster("elevation", breaks = c(-Inf, 250, 500, 1000, 1500, 2000, 2500, 3000, 4000, Inf),  
+            palette = terrain.colors(9), title = "Elevation (m)") +
+  tm_shape(rivers) + 
+  tm_lines("lightblue", lwd = "strokelwd", scale = 1.5, legend.lwd.show = FALSE) +
+  tm_shape(World, is.master = TRUE) +
+  tm_borders("grey20", lwd = .5) +
+  tm_grid(labels.size = 0.4, lwd = 0.25) +
+  tm_text("name", size = "AREA") +
+  tm_compass(position = c(0.08, 0.45), color.light = "grey90", size = 3) +
+  tm_credits("Eckert IV projection", position = c("RIGHT", "BOTTOM")) +
+  tm_style("classic",
+         bg.color = "lightblue",
+         space.color = "grey90",
+         inner.margins = c(0.04, 0.04, 0.03, 0.02), 
+         earth.boundary = TRUE) +
+  tm_legend(position = c("left", "bottom"), 
+            frame = TRUE,
+            bg.color = "lightblue")
+```
+
+---
+# Create interactive maps
+Just change run `tmap_mode("view)` then run the same code as before
+
+```{r interactive-map, fig.height = 4, fig.width = 6}
+tmap_mode("view")
+
+tm_shape(cnty) +
+  tm_polygons("estimate") +
+tm_shape(centroids) +
+  tm_text("county", size = 0.5)
+```
+
+
+---
+# mapview
+
+* Really quick easy interactive maps
+
+```{r mapview1, fig.height = 5, fig.width = 6}
+library(mapview)
+mapview(cnty)
+```
+
+---
+```{r mapview2, fig.width = 10}
+mapview(cnty, zcol = "estimate")
+```
+
+---
+```{r mapview3, fig.height = 7, fig.width = 8}
+mapview(cnty, 
+        zcol = "estimate",
+        popup = leafpop::popupTable(cnty,
+                           zcol = c("county", "estimate")))
+```
+
+
+---
+class: inverse center middle
+# A few other things of note
+
+---
+# statebins
+
+```{r statebins, fig.height = 6}
+library(statebins)
+statebins(states,
+          state_col = "NAME",
+          value_col = "estimate")
+```
+
+
+---
+# Cartograms
+
+```{r carto1}
+library(cartogram)
+or_county_pop <- get_acs(geography = "county",
+                       state = "OR",
+                       variables = "B00001_001",
+                       year = 2018,
+                       geometry = TRUE)
+
+# Set projection
+or_county_pop <- st_transform(or_county_pop,
+                              crs = 2992) 
+# found  the CRS here: https://www.oregon.gov/geo/pages/projections.aspx
+carto_counties <- cartogram_cont(or_county_pop, "estimate")
+```
+
+---
+# Compare
+
+.pull-left[
+```{r standard}
+ggplot(or_county_pop) +
+  geom_sf(fill = "#BCD8EB")
+```
+
+]
+
+.pull-right[
+```{r carto-counties}
+ggplot(carto_counties) +
+  geom_sf(fill = "#D5FFFA")
+```
+
+]
+
+---
+# State
+
+```{r carto2}
+state_pop <- get_acs(geography = "state",
+                     variables = "B00001_001",
+                     year = 2018,
+                     geometry = TRUE)
+
+# Set projection
+state_pop <- st_transform(state_pop, crs = 2163) 
+
+# found  the CRS here: https://epsg.io/transform#s_srs=3969&t_srs=4326
+
+carto_states <- cartogram_cont(state_pop, "estimate")
+```
+
+---
+# Cartogram of USA by population
+
+```{r carto-us}
+ggplot(carto_states) +
+  geom_sf()
+```
+
+---
+# Last note
+You may or may not like cartograms.
+
+--
+Just be careful not to lie with maps.
+
+![](https://s3files.core77.com/blog/images/960537_81_90771_DrdO3qFgW.gif)
