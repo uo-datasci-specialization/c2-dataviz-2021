@@ -60,6 +60,7 @@ update_geom_defaults('text', list(size = 6))
 --
 * Today is an intro - lots more you can do, hopefully you'll feel comfortable with the basics
 
+
 ---
 # Learning objectives
 * Know the difference between vector and raster data
@@ -72,6 +73,9 @@ update_geom_defaults('text', list(size = 6))
 
 * Understand the basics of the R geospatial ecosystem
 
+
+--
+### Today is partially about content and partially about exposure
 
 ---
 # Where to learn more
@@ -95,12 +99,12 @@ Some of this presentation comes from the above.
 
 ---
 class: inverse-orange center middle
-# Vector versus raster data
+
 ![](https://s3.amazonaws.com/files.zevross.com/workshops/spatial/slides/html/images/section-1/vector_raster2-sara.png)
 
-.left[
+# Vector versus raster data
+
 .footnote[Image from Zev Ross]
-]
 
 ---
 # Vector data
@@ -143,6 +147,8 @@ Can occasionally be helpful in social science data to show things like populatio
 ---
 # Example
 ![](https://pbs.twimg.com/media/EuZHPGuWQAk4aL6?format=jpg&name=4096x4096)
+
+.footnote[[source](https://www.nytimes.com/interactive/2021/02/16/us/winter-storm-texas-power-outage-map.html)]
 
 ---
 # Some of the #rspatial ecosystem
@@ -219,6 +225,11 @@ roads_laneco <- roads("OR", "Lane")
 roads_laneco
 ```
 
+```{r echo = FALSE}
+roads_laneco <- read_sf(here::here("data", "roads_lane.shp"))
+roads_laneco
+```
+
 ---
 #I/O
 
@@ -232,8 +243,12 @@ write_sf(roads_laneco, here::here("data", "roads_lane.shp"))
 --
 Then read it in later
 
-```{r read_roads}
+```{r read_roads, eval = FALSE}
 roads_laneco <- read_sf(here::here("data", "roads_lane.shp"))
+roads_laneco
+```
+
+```{r echo = FALSE}
 roads_laneco
 ```
 
@@ -384,6 +399,7 @@ ggplot() +
 
 ---
 # Let's get some census data
+
 ### Note 
 
 To do this, you need to first register an API key with the US Census, 
@@ -455,12 +471,16 @@ income_plot <- ggplot(income) +
   geom_sf(aes(fill = estimate, color = estimate)) +
   facet_wrap(~variable) +
   guides(color = "none") +
-  scale_fill_continuous_diverging("Blue-Red 3",
-                                  rev = TRUE,
-                                  mid = mean(income$estimate, na.rm = TRUE)) + #<<
-  scale_color_continuous_diverging("Blue-Red 3",
-                                  rev = TRUE,
-                                  mid = mean(income$estimate, na.rm = TRUE)) + #<<
+  scale_fill_continuous_diverging(
+    "Blue-Red 3",
+    rev = TRUE,
+    mid = mean(income$estimate, na.rm = TRUE) #<<
+  ) + 
+  scale_color_continuous_diverging(
+    "Blue-Red 3",
+    rev = TRUE,
+    mid = mean(income$estimate, na.rm = TRUE) #<<
+  ) + 
   theme(legend.position = "bottom",
         legend.key.width = unit(2, "cm"))
 ```
@@ -480,12 +500,16 @@ ed_plot <- ggplot(ed) +
   geom_sf(aes(fill = estimate, color = estimate)) +
   facet_wrap(~variable) +
   guides(color = "none") +
-  scale_fill_continuous_diverging("Blue-Red 3",
-                                  rev = TRUE,
-                                  mid = mean(ed$estimate, na.rm = TRUE)) + #<<
-  scale_color_continuous_diverging("Blue-Red 3",
-                                  rev = TRUE,
-                                  mid = mean(ed$estimate, na.rm = TRUE)) + #<<
+  scale_fill_continuous_diverging(
+    "Blue-Red 3",
+    rev = TRUE,
+    mid = mean(ed$estimate, na.rm = TRUE) #<<
+  ) + 
+  scale_color_continuous_diverging(
+    "Blue-Red 3",
+    rev = TRUE,
+    mid = mean(ed$estimate, na.rm = TRUE) #<<
+  ) + 
   theme(legend.position = "bottom",
         legend.key.width = unit(2, "cm"))
 ```
@@ -504,10 +528,13 @@ gridExtra::grid.arrange(income_plot, ed_plot, ncol = 2)
 
 
 ---
+class: inverse-blue middle
+
+# Bivariate color scales
+
+---
 background-image: url(https://timogrossenbacher.ch/wp-content/uploads/2019/04/bm-thematic-bivariate-map-with-legend-1-2.png)
 background-size: cover
-
-## Bivariate color scales
 
 ---
 # How?
@@ -530,22 +557,40 @@ There are a few different ways. Here's one:
 
 Note - this will be fairly quick. I'm not expecting you to know how to do this,
 but I want to show you the idea and give you the breadcrumbs for the code you
-may need for your specific use case.
+may need.
 
-```{r bivariate-scale}
+--
+### First - move it to wider
+
+```{r }
 wider <- census_vals %>% 
   select(-moe) %>% 
   spread(variable, estimate) %>% # pivot_wider doesn't work w/sf yet
-  drop_na(ed_attain, med_income) %>% 
-  mutate(cat_ed = cut(ed_attain, 
-                      quantile(ed_attain, 
-                               probs = seq(0, 1, length.out = 4))
-                      ),
-         cat_inc = cut(med_income, 
-                      quantile(med_income, 
-                               probs = seq(0, 1, length.out = 4))
-                      )
-         )
+  drop_na(ed_attain, med_income)
+wider
+```
+
+---
+# Find the quartiles
+
+```{r }
+ed_quartiles <- quantile(wider$ed_attain, 
+                         probs = seq(0, 1, length.out = 4))
+inc_quartiles <- quantile(wider$med_income, 
+                          probs = seq(0, 1, length.out = 4))
+ed_quartiles
+```
+
+---
+# Create the cut variable
+
+
+```{r bivariate-scale}
+wider <- wider %>% 
+  mutate(cat_ed = cut(ed_attain, ed_quartiles),
+         cat_inc = cut(med_income, inc_quartiles))
+wider %>% 
+  select(starts_with("cat"))
 ```
 
 ---
@@ -577,7 +622,7 @@ bivar_map <- left_join(wider, pal) %>%
 ---
 class: center middle
 
-```{r bivar-plot, fig.height = 8}
+```{r bivar-plot, fig.height = 8, echo = FALSE}
 bivar_map
 ```
 
@@ -617,7 +662,7 @@ ggdraw() +
 ```
 
 ---
-class: inverse-red
+class: inverse-orange middle
 # {tmap}
 ### Back to just one variable
 
@@ -654,7 +699,7 @@ tm_shape(wider) +
 ```
 
 ---
-# Change to continuous legend
+# Continuous legend
 
 ```{r tmap-cont-leg, fig.height = 6}
 tm_shape(wider) +
@@ -682,32 +727,36 @@ cnty
 ```
 
 ---
-# Extract just county name
-```{r county-name}
-cnty <- cnty %>% 
-  mutate(county = str_replace_all(NAME, " County, Oregon", ""))
-```
-
-
---
-### Estimate polygon centroid 
+# Estimate polygon centroid 
 
 ```{r centroid}
 centroids <- st_centroid(cnty)
 ```
 
+--
+### Extract just county name
+
+```{r county-name}
+centroids <- centroids %>% 
+  mutate(county = str_replace_all(NAME, " County, Oregon", ""))
+```
+
+
 ---
-### Plot
+# Plot
 ```{r county-name-plot, fig.height = 5}
 tm_shape(cnty) +
-  tm_polygons("estimate") +
+  tm_polygons("estimate",
+              style = "cont") +
 tm_shape(centroids) +
-  tm_text("county", size = 0.5)
+  tm_text("county", size = 0.5) +
+  tm_layout(legend.outside = TRUE)
 ```
 
 ---
 # Add raster elevation data
-```{r get-elevation, fig.height=5}
+
+```{r get-elevation-echo, eval = FALSE}
 states <- get_acs("state", 
               variables = c(ed_attain = "B15003_001"),
               year = 2018,
@@ -721,6 +770,21 @@ sp <- as(or, "Spatial")
 library(elevatr)
 or_elev <- get_elev_raster(sp, z = 9)
 lane_elev <- get_elev_raster(sp, z = 9)
+```
+
+```{r get-elevation-eval, include = FALSE}
+states <- get_acs("state", 
+              variables = c(ed_attain = "B15003_001"),
+              year = 2018,
+              geometry = TRUE)
+or <- filter(states, NAME == "Oregon")
+
+# convert to spatial data frame
+sp <- as(or, "Spatial")
+
+# use elevatr library to pull data
+library(elevatr)
+or_elev <- get_elev_raster(sp, z = 9)
 ```
 
 ---
@@ -750,7 +814,9 @@ tm_shape(cnty) +
 ```
 
 ---
-```{r plot-raster-custom-eval, echo = FALSE, fig.height = 10}
+class: full-size-fig
+
+```{r plot-raster-custom-eval, echo = FALSE}
 tm_shape(or_elev) +
   tm_raster(style = "cont",
             palette = c("#E2FCFF", "#83A9CE", "#485C6E", 
@@ -790,7 +856,7 @@ tm_shape(land) +
 # Create interactive maps
 Just change run `tmap_mode("view)` then run the same code as before
 
-```{r interactive-map, fig.height = 4, fig.width = 6}
+```{r interactive-map-code, eval = FALSE}
 tmap_mode("view")
 
 tm_shape(cnty) +
@@ -799,6 +865,17 @@ tm_shape(centroids) +
   tm_text("county", size = 0.5)
 ```
 
+
+---
+
+```{r interactive-map, echo = FALSE}
+tmap_mode("view")
+
+tm_shape(cnty) +
+  tm_polygons("estimate") +
+tm_shape(centroids) +
+  tm_text("county", size = 0.5)
+```
 
 ---
 # mapview
@@ -811,6 +888,7 @@ mapview(cnty)
 ```
 
 ---
+
 ```{r mapview2, fig.width = 10}
 mapview(cnty, zcol = "estimate")
 ```
@@ -820,12 +898,12 @@ mapview(cnty, zcol = "estimate")
 mapview(cnty, 
         zcol = "estimate",
         popup = leafpop::popupTable(cnty,
-                           zcol = c("county", "estimate")))
+                           zcol = c("NAME", "estimate")))
 ```
 
 
 ---
-class: inverse center middle
+class: inverse-blue center middle
 # A few other things of note
 
 ---
@@ -835,7 +913,8 @@ class: inverse center middle
 library(statebins)
 statebins(states,
           state_col = "NAME",
-          value_col = "estimate")
+          value_col = "estimate") +
+  theme_void()
 ```
 
 
@@ -909,3 +988,11 @@ You may or may not like cartograms.
 Just be careful not to lie with maps.
 
 ![](https://s3files.core77.com/blog/images/960537_81_90771_DrdO3qFgW.gif)
+
+
+---
+class: inverse-green middle
+# Next time
+## Customizing web pages with CSS
+
+Last actual lecture for this class

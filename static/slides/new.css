@@ -187,7 +187,7 @@ div.slides-footer {
 	display: none;
 }
 
-svg {
+.footer-icon-link > svg {
 	height: 100%;
 	color: #d3d8de;
 }
@@ -217,4 +217,10 @@ a.footer-icon-link:hover {
 	font-weight: 0.2rem;
 	border-top: 1px solid #a8b1bd;
 	bottom: 1rem;
+}
+
+/*Full size plots*/
+.remark-slide-content.full-slide-fig{
+  padding: 0px 0px 0px 0px;
+  width: 100%;
 }
