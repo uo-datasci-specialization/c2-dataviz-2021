@@ -32,5 +32,6 @@ to_print <- anti_join(pdfs, html, by = c("week", "modification_time")) %>%
 
 purrr::walk(to_print$path, ~{
   rmarkdown::render(.x)
-  pagedown::chrome_print(.x)
+  pagedown::chrome_print(gsub("\\.Rmd", "\\.html", .x))
 })
+

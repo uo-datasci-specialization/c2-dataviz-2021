@@ -64,8 +64,8 @@ HTML code is broken up like this
 ```html
 &lt;body&gt;
 
-&lt;h1&gt;My First Heading&lt;/h1&gt;
-&lt;p&gt;My first paragraph.&lt;/p&gt;
+  &lt;h1&gt;My First Heading&lt;/h1&gt;
+  &lt;p&gt;My first paragraph.&lt;/p&gt;
 
 &lt;/body&gt;
 ```
@@ -108,7 +108,7 @@ body {
 }
 ```
 
-We specify the thing we want to modify (`body`), then use curly braces, then put the corresponding CSS code. Note the CSS code always follows the form `thing: "modifier";`.
+We specify the thing we want to modify (`body`), then use curly braces, then put the corresponding CSS code. Note the CSS code always follows the form `thing: modifier;`.
 
 ---
 # Challenge
@@ -116,10 +116,10 @@ We specify the thing we want to modify (`body`), then use curly braces, then put
 Play around for three minutes. See if you can do the following
 
 * Use a different font family for Level 1 headers than the rest of the document
-* Change the color of the body text or one of the headers (use `color: "hex code"`).
+* Change the color of the body text or one of the headers (use `color: #hexcode`).
 * Try playing with `background-color`.
 
-<div class="countdown" id="timer_603854aa" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60387b74" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -191,7 +191,7 @@ I would encourage you to try other text editors for writing style sheets. Sublim
 ![](img/css-vscode.png)
 ]
 
-There are *hundreds* of styles, but the main point is that you can get appropriate code highlighting that you can't get through RStudio.
+There are *hundreds* of styles, but the main point is that you can get appropriate code highlighting that you can't get through RStudio (to my knowledge).
 
 ---
 # Fixing our code output
@@ -246,7 +246,7 @@ Anything that has a *class* can be referred to through CSS by just adding a dot 
 
 ```css
 .attention {
-	font-size: 2rem;
+  font-size: 2rem;
 }
 ```
 
@@ -261,12 +261,12 @@ Let's say we wanted to create a call-out box (i.e., to bring the reader's attent
 
 ```css
 .attention {
-	border: 3px solid #FF0380;
-	border-radius: 10px;
-	background-color: #ffadd6;
-	font-size: 5rem;
-	color: #fff;
-	text-align: center;
+  border: 3px solid #FF0380;
+  border-radius: 10px;
+  background-color: #ffadd6;
+  font-size: 5rem;
+  color: #fff;
+  text-align: center;
 }
 ```
 
@@ -311,52 +311,52 @@ Then add something referencing the TOC in your style sheet.
 
 ```css
 #TOC {
-	border: 2px solid #00FF80;
-	background-color: #ccffe8;
-	color: #717a75;
-	border-radius: 10px;
-	width: 20%;
+  border: 2px solid #00FF80;
+  background-color: #ccffe8;
+  color: #717a75;
+  border-radius: 10px;
+  width: 20%;
 }
 ```
 
 ---
 # Links
 
-Let's change the link color and hover effect. We'll do this through two lines different CSS chunks.
+Let's change the link color and hover effect. We'll do this through two different CSS chunks.
 
 
 ```css
 a {
-	color: #009954;
-	font-weight: bold;
+  color: #009954;
+  font-weight: bold;
 }
 
 a:hover {
-	color: #FF0380;
-	text-decoration: none;
+  color: #FF0380;
+  text-decoration: none;
 }
 ```
 
 
 ---
 # A problem
-In our TOC, our text doesn't stand out as much as we might want. Let's change the link style *only* for links in the TOC.
+In our TOC, our text doesn't stand out as much as we might want. Let's change the link style **only** for links in the TOC.
 
 
 ```css
 #TOC a {
-	color: #717a75;
+  color: #717a75;
 }
 
 #TOC a:hover {
-	color: #FF0380;
+  color: #FF0380;
 }
 ```
 
 ---
 # The `!important` tag
 
-Generally best to avoid, but sometimes it's hard to avoid - it overrides the standard *cascading* style preference.
+Generally best to avoid, but sometimes it's hard - using this tag will override the standard *cascading* style preference.
 
 
 
@@ -392,23 +392,23 @@ Let's change the navbar background color and the font. I'll add a bottom border 
 @import url('https://fonts.googleapis.com/css2?family=Stick&amp;display=swap');
 
 .container-fluid {
-	background-color: #fff;
-	font-family: 'Stick', sans-serif;
-	border-bottom: 3px solid #00998c;
+  background-color: #fff;
+  font-family: 'Stick', sans-serif;
+  border-bottom: 3px solid #00998c;
 }
 ```
 
 ---
 # Navbar title
 
-Note - this is one area wher I couldn't get it to work without the `!important` tag.
+Note - this is one area where I couldn't get it to work without the `!important` tag.
 
 
 
 ```css
 .navbar-brand {
-	color: #00998c !important;
-	font-size: 5rem;
+  color: #00998c !important;
+  font-size: 5rem;
 }
 ```
 
@@ -420,7 +420,7 @@ The navbar has an inverse too that you might want to remove or modify
 
 ```css
 .navbar-inverse {
-	border: none;
+  border: none;
 }
 ```
 
@@ -430,14 +430,14 @@ The navbar has an inverse too that you might want to remove or modify
 
 ```css
 body {
-	background-color: #001413;
+  background-color: #001413;
 }
 ```
 
 
 &lt;style type="text/css"&gt;
 body {
-	background-color: #001413;
+  background-color: #001413;
 }
 &lt;/style&gt;
 
@@ -449,10 +449,10 @@ Note I've added another google font. You can do this in a single line of code wi
 
 ```css
 .chart-title {
-	background-color: #fff;
-	font-family: 'Varela Round', sans-serif;
-	color: #00998c;
-	font-size: 3rem;
+  background-color: #fff;
+  font-family: 'Varela Round', sans-serif;
+  color: #00998c;
+  font-size: 3rem;
 }
 ```
 
@@ -462,7 +462,7 @@ Note I've added another google font. You can do this in a single line of code wi
 
 ```css
 .chart-stage {
-	background-color: #f5fffe;
+  background-color: #f5fffe;
 }
 ```
 
@@ -492,6 +492,8 @@ ggplot(mtcars, aes(disp, mpg)) +
         axis.text = element_text(color = "#00998c"))
 ```
 
+You'll want to use `dev.args = list(bg="transparent")` in global knitr chunk options too.
+
 ---
 class: inverse-blue middle
 # Any time left?
@@ -500,7 +502,7 @@ class: inverse-blue middle
 
 ---
 # Creating a theme
-I mentioned  during the distill lecture that the `create_theme()` function to get you started. This will write a stylesheet
+I mentioned  during the distill lecture that you should use the `create_theme()` function to get you started. This will write a stylesheet.
 
 Let's go try. I have not prepared from here, so you can watch me fully wing it and see how it goes.
 
