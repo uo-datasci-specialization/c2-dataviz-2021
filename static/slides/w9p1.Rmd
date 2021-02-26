@@ -39,8 +39,7 @@ knitr::opts_chunk$set(dev = "CairoPNG",
                       message = FALSE, 
                       warning = FALSE,
                       echo = TRUE, 
-                      cache = TRUE)
-knitr::dep_auto()
+                      cache = FALSE)
 
 library(tidyverse)
 library(sf)

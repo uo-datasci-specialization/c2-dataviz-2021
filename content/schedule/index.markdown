@@ -398,7 +398,7 @@ Each of the below links to the full book. Icons in the schedule link to specific
 {{< week-even "03-03" >}}
   {{< description "Customizing web pages" "We'll talk about customizations generally, introducing styling with CSS, but focus speifically on customizations to websites and dashboards." >}}
   {{< wrap >}}
-{{< slides "" >}}
+{{< slides "w9p2" >}}
 {{< /wrap >}}
   {{< wrap >}}
 
