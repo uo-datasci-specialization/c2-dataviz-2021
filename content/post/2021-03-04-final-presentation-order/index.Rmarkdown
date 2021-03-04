@@ -1,0 +1,55 @@
+---
+title: Final Presentation Order
+author: Daniel Anderson
+date: '2021-03-04'
+assigned: '2021-03-04'
+due: '2021-03-08'
+slug: final-presentation-order
+categories:
+  - Assignment
+tags:
+  - Final
+---
+
+Below is the order and dates of your final project presentation. As I've mentioned before, these presentations are expected to be informal. Slides are not expected. Please spend the time showing either (a) one visual in depth, including your progression from start to finish, or (b) all three of your visuals briefly. 
+
+Please celebrate your successes! 🎉 What are you particularly proud of? 
+
+Let us know what challenges you faced, and what (if any) challenges you still have yet to tackle.
+
+We have 80 minutes for class and 12 presentations in each class. Factoring in about one minute of transitioning time, I'm limiting your presentations to five minutes. I will put up the handclap emoji 👏 when you have one minute left, and the stop emoji 🛑 when you are out of time. Please try your best to not go over time.
+
+
+```{r echo = FALSE}
+set.seed(42)
+
+to_string <- function(...) {
+  dots <- as.list(substitute(...))
+  vapply(dots, as.character, FUN.VALUE = character(1))[-1]
+}
+peeps <- to_string(
+  c(Janette, Anisha, "Ann-Marie", Hyeonjin, Kay, "Sarah Dimakis",
+    "Sarah Donaldson", David, Raleigh, Anwesha, Wanjia, Maggie,
+    Murat, Rachael, Chris, Kavya, Tess, Zach, Meg, Vinita,
+    Makayla, Ping, Shijing, Joe
+  )
+)
+pres_order <- sample(peeps)
+```
+
+
+`r blogdown::shortcode_open("bootstrap-table", "table table-hover", .type = "html")`
+
+```{r echo = FALSE}
+pres <- data.frame(order = 1:12,
+                   m = pres_order[1:12],
+                   w = pres_order[13:24])
+
+knitr::kable(pres,
+             col.names = c("Order",
+                           "Monday, March 8",
+                           "Wednesday, March 10"),
+             align = "l")
+```
+
+`r blogdown::shortcode_close("bootstrap-table", .type = "html")`
