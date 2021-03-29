@@ -34,8 +34,8 @@ class <- read_csv(here::here("nopublish", "class-list.csv")) %>%
 
 <div class = "assigned-tbl">
 ```{r echo = FALSE, warning = FALSE}
-knitr::kable(cbind(class[1:12, ], 
-                   class[13:24, ]), 
+knitr::kable(cbind(class[1:11, ], 
+                   class[12:22, ]), 
              col.names = NULL,
              align = c("lrllll"))
 ```
