@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: dataviz-2021.netlify.app
+Token: dedf2ea5e6177f342e359b9c07e5702ed8672336c6ad718c530256d9b7da17ab
